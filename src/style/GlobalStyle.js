@@ -78,3 +78,10 @@ export const GlobalStyle = StyleSheet.create({
       color: '#4898D3',
     },
   });
+
+  export const textTheme ={
+    colors:{
+      primary:'#A8D28F',
+      background: '#fff'
+    }
+  }
