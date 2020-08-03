@@ -1,29 +1,31 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
 import {TextInput} from 'react-native-paper';
 
-import * as Animatable from 'react-native-animatable';
 import { GlobalStyle } from '../../style/GlobalStyle';
 
 
 export default function SignIn({navigation}){
+
+  const {width, height} = Dimensions.get('window');
+  const height_image = height * 0.3 ;
+  const width_image =  width * 0.6;
+
     return(
-        <View style={GlobalStyle.SplashContainer}>
-        <View style={GlobalStyle.SignInHeader}>
+
+        <View style={{flex:1, margin: 25, backgroundColor: '#fff'}}>
+
+        <View style={{flex: 1}}>
 
 
-        <Text style={{
-          color:'white',
-          fontSize: 15,
-          fontWeight: "100",
-        }}>
-        Login with Email and password</Text>
+        <Image
+              source={require("../../../assets/logo.jpg")}
+              style={{height:height_image, width: width_image, alignSelf: 'center', marginTop: 15}}
+              resizeMode={"stretch"}/>
+
       </View>
 
-      <Animatable.View 
-      style={GlobalStyle.SignInFooter}
-      animation="fadeInUpBig"
-      duration={2000}>
+      <View style={{flex: 4}}>
 
         
         <TextInput
@@ -54,7 +56,7 @@ export default function SignIn({navigation}){
 
         <TouchableOpacity>
         <Text
-        style={GlobalStyle.buttonSignIn}>Sign In</Text>
+        style={GlobalStyle.signInBoutton}>Sign In</Text>
         </TouchableOpacity>
         
         <View style={{flexDirection: 'row', alignItems: 'center', alignSelf: 'center', marginTop: 20}}>
@@ -66,7 +68,7 @@ export default function SignIn({navigation}){
         </TouchableOpacity>
         </View>
 
-      </Animatable.View>
+      </View>
       </View>
     );
 }
