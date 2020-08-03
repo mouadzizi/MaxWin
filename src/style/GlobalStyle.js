@@ -80,3 +80,10 @@ export const GlobalStyle = StyleSheet.create({
 
  
   });
+
+  export const textTheme ={
+    colors:{
+      primary:'#A8D28F',
+      background: '#fff'
+    }
+  }
