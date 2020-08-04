@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Alert, Dimensions} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, Dimensions,Keyboard} from 'react-native';
 import {TextInput,Button} from 'react-native-paper';
 
 import * as Animatable from 'react-native-animatable';
@@ -7,6 +7,7 @@ import { GlobalStyle,textTheme } from '../../style/GlobalStyle';
 import {auth} from '../../API/firebase'
 
 const width=Dimensions.get('screen').width
+
 export default function SignIn({navigation}){
     const [email,setEmail] = useState('');
     const [password,setPassword]=useState('')
@@ -15,17 +16,21 @@ export default function SignIn({navigation}){
     //firebase stuff
     const SignIn = ()=>{
       setLoading(true)
+      var isErr =false
+      Keyboard.dismiss()
       auth.signInWithEmailAndPassword(email.trim(),password)
-      .then(()=>{
-        if(auth.currentUser){
-          setLoading(false)
-          Alert.alert('hint','Welcome '+email)
-        }
-      })
       .catch(err=>{
         Alert.alert('Info',err.message)
         setLoading(false)
+        isErr = true;
       })
+      .then(()=>{
+        if(auth.currentUser && !isErr){
+          setLoading(false)
+          navigation.replace('Home')
+        }
+      })
+
     }
 
     return(
@@ -47,6 +52,7 @@ export default function SignIn({navigation}){
         <TextInput
         label='Email'
         mode='outlined'
+        keyboardType='email-address'
         placeholder='e.g: yourMail@mail.com'
         theme={textTheme}
         style={{marginTop: 50}}

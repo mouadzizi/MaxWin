@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Splash from '../pages/authentication/Splash';
 import SignIn from '../pages/authentication/SignIn';
 import SignUp from '../pages/authentication/SignUp';
+import Home from '../pages/home/Home'
 
 {/* Stack navigation */}
 export default function AuthenticationStack() {
@@ -19,6 +20,7 @@ const Stack = createStackNavigator();
           <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }}/>
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="Home" component={Home} />
 
         </Stack.Navigator>
       </NavigationContainer>

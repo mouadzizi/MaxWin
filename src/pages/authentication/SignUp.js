@@ -5,7 +5,7 @@ import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
 import { auth } from '../../API/firebase'
 
 
-export default function SignUp() {
+export default function SignUp({navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
@@ -14,18 +14,20 @@ export default function SignUp() {
     //firebase stuff
     const createUser = () => {
         setLoading(true)
-        var err = false
+        
         if (password.match(confPassword) && password.match('') ) {
+            var errs = false
             auth.createUserWithEmailAndPassword(email, password)
                 .catch(err => {
                     Alert.alert('Error', err.message)
                     setLoading(false)
-                    err=true
+                    errs=true
                 })
                 .then(() => {
-                    if (auth.currentUser && err) {
+                    if (auth.currentUser && !errs) {
+                        console.log(errs);
                         setLoading(false)
-                        Alert.alert('Info', 'welcome ' + email)
+                        navigation.replace('Home')
                     }
                 })
         }
@@ -35,7 +37,6 @@ export default function SignUp() {
         }
     }
     return (
-        
         <KeyboardAvoidingView  style={{flex:1}} behavior='height' >
             <View style={styles.container} >
             <Text style={styles.title}> SIGN UP WITH US </Text>
