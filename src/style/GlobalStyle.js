@@ -77,6 +77,8 @@ export const GlobalStyle = StyleSheet.create({
       fontSize: 17,
       color: '#4898D3',
     },
+
+ 
   });
 
   export const textTheme ={

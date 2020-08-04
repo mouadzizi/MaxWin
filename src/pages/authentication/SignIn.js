@@ -44,10 +44,7 @@ export default function SignIn({navigation}){
         Login with Email and password</Text>
       </View>
 
-      <Animatable.View 
-      style={GlobalStyle.SignInFooter}
-      animation="fadeInUpBig"
-      duration={2000}>
+      <View style={{flex: 4}}>
 
         <TextInput
         label='Email'
@@ -98,7 +95,7 @@ export default function SignIn({navigation}){
         </TouchableOpacity>
         </View>
 
-      </Animatable.View>
+      </View>
       </View>
     );
 }
