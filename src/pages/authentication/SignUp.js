@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
-import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
-import { auth } from '../../API/firebase'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { textTheme } from '../../style/GlobalStyle';
+import { auth } from '../../API/firebase';
 
 
 
@@ -29,7 +27,7 @@ export default function SignUp({ navigation }) {
                     if (auth.currentUser && !errs) {
                         console.log(errs);
                         setLoading(false)
-                        navigation.replace('Dash')
+                        navigation.replace('HomeTabs')
                     }
                 })
         }
@@ -38,42 +36,58 @@ export default function SignUp({ navigation }) {
             setLoading(false)
         }
     }
+
     const { width, height } = Dimensions.get('window');
     const height_image = height * 0.3;
     const width_image = width * 0.6;
+
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}} >
+
+            <View style={{ flex: 1, backgroundColor: '#fff'}}> 
+
                 <Image source={require('../../../assets/logoMax.jpg')}
                     style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                     resizeMode={"stretch"}
                 />
             </View>
-            <View>
-                <TextInput
-                    keyboardType='email-address'
-                    label='Email'
+
+            <View style={{ flex: 4}}>
+
+                 <TextInput
+                    label='Nom d utilisateur'
                     mode='outlined'
-                    placeholder='e.g: yourMail@mail.com'
+                    placeholder='Votre surnom'
                     theme={textTheme}
                     style={{ marginTop: 50 }}
+                />
+
+                <TextInput
+                    keyboardType='email-address'
+                    label='E-mail'
+                    mode='outlined'
+                    placeholder='Votre-mail@mail.ma'
+                    theme={textTheme}
+                    style={{ marginTop: 20 }}
                     onChangeText={email => setEmail(email)}
                 />
+
                 <TextInput
-                    label='Password'
+                    label='mot de passe'
                     mode='outlined'
                     secureTextEntry={true}
                     theme={textTheme}
-                    style={{ marginTop: 50 }}
+                    style={{ marginTop: 20 }}
                     onChangeText={password => setPassword(password)}
                 />
+
                 <TextInput
-                    label='Confirm password'
+                    label='Confirmez le mot de passe'
                     mode='outlined'
                     returnKeyType='go'
                     secureTextEntry={true}
                     theme={textTheme}
-                    style={{ marginTop: 50 }}
+                    style={{ marginTop: 20 }}
                     onChangeText={text => setConfPassword(text)}
                 />
 
@@ -86,47 +100,18 @@ export default function SignUp({ navigation }) {
                     color='#4898D3'
                     disabled={!email || !password || !confPassword}
                     dark={true}>
-                    Create account
-            </Button>
+                    Create account </Button>
 
                 <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }} >
-                    <Text>Already have an account? </Text>
+                    <Text>AVous avez déjà un compte?</Text>
                     <TouchableOpacity
-                        onPress={() => navigation.replace('register')}>
-                        <Text style={{ color: '#4898D3', fontWeight: 'bold' }}>Sign In</Text>
+                        onPress={() => navigation.replace('SignIn')}>
+                        <Text style={{ color: '#4898D3', fontWeight: 'bold' }}>   Se Connecter</Text>
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity
-                    style={{ flexDirection: 'row', alignItems: 'center', marginTop: 30 }}
-                    onPress={() => navigation.replace('SignIn')}>
-                    <FontAwesome
-                        name='arrow-circle-o-left'
-                        size={50}
-                        color='#4898D3'
-                        style={{ marginRight: 25 }}
-                    />
-
-                </TouchableOpacity>
-
             </View>
-
-        </SafeAreaView>
+            </SafeAreaView>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        padding: 20,
-
-    },
-    title: {
-        fontSize: 22,
-        alignSelf: 'center',
-        fontWeight: '700',
-        marginTop: 20
-
-    }
-})

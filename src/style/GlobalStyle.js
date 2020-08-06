@@ -81,7 +81,7 @@ export const GlobalStyle = StyleSheet.create({
     signInGoogle:{
       backgroundColor: '#fff',
       borderRadius: 5,
-      width: '90%',
+      width: '100%',
       height: 35,
       alignSelf:'center',
       justifyContent: 'center',

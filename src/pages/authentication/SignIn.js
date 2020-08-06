@@ -1,5 +1,5 @@
-import React, {useState,useEffect} from 'react';
-import {View, Text, TouchableOpacity, Alert, Image, Dimensions ,Keyboard} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity, Alert, Image, Dimensions ,Keyboard, SafeAreaView} from 'react-native';
 import {TextInput,Button, ActivityIndicator} from 'react-native-paper';
 import { GlobalStyle,textTheme } from '../../style/GlobalStyle';
 import {auth} from '../../API/firebase';
@@ -29,7 +29,7 @@ export default function SignIn({navigation}){
       .then(()=>{
         if(auth.currentUser && !isErr){
           setLoading(false)
-          navigation.replace('Home')
+          navigation.replace('HomeTabs')
         }
       })
     }
@@ -74,7 +74,7 @@ export default function SignIn({navigation}){
           .then(()=>{
             navigation.reset({
               index: 0,
-              routes: [{ name: 'Dash' }],
+              routes: [{ name: 'HomeTabs' }],
             });
             console.log('user Signed in');
           })
@@ -92,7 +92,7 @@ export default function SignIn({navigation}){
             console.log(credential)
           });
         } else {
-          console.log('User already signed-in Firebase.');
+          console.log('User already signed-in');
         }
       });
     }
@@ -115,7 +115,7 @@ export default function SignIn({navigation}){
     const width_image = width * 0.6;
 
     return(
-        <View style={{flex:1, backgroundColor: '#fff', padding: 20}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}} >
         <View style={{flex:1, backgroundColor: '#fff'}}>
         
         <Image source={require('../../../assets/logoMax.jpg')}
@@ -125,19 +125,19 @@ export default function SignIn({navigation}){
         </View>
       <View style={{flex: 4}}>
         <TextInput
-        label='Email'
+        label='E-mail'
         mode='outlined'
         keyboardType='email-address'
-        placeholder='e.g: yourMail@mail.com'
+        placeholder='votre-mail@mail.com'
         theme={textTheme}
         style={{marginTop:50}}
         onChangeText={email=>setEmail(email)}
         />
 
         <TextInput
-        label='Password'
+        label='mot de passe'
         mode='outlined'
-        placeholder='Enter your Password'
+        placeholder='Enter votre mot de passe'
         theme={textTheme}
         secureTextEntry={true}
         style={{marginTop: 25}}
@@ -150,18 +150,18 @@ export default function SignIn({navigation}){
           marginTop: 15,
           fontWeight: 'bold',
           color: '#4898D3',
-        }}>Forgot Password ?</Text>
+        }}>Oublie mon mot de passe ?</Text>
         </TouchableOpacity>
 
         <Button
         mode='contained'
         uppercase={false}
-        style={{alignSelf:'center',marginVertical:10,marginHorizontal:20, width: '90%', height: 40}}
+        style={{alignSelf:'center',marginVertical:10,marginHorizontal:20, width: '100%', height: 40}}
         loading={loading}
         onPress={()=>SignIn()}
         color='#4898D3'
         dark={true}>
-          Sign in       
+          Se Connecter      
         </Button>
 
 
@@ -176,20 +176,20 @@ export default function SignIn({navigation}){
             style={{marginRight: 25}}
             />
         
-        <Text style={GlobalStyle.signUpText}> Sign in with google </Text>
+        <Text style={GlobalStyle.signUpText}> Se Connecter avec Google </Text>
         </View> 
         </TouchableOpacity>
 
         <View style={{flexDirection:'row',marginVertical:20,justifyContent:'center'}} >
-        <Text>Don't have an account? </Text>
+        <Text>vous n'avez pas de compte? </Text>
         <TouchableOpacity
           onPress={()=>navigation.replace('register')}>
-          <Text style={{color:'#4898D3',fontWeight:'bold'}}>Sign Up</Text>
+          <Text style={{color:'#4898D3',fontWeight:'bold'}}>   S'inscrire</Text>
         </TouchableOpacity>
         </View>
 
         </View>
-      </View>
+      </SafeAreaView>
       
     );
 }
