@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Splash from '../pages/authentication/Splash';
 import SignIn from '../pages/authentication/SignIn';
 import SignUp from '../pages/authentication/SignUp';
-import Dash from '../pages/home/dashBoard'
+import Dash from '../pages/home/DashBoard';
 
 {/* Stack navigation */}
 export default function AuthenticationStack() {
