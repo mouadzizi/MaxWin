@@ -17,7 +17,7 @@ export default function Splash({ navigation }) {
     setLoading(true)
     const unsub = auth.onAuthStateChanged(user=>{
       if(user){
-        navigation.replace('Home')
+        navigation.replace('Dash')
         setLoading(false)
       }
       else {
@@ -89,10 +89,9 @@ export default function Splash({ navigation }) {
     <SafeAreaView style={GlobalStyle.container}>
       
       <View style={{ flex: 6 }}>
-      <ActivityIndicator animating={loading} size='large' />
+        <ActivityIndicator animating={loading} size='large'/>
         <SwiperIntro />
       </View>
-
       <View style={{ flex: 1, flexDirection: 'row', alignContent: 'space-around' }}>
       
         <TouchableOpacity style={GlobalStyle.signInBoutton}
