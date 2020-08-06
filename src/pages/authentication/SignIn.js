@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import {View, Text, TouchableOpacity, Alert, Image, Dimensions ,Keyboard} from 'react-native';
-import {TextInput,Button} from 'react-native-paper';
+import {TextInput,Button, ActivityIndicator} from 'react-native-paper';
 import { GlobalStyle,textTheme } from '../../style/GlobalStyle';
 import {auth} from '../../API/firebase';
 import firebase from 'firebase';
@@ -13,6 +13,7 @@ export default function SignIn({navigation}){
     const [email,setEmail] = useState('');
     const [password,setPassword]=useState('')
     const [loading,setLoading]=useState(false)
+    const [gLoading,setGLoading]=useState(false)
 
     //firebase SignIn
     const SignIn = ()=>{
@@ -34,7 +35,7 @@ export default function SignIn({navigation}){
     }
 
     async function signInWithGoogleAsync() {
-      setLoading(true)
+      setGLoading(true)
       try {
         const result = await Google.logInAsync({
           androidClientId: '296245537422-m64efd4o27agofispfdie1hb99edrf0u.apps.googleusercontent.com',
@@ -44,13 +45,13 @@ export default function SignIn({navigation}){
         });
     
         if (result.type === 'success') {
-          setLoading(false)
+          setGLoading(false)
           onSignIn(result)
           
           return result.accessToken;
 
         } else {
-          setLoading(false)
+          setGLoading(false)
           return { cancelled: true };
         }
       } catch (e) {
@@ -115,17 +116,14 @@ export default function SignIn({navigation}){
 
     return(
         <View style={{flex:1, backgroundColor: '#fff', padding: 20}}>
-
         <View style={{flex:1, backgroundColor: '#fff'}}>
         
         <Image source={require('../../../assets/logoMax.jpg')}
                style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                resizeMode={"stretch"}
         />
-
         </View>
       <View style={{flex: 4}}>
-
         <TextInput
         label='Email'
         mode='outlined'
@@ -160,37 +158,37 @@ export default function SignIn({navigation}){
         uppercase={false}
         style={{alignSelf:'center',marginVertical:10,marginHorizontal:20, width: '90%', height: 40}}
         loading={loading}
-        onPress={SignIn}
+        onPress={()=>SignIn()}
         color='#4898D3'
         dark={true}>
           Sign in       
         </Button>
 
 
-        <TouchableOpacity onPress={signInWithGoogleAsync}
+        <TouchableOpacity onPress={()=>signInWithGoogleAsync()}
         style={GlobalStyle.signInGoogle}>
         <View style={{flexDirection: 'row', alignContent: 'space-around' }}>
+        <ActivityIndicator style={{position:'absolute',right:"-10%"}} animating={gLoading} size='small' color='#4898D3' />
         <FontAwesome
             name='google'
             size={25}
             color='#4898D3'
             style={{marginRight: 25}}
             />
-
-        <Text style={GlobalStyle.signUpText}> Sign in with google </Text>
-        </View>
-          
-        </TouchableOpacity>
-
-        <TouchableOpacity
-        onPress={navigation.push('SignUp')}>
-          <Text style={{color:'#4898D3'}}>Sign Up</Text>
-        </TouchableOpacity>
-
-        </View>
-
         
+        <Text style={GlobalStyle.signUpText}> Sign in with google </Text>
+        </View> 
+        </TouchableOpacity>
 
+        <View style={{flexDirection:'row',marginVertical:20,justifyContent:'center'}} >
+        <Text>Don't have an account? </Text>
+        <TouchableOpacity
+          onPress={()=>navigation.replace('register')}>
+          <Text style={{color:'#4898D3',fontWeight:'bold'}}>Sign Up</Text>
+        </TouchableOpacity>
+        </View>
+
+        </View>
       </View>
       
     );

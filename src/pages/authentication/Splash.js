@@ -27,6 +27,7 @@ export default function Splash({ navigation }) {
 
     return ()=>{
       unsub()
+      console.log('splash screen exite');
     }
   }, [])
   
@@ -96,12 +97,12 @@ export default function Splash({ navigation }) {
       <View style={{ flex: 1, flexDirection: 'row', alignContent: 'space-around' }}>
       
         <TouchableOpacity style={GlobalStyle.signInBoutton}
-          onPress={() => navigation.push('SignIn')}>
+          onPress={() => navigation.replace('SignIn')}>
           <Text style={GlobalStyle.signInText}>Se connecter</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={GlobalStyle.signUpBoutton}
-          onPress={() => navigation.push('SignUp')}>
+          onPress={() => navigation.replace('register')}>
           <Text style={GlobalStyle.signUpText}>S'inscrire</Text>
         </TouchableOpacity>
 
