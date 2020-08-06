@@ -1,23 +1,20 @@
 import React, {useState,useEffect} from 'react';
-import {View, Text, TouchableOpacity, Alert, Dimensions,Keyboard} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, Image, Dimensions ,Keyboard} from 'react-native';
 import {TextInput,Button} from 'react-native-paper';
-
-import * as Animatable from 'react-native-animatable';
 import { GlobalStyle,textTheme } from '../../style/GlobalStyle';
 import {auth} from '../../API/firebase';
-import firebase from 'firebase'
+import firebase from 'firebase';
 import * as Google from 'expo-google-app-auth';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
-
-const width=Dimensions.get('screen').width
 
 export default function SignIn({navigation}){
     const [email,setEmail] = useState('');
     const [password,setPassword]=useState('')
     const [loading,setLoading]=useState(false)
 
-    //firebase stuff
+    //firebase SignIn
     const SignIn = ()=>{
       setLoading(true)
       var isErr =false
@@ -98,6 +95,7 @@ export default function SignIn({navigation}){
         }
       });
     }
+
     function isUserEqual(googleUser, firebaseUser) {
       if (firebaseUser) {
         var providerData = firebaseUser.providerData;
@@ -111,18 +109,21 @@ export default function SignIn({navigation}){
       }
       return false;
     }
+    const { width, height } = Dimensions.get('window');
+    const height_image = height * 0.3;
+    const width_image = width * 0.6;
 
     return(
-        <View style={{flex:1}}>
-        <View style={GlobalStyle.SignInHeader}>
-        <Text style={{
-          color:'white',
-          fontSize: 15,
-          fontWeight: "100",
-        }}>
-        Login with Email and password</Text>
-      </View>
+        <View style={{flex:1, backgroundColor: '#fff', padding: 20}}>
 
+        <View style={{flex:1, backgroundColor: '#fff'}}>
+        
+        <Image source={require('../../../assets/logoMax.jpg')}
+               style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
+               resizeMode={"stretch"}
+        />
+
+        </View>
       <View style={{flex: 4}}>
 
         <TextInput
@@ -150,35 +151,47 @@ export default function SignIn({navigation}){
         <Text style={{
           marginTop: 15,
           fontWeight: 'bold',
-          color: '#A8D28F',
+          color: '#4898D3',
         }}>Forgot Password ?</Text>
         </TouchableOpacity>
 
-        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
         <Button
         mode='contained'
         uppercase={false}
-        style={{alignSelf:'center',marginVertical:10,marginHorizontal:20}}
+        style={{alignSelf:'center',marginVertical:10,marginHorizontal:20, width: '90%', height: 40}}
         loading={loading}
         onPress={SignIn}
         color='#4898D3'
         dark={true}>
           Sign in       
         </Button>
-        <TouchableOpacity onPress={signInWithGoogleAsync}>
-          <Text> Sign in with google </Text>
-        </TouchableOpacity>
+
+
+        <TouchableOpacity onPress={signInWithGoogleAsync}
+        style={GlobalStyle.signInGoogle}>
+        <View style={{flexDirection: 'row', alignContent: 'space-around' }}>
+        <FontAwesome
+            name='google'
+            size={25}
+            color='#4898D3'
+            style={{marginRight: 25}}
+            />
+
+        <Text style={GlobalStyle.signUpText}> Sign in with google </Text>
         </View>
-        
-        <View style={{flexDirection: 'row', alignItems: 'center', alignSelf: 'center', marginTop: 20}}>
-        <Text style={{fontSize: 15, color: 'grey'}}> You don't have an account ? </Text>
-        <TouchableOpacity
-        >
-          <Text style={{color:'green'}}>Sign Up</Text>
+          
         </TouchableOpacity>
+
+        <TouchableOpacity
+        onPress={navigation.push('SignUp')}>
+          <Text style={{color:'#4898D3'}}>Sign Up</Text>
+        </TouchableOpacity>
+
         </View>
 
+        
+
       </View>
-      </View>
+      
     );
 }

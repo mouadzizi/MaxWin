@@ -29,6 +29,7 @@ export default function Splash({ navigation }) {
       unsub()
     }
   }, [])
+  
   function SwiperIntro() {
     return (
       <Swiper

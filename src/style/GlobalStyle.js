@@ -78,12 +78,24 @@ export const GlobalStyle = StyleSheet.create({
       color: '#4898D3',
     },
 
+    signInGoogle:{
+      backgroundColor: '#fff',
+      borderRadius: 5,
+      width: '90%',
+      height: 35,
+      alignSelf:'center',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 2,
+      borderColor: '#4898D3',
+      marginTop: 10,
+    },
  
   });
 
   export const textTheme ={
     colors:{
-      primary:'#A8D28F',
-      background: '#fff'
+      primary:'#4898D3',
+      background: '#fff',
     }
   }

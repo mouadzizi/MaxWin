@@ -4,7 +4,7 @@ import {TextInput,Button} from 'react-native-paper';
 import {auth} from '../../API/firebase'
 
 
-export default function dashBoard({navigation}) {
+export default function DashBoard({navigation}) {
     const [user,setUser]=useState({})
     useEffect(() => {
         var unsub = auth.onAuthStateChanged(user=>{

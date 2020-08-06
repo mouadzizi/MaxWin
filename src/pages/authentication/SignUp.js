@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert,KeyboardAvoidingView } from 'react-native';
+import { View, Text, StyleSheet, Alert,KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
 import { auth } from '../../API/firebase'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function SignUp({navigation}) {
@@ -37,7 +38,8 @@ export default function SignUp({navigation}) {
         }
     }
     return (
-        <KeyboardAvoidingView  style={{flex:1}} behavior='height' >
+        <SafeAreaView>
+        
             <View style={styles.container} >
             <Text style={styles.title}> SIGN UP WITH US </Text>
             <TextInput
@@ -75,12 +77,17 @@ export default function SignUp({navigation}) {
                 loading={loading}
                 onPress={createUser}
                 color='#4898D3'
-                dark={true}
-            >
+                dark={true}>
                 Create account
-        </Button>
+            </Button>
+
+            <TouchableOpacity onPress={navigation.replace('SignIn')}>
+            <Text> BACK </Text>
+            </TouchableOpacity>
+           
         </View>
-        </KeyboardAvoidingView>
+        
+        </SafeAreaView>
     );
 }
 
