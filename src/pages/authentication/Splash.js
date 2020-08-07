@@ -43,7 +43,7 @@ export default function Splash({ navigation }) {
           <Text style={GlobalStyle.splashHeadTitle}> Bienvenu sur </Text>
 
           <Image
-            source={require("../../../assets/logoMax.jpg")}
+            source={require("../../../assets/logo.jpg")}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 
@@ -58,7 +58,7 @@ export default function Splash({ navigation }) {
           <Text style={GlobalStyle.splashHeadTitle}> Discuter </Text>
 
           <Image
-            source={require("../../../assets/test3.jpg")}
+            source={require("../../../assets/slide1.jpg")}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 
@@ -73,7 +73,7 @@ export default function Splash({ navigation }) {
           <Text style={GlobalStyle.splashHeadTitle}> Acheter  </Text>
 
           <Image
-            source={require("../../../assets/test2.jpg")}
+            source={require("../../../assets/slide2.jpg")}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 

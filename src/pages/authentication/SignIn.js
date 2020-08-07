@@ -121,7 +121,7 @@ export default function SignIn({navigation}){
 
         <View style={{flex:1, backgroundColor: '#fff'}}>
         
-        <Image source={require('../../../assets/logoMax.jpg')}
+        <Image source={require('../../../assets/logo.jpg')}
                style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                resizeMode={"stretch"}
         />

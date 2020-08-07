@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import { textTheme } from '../../style/GlobalStyle';
 import { auth } from '../../API/firebase';
@@ -46,11 +46,12 @@ export default function SignUp({ navigation }) {
 
     return (
 
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
+        <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}} >
+          <ScrollView showsVerticalScrollIndicator={false}> 
 
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
 
-                <Image source={require('../../../assets/logoMax.jpg')}
+                <Image source={require('../../../assets/logo.jpg')}
                     style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                     resizeMode={"stretch"}
                 />
@@ -117,6 +118,8 @@ export default function SignUp({ navigation }) {
                 </View>
 
             </View>
+
+            </ScrollView>
         </SafeAreaView>
     );
 }
