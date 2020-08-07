@@ -23,7 +23,7 @@ export default function DashBoard({navigation}) {
             <Button 
             onPress={logOut}
             > Log out </Button>
-            <Text>{user.email}</Text>
+            <Text>{user.displayName}</Text>
         </View>
     )
 }

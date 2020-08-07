@@ -7,6 +7,7 @@ import { auth } from '../../API/firebase';
 
 
 export default function SignUp({ navigation }) {
+    const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
@@ -25,7 +26,9 @@ export default function SignUp({ navigation }) {
                 })
                 .then(() => {
                     if (auth.currentUser && !errs) {
-                        console.log(errs);
+                        auth.currentUser.updateProfile({
+                            displayName:userName
+                        })
                         setLoading(false)
                         navigation.replace('HomeTabs')
                     }
@@ -42,10 +45,10 @@ export default function SignUp({ navigation }) {
     const width_image = width * 0.6;
 
     return (
-        
-        <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}} >
 
-            <View style={{ flex: 1, backgroundColor: '#fff'}}> 
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
+
+            <View style={{ flex: 1, backgroundColor: '#fff' }}>
 
                 <Image source={require('../../../assets/logoMax.jpg')}
                     style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
@@ -53,14 +56,15 @@ export default function SignUp({ navigation }) {
                 />
             </View>
 
-            <View style={{ flex: 4}}>
+            <View style={{ flex: 4 }}>
 
-                 <TextInput
+                <TextInput
                     label='Nom d utilisateur'
                     mode='outlined'
                     placeholder='Votre surnom'
                     theme={textTheme}
                     style={{ marginTop: 50 }}
+                    onChangeText={name => setUserName(name)}
                 />
 
                 <TextInput
@@ -97,11 +101,12 @@ export default function SignUp({ navigation }) {
                     uppercase={false}
                     style={{ alignSelf: 'center', marginTop: 50, }}
                     loading={loading}
-                    onPress={() => createUser}
+                    onPress={() => createUser()}
                     color='#4898D3'
-                    disabled={!email || !password || !confPassword}
+                    disabled={(!email || !password || !confPassword) || loading}
                     dark={true}>
-                    S'inscrire</Button>
+                    S'inscrire
+                    </Button>
 
                 <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }} >
                     <Text>AVous avez déjà un compte?</Text>
@@ -112,7 +117,7 @@ export default function SignUp({ navigation }) {
                 </View>
 
             </View>
-            </SafeAreaView>
+        </SafeAreaView>
     );
 }
 

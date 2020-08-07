@@ -27,7 +27,6 @@ export default function Splash({ navigation }) {
 
     return ()=>{
       unsub()
-      console.log('splash screen exite');
     }
   }, [])
   

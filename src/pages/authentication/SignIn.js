@@ -160,6 +160,7 @@ export default function SignIn({navigation}){
         loading={loading}
         onPress={()=>SignIn()}
         color='#4898D3'
+        disabled={(!email || !password) || loading}
         dark={true}>
           Se Connecter      
         </Button>
