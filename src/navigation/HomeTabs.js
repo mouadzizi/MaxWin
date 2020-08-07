@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import DashBoard from '../pages/home/DashBoard';
+import DashBoard from '../pages/home/dashBoard';
 import Profil from '../pages/home/Profil';
 
 export default function HomeTabs() {
@@ -11,8 +11,6 @@ export default function HomeTabs() {
 const Tab = createBottomTabNavigator();
 
 return (
-
-
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {

@@ -17,7 +17,7 @@ export default function Splash({ navigation }) {
     setLoading(true)
     const unsub = auth.onAuthStateChanged(user=>{
       if(user){
-        navigation.replace('Dash')
+        navigation.replace('HomeTabs')
         setLoading(false)
       }
       else {

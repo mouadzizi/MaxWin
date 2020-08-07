@@ -101,7 +101,7 @@ export default function SignUp({ navigation }) {
                     color='#4898D3'
                     disabled={!email || !password || !confPassword}
                     dark={true}>
-                    Create account </Button>
+                    S'inscrire</Button>
 
                 <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }} >
                     <Text>AVous avez déjà un compte?</Text>
