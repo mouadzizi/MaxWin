@@ -3,6 +3,8 @@ import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView } 
 import { TextInput, Button } from 'react-native-paper'
 import { textTheme } from '../../style/GlobalStyle';
 import { auth } from '../../API/firebase';
+import { ScrollView } from 'react-native-gesture-handler';
+
 
 
 
@@ -42,9 +44,9 @@ export default function SignUp({ navigation }) {
     const width_image = width * 0.6;
 
     return (
-        
-        <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}} >
 
+        <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}} >
+          <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1, backgroundColor: '#fff'}}> 
 
                 <Image source={require('../../../assets/logoMax.jpg')}
@@ -60,7 +62,6 @@ export default function SignUp({ navigation }) {
                     mode='outlined'
                     placeholder='Votre surnom'
                     theme={textTheme}
-                    style={{ marginTop: 50 }}
                 />
 
                 <TextInput
@@ -112,7 +113,9 @@ export default function SignUp({ navigation }) {
                 </View>
 
             </View>
-            </SafeAreaView>
+          
+          </ScrollView>
+        </SafeAreaView>
     );
 }
 

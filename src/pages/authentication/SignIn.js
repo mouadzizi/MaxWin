@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Alert, Image, Dimensions ,Keyboard, SafeAreaView} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, Image, Dimensions ,Keyboard, SafeAreaView, ScrollView} from 'react-native';
 import {TextInput,Button, ActivityIndicator} from 'react-native-paper';
 import { GlobalStyle,textTheme } from '../../style/GlobalStyle';
 import {auth} from '../../API/firebase';
@@ -115,7 +115,10 @@ export default function SignIn({navigation}){
     const width_image = width * 0.6;
 
     return(
+
       <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}} >
+          <ScrollView showsVerticalScrollIndicator={false}> 
+
         <View style={{flex:1, backgroundColor: '#fff'}}>
         
         <Image source={require('../../../assets/logoMax.jpg')}
@@ -189,6 +192,7 @@ export default function SignIn({navigation}){
         </View>
 
         </View>
+        </ScrollView>
       </SafeAreaView>
       
     );

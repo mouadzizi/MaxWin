@@ -41,10 +41,10 @@ export default function Splash({ navigation }) {
         {/* Swiper number 1 */}
         <View style={GlobalStyle.swiperContainer}>
 
-          <Text style={GlobalStyle.splashHeadTitle}> Recherche  </Text>
+          <Text style={GlobalStyle.splashHeadTitle}> Bienvenu sur </Text>
 
           <Image
-            source={require("../../../assets/test.jpg")}
+            source={require("../../../assets/logoMax.jpg")}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 
