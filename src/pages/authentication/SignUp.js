@@ -64,7 +64,6 @@ export default function SignUp({ navigation }) {
                     mode='outlined'
                     placeholder='Votre surnom'
                     theme={textTheme}
-                    style={{ marginTop: 50 }}
                     onChangeText={name => setUserName(name)}
                 />
 
@@ -100,13 +99,13 @@ export default function SignUp({ navigation }) {
                 <Button
                     mode='contained'
                     uppercase={false}
-                    style={{ alignSelf: 'center', marginTop: 50, }}
+                    style={{ alignSelf: 'center', marginTop: 50, width: '100%' }}
                     loading={loading}
                     onPress={() => createUser()}
                     color='#4898D3'
                     disabled={(!email || !password || !confPassword) || loading}
                     dark={true}>
-                    S'inscrire
+                    Creat an Account
                     </Button>
 
                 <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }} >
@@ -116,6 +115,25 @@ export default function SignUp({ navigation }) {
                         <Text style={{ color: '#4898D3', fontWeight: 'bold' }}>   Se Connecter</Text>
                     </TouchableOpacity>
                 </View>
+
+                <Text
+                style={{fontSize: 12,  marginTop: 15,color: '#c2c2c2',textAlign: 'center'}}>
+                en créant ce compte, vous acceptez les
+                </Text>
+
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }} >
+                
+                    <TouchableOpacity
+                        onPress={() => navigation.push('Privacy')}>
+                    <Text style={{ color: '##8C8C8C', fontWeight: 'bold', fontSize: 12, }}> politiques de confidentialité </Text>
+                    </TouchableOpacity>
+                    <Text
+                style={{fontSize: 12, color: '#c2c2c2',textAlign: 'center'}}>
+                 de MaxWin
+                </Text>
+                </View>
+
+                
 
             </View>
 

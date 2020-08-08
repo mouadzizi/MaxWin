@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Splash from '../pages/authentication/Splash';
 import SignIn from '../pages/authentication/SignIn';
 import SignUp from '../pages/authentication/SignUp';
+import Privacy from '../pages/authentication/Privacy';
 import HomeTabs from './HomeTabs';
 
 {/* Stack navigation */}
@@ -19,6 +20,7 @@ const Stack = createStackNavigator();
           <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }}/>
           <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }}/>
           <Stack.Screen name="register" component={SignUp} options={{ headerShown: false }}/>
+          <Stack.Screen name="Privacy" component={Privacy}/>
           <Stack.Screen name="HomeTabs" component={HomeTabs}  />
 
         </Stack.Navigator>

@@ -133,7 +133,6 @@ export default function SignIn({navigation}){
         keyboardType='email-address'
         placeholder='votre-mail@mail.com'
         theme={textTheme}
-        style={{marginTop:50}}
         onChangeText={email=>setEmail(email)}
         />
 
@@ -143,7 +142,7 @@ export default function SignIn({navigation}){
         placeholder='Enter votre mot de passe'
         theme={textTheme}
         secureTextEntry={true}
-        style={{marginTop: 25}}
+        style={{marginTop: 20}}
         onChangeText={pass=>setPassword(pass)}
         />
 

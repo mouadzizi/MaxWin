@@ -62,7 +62,8 @@ export default function Splash({ navigation }) {
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 
-          <Text style={GlobalStyle.splashText}> avec MaxWin lorsque vous trouvez l'article que vous souhaitez acheter, vous pouvez discuter en direct avec l'acheteur et discuter de tous les détails </Text>
+          <Text style={GlobalStyle.splashText}> 
+          En utilisant notre platforme une benéficier d'une large visibilité de vos produits. </Text>
 
         </View>
 
