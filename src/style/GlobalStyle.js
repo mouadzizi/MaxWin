@@ -59,7 +59,7 @@ export const GlobalStyle = StyleSheet.create({
       borderColor: '#4898D3',
       borderRadius: 30,
       borderWidth: 2,
-      width: 150,
+      width: '90%',
       height: 50,
       justifyContent: 'center',
       alignItems: 'center',

@@ -94,19 +94,13 @@ export default function Splash({ navigation }) {
         <ActivityIndicator animating={loading} size='large'/>
         <SwiperIntro />
       </View>
-      <View style={{ flex: 1, flexDirection: 'row', alignContent: 'space-around' }}>
-      
-        <TouchableOpacity style={GlobalStyle.signInBoutton}
+
+      <TouchableOpacity style={GlobalStyle.signInBoutton}
           onPress={() => navigation.replace('SignIn')}>
           <Text style={GlobalStyle.signInText}>Se connecter</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={GlobalStyle.signUpBoutton}
-          onPress={() => navigation.replace('register')}>
-          <Text style={GlobalStyle.signUpText}>S'inscrire</Text>
-        </TouchableOpacity>
 
-      </View>
     </SafeAreaView>
   );
 }
