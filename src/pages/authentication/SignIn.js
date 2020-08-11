@@ -5,7 +5,6 @@ import { GlobalStyle,textTheme } from '../../style/GlobalStyle';
 import {auth} from '../../API/firebase';
 import firebase from 'firebase';
 import * as Google from 'expo-google-app-auth';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
 
@@ -126,6 +125,26 @@ export default function SignIn({navigation}){
                resizeMode={"stretch"}
         />
         </View>
+
+      <TouchableOpacity 
+      style={{flexDirection:'row', justifyContent:'flex-start', backgroundColor: '#4898D3', borderRadius: 5}}
+      onPress={()=>signInWithGoogleAsync()}>
+      <ActivityIndicator style={{position:'absolute',right:"-10%"}} animating={gLoading} size='small' color='#4898D3' />
+      <Image source={require('../../../assets/google-icon.png')}
+             style={{height: 25, width: 25, backgroundColor: '#fff', margin: 10}}
+      />
+      <Text style={GlobalStyle.signInText}>  Se Connecter avec Google</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={{flexDirection:'row', justifyContent:'flex-start', backgroundColor: '#4267B2', borderRadius: 5, marginTop: 10}} >
+      <Image source={require('../../../assets/facebook-icon.png')}
+             style={{height: 25, width: 25, backgroundColor: '#fff', margin: 10}}
+      />
+      <Text style={GlobalStyle.signInText}>  Se Connecter avec Facebook</Text>
+      </TouchableOpacity>
+
+      <Text style={{textAlign: 'center', color: '#C2C2C2', margin: 15}}> Ou connectez-vous avec E-mail </Text>
+
       <View style={{flex: 4}}>
         <TextInput
         label='E-mail'
@@ -133,8 +152,7 @@ export default function SignIn({navigation}){
         keyboardType='email-address'
         placeholder='votre-mail@mail.com'
         theme={textTheme}
-        onChangeText={email=>setEmail(email)}
-        />
+        onChangeText={email=>setEmail(email)}/>
 
         <TextInput
         label='mot de passe'
@@ -143,8 +161,7 @@ export default function SignIn({navigation}){
         theme={textTheme}
         secureTextEntry={true}
         style={{marginTop: 20}}
-        onChangeText={pass=>setPassword(pass)}
-        />
+        onChangeText={pass=>setPassword(pass)}/>
 
         <TouchableOpacity
         onPress={()=> alert('comming up on the next virsion')}>
@@ -168,20 +185,7 @@ export default function SignIn({navigation}){
         </Button>
 
 
-        <TouchableOpacity onPress={()=>signInWithGoogleAsync()}
-        style={GlobalStyle.signInGoogle}>
-        <View style={{flexDirection: 'row', alignContent: 'space-around' }}>
-        <ActivityIndicator style={{position:'absolute',right:"-10%"}} animating={gLoading} size='small' color='#4898D3' />
-        <FontAwesome
-            name='google'
-            size={25}
-            color='#4898D3'
-            style={{marginRight: 25}}
-            />
-        
-        <Text style={GlobalStyle.signUpText}> Se Connecter avec Google </Text>
-        </View> 
-        </TouchableOpacity>
+
 
         <View style={{flexDirection:'row',marginVertical:20,justifyContent:'center'}} >
         <Text>vous n'avez pas de compte? </Text>

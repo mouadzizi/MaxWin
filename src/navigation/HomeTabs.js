@@ -4,6 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import DashBoard from '../pages/home/DashBoard';
 import Profil from '../pages/home/Profil';
+import Chats from '../pages/home/Chats';
+import Categories from '../pages/home/Categories';
 
 export default function HomeTabs() {
 
@@ -24,6 +26,16 @@ return (
               ? 'md-person' 
               : 'md-person';
             }
+            else if (route.name === 'Chats'){
+              iconName = focused 
+              ? 'ios-chatbubbles' 
+              : 'ios-chatbubbles';
+            }
+            else if (route.name === 'Categories'){
+              iconName = focused 
+              ? 'ios-list' 
+              : 'ios-list';
+            }
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -33,7 +45,11 @@ return (
           inactiveTintColor: 'gray',
         }}
       >
+
+      
         <Tab.Screen name="Home" component={DashBoard} />
+        <Tab.Screen name="Categories" component={Categories} />
+        <Tab.Screen name="Chats" component={Chats} />
         <Tab.Screen name="Profil" component={Profil} />
 
       </Tab.Navigator>

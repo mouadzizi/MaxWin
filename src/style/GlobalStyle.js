@@ -49,47 +49,22 @@ export const GlobalStyle = StyleSheet.create({
     signInBoutton:{
       backgroundColor: '#4898D3',
       borderRadius: 30,
-      width: 150,
+      width: '90%',
       height: 50,
+      marginBottom: 35,
       justifyContent: 'center',
       alignItems: 'center',
     },
 
-    signUpBoutton:{
-      borderColor: '#4898D3',
-      borderRadius: 30,
-      borderWidth: 2,
-      width: '90%',
-      height: 50,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginStart: 15
-    },
 
     signInText:{
       fontWeight: 'bold',
       fontSize: 16,
       color: 'white',
+      alignSelf: 'center'
     },
 
-    signUpText:{
-      fontWeight: 'bold',
-      fontSize: 17,
-      color: '#4898D3',
-    },
 
-    signInGoogle:{
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      width: '100%',
-      height: 35,
-      alignSelf:'center',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderWidth: 2,
-      borderColor: '#4898D3',
-      marginTop: 10,
-    },
  
   });
 
