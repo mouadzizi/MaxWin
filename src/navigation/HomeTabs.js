@@ -17,7 +17,7 @@ return (
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'Accueil') {
               iconName = focused
                 ? 'ios-home'
                 : 'ios-home';
@@ -26,12 +26,12 @@ return (
               ? 'md-person' 
               : 'md-person';
             }
-            else if (route.name === 'Chats'){
+            else if (route.name === 'Discussions'){
               iconName = focused 
               ? 'ios-chatbubbles' 
               : 'ios-chatbubbles';
             }
-            else if (route.name === 'Categories'){
+            else if (route.name === 'catégories'){
               iconName = focused 
               ? 'ios-list' 
               : 'ios-list';
@@ -47,9 +47,9 @@ return (
       >
 
       
-        <Tab.Screen name="Home" component={DashBoard} />
-        <Tab.Screen name="Categories" component={Categories} />
-        <Tab.Screen name="Chats" component={Chats} />
+        <Tab.Screen name="Accueil" component={DashBoard} />
+        <Tab.Screen name="catégories" component={Categories} />
+        <Tab.Screen name="Discussions" component={Chats} />
         <Tab.Screen name="Profil" component={Profil} />
 
       </Tab.Navigator>

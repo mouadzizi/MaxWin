@@ -1,11 +1,15 @@
-import React,{useEffect,useState} from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import {TextInput,Button} from 'react-native-paper';
-import {auth} from '../../API/firebase'
+import React,{useEffect,useState} from 'react';
+import { ScrollView, SafeAreaView } from 'react-native';
+import {Searchbar} from 'react-native-paper';
+import {auth} from '../../API/firebase';
+import RNPickerSelect from 'react-native-picker-select';
 
 
 export default function DashBoard({navigation}) {
     const [user,setUser]=useState({})
+    const [searchQuery, setSearchQuery] = useState('');
+    const onChangeSearch = query => setSearchQuery(query);
+
     useEffect(() => {
         var unsub = auth.onAuthStateChanged(user=>{
             if(user) setUser(user)
@@ -15,17 +19,25 @@ export default function DashBoard({navigation}) {
             unsub()
         }
     }, [])
+
     const logOut = ()=>{
         auth.signOut()
     }
+
+
     return (
-        <View>
-            <Button 
-            onPress={logOut}
-            > Log out </Button>
-            <Text>{user.displayName}</Text>
-        </View>
+        <SafeAreaView>
+        <ScrollView>
+
+        <Searchbar
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+        style={{margin: 5, borderRadius: 10}}
+        />
+
+
+        </ScrollView>
+        </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({})
