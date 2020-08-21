@@ -1,43 +1,70 @@
-import React,{useEffect,useState} from 'react';
-import { ScrollView, SafeAreaView } from 'react-native';
-import {Searchbar} from 'react-native-paper';
-import {auth} from '../../API/firebase';
-import RNPickerSelect from 'react-native-picker-select';
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, Alert } from 'react-native'
+import { TextInput, Button } from 'react-native-paper';
+import { auth } from '../../API/firebase'
+import * as Google from 'expo-google-sign-in'
+import AsyncStorage from '@react-native-community/async-storage'
 
 
-export default function DashBoard({navigation}) {
-    const [user,setUser]=useState({})
-    const [searchQuery, setSearchQuery] = useState('');
-    const onChangeSearch = query => setSearchQuery(query);
-
+export default function DashBoard({ navigation }) {
+    const [user, setUser] = useState({})
+    const [provider, setProvider] = useState('')
+    const [userToken, setUserToken] = useState('')
+    
     useEffect(() => {
-        var unsub = auth.onAuthStateChanged(user=>{
-            if(user) setUser(user)
-            if(!user) navigation.replace('Splash')
+        var unsub = auth.onAuthStateChanged(user => {
+            if (user) {
+                setUser(user)
+                user.providerData.forEach(e => {
+                    setProvider(e.providerId)
+                })
+            }
+            if (!user) navigation.replace('Splash')
         })
+        getData()
         return () => {
             unsub()
         }
     }, [])
 
-    const logOut = ()=>{
+    const logOut = () => {
         auth.signOut()
+            .then(() => {
+                provider === 'google.com' ? Google.signOutAsync() : faceBookLogOut();
+            })
+            .catch(err => { Alert.alert('Error', err.message) })
+    }
+
+    const faceBookLogOut = async () => {
+        try {
+            await fetch(`https://graph.facebook.com/me/permissions?method=delete&access_token=${userToken}`)
+                .then(() => alert('Success'))
+                .catch(err => alert(err.message))
+        }
+        catch (e) {
+            alert(e.message)
+        }
+
+    }
+
+    const getData = async () => {
+        try {
+            const value = await AsyncStorage.getItem('userToken')
+            if (value !== null) {
+                setUserToken(value)
+            }
+        } catch (e) {
+            alert('err' + e.message)
+        }
     }
 
 
     return (
-        <SafeAreaView>
-        <ScrollView>
-
-        <Searchbar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-        style={{margin: 5, borderRadius: 10}}
-        />
-
-
-        </ScrollView>
-        </SafeAreaView>
+        <View>
+            <Button
+                onPress={logOut}
+            > Log out </Button>
+            <Text>{userToken}</Text>
+        </View>
     )
 }

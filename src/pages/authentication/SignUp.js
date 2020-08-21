@@ -125,7 +125,7 @@ export default function SignUp({ navigation }) {
                 
                     <TouchableOpacity
                         onPress={() => navigation.push('Privacy')}>
-                    <Text style={{ color: '##8C8C8C', fontWeight: 'bold', fontSize: 12, }}> politiques de confidentialité </Text>
+                    <Text style={{ color: '#8C8C8C', fontWeight: 'bold', fontSize: 12, }}> politiques de confidentialité </Text>
                     </TouchableOpacity>
                     <Text
                 style={{fontSize: 12, color: '#c2c2c2',textAlign: 'center'}}>
