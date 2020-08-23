@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import DashBoard from '../pages/home/DashBoard';
+import DashBoard from '../pages/home/dashBoard';
 import Profil from '../pages/home/Profil';
 import Chats from '../pages/home/Chats';
 import Categories from '../pages/home/Categories';
