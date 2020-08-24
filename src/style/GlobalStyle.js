@@ -79,8 +79,9 @@ export const GlobalStyle = StyleSheet.create({
       fontSize: 20,
       fontWeight: '300',
       marginLeft: 10,
-    }
+    },
 
+    
 
  
   });

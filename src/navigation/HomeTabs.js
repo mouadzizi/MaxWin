@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import DashBoard from '../pages/home/dashBoard';
-import Profil from '../pages/home/Profil';
+import ProfilStack from '../navigation/ProfilStack';
 import Chats from '../pages/home/Chats';
 import Categories from '../pages/home/Categories';
 
@@ -21,7 +21,7 @@ return (
               iconName = focused
                 ? 'ios-home'
                 : 'ios-home';
-            } else if (route.name === 'Profil') {
+            } else if (route.name === 'ProfilStack') {
               iconName = focused 
               ? 'md-person' 
               : 'md-person';
@@ -50,7 +50,7 @@ return (
         <Tab.Screen name="Accueil" component={DashBoard} />
         <Tab.Screen name="catégories" component={Categories} />
         <Tab.Screen name="Discussions" component={Chats} />
-        <Tab.Screen name="Profil" component={Profil} />
+        <Tab.Screen name="ProfilStack" component={ProfilStack} />
 
       </Tab.Navigator>
   );
