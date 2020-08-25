@@ -120,11 +120,14 @@ export default function SignIn({ navigation }) {
         await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
         const credential = firebase.auth.FacebookAuthProvider.credential(token);
         await auth.signInWithCredential(credential)
-          .then(() => {
+          .then((userCredential) => {
             setFBLoading(false)
             storeData(token)
             navigation.replace('HomeTabs')
+            
+            
           });
+          
       }
       if(type ==='cancel'){
         setFBLoading(false)
@@ -142,6 +145,7 @@ export default function SignIn({ navigation }) {
 
     }
   }
+
 
   const { width, height } = Dimensions.get('window');
   const height_image = height * 0.3;
@@ -180,7 +184,7 @@ export default function SignIn({ navigation }) {
           <Text style={GlobalStyle.signInText}>  Se Connecter avec Facebook</Text>
         </TouchableOpacity>
 
-        <Text style={{ textAlign: 'center', color: '#C2C2C2', margin: 15 }}> Ou connectez-vous avec E-mailFBv7 </Text>
+        <Text style={{ textAlign: 'center', color: '#C2C2C2', margin: 15 }}> Ou connectez-vous avec E-mailFB </Text>
 
         <View style={{ flex: 4 }}>
           <TextInput
@@ -208,7 +212,6 @@ export default function SignIn({ navigation }) {
               color: '#4898D3',
             }}>Oublie mon mot de passe ?</Text>
           </TouchableOpacity>
-
           <Button
             mode='contained'
             uppercase={false}
@@ -220,10 +223,6 @@ export default function SignIn({ navigation }) {
             dark={true}>
             Se Connecter
         </Button>
-
-
-
-
           <View style={{ flexDirection: 'row', marginVertical: 20, justifyContent: 'center' }} >
             <Text>vous n'avez pas de compte? </Text>
             <TouchableOpacity

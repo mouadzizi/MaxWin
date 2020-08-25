@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Alert } from 'react-native'
+import { StyleSheet, Text, View, Alert, } from 'react-native'
 import { TextInput, Button } from 'react-native-paper';
 import { auth } from '../../API/firebase'
 import * as Google from 'expo-google-sign-in'
@@ -10,6 +10,10 @@ export default function DashBoard({ navigation }) {
     const [user, setUser] = useState({})
     const [provider, setProvider] = useState('')
     const [userToken, setUserToken] = useState('')
+
+    const [uid, setUID] = useState('')
+    const [response,setResponse]=useState(null)
+
     
     useEffect(() => {
         var unsub = auth.onAuthStateChanged(user => {
@@ -17,11 +21,12 @@ export default function DashBoard({ navigation }) {
                 setUser(user)
                 user.providerData.forEach(e => {
                     setProvider(e.providerId)
+                    setUID(e.uid)
                 })
             }
             if (!user) navigation.replace('Splash')
         })
-        getData()
+        getData();
         return () => {
             unsub()
         }
@@ -57,12 +62,36 @@ export default function DashBoard({ navigation }) {
             alert('err' + e.message)
         }
     }
+
+
+    const getPhotoFromGraph = async() =>{
+        try {
+            const response = await fetch(
+                `https://graph.facebook.com/${uid}/picture?type=large`
+              )
+             return response; 
+        } catch (error) {
+            alert(error.message)
+        }
+
+    }
     return (
         <View>
             <Button
                 onPress={logOut}
             > Log out </Button>
-            <Text>{userToken}</Text>
+            <Text> {user.photoURL} </Text>
+            <Button 
+            
+            onPress={()=>getPhotoFromGraph().then((response)=>{
+                user.updateProfile({
+                    photoURL: response.url,
+                })
+                
+            })}
+            >
+                Get photo
+            </Button>
         </View>
     )
 }
