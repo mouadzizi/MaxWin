@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Text, ScrollView, SafeAreaView, TouchableOpacity} from 'react-native'
 import { TextInput} from 'react-native-paper';
-import {GlobalStyle, textTheme} from '../../style/GlobalStyle';
+import {GlobalStyle, textTheme} from '../../../style/GlobalStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
