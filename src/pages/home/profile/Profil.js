@@ -3,6 +3,7 @@ import { Text, ScrollView, SafeAreaView, View, TouchableOpacity} from 'react-nat
 import { Avatar, Divider, FAB,TextInput} from 'react-native-paper';
 import {GlobalStyle} from '../../../style/GlobalStyle';
 
+
 export default function Profil({navigation}) {
     const [edit,setEdit]=useState(false)
     const [about,setAbout]=useState("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
@@ -74,6 +75,7 @@ export default function Profil({navigation}) {
 
         </View>
         </ScrollView>
+
         <FAB
         style={{position: 'absolute',margin: 16,right: 0,bottom: 0,backgroundColor: '#4898D3'}}
         label={edit? 'save' : 'modifier le profil'}
