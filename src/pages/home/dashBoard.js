@@ -15,6 +15,10 @@ export default function DashBoard({ navigation }) {
     const [user, setUser] = useState({})
     const [provider, setProvider] = useState('')
     const [userToken, setUserToken] = useState('')
+
+    const [uid, setUID] = useState('')
+    const [response,setResponse]=useState(null)
+
     
     useEffect(() => {
         var unsub = auth.onAuthStateChanged(user => {
@@ -22,11 +26,12 @@ export default function DashBoard({ navigation }) {
                 setUser(user)
                 user.providerData.forEach(e => {
                     setProvider(e.providerId)
+                    setUID(e.uid)
                 })
             }
             if (!user) navigation.replace('Splash')
         })
-        getData()
+        getData();
         return () => {
             unsub()
         }
