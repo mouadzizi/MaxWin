@@ -7,11 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function EditProfil({navigation}){
     
-  const [firstName, setFirstName] = useState('');
-  const [lasttName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [location, setLocation] = useState('');
-  const [about, setAbout] = useState('');
+
 
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
@@ -34,50 +30,13 @@ export default function EditProfil({navigation}){
         <TextInput
         label='Prénom'
         mode='outlined'
-        value={firstName}
         theme={textTheme}
-        onChangeText={text => setFirstName(text)}
         />
 
         <TextInput
         label='Nom'
         mode='outlined'
-        value={FirstName}
         theme={textTheme}
-        onChangeText={text => setText(text)}
-        />
-
-        <TextInput
-        label='Télphone'
-        mode='outlined'
-        value={FirstName}
-        theme={textTheme}
-        onChangeText={text => setText(text)}
-        />
-        
-        <TextInput
-        label='E-mail'
-        mode='outlined'
-        value={FirstName}
-        theme={textTheme}
-        onChangeText={text => setText(text)}
-        />
-
-        <TextInput
-        label='Location'
-        mode='outlined'
-        value={FirstName}
-        theme={textTheme}
-        onChangeText={text => setText(text)}
-        />
-
-        <TextInput
-        label='À propos de moi'
-        mode='outlined'
-        value={FirstName}
-        theme={textTheme}
-        style={{height: 120}}
-        onChangeText={text => setText(text)}
         />
 
         <TouchableOpacity
