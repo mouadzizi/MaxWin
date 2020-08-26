@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView, Alert, ScrollView, TouchableOpacity, Text, Image } from 'react-native';
-import { List, Button, Divider, Searchbar } from 'react-native-paper';
+import { List, Button, Divider, Searchbar, Chip } from 'react-native-paper';
 
 import { auth } from '../../API/firebase'
 import * as Google from 'expo-google-sign-in'
@@ -120,7 +120,7 @@ export default function DashBoard({ navigation }) {
 
         <TouchableOpacity
         style={GlobalStyle.item}>
-           <View style={{flex: 1, flexDirection: 'row'}}>
+           <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
 
            <View style={{flex: 2, backgroundColor: '#1126'}}>
             <Text>Image</Text>
@@ -139,11 +139,19 @@ export default function DashBoard({ navigation }) {
                 </View>
                 <Divider />
 
-                
+                <View style={{marginTop: 10}}>
+                <Chip 
+                icon="information"
+                style={{width: 130, height: 30}}>Example Chip</Chip>
+                </View>
+
+
            </View>
 
            </View>
         </TouchableOpacity>
+        
+        <Divider />
             <Button
                 onPress={logOut}
             > Log out </Button>

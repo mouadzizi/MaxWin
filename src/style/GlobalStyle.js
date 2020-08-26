@@ -99,7 +99,7 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     item:{
-      height: 185,
+      height: 220,
       width: '100%',
       backgroundColor: '#c1c1c1',
       borderRadius: 15,
