@@ -21,7 +21,20 @@ const Stack = createStackNavigator();
           <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }}/>
           <Stack.Screen name="register" component={SignUp} options={{ headerShown: false }}/>
           <Stack.Screen name="Privacy" component={Privacy}/>
-          <Stack.Screen name="HomeTabs" component={HomeTabs}  />
+          <Stack.Screen name="HomeTabs" component={HomeTabs}
+          options={{
+          title: 'MAxWin',
+          headerStyle: {
+            backgroundColor: '#4898D3',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTitleAlign: 'center'
+        }}
+
+        />
 
         </Stack.Navigator>
       </NavigationContainer>

@@ -64,36 +64,12 @@ export default function DashBoard({ navigation }) {
     }
 
 
-    const getPhotoFromGraph = async() =>{
-        try {
-            const response = await fetch(
-                `https://graph.facebook.com/${uid}/picture?type=large`
-              )
-             return response; 
-        } catch (error) {
-            alert(error.message)
-        }
-
-    }
     return (
         <View>
             <Button
                 onPress={logOut}
             > Log out </Button>
             <Text> {user.photoURL} </Text>
-            <Button 
-            
-            onPress={()=>getPhotoFromGraph().then((response)=>{
-                user.updateProfile({
-                    photoURL: response.url,
-                })
-                
-            })}
-            >
-                Get photo
-            </Button>
         </View>
     )
 }
-
-const styles = StyleSheet.create({})

@@ -64,6 +64,24 @@ export const GlobalStyle = StyleSheet.create({
       alignSelf: 'center'
     },
 
+    usernameProfil:{
+      fontWeight: '300',
+      fontSize: 17,
+      marginBottom: 10,
+      textAlign: 'center',
+    },
+    numberPosts:{
+      fontWeight: 'bold',
+      fontSize: 20,
+      color: '#4898D3',
+    },
+    posts:{
+      fontSize: 20,
+      fontWeight: '300',
+      marginLeft: 10,
+    },
+
+    
 
  
   });
