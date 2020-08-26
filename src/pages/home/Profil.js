@@ -3,6 +3,7 @@ import { Text, ScrollView, SafeAreaView, View, TouchableOpacity} from 'react-nat
 import { Avatar, Divider, FAB} from 'react-native-paper';
 import {GlobalStyle} from '../../style/GlobalStyle';
 
+
 export default function Profil({navigation}) {
 
     return (
@@ -62,11 +63,12 @@ export default function Profil({navigation}) {
 
         </View>
         </ScrollView>
+
         <FAB
         style={{position: 'absolute',margin: 16,right: 0,bottom: 0,backgroundColor: '#4898D3'}}
         label='Modifier le profil'
         color='#fff'
-        onPress={()=>{navigation.push('EditProfil')}}
+        onPress={()=>{navigation.navigate('EditProfil')}}
         />
         </SafeAreaView>
     )

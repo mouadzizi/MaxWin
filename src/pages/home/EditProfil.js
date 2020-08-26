@@ -2,25 +2,41 @@ import React, {useState} from 'react';
 import { Text, ScrollView, SafeAreaView, TouchableOpacity} from 'react-native'
 import { TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme} from '../../style/GlobalStyle';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function EditProfil(){
+
+export default function EditProfil({navigation}){
     
-  const [FirstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lasttName, setLastName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
+  const [about, setAbout] = useState('');
 
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
         <ScrollView showsVerticalScrollIndicator={false}>
 
         <TouchableOpacity
-        style={{width: 70, backgroundColor: '#3514', borderRadius: 10}}>
-            <Text style={{textAlign: 'center'}}>Retour</Text>
+        style={{flex:1, flexDirection: 'row', marginBottom: 15}}
+        onPress={()=>navigation.goBack()}>
+            <Ionicons
+            name='ios-arrow-back'
+            color='#4898D3'
+            size={35}
+            />
+            <Text
+            style={{fontWeight: '700', fontSize: 20, marginLeft: 20, color:'#4898D3'}}>
+            Retour au profil</Text>
+
         </TouchableOpacity>
+
         <TextInput
         label='Prénom'
         mode='outlined'
-        value={FirstName}
+        value={firstName}
         theme={textTheme}
-        onChangeText={text => setText(text)}
+        onChangeText={text => setFirstName(text)}
         />
 
         <TextInput
@@ -64,6 +80,10 @@ export default function EditProfil(){
         onChangeText={text => setText(text)}
         />
 
+        <TouchableOpacity
+        style={GlobalStyle.btn}>
+            <Text style={GlobalStyle.text}>Valider</Text>
+        </TouchableOpacity>
 
         </ScrollView>
         </SafeAreaView>

@@ -64,6 +64,23 @@ export const GlobalStyle = StyleSheet.create({
       alignSelf: 'center'
     },
 
+    btn:{
+      backgroundColor: '#4898D3',
+      borderRadius: 30,
+      height: 40,
+      marginTop: 15,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+
+    text:{
+      fontWeight: 'bold',
+      fontSize: 16,
+      color: 'white',
+      alignSelf: 'center'
+    },
+
     usernameProfil:{
       fontWeight: '300',
       fontSize: 17,
@@ -81,6 +98,12 @@ export const GlobalStyle = StyleSheet.create({
       marginLeft: 10,
     },
 
+    item:{
+      height: 185,
+      width: '100%',
+      backgroundColor: '#c1c1c1',
+      borderRadius: 15,
+    }
     
 
  
