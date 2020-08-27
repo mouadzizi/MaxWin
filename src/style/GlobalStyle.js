@@ -113,5 +113,6 @@ export const GlobalStyle = StyleSheet.create({
     colors:{
       primary:'#4898D3',
       background: '#fff',
-    }
+    },
   }
+
