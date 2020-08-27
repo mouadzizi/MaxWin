@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { SafeAreaView, Alert, ScrollView, TouchableOpacity, Text, Image } from 'react-native';
-import { List, Button, Divider, Searchbar, Chip } from 'react-native-paper';
+import React, { useEffect, useState } from 'react';
+import { View, SafeAreaView, Alert, ScrollView, TouchableOpacity, Text, Picker } from 'react-native';
+import { Button, Divider, Searchbar } from 'react-native-paper';
 
-import { auth } from '../../API/firebase'
-import * as Google from 'expo-google-sign-in'
-import AsyncStorage from '@react-native-community/async-storage'
-import { View } from 'react-native-animatable';
-import { GlobalStyle } from '../../style/GlobalStyle';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { auth } from '../../API/firebase';
+import * as Google from 'expo-google-sign-in';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import Product from '../../components/Product';
 
 
 export default function DashBoard({ navigation }) {
@@ -76,9 +75,8 @@ export default function DashBoard({ navigation }) {
 
     // *********
 
-    const [expanded, setExpanded] = React.useState(true);
-
-    const handlePress = () => setExpanded(!expanded);
+    const [selectedValueLocation, setSelectedValueLocation] = useState("Ville");
+    const [selectedValueCategorie, setSelectedValueCategorie] = useState("Categories");
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
@@ -94,62 +92,40 @@ export default function DashBoard({ navigation }) {
 
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
 
-        <List.Section 
-        style={{width: 150}}
-        expanded={true}>
-            <List.Accordion
-                title="Categories">
-                <List.Item title="categorie1" />
-                <List.Item title="categorie2" />
-            </List.Accordion>
-        </List.Section>
+        <Picker
+        selectedValue={selectedValueCategorie}
+        style={{ height: 50, width: '50%' }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValueCategorie(itemValue)}>
 
-        <List.Section
-        style={{width: 150}}>
-            <List.Accordion
-                title="City">
-                <List.Item title="Tanger" />
-                <List.Item title="Casablanca" />
-            </List.Accordion>
-        </List.Section>
+        <Picker.Item label="Categories" value="Categories" />
+        <Picker.Item label="categorie1" value="categorie1" />
+        <Picker.Item label="categorie2" value="categorie2" />
+        <Picker.Item label="categorie3" value="categorie3" />
+
+        </Picker>
+
+        <Picker
+        selectedValue={selectedValueLocation}
+        style={{ height: 50, width: '50%' }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValueLocation(itemValue)}>
+
+        <Picker.Item label="Location" value="Location" />
+        <Picker.Item label="Tanger" value="Tanger" />
+        <Picker.Item label="Tetouan" value="Tetouan" />
+        <Picker.Item label="Casablanca" value="Casablanca" />
+        <Picker.Item label="Rabat" value="Rabat" />
+        <Picker.Item label="Agadir" value="Agadir" />
+        <Picker.Item label="Merakech" value="Merakech" />
+        <Picker.Item label="ouejda" value="ouejda" />
+
+        </Picker>
 
         </View>
         </View>
 
         <Divider />
 
-        <TouchableOpacity
-        style={GlobalStyle.item}>
-           <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
-
-           <View style={{flex: 2, backgroundColor: '#1126'}}>
-            <Text>Image</Text>
-            </View>
-
-           <View style={{flex: 4}}>
-                <Text style={{marginLeft: 5, fontWeight: 'bold', fontSize: 18}}>Xiaomi redmi note 7</Text>
-                <Text style={{marginLeft: 5, fontWeight: 'bold', fontSize: 15, color:'#4898D3'}}>5000.00 MAD</Text>
-                <View style={{flexDirection: 'row'}}>
-                <MaterialIcons
-                name='place'
-                size={15}
-                color='#000'
-                />
-                <Text style={{color:'#000'}}> Tanger-Tétouan</Text>
-                </View>
-                <Divider />
-
-                <View style={{marginTop: 10}}>
-                <Chip 
-                icon="information"
-                style={{width: 130, height: 30}}>Example Chip</Chip>
-                </View>
-
-
-           </View>
-
-           </View>
-        </TouchableOpacity>
+        <Product />
         
         <Divider />
             <Button
