@@ -21,7 +21,7 @@ return (
               iconName = focused
                 ? 'ios-home'
                 : 'ios-home';
-            } else if (route.name === 'ProfilStack') {
+            } else if (route.name === 'Profil') {
               iconName = focused 
               ? 'md-person' 
               : 'md-person';
@@ -50,7 +50,7 @@ return (
         <Tab.Screen name="Accueil" component={DashBoard} />
         <Tab.Screen name="catégories" component={Categories} />
         <Tab.Screen name="Discussions" component={Chats} />
-        <Tab.Screen name="ProfilStack" component={ProfilStack} />
+        <Tab.Screen name="Profil" component={ProfilStack} />
 
       </Tab.Navigator>
   );
