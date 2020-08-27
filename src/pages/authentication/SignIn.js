@@ -15,6 +15,10 @@ export default function SignIn({ navigation }) {
   const [gLoading, setGLoading] = useState(false)
   const [fbLoading, setFBLoading] = useState(false)
 
+  const { width, height } = Dimensions.get('window');
+  const height_image = height * 0.3;
+  const width_image = width * 0.6;
+
   useEffect(() => {
 
     return () => {
@@ -120,12 +124,11 @@ export default function SignIn({ navigation }) {
         await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
         const credential = firebase.auth.FacebookAuthProvider.credential(token);
         await auth.signInWithCredential(credential)
-          .then((userCredential) => {
+          .then((userCredential) =>{
             setFBLoading(false)
             storeData(token)
             navigation.replace('HomeTabs')
-            
-            
+ 
           });
           
       }
@@ -146,10 +149,6 @@ export default function SignIn({ navigation }) {
     }
   }
 
-
-  const { width, height } = Dimensions.get('window');
-  const height_image = height * 0.3;
-  const width_image = width * 0.6;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >

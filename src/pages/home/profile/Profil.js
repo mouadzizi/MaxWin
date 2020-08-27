@@ -42,9 +42,8 @@ export default function Profil({navigation}) {
 
         <View style={{flex:1, justifyContent: 'center', marginTop: 15, marginBottom: 15}}>
         <TextInput
-         style={{borderBottomColor: '#fff'}}
-         theme={textTheme}
-         mode='outlined'
+         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
+         mode='flat'
          multiline
          value={about}
          onChangeText={e=>setAbout(e)}
@@ -59,9 +58,8 @@ export default function Profil({navigation}) {
         <View style={{flex: 1,alignContent: 'space-around', marginTop: 15, marginBottom: 5}}>
         <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Location</Text>
         <TextInput
-         theme={textTheme}
-         mode='outlined'
-         multiline
+         theme={{colors:{primary:'#4898D3',background:'rgba(255,255,225,0)'}}}
+         mode='flat'
          value={location}
          onChangeText={e=>setLocation(e)}
          editable={edit}
@@ -73,9 +71,8 @@ export default function Profil({navigation}) {
         <Text style={{fontWeight: 'bold', color: '#4898D3'}}>E-mail</Text>
 
         <TextInput
-         theme={textTheme}
-         mode='outlined'
-         multiline
+         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
+         mode='flat'
          value={email}
          onChangeText={e=>setEmail(e)}
          editable={edit}
@@ -90,9 +87,8 @@ export default function Profil({navigation}) {
         <View style={{flex: 1,alignContent: 'space-around', marginTop: 15, marginBottom: 5}}>
         <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Télephone</Text>
         <TextInput
-         theme={textTheme}
-         mode='outlined'
-         multiline
+         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
+         mode='flat'
          value={phone}
          onChangeText={e=>setPhone(e)}
          editable={edit}
@@ -103,9 +99,8 @@ export default function Profil({navigation}) {
         <View style={{flex:1, marginTop: 15, marginBottom: 5}}>
         <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Nom et prénom</Text>
         <TextInput
-         theme={textTheme}
-         mode='outlined'
-         multiline
+         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
+         mode='flat'
          value={name}
          onChangeText={e=>setName(e)}
          editable={edit}
