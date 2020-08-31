@@ -73,16 +73,16 @@ export default function DashBoard({ navigation }) {
 
     const onChangeSearch = query => setSearchQuery(query);
 
-    // *********
+    // Picker 
 
     const [selectedValueLocation, setSelectedValueLocation] = useState("Ville");
     const [selectedValueCategorie, setSelectedValueCategorie] = useState("Categories");
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
+        <SafeAreaView style={{ flex: 1}} >
         <ScrollView showsVerticalScrollIndicator={false}>
 
-        <View style={{flex:1}}>
+        <View style={{flex:1, margin: 20 }}>
 
         <Searchbar
         placeholder="Search"
@@ -125,9 +125,11 @@ export default function DashBoard({ navigation }) {
 
         <Divider />
 
+        <View style={{margin: 20, flexDirection:"column" }}>
         <Product />
-        
-        <Divider />
+        <Product />
+        <Product />
+        </View>
             <Button
                 onPress={logOut}
             > Log out </Button>

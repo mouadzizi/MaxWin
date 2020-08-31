@@ -100,14 +100,11 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     item:{
-      height: 220,
+      height: 200,
       width: '100%',
-      backgroundColor: '#c1c1c1',
       borderRadius: 15,
     }
     
-
- 
   });
 
   export const textTheme ={
