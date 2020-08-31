@@ -79,10 +79,10 @@ export default function DashBoard({ navigation }) {
     const [selectedValueCategorie, setSelectedValueCategorie] = useState("Categories");
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
+        <SafeAreaView style={{ flex: 1}} >
         <ScrollView showsVerticalScrollIndicator={false}>
 
-        <View style={{flex:1}}>
+        <View style={{flex:1, margin: 20 }}>
 
         <Searchbar
         placeholder="Search"
@@ -125,10 +125,11 @@ export default function DashBoard({ navigation }) {
 
         <Divider />
 
-        <View style={{marginTop: 20, marginBottom: 20}}>
+        <View style={{margin: 20, flexDirection:"column" }}>
+        <Product />
+        <Product />
         <Product />
         </View>
-        <Divider />
             <Button
                 onPress={logOut}
             > Log out </Button>
