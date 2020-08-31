@@ -73,7 +73,7 @@ export default function DashBoard({ navigation }) {
 
     const onChangeSearch = query => setSearchQuery(query);
 
-    // *********
+    // Picker 
 
     const [selectedValueLocation, setSelectedValueLocation] = useState("Ville");
     const [selectedValueCategorie, setSelectedValueCategorie] = useState("Categories");
@@ -125,8 +125,9 @@ export default function DashBoard({ navigation }) {
 
         <Divider />
 
+        <View style={{marginTop: 20, marginBottom: 20}}>
         <Product />
-        
+        </View>
         <Divider />
             <Button
                 onPress={logOut}
