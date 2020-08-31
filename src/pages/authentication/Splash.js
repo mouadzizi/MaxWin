@@ -96,6 +96,7 @@ export default function Splash({ navigation }) {
       </View>
 
       <TouchableOpacity style={GlobalStyle.signInBoutton}
+      disabled={loading}
           onPress={() => navigation.replace('SignIn')}>
           <Text style={GlobalStyle.signInText}>Se connecter</Text>
         </TouchableOpacity>

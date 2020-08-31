@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import { textTheme } from '../../style/GlobalStyle';
-import { auth } from '../../API/firebase';
+import { auth,db } from '../../API/firebase';
 
 
 
@@ -12,6 +12,7 @@ export default function SignUp({ navigation }) {
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    
 
     //firebase stuff
     const createUser = () => {
@@ -25,12 +26,14 @@ export default function SignUp({ navigation }) {
                     errs = true
                 })
                 .then(() => {
+                    
                     if (auth.currentUser && !errs) {
                         auth.currentUser.updateProfile({
                             displayName:userName
                         })
                         setLoading(false)
-                        navigation.replace('HomeTabs')
+                        saveUserInfo(auth.currentUser).then(()=>navigation.replace('HomeTabs'))
+                        
                     }
                 })
         }
@@ -38,6 +41,18 @@ export default function SignUp({ navigation }) {
             Alert.alert('Error', "Password didn't match")
             setLoading(false)
         }
+    }
+
+    const saveUserInfo = async(user)=>{
+        await  db.collection('users').doc(user.uid).set({
+            uid:user.uid,
+            name:userName,
+            email:email,
+            phone:'',
+            location:'',
+            aboutMe:'',
+        })
+        
     }
 
     const { width, height } = Dimensions.get('window');

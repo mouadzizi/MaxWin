@@ -7,6 +7,7 @@ export const GlobalStyle = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      
     },
 
     dot:{
@@ -113,6 +114,7 @@ export const GlobalStyle = StyleSheet.create({
     colors:{
       primary:'#4898D3',
       background: '#fff',
+
     },
   }
 

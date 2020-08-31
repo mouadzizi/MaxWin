@@ -1,31 +1,69 @@
 import React, {useState} from 'react'
+import {useFocusEffect} from '@react-navigation/native'
 import { Text, ScrollView, SafeAreaView, View, TouchableOpacity} from 'react-native'
 import { Avatar, Divider, FAB,TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme} from '../../../style/GlobalStyle';
 import { set } from 'react-native-reanimated';
+import {auth,db} from '../../../API/firebase'
 
 
 export default function Profil({navigation}) {
     const [edit,setEdit]=useState(false)
-    const [about,setAbout]=useState("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-    const [location,setLocation]=useState("Tanger-tétouan")
-    const [email,setEmail]=useState("test@mail.com")
-    const [phone,setPhone]=useState("test@mail.com")
-    const [name,setName]=useState("moad zizi")
+    const [about,setAbout]=useState("")
+    const [location,setLocation]=useState("")
+    const [email,setEmail]=useState("")
+    const [phone,setPhone]=useState("")
+    const [name,setName]=useState("")
 
-    const toggleEdite = ()=>{
+    var userRef = null
 
+    useFocusEffect(()=>{
+        userRef = db.collection('users').doc(auth.currentUser.uid)
+        if(!edit) {
+            userRef.get().then(doc=>{
+                console.log('begin loading');
+                loadInfo(doc.data())
+            })
+        }
+       return ()=>{
+          
+       }
+
+    },[])
+
+    const action = ()=>{
         setEdit(!edit)
+        if(edit){
+        updateUserInfo().then(()=>{
+            setEdit(!edit)
+        })
+    }
     }
 
+    const updateUserInfo = async()=>{
+        await userRef.update({
+            aboutMe:about,
+            name:name,
+            phone:phone,
+            location:location,
+        })
+    } 
+
+    const loadInfo = (doc)=>{
+        setAbout(doc.aboutMe)
+        setLocation(doc.location)
+        setPhone(doc.phone)
+        setName(doc.name)
+        setEmail(doc.email)
+    }
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
         <ScrollView showsVerticalScrollIndicator={false}>
 
         <View style={{flex:1, justifyContent: 'center', alignSelf: 'center', marginTop: 15, marginBottom: 15}}>
-        <Text style={GlobalStyle.usernameProfil}>Max Win</Text>
+        <Text style={GlobalStyle.usernameProfil}>{auth.currentUser.displayName}</Text>
         <TouchableOpacity>
-        <Avatar.Image size={110} source={require('../../../../assets/logo.jpg')} />
+        <Avatar.Image size={110} source={{uri:auth.currentUser.photoURL}} />
         </TouchableOpacity>
         </View>
 
@@ -48,6 +86,7 @@ export default function Profil({navigation}) {
          value={about}
          onChangeText={e=>setAbout(e)}
          editable={edit}
+         placeholder={about? null : 'set About' }
          />
         </View>
 
@@ -74,8 +113,7 @@ export default function Profil({navigation}) {
          theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
          mode='flat'
          value={email}
-         onChangeText={e=>setEmail(e)}
-         editable={edit}
+         editable={false}
          style={{height: 25, width: '95%'}}
          />
         </View>
@@ -115,7 +153,7 @@ export default function Profil({navigation}) {
         style={{position: 'absolute',margin: 16,right: 0,bottom: 0,backgroundColor: '#4898D3'}}
         label={edit? 'save' : 'modifier le profil'}
         color='#fff'
-        onPress={toggleEdite}
+        onPress={()=>action()}
         />
         </SafeAreaView>
     )

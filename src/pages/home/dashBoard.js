@@ -47,7 +47,7 @@ export default function DashBoard({ navigation }) {
     const faceBookLogOut = async () => {
         try {
             await fetch(`https://graph.facebook.com/me/permissions?method=delete&access_token=${userToken}`)
-                .then(() => alert('Success'))
+                
                 .catch(err => alert(err.message))
         }
         catch (e) {

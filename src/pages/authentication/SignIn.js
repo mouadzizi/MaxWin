@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import AsyncStorage from '@react-native-community/async-storage';
+import {db} from '../../API/firebase'
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState('');
@@ -40,7 +41,6 @@ export default function SignIn({ navigation }) {
       .then(() => {
         if (auth.currentUser && !isErr) {
           setLoading(false)
-          storeData('abcToken1235')
           navigation.replace('HomeTabs')
         }
       })
@@ -125,10 +125,15 @@ export default function SignIn({ navigation }) {
         const credential = firebase.auth.FacebookAuthProvider.credential(token);
         await auth.signInWithCredential(credential)
           .then((userCredential) =>{
+            const fbID = userCredential.user.providerData[0].uid
             setFBLoading(false)
             storeData(token)
+            fetch (`https://graph.facebook.com/${fbID}/picture?type=normal`).then(response=>{
+              userCredential.user.updateProfile({
+                photoURL:response.url
+              })
+            })
             navigation.replace('HomeTabs')
- 
           });
           
       }
@@ -136,7 +141,7 @@ export default function SignIn({ navigation }) {
         setFBLoading(false)
       }
     } catch (e) {
-      Alert.alert('Facebook Login Error:', e.message);
+      Alert.alert('Facebook Login Error:',JSON.stringify(e));
       setFBLoading(false)
     }
   }
@@ -148,6 +153,7 @@ export default function SignIn({ navigation }) {
 
     }
   }
+
 
 
   return (
