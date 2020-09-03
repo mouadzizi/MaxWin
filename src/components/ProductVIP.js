@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
 import { Divider } from 'react-native-paper';
-import { GlobalStyle } from '../../src/style/GlobalStyle';
+import { GlobalStyle } from '../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
 export default function Product() {
     return (
 
         <View 
-        style={{flex: 1, backgroundColor: '#fff', borderRadius: 5, marginBottom: 10}}>
+        style={{flex: 1, backgroundColor: '#fff', borderRadius: 15, marginBottom: 20}}>
         
         <TouchableOpacity
         style={GlobalStyle.item}>
@@ -17,13 +17,7 @@ export default function Product() {
            <View style={{flex: 1, flexDirection: 'row'}}>
 
             {/** Image */}
-           <View style={{flex: 1, backgroundColor: '#C2C2C2'}}>
-
            <View style={{flex: 1}}>
-            <Text>hey</Text>
-           </View>
-
-            <View style={{flex: 6}}>
 
             <ImageBackground 
                 source={require("../../assets/produit.jpg")}
@@ -36,16 +30,13 @@ export default function Product() {
             <MaterialIcons
                 name='camera-alt'
                 size={25}
-                color='#000'/>
-
+                color='#000'
+            />
             <Text style={{color:'#000', fontSize: 17}}>3</Text>
             </View>
-            </ImageBackground>
-            </View>
 
-            <View style={{flex: 1}}>
-            <Text>hey</Text>
-           </View>
+
+            </ImageBackground>
 
             </View>
 
@@ -64,6 +55,7 @@ export default function Product() {
                 <Text style={{color:'#000'}}> Tanger-Tétouan</Text>
                 </View>
 
+                <Divider />
 
                 {/** Chip View */}
                 
@@ -124,6 +116,7 @@ export default function Product() {
                 </View>
 
                 </View>
+                <Divider />
 
                 <View style={{flexDirection: 'row', justifyContent: 'flex-end', bottom: 0, right: 10    }}>
                 <Text style={{marginLeft: 5, fontWeight: 'bold', fontSize: 15, color:'#C2C2C2', textDecorationLine: 'line-through'}}>35.00 MAD</Text>

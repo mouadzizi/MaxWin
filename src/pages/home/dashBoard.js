@@ -125,7 +125,7 @@ export default function DashBoard({ navigation }) {
 
         <Divider />
 
-        <View style={{margin: 20, flexDirection:"column" }}>
+        <View style={{marginRight: 5 }}>
         <Product />
         <Product />
         <Product />
