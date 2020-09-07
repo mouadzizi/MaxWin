@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import {useFocusEffect} from '@react-navigation/native'
 import { Text, ScrollView, SafeAreaView, View, TouchableOpacity} from 'react-native'
 import { Avatar, Divider, FAB,TextInput} from 'react-native-paper';
-import {GlobalStyle, textTheme} from '../../../style/GlobalStyle';
+import {GlobalStyle, textTheme} from '../../style/GlobalStyle';
 import { set } from 'react-native-reanimated';
-import {auth,db} from '../../../API/firebase'
+import {auth,db} from '../../API/firebase'
 
 
 export default function Profil({navigation}) {
@@ -56,6 +56,8 @@ export default function Profil({navigation}) {
         setName(doc.name)
         setEmail(doc.email)
     }
+
+    
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
         <ScrollView showsVerticalScrollIndicator={false}>

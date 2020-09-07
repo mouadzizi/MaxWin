@@ -11,7 +11,7 @@ export default function DashStack(){
     return(
 
         <Stack.Navigator  initialRouteName='Dasboard'>
-          <Stack.Screen name="Dasboard" component={Dasboard}/>
+          <Stack.Screen name="Dasboard" component={Dasboard} options={{ headerShown: false }}/>
         </Stack.Navigator>
 
     );

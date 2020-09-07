@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, SafeAreaView, Alert, ScrollView, TouchableOpacity, Text, Picker } from 'react-native';
-import { Button, Divider, Searchbar } from 'react-native-paper';
+
+import { View, Alert, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
+import { Divider, Searchbar } from 'react-native-paper';
+import {Ionicons} from 'react-native-vector-icons';
 
 import { auth } from '../../API/firebase';
 import * as Google from 'expo-google-sign-in';
@@ -70,69 +72,76 @@ export default function DashBoard({ navigation }) {
     //SearchBar Const
 
     const [searchQuery, setSearchQuery] = React.useState('');
-
     const onChangeSearch = query => setSearchQuery(query);
 
-    // Picker 
 
-    const [selectedValueLocation, setSelectedValueLocation] = useState("Ville");
-    const [selectedValueCategorie, setSelectedValueCategorie] = useState("Categories");
 
     return (
-        <SafeAreaView style={{ flex: 1}} >
+        <SafeAreaView>
+
+        <StatusBar
+        backgroundColor="#4898D3" />
+
         <ScrollView showsVerticalScrollIndicator={false}>
 
-        <View style={{flex:1, margin: 20 }}>
+        <View style={{flex:1, backgroundColor: "#4898D3"}}>
 
-        <Searchbar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
+        <View
+        style={{flexDirection:'row'}}>
+
+        <Ionicons
+        name="md-menu"
+        size={40}
+        color='#fff'
+        style={{alignSelf: 'center', margin: 5, marginLeft: 10}}
         />
-
-        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
-
-        <Picker
-        selectedValue={selectedValueCategorie}
-        style={{ height: 50, width: '50%' }}
-        onValueChange={(itemValue, itemIndex) => setSelectedValueCategorie(itemValue)}>
-
-        <Picker.Item label="Categories" value="Categories" />
-        <Picker.Item label="categorie1" value="categorie1" />
-        <Picker.Item label="categorie2" value="categorie2" />
-        <Picker.Item label="categorie3" value="categorie3" />
-
-        </Picker>
-
-        <Picker
-        selectedValue={selectedValueLocation}
-        style={{ height: 50, width: '50%' }}
-        onValueChange={(itemValue, itemIndex) => setSelectedValueLocation(itemValue)}>
-
-        <Picker.Item label="Location" value="Location" />
-        <Picker.Item label="Tanger" value="Tanger" />
-        <Picker.Item label="Tetouan" value="Tetouan" />
-        <Picker.Item label="Casablanca" value="Casablanca" />
-        <Picker.Item label="Rabat" value="Rabat" />
-        <Picker.Item label="Agadir" value="Agadir" />
-        <Picker.Item label="Merakech" value="Merakech" />
-        <Picker.Item label="ouejda" value="ouejda" />
-
-        </Picker>
-
-        </View>
+        <Searchbar
+            placeholder="Rechercher"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+            style={{width: '85%', margin:8}}
+        />
         </View>
 
-        <Divider />
-
-        <View style={{marginRight: 5 }}>
-        <Product />
-        <Product />
-        <Product />
         </View>
-            <Button
-                onPress={logOut}
-            > Log out </Button>
+
+        {/* Filtre product & Add product */}
+        <View style={{flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2}}>
+                
+                <TouchableOpacity
+                    style={{flexDirection: 'row', width: '50%', backgroundColor: '#F16E44', justifyContent: 'center'}}>
+                   
+                    <Ionicons
+                        name="md-add-circle"
+                        size={35}
+                        color='#fff'
+                        style={{alignSelf: 'center'}}
+                    />
+                    <Text style={{textAlignVertical: 'center' ,marginLeft: 15, fontWeight: 'bold', color: '#fff'}}>Ajouter Produit</Text>
+                </TouchableOpacity>            
+
+                <TouchableOpacity
+                    style={{flexDirection: 'row', width: '50%', backgroundColor: '#4898D3', justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
+                    
+                    <Ionicons
+                        name='ios-options'
+                        size={35}
+                        color='#fff'
+                        style={{alignSelf: 'center'}}
+                    />
+                    <Text style={{textAlignVertical: 'center' ,marginLeft: 15, fontWeight: 'bold', color: '#fff'}}>Filtre</Text>
+                </TouchableOpacity> 
+
+            </View>
+
+            {/* Products Lists */}
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
 
         </ScrollView>
         </SafeAreaView>

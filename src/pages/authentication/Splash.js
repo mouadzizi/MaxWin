@@ -7,8 +7,8 @@ import {auth} from '../../API/firebase'
 
 
 export default function Splash({ navigation }) {
-  const [loading,setLoading]= React.useState(false)
 
+  const [loading,setLoading]= React.useState(false)
   const { width, height } = Dimensions.get('window');
   const height_image = height * 0.3;
   const width_image = width * 0.6;
@@ -40,14 +40,14 @@ export default function Splash({ navigation }) {
         {/* Swiper number 1 */}
         <View style={GlobalStyle.swiperContainer}>
 
-          <Text style={GlobalStyle.splashHeadTitle}> Bienvenu sur </Text>
+          <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
 
           <Image
             source={require("../../../assets/logo.jpg")}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 
-          <Text style={GlobalStyle.splashText}> ordinateur portable, voiture, appartement ou casque, tout ce que vous voulez, vous pouvez trouver dans MaxWin </Text>
+          <Text style={GlobalStyle.splashText}> Vendez et achetez facilement sur Maxwin </Text>
 
         </View>
 
@@ -55,7 +55,8 @@ export default function Splash({ navigation }) {
 
         <View style={GlobalStyle.swiperContainer}>
 
-          <Text style={GlobalStyle.splashHeadTitle}> Discuter </Text>
+        
+        <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
 
           <Image
             source={require("../../../assets/slide1.jpg")}
@@ -63,7 +64,7 @@ export default function Splash({ navigation }) {
             resizeMode={"stretch"} />
 
           <Text style={GlobalStyle.splashText}> 
-          En utilisant notre platforme une benéficier d'une large visibilité de vos produits. </Text>
+          Maxwin est une application qui vous facilite la vente de vos produits , publiez vos articles et augmenter vos revenus. </Text>
 
         </View>
 
@@ -71,14 +72,31 @@ export default function Splash({ navigation }) {
 
         <View style={GlobalStyle.swiperContainer}>
 
-          <Text style={GlobalStyle.splashHeadTitle}> Acheter  </Text>
+        
+        <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
+
+          <Image
+            source={require("../../../assets/slide3.jpg")}
+            style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
+            resizeMode={"contain"} />
+
+          <Text style={GlobalStyle.splashText}>L'application Maxwin permet un contact instantané entre vendeur et acheteur.</Text>
+
+        </View>
+
+        {/* Swiper number 4 */}
+
+        <View style={GlobalStyle.swiperContainer}>
+
+        
+        <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
 
           <Image
             source={require("../../../assets/slide2.jpg")}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 
-          <Text style={GlobalStyle.splashText}> après avoir bavardé, vous pouvez rencontrer l'acheteur et conclure un accord, MaxWin est votre meilleur marché virtuel au Maroc </Text>
+          <Text style={GlobalStyle.splashText}> Sur la marketplace Maxwin vous trouverez tout ce que vous cherchez.</Text>
 
         </View>
 

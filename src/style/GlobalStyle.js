@@ -21,8 +21,8 @@ export const GlobalStyle = StyleSheet.create({
 
     dotActive:{
       backgroundColor: '#4898D3',
-      width: 10,
-      height: 10,
+      width: 15,
+      height: 8,
       borderRadius: 4,
       marginHorizontal: 5,
       marginVertical: 3,
@@ -88,22 +88,93 @@ export const GlobalStyle = StyleSheet.create({
       marginBottom: 10,
       textAlign: 'center',
     },
+
     numberPosts:{
       fontWeight: 'bold',
       fontSize: 20,
       color: '#4898D3',
     },
+
     posts:{
       fontSize: 20,
       fontWeight: '300',
       marginLeft: 10,
     },
 
-    item:{
-      height: 200,
-      width: '100%',
-      borderRadius: 15,
-    }
+    h1:{
+      fontSize: 20,
+    },
+    
+    p:{
+      fontSize: 20,
+    },
+
+    card: {
+      height: 120,
+      flexDirection: 'row',
+      backgroundColor: '#fff'
+    },
+
+    cardImgWrapper: {
+      flex: 1,
+      borderColor: '#ccc',
+      borderWidth: 0.5,
+      borderRightWidth: 0,
+      backgroundColor: '#fff',
+    },
+
+    cardImg: {
+      height: '95%',
+      width: '95%',
+      alignSelf: 'center',
+      borderTopLeftRadius: 15,
+      borderBottomRightRadius: 15,
+      
+    },
+    
+    cardInfo: {
+      flex: 2,
+      padding: 10,
+      borderColor: '#ccc',
+      borderWidth: 0.5,
+      borderLeftWidth: 0,
+      backgroundColor: '#fff',
+    },
+
+    cardTitle: {
+      fontSize: 13,
+    },
+
+    cardPrice: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: '#F16E44'
+    },
+
+    cardDetails: {
+      fontSize: 12,
+      color: '#444',
+    },
+
+    cardOwner: {
+      color: '#B9B9BB',
+      fontSize: 12,
+      alignSelf: 'center',
+      marginLeft: 4
+    },
+
+    cardLocation: {
+      color: '#B9B9BB', 
+      fontSize: 12, 
+      alignSelf: 'center', 
+      marginLeft: 2,
+    },
+
+    cardDate: {
+      color: '#B9B9BB',
+      fontSize: 12, 
+      alignSelf: 'flex-end',
+    },
     
   });
 

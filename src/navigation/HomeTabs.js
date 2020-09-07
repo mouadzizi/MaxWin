@@ -4,8 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import DashStack from '../navigation/DashStack';
 import ProfilStack from '../navigation/ProfilStack';
-import Chats from '../pages/home/Chats';
-import Categories from '../pages/home/Categories';
+import Chats from '../pages/Chats';
+import Categories from '../pages/Categories';
 
 export default function HomeTabs() {
 

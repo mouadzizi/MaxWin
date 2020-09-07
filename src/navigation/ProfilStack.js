@@ -2,8 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 {/* import pages */}
-import Profil from '../pages/home/profile/Profil';
-import Items from '../pages/home/profile/Items';
+import Profil from '../pages/profile/Profil';
+import Items from '../pages/profile/Items';
 
 export default function ProfilStack(){
     const Stack = createStackNavigator();

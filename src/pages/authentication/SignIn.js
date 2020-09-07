@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Alert, Image, Dimensions, Keyboard, SafeAreaView, ScrollView } from 'react-native';
-import { TextInput, Button, ActivityIndicator } from 'react-native-paper';
+import { TextInput, Button, ActivityIndicator, Divider } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
 import { auth } from '../../API/firebase';
 import firebase from 'firebase';
@@ -189,9 +189,12 @@ export default function SignIn({ navigation }) {
           <Text style={GlobalStyle.signInText}>  Se Connecter avec Facebook</Text>
         </TouchableOpacity>
 
-        <Text style={{ textAlign: 'center', color: '#C2C2C2', margin: 15 }}> Ou connectez-vous avec E-mailFB </Text>
+        
 
-        <View style={{ flex: 4 }}>
+        <Text style={{ textAlign: 'center', color: '#C2C2C2', marginTop: 15, marginBottom: 5 }}> Ou connectez-vous avec E-mail </Text>
+
+        <Divider />
+        <View style={{ flex: 4, marginTop: 5 }}>
           <TextInput
             label='E-mail'
             mode='outlined'
