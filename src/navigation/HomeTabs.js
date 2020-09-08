@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import DashStack from '../navigation/DashStack';
+import Drawer from '../navigation/Drawer';
 import ProfilStack from '../navigation/ProfilStack';
 import Chats from '../pages/Chats';
 import Categories from '../pages/Categories';
@@ -47,7 +47,7 @@ return (
       >
 
       
-        <Tab.Screen name="Accueil" component={DashStack} />
+        <Tab.Screen name="Accueil" component={Drawer} />
         <Tab.Screen name="catégories" component={Categories} />
         <Tab.Screen name="Discussions" component={Chats} />
         <Tab.Screen name="Profil" component={ProfilStack} />

@@ -94,6 +94,7 @@ export default function DashBoard({ navigation }) {
         size={40}
         color='#fff'
         style={{alignSelf: 'center', margin: 5, marginLeft: 10}}
+        onPress={()=>navigation.toggleDrawer()}
         />
         <Searchbar
             placeholder="Rechercher"
@@ -115,7 +116,7 @@ export default function DashBoard({ navigation }) {
                         name="md-add-circle"
                         size={35}
                         color='#fff'
-                        style={{alignSelf: 'center'}}
+                        style={{alignSelf: 'center'}}   
                     />
                     <Text style={{textAlignVertical: 'center' ,marginLeft: 15, fontWeight: 'bold', color: '#fff'}}>Ajouter Produit</Text>
                 </TouchableOpacity>            

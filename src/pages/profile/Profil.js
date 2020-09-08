@@ -59,6 +59,7 @@ export default function Profil({navigation}) {
 
     
     return (
+        
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
         <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -81,6 +82,7 @@ export default function Profil({navigation}) {
         <Divider />
 
         <View style={{flex:1, justifyContent: 'center', marginTop: 15, marginBottom: 15}}>
+
         <TextInput
          theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
          mode='flat'
@@ -88,39 +90,12 @@ export default function Profil({navigation}) {
          value={about}
          onChangeText={e=>setAbout(e)}
          editable={edit}
-         placeholder={about? null : 'set About' }
+         placeholder={about? null : 'Ajouter une introduction' }
          />
         </View>
 
         <Divider />
 
-        <View style={{flex:1, flexDirection: 'row'}}>
-
-        <View style={{flex: 1,alignContent: 'space-around', marginTop: 15, marginBottom: 5}}>
-        <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Location</Text>
-        <TextInput
-         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
-         mode='flat'
-         value={location}
-         onChangeText={e=>setLocation(e)}
-         editable={edit}
-         style={{height: 25, width: '95%'}}
-         />
-        </View>
-
-        <View style={{flex:1, marginTop: 15, marginBottom: 5}}>
-        <Text style={{fontWeight: 'bold', color: '#4898D3'}}>E-mail</Text>
-
-        <TextInput
-         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
-         mode='flat'
-         value={email}
-         editable={false}
-         style={{height: 25, width: '95%'}}
-         />
-        </View>
-
-        </View>
 
         <View style={{flex:1, flexDirection: 'row'}}>
 
@@ -149,6 +124,35 @@ export default function Profil({navigation}) {
         </View>
 
         </View>
+
+
+
+        <View style={{flex: 1,alignContent: 'space-around', marginTop: 15, marginBottom: 5}}>
+        
+        <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Location</Text>
+        <TextInput
+         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
+         mode='flat'
+         value={location}
+         onChangeText={e=>setLocation(e)}
+         editable={edit}
+         style={{height: 25, width: '95%'}}
+         />
+        </View>
+
+        <View style={{flex:1, marginTop: 15, marginBottom: 5}}>
+        <Text style={{fontWeight: 'bold', color: '#4898D3'}}>E-mail</Text>
+
+        <TextInput
+         theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
+         mode='flat'
+         value={email}
+         editable={false}
+         style={{height: 25, width: '95%'}}
+         />
+        </View>
+
+
         </ScrollView>
 
         <FAB
