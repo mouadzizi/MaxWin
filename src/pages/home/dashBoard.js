@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { View, Alert, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
-import { Divider, Searchbar } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 import {Ionicons} from 'react-native-vector-icons';
 
 import { auth } from '../../API/firebase';
@@ -19,6 +19,10 @@ export default function DashBoard({ navigation }) {
 
     const [uid, setUID] = useState('')
     const [response,setResponse]=useState(null)
+
+    const image1 = require('../../../assets/produit.jpg')
+    const image2 = require('../../../assets/produit3.png')
+    const image3 = require('../../../assets/produit2.png')
 
     
     useEffect(() => {
@@ -110,6 +114,7 @@ export default function DashBoard({ navigation }) {
         <View style={{flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2}}>
                 
                 <TouchableOpacity
+                    onPress={()=>{navigation.navigate("AddProduct")}}
                     style={{flexDirection: 'row', width: '50%', backgroundColor: '#F16E44', justifyContent: 'center'}}>
                    
                     <Ionicons
@@ -122,6 +127,7 @@ export default function DashBoard({ navigation }) {
                 </TouchableOpacity>            
 
                 <TouchableOpacity
+                    onPress={()=>{navigation.navigate("Filtre")}}
                     style={{flexDirection: 'row', width: '50%', backgroundColor: '#4898D3', justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
                     
                     <Ionicons
@@ -136,14 +142,11 @@ export default function DashBoard({ navigation }) {
             </View>
 
             {/* Products Lists */}
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
 
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin Beldi' price={35.50} owner='moad zizi' location='Tanger-Tétouan' state='Neuf' img={image1} />
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Coffee' price={50} owner='Mohamed deraz' location='Casablanca' state='Neuf' img={image3} />
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Pasta Torilla' price={450} owner='PA kokols' location='Rabat' state='Neuf' img={image2} />
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin Beldi' price={35.50} owner='moad zizi' location='Tanger-Tétouan' state='Neuf' img={image1} />
         </ScrollView>
         </SafeAreaView>
     )

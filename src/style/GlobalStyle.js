@@ -102,11 +102,14 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     h1:{
-      fontSize: 20,
+      fontSize: 17,
+      fontWeight: '600',
+      fontFamily: 'Roboto',
     },
     
     p:{
-      fontSize: 20,
+      fontSize: 12,
+      fontFamily: 'Roboto',
     },
 
     card: {
@@ -170,12 +173,45 @@ export const GlobalStyle = StyleSheet.create({
       marginLeft: 2,
     },
 
-    cardDate: {
+    cardState: {
       color: '#B9B9BB',
       fontSize: 12, 
       alignSelf: 'flex-end',
     },
     
+
+    sliderContainer: {
+      height: 200,
+      width: '90%',
+      marginTop: 10,
+      justifyContent: 'center',
+      alignSelf: 'center',
+      borderRadius: 8,
+    },
+  
+    wrapper: {},
+  
+    slide: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'transparent',
+      borderRadius: 8,
+    },
+    sliderImage: {
+      height: '100%',
+      width: '100%',
+      alignSelf: 'center',
+      borderRadius: 8,
+    },
+
+    infoContainer:{
+      width: '100%',
+      margin: 10,
+      alignSelf: 'center',
+      backgroundColor: '#fff',
+      paddingLeft: 30,
+      paddingBottom: 15,
+    },
   });
 
   export const textTheme ={

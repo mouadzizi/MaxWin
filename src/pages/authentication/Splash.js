@@ -37,6 +37,7 @@ export default function Splash({ navigation }) {
         style={{ backgroundColor: 'white' }}
         dot={<View style={GlobalStyle.dot} />}
         activeDot={<View style={GlobalStyle.dotActive} />}>
+        
         {/* Swiper number 1 */}
         <View style={GlobalStyle.swiperContainer}>
 
