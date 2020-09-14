@@ -12,7 +12,7 @@ export default function HomeTabs() {
 const Tab = createBottomTabNavigator();
 
 return (
-      <Tab.Navigator
+      <Tab.Navigator backBehavior='none' 
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;

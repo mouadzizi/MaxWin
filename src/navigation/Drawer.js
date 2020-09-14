@@ -6,7 +6,7 @@ const DrawerMEnu = createDrawerNavigator();
 
 export default function Drawer() {
   return (
-      <DrawerMEnu.Navigator initialRouteName="DashStack">
+      <DrawerMEnu.Navigator backBehavior='none' initialRouteName="DashStack">
         <DrawerMEnu.Screen name="DashStack" component={DashStack} />
       </DrawerMEnu.Navigator>
   );
