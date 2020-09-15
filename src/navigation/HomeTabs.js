@@ -3,9 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Drawer from '../navigation/Drawer';
-import ProfilStack from '../navigation/ProfilStack';
-import Chats from '../pages/Chats';
-import Categories from '../pages/Categories';
+import SettingsStack from './SettingsStack';
+import Chats from '../pages/chat/Chats';
 
 export default function HomeTabs() {
 
@@ -21,20 +20,15 @@ return (
               iconName = focused
                 ? 'ios-home'
                 : 'ios-home';
-            } else if (route.name === 'Profil') {
+            } else if (route.name === 'Paramètres') {
               iconName = focused 
-              ? 'md-person' 
-              : 'md-person';
+              ? 'md-settings' 
+              : 'md-settings';
             }
             else if (route.name === 'Discussions'){
               iconName = focused 
               ? 'ios-chatbubbles' 
               : 'ios-chatbubbles';
-            }
-            else if (route.name === 'catégories'){
-              iconName = focused 
-              ? 'ios-list' 
-              : 'ios-list';
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -48,9 +42,8 @@ return (
 
       
         <Tab.Screen name="Accueil" component={Drawer} />
-        <Tab.Screen name="catégories" component={Categories} />
         <Tab.Screen name="Discussions" component={Chats} />
-        <Tab.Screen name="Profil" component={ProfilStack} />
+        <Tab.Screen name="Paramètres" component={SettingsStack} />
 
       </Tab.Navigator>
   );

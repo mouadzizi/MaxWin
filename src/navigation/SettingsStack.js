@@ -2,8 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 {/* import pages */}
-import Profil from '../pages/profile/Profil';
-import Items from '../pages/profile/Items';
+import Profil from '../pages/settings/Profil';
+import Items from '../pages/settings/Items';
 
 export default function ProfilStack(){
     const Stack = createStackNavigator();
@@ -12,7 +12,7 @@ export default function ProfilStack(){
           <Stack.Screen name="Profil" 
           component={Profil}
           options={{ 
-          title: 'Profil', headerTitleAlign: 'center', 
+          title: 'Paramètres', headerTitleAlign: 'center', 
           headerStyle: {
             backgroundColor: '#4898D3',
           },

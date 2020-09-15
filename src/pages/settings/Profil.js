@@ -3,7 +3,6 @@ import {useFocusEffect} from '@react-navigation/native'
 import { Text, ScrollView, SafeAreaView, View, TouchableOpacity} from 'react-native'
 import { Avatar, Divider, FAB,TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme} from '../../style/GlobalStyle';
-import { set } from 'react-native-reanimated';
 import {auth,db} from '../../API/firebase'
 
 
