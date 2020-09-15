@@ -2,17 +2,30 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 {/* import pages */}
+import Settings from '../pages/settings/Settings';
 import Profil from '../pages/settings/Profil';
 import Items from '../pages/settings/Items';
 
 export default function ProfilStack(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator  initialRouteName='Profil'>
+        <Stack.Navigator  initialRouteName='Settings'>
+        <Stack.Screen name="Settings" 
+          component={Settings}
+          options={{ 
+          title: 'Paramètres', headerTitleAlign: 'center', 
+          headerStyle: {
+            backgroundColor: '#4898D3',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: '500',
+          },}}/>
+
           <Stack.Screen name="Profil" 
           component={Profil}
           options={{ 
-          title: 'Paramètres', headerTitleAlign: 'center', 
+          title: 'Profil', headerTitleAlign: 'center', 
           headerStyle: {
             backgroundColor: '#4898D3',
           },
