@@ -28,7 +28,10 @@ export default function App() {
   }
 
   return (
+
+
        <AuthenticationStack />
+
   );
 }
 

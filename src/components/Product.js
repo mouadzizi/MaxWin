@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import {GlobalStyle} from '../style/GlobalStyle';
-import {Fontisto, Entypo} from 'react-native-vector-icons'
+import {Fontisto, Entypo} from 'react-native-vector-icons';
+import Stars from '../components/StarRating';
 
 export default function Product(props) {
     return (

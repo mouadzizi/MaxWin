@@ -3,7 +3,6 @@ import {useFocusEffect} from '@react-navigation/native'
 import { Text, ScrollView, SafeAreaView, View, TouchableOpacity} from 'react-native'
 import { Avatar, Divider, FAB,TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme} from '../../style/GlobalStyle';
-import { set } from 'react-native-reanimated';
 import {auth,db} from '../../API/firebase'
 
 
@@ -72,15 +71,6 @@ export default function Profil({navigation}) {
 
         <Divider />
 
-        <TouchableOpacity 
-        style={{flex:1, flexDirection: 'row' ,justifyContent: 'center', alignSelf: 'center', marginTop: 15, marginBottom: 15}}
-        onPress={()=>{navigation.push('Items')}}>
-        <Text style={GlobalStyle.numberPosts}>5</Text>
-        <Text style={GlobalStyle.posts}>Posts </Text>
-        </TouchableOpacity>
-
-        <Divider />
-
         <View style={{flex:1, justifyContent: 'center', marginTop: 15, marginBottom: 15}}>
 
         <TextInput
@@ -96,8 +86,6 @@ export default function Profil({navigation}) {
 
         <Divider />
 
-
-        <View style={{flex:1, flexDirection: 'row'}}>
 
         <View style={{flex: 1,alignContent: 'space-around', marginTop: 15, marginBottom: 5}}>
         <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Télephone</Text>
@@ -123,7 +111,6 @@ export default function Profil({navigation}) {
          />
         </View>
 
-        </View>
 
 
 
