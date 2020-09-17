@@ -200,6 +200,7 @@ export default function SignIn({ navigation }) {
             mode='outlined'
             keyboardType='email-address'
             placeholder='votre-mail@mail.com'
+            returnKeyType='next'
             theme={textTheme}
             onChangeText={email => setEmail(email)} />
 
@@ -207,6 +208,8 @@ export default function SignIn({ navigation }) {
             label='mot de passe'
             mode='outlined'
             placeholder='Enter votre mot de passe'
+            returnKeyType='go'
+            onSubmitEditing={()=>SignIn()}
             theme={textTheme}
             secureTextEntry={true}
             style={{ marginTop: 20 }}

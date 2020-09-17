@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { View, Alert, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
-import { Searchbar } from 'react-native-paper';
+import { Searchbar,Button } from 'react-native-paper';
 import {Ionicons} from 'react-native-vector-icons';
 
 import { auth } from '../../API/firebase';
@@ -147,6 +147,10 @@ export default function DashBoard({ navigation }) {
             <Product click={()=>navigation.navigate('ProductDetails')} name='Coffee' price={50} owner='Mohamed deraz' location='Casablanca' state='Neuf' img={image3} />
             <Product click={()=>navigation.navigate('ProductDetails')} name='Pasta Torilla' price={450} owner='PA kokols' location='Rabat' state='Neuf' img={image2} />
             <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin Beldi' price={35.50} owner='moad zizi' location='Tanger-Tétouan' state='Neuf' img={image1} />
+            <Button 
+            mode='contained'
+            onPress={()=>logOut()}
+            > Log out</Button>
         </ScrollView>
         </SafeAreaView>
     )

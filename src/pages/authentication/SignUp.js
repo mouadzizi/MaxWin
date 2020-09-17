@@ -19,9 +19,24 @@ export default function SignUp({ navigation }) {
         setLoading(true)
         if (password.match(confPassword) && password.match('')) {
             var errs = false
+            auth.languageCode='fr'
             auth.createUserWithEmailAndPassword(email, password)
                 .catch(err => {
-                    Alert.alert('Error', err.message)
+                    switch (err.code) {
+                       case "auth/email-already-in-use":
+                            Alert.alert('Error' ,'('+ email+') est déja utilisé')
+                            break;
+                    
+                        case 'auth/invalid-email':
+                            Alert.alert('Error',' ('+ email+') est invalide')
+                            break;
+                        case 'auth/weak-password':
+                            Alert.alert('Error','Le mot de pass est trop faible')
+                            break;
+
+                            default: 
+                            Alert.alert('Error',err.message)
+                    }
                     setLoading(false)
                     errs = true
                 })
@@ -105,6 +120,7 @@ export default function SignUp({ navigation }) {
                     label='Confirmez le mot de passe'
                     mode='outlined'
                     returnKeyType='go'
+                    onSubmitEditing={()=> createUser()}
                     secureTextEntry={true}
                     theme={textTheme}
                     style={{ marginTop: 20 }}
