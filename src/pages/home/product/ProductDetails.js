@@ -1,15 +1,13 @@
 import React from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper';
-import {GlobalStyle} from '../../style/GlobalStyle';
+import {GlobalStyle} from '../../../style/GlobalStyle';
 import {Entypo} from 'react-native-vector-icons'
 
 
 export default function ProductDetails() {
 
-
     return (
-
 
         <ScrollView  showsVerticalScrollIndicator={false}>
 
@@ -24,7 +22,7 @@ export default function ProductDetails() {
           {/* Swiper 1*/}
           <View style={GlobalStyle.slide}>
             <Image
-            source={require("../../../assets/produit.jpg")}
+            source={require("../../../../assets/produit.jpg")}
               resizeMode="contain"
               style={GlobalStyle.sliderImage}
             />
@@ -33,7 +31,7 @@ export default function ProductDetails() {
           {/* Swiper 2*/}
           <View style={GlobalStyle.slide}>
             <Image
-            source={require("../../../assets/p2.jpg")}
+            source={require("../../../../assets/p2.jpg")}
               resizeMode="contain"
               style={GlobalStyle.sliderImage}
             />
@@ -42,7 +40,7 @@ export default function ProductDetails() {
           {/* Swiper 2*/}
           <View style={GlobalStyle.slide}>
             <Image
-            source={require("../../../assets/p3.jpg")}
+            source={require("../../../../assets/p3.jpg")}
               resizeMode="cover"
               style={GlobalStyle.sliderImage}
             />
