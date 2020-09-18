@@ -1,14 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
 import {TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
-export default function AddProduct() {
+export default function AddProduct({route}) {
 
     const [statue, setStatue] = useState("")
     const [city, setCity] = useState("")
     const [etat, setEtat] = useState("")
+
+    useEffect(() => {
+        alert('votre catégorie est '+route.params.cat)
+        return () => {
+            
+        }
+    }, [])
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >

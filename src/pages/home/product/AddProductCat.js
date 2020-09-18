@@ -1,14 +1,44 @@
 import React from 'react'
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, SectionList } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { List } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {FontAwesome5, Fontisto, MaterialCommunityIcons, Entypo} from 'react-native-vector-icons';
+import { FontAwesome5, Fontisto, Entypo } from 'react-native-vector-icons';
+import { DATA, ItemHeader, Item } from '../Data'
 
-export default function AddProductCat() {
+export default function AddProductCat({navigation,route}) {
+    const getIcon = (title) => {
+        switch (title) {
+            case 'VEHICULES':
+                return <Fontisto name='car' size={35} color='#4898D3' />
+            case "INFORMATIQUE ET MULTIMEDIA":
+                return <Fontisto name='laptop' size={35} color='#4898D3' />
+            case 'IMMOBILIER':
+                return <FontAwesome5 name='building' size={35} color='#4898D3' />
+            case 'HABILLEMENT ET BIEN ETRE':
+                return <FontAwesome5
+                    name='tshirt' size={35} color='#4898D3' />
+            case 'MATERIELS & SERVICES':
+                return <Entypo
+                    name='shopping-cart' size={35} color='#4898D3' />
+        }
+    }
+    const action = (title) => {
+        navigation.push('AddProduct',{
+            cat:title
+        })
+    }
     return (
-     <SafeAreaView>
-        <ScrollView
+        <SafeAreaView>
+
+            <SectionList
+                sections={DATA}
+                keyExtractor={(item, index) => item + index}
+                renderItem={({ item, section: { title } }) => <Item action={() => action(title)} title={item} />}
+                renderSectionHeader={({ section: { title} }) => <ItemHeader icon={getIcon(title)} title={title} />
+                }
+            />
+            {/* <ScrollView
         style={{paddingLeft: 20, paddingRight: 20}}
         showsVerticalScrollIndicator={false}>
 
@@ -195,7 +225,7 @@ export default function AddProductCat() {
         style={{marginBottom: 20}}
         title="Formations & autres" />
 
-        </ScrollView>
-     </SafeAreaView>
+        </ScrollView> */}
+        </SafeAreaView>
     )
 }
