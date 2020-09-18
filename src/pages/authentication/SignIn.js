@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Alert, Image, Dimensions, Keyboard, SafeAreaView, ScrollView } from 'react-native';
 import { TextInput, Button, ActivityIndicator, Divider } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
-import { auth } from '../../API/firebase';
+import { db, auth } from '../../API/firebase';
 import firebase from 'firebase';
 import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import AsyncStorage from '@react-native-community/async-storage';
-import {db} from '../../API/firebase'
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState('');
@@ -23,7 +22,7 @@ export default function SignIn({ navigation }) {
   useEffect(() => {
 
     return () => {
-      
+
     }
   }, [])
 
@@ -75,7 +74,7 @@ export default function SignIn({ navigation }) {
         // Sign in with credential from the Google user.
         auth.signInAndRetrieveDataWithCredential(credential)
           .then(() => {
-            navigation.replace('HomeTabs')
+            saveUserInfo(auth.currentUser).then(() => navigation.replace('HomeTabs'))
             setGLoading(false)
           })
           .catch((error) => {
@@ -118,30 +117,30 @@ export default function SignIn({ navigation }) {
     try {
       await Facebook.initializeAsync('424654075104803');
       const { type, token } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ['public_profile','email']
+        permissions: ['public_profile', 'email']
       });
       if (type === 'success') {
         await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
         const credential = firebase.auth.FacebookAuthProvider.credential(token);
         await auth.signInWithCredential(credential)
-          .then((userCredential) =>{
+          .then((userCredential) => {
             const fbID = userCredential.user.providerData[0].uid
             setFBLoading(false)
             storeData(token)
-            fetch (`https://graph.facebook.com/${fbID}/picture?type=normal`).then(response=>{
+            fetch(`https://graph.facebook.com/${fbID}/picture?type=normal`).then(response => {
               userCredential.user.updateProfile({
-                photoURL:response.url
+                photoURL: response.url
               })
             })
-            navigation.replace('HomeTabs')
+            saveUserInfo(auth.currentUser).then(() => navigation.replace('HomeTabs'))
           });
-          
+
       }
-      if(type ==='cancel'){
+      if (type === 'cancel') {
         setFBLoading(false)
       }
     } catch (e) {
-      Alert.alert('Facebook Login Error:',JSON.stringify(e));
+      Alert.alert('Facebook Login Error:', JSON.stringify(e));
       setFBLoading(false)
     }
   }
@@ -154,7 +153,17 @@ export default function SignIn({ navigation }) {
     }
   }
 
+  const saveUserInfo = async (user) => {
+    await db.collection('users').doc(user.uid).set({
+      uid: user.uid,
+      name: user.displayName,
+      email: user.email,
+      phone: '',
+      location: '',
+      aboutMe: '',
+    })
 
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
@@ -189,7 +198,7 @@ export default function SignIn({ navigation }) {
           <Text style={GlobalStyle.signInText}>  Se Connecter avec Facebook</Text>
         </TouchableOpacity>
 
-        
+
 
         <Text style={{ textAlign: 'center', color: '#C2C2C2', marginTop: 15, marginBottom: 5 }}> Ou connectez-vous avec E-mail </Text>
 
@@ -210,7 +219,7 @@ export default function SignIn({ navigation }) {
             mode='outlined'
             placeholder='Enter votre mot de passe'
             returnKeyType='go'
-            onSubmitEditing={()=>SignIn()}
+            onSubmitEditing={() => SignIn()}
             theme={textTheme}
             secureTextEntry={true}
             style={{ marginTop: 20 }}

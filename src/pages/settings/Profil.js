@@ -88,7 +88,8 @@ export default function Profil({navigation}) {
 
 
         <View style={{flex: 1,alignContent: 'space-around', marginTop: 15, marginBottom: 5}}>
-        <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Télephone</Text>
+
+        <Text style={{fontWeight: 'bold', color: '#4898D3'}}>Téléphone</Text>
         <TextInput
          theme={{colors:{primary:'#fff',background:'rgba(255,255,225,0)'}}}
          mode='flat'

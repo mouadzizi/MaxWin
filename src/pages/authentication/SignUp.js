@@ -61,7 +61,7 @@ export default function SignUp({ navigation }) {
     const saveUserInfo = async(user)=>{
         await  db.collection('users').doc(user.uid).set({
             uid:user.uid,
-            name:userName,
+            name:user.displayName,
             email:email,
             phone:'',
             location:'',
