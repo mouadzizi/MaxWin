@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
 import {TextInput} from 'react-native-paper';
-import {GlobalStyle, textTheme } from '../../style/GlobalStyle';
+import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
 export default function AddProduct() {

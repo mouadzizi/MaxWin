@@ -114,7 +114,7 @@ export default function DashBoard({ navigation }) {
         <View style={{flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2}}>
                 
                 <TouchableOpacity
-                    onPress={()=>{navigation.navigate("AddProduct")}}
+                    onPress={()=>{navigation.navigate("AddProductCat")}}
                     style={{flexDirection: 'row', width: '50%', backgroundColor: '#F16E44', justifyContent: 'center'}}>
                    
                     <Ionicons
@@ -127,7 +127,7 @@ export default function DashBoard({ navigation }) {
                 </TouchableOpacity>            
 
                 <TouchableOpacity
-                    onPress={()=>{navigation.navigate("Filtre")}}
+                    onPress={()=>{navigation.navigate("FilterCat")}}
                     style={{flexDirection: 'row', width: '50%', backgroundColor: '#4898D3', justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
                     
                     <Ionicons
