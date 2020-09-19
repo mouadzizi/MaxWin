@@ -8,6 +8,8 @@ import ProductDetails from '../pages/home/product/ProductDetails';
 import AddProduct from '../pages/home/product/AddProduct';
 import AddProductCat from '../pages/home/product/AddProductCat';
 import AddCar from '../pages/home/product/AddCar';
+import AddPhone from '../pages/home/product/AddPhone';
+import AddAppartement from '../pages/home/product/AddAppartement';
 {/* Filtre */}
 import Filtre from '../pages/home/filtre/Filtre';
 import FilterCat from '../pages/home/filtre/FilterCat';
@@ -57,6 +59,28 @@ export default function DashStack(){
             <Stack.Screen name="AddCar" component={AddCar}
             options={{ 
             title: 'Ajouter Produit', headerTitleAlign: 'center', 
+            headerStyle: {
+              backgroundColor: '#4898D3',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '500',
+            },}}/>
+
+          <Stack.Screen name="AddPhone" component={AddPhone}
+            options={{ 
+            title: 'Ajouter Produit', headerTitleAlign: 'center', 
+            headerStyle: {
+              backgroundColor: '#4898D3',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '500',
+            },}}/>
+
+          <Stack.Screen name="AddAppartement" component={AddAppartement}
+            options={{ 
+            title: 'Ajouter immobilier', headerTitleAlign: 'center', 
             headerStyle: {
               backgroundColor: '#4898D3',
             },

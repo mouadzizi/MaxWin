@@ -21,18 +21,34 @@ export default function AddProductCat({navigation,route}) {
                     name='shopping-cart' size={30} color='#000' />
         }
     }
+
     const action = (title) => {
-        navigation.push('AddCar',{
-            cat:title
-        })
+        switch (title) {
+
+            case 'VEHICULES':
+                return navigation.push('AddCar',{ cat:title })
+
+            case "INFORMATIQUE ET MULTIMEDIA":
+                return navigation.push('AddPhone',{ cat:title })
+
+            case 'IMMOBILIER':
+                return navigation.push('AddAppartement',{ cat:title })
+
+            case 'HABILLEMENT ET BIEN ETRE':
+                return navigation.push('AddProduct',{ cat:title })
+
+            case 'MATERIELS & SERVICES':
+                return navigation.push('AddProduct',{ cat:title })
+        }
     }
+    
     return (
         <SafeAreaView>
 
             <SectionList
                 sections={DATA}
                 keyExtractor={(item, index) => item + index}
-                renderItem={({ item, section: { title } }) => <Item action={() => action(title)} title={item} />}
+                renderItem={({ item, section: { title } }) => <Item action={() =>  action(title)} title={item} />}
                 renderSectionHeader={({ section: { title} }) => <ItemHeader icon={getIcon(title)} title={title} />
                 }
             />
