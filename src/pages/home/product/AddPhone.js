@@ -4,10 +4,12 @@ import {TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
-export default function AddProduct({route}) {
+export default function AddPhone({route}) {
 
     const [city, setCity] = useState("")
     const [etat, setEtat] = useState("")
+    const [marque, setMarque] = useState("")
+    const [carburant, setCarburant] = useState("")
 
 
     return (
@@ -39,7 +41,7 @@ export default function AddProduct({route}) {
             theme={textTheme}/>
         <Text
         style={{color:'red', fontSize: 11}}>
-        Merci d’entrer le non exacte de votre article (Peugeot 308, Ford focus, Samsung J6..)
+        Merci d’entrer le non exacte de votre article
         </Text>
 
         <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
@@ -49,7 +51,9 @@ export default function AddProduct({route}) {
         onValueChange={(itemValue, itemIndex) => setCity(itemValue)}>
 
         <Picker.Item label="Touts les villes" value="ma" />
-        <Picker.Item label="Tanger" value="tn" />
+        <Picker.Item label="Tanger" value="Tanger" />
+        <Picker.Item label="Casablanca" value="Casablanca" />
+        <Picker.Item label="Merakech" value="Merakech" />
       </Picker>
       </View>
 
@@ -61,16 +65,37 @@ export default function AddProduct({route}) {
             style={{marginTop: 10}}
             />
     
+ 
+
     <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
         <Picker
+        selectedValue={marque}
+        style={{ height: 50, width: '100%' }}
+        onValueChange={(itemValue, itemIndex) => setMarque(itemValue)}>
+        
+        <Picker.Item label="Tout les marques" value="tmq" />
+        <Picker.Item label="SAMSUNG " value="SAMSUNG " />
+        <Picker.Item label="IPHONE" value="IPHONE" />
+        <Picker.Item label="OPPO" value="OPPO" />
+        <Picker.Item label="HUAWEI" value="HUAWEI" />
+        <Picker.Item label="SONY" value="SONY" />
+        <Picker.Item label="NOKIA" value="NOKIA" />
+      </Picker>
+    </View>
+
+    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+        <Picker
+        mode='dropdown'
         selectedValue={etat}
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}>
 
         <Picker.Item label="Neuf" value="neuf" />
-        <Picker.Item label="Bon-Ocasion" value="tn" />
+        <Picker.Item label="ANCIEN" value="ANCIEN" />
       </Picker>
     </View>
+    
+
 
     <TextInput
             label='Description'
@@ -78,6 +103,7 @@ export default function AddProduct({route}) {
             placeholder='description de produit'
             theme={textTheme}
             style={{marginTop: 10, height: 100}}
+        
             />
 
 

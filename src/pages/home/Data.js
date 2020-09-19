@@ -43,7 +43,7 @@ export const ItemHeader = ({ title,icon }) => (
             titleStyle={{
                 fontWeight: 'bold',
                 fontSize: 19,
-                color: '#4898D3'
+                color: '#444'
 
             }}
             title={title}

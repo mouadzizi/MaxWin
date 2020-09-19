@@ -20,7 +20,7 @@ export default function Product(props) {
           </View>
           <View style={GlobalStyle.cardInfo}>
             <Text style={GlobalStyle.cardTitle}>{props.name}</Text>
-            <Text style={GlobalStyle.cardPrice}>{props.price} MAD</Text>
+            <Text style={GlobalStyle.cardPrice}>{props.price} DH</Text>
             <View
             style={{flexDirection: 'row'}}>
             <Entypo 
@@ -55,7 +55,7 @@ export default function Product(props) {
           </View>
           <View style={GlobalStyle.cardInfo}>
             <Text style={GlobalStyle.cardTitle}>Golf ki 300 TDI</Text>
-            <Text style={GlobalStyle.cardPrice}>30000.00 MAD</Text>
+            <Text style={GlobalStyle.cardPrice}>30000.00 DH</Text>
             <View
             style={{flexDirection: 'row'}}>
             <Fontisto 

@@ -4,10 +4,12 @@ import {TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
-export default function AddProduct({route}) {
+export default function AddCar({route}) {
 
     const [city, setCity] = useState("")
     const [etat, setEtat] = useState("")
+    const [marque, setMarque] = useState("")
+    const [carburant, setCarburant] = useState("")
 
 
     return (
@@ -39,7 +41,7 @@ export default function AddProduct({route}) {
             theme={textTheme}/>
         <Text
         style={{color:'red', fontSize: 11}}>
-        Merci d’entrer le non exacte de votre article (Peugeot 308, Ford focus, Samsung J6..)
+        Merci d’entrer le non exacte de votre article
         </Text>
 
         <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
@@ -49,7 +51,9 @@ export default function AddProduct({route}) {
         onValueChange={(itemValue, itemIndex) => setCity(itemValue)}>
 
         <Picker.Item label="Touts les villes" value="ma" />
-        <Picker.Item label="Tanger" value="tn" />
+        <Picker.Item label="Tanger" value="Tanger" />
+        <Picker.Item label="Casablanca" value="Casablanca" />
+        <Picker.Item label="Merakech" value="Merakech" />
       </Picker>
       </View>
 
@@ -63,12 +67,72 @@ export default function AddProduct({route}) {
     
     <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
         <Picker
+        mode='dropdown'
         selectedValue={etat}
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}>
 
         <Picker.Item label="Neuf" value="neuf" />
-        <Picker.Item label="Bon-Ocasion" value="tn" />
+        <Picker.Item label="ANCIEN" value="ANCIEN" />
+      </Picker>
+    </View>
+
+    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+        <Picker
+        selectedValue={marque}
+        style={{ height: 50, width: '100%' }}
+        onValueChange={(itemValue, itemIndex) => setMarque(itemValue)}>
+        
+        <Picker.Item label="Tout les marques" value="tmq" />
+        <Picker.Item label="AUDI" value="AUDI" />
+        <Picker.Item label="BMW" value="BMW" />
+        <Picker.Item label="CHEVROLET" value="CHEVROLET" />
+        <Picker.Item label="CITROEN" value="CITROEN" />
+        <Picker.Item label="DACIA" value="DACIA" />
+        <Picker.Item label="FIAT" value="FIAT" />
+      </Picker>
+    </View>
+
+    
+    <TextInput
+            label='Année de fabrication'
+            mode='outlined'
+            placeholder='exemple: 2005'
+            keyboardType='numeric'
+            theme={textTheme}
+            style={{marginTop: 10}}
+            />
+    
+    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+        <Picker
+        mode='dropdown'
+        selectedValue={carburant}
+        style={{ height: 50, width: '100%' }}
+        onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}>
+
+        <Picker.Item label="Diesel " value="Diesel" />
+        <Picker.Item label="Essence" value="Essence" />
+      </Picker>
+    </View>
+
+    <TextInput
+            label='Puissance Fiscale'
+            mode='outlined'
+            placeholder='CH'
+            keyboardType='numeric'
+            theme={textTheme}
+            style={{marginTop: 10}}
+            />
+
+<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+        <Picker
+        mode='dropdown'
+        selectedValue={carburant}
+        style={{ height: 50, width: '100%' }}
+        onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}>
+
+        <Picker.Item label="Mannuel " value="Mannuel" />
+        <Picker.Item label="Automatique" value="Automatique" />
       </Picker>
     </View>
 
@@ -78,6 +142,7 @@ export default function AddProduct({route}) {
             placeholder='description de produit'
             theme={textTheme}
             style={{marginTop: 10, height: 100}}
+        
             />
 
 
