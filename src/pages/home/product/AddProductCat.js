@@ -23,22 +23,21 @@ export default function AddProductCat({navigation,route}) {
     }
 
     const action = (title) => {
+        
         switch (title) {
 
-            case 'VEHICULES':
+            case 'Voiture':
                 return navigation.push('AddCar',{ cat:title })
 
             case "INFORMATIQUE ET MULTIMEDIA":
                 return navigation.push('AddPhone',{ cat:title })
 
-            case 'IMMOBILIER':
+            case 'Appartements':
                 return navigation.push('AddAppartement',{ cat:title })
 
-            case 'HABILLEMENT ET BIEN ETRE':
+            default :
                 return navigation.push('AddProduct',{ cat:title })
 
-            case 'MATERIELS & SERVICES':
-                return navigation.push('AddProduct',{ cat:title })
         }
     }
     
@@ -48,7 +47,7 @@ export default function AddProductCat({navigation,route}) {
             <SectionList
                 sections={DATA}
                 keyExtractor={(item, index) => item + index}
-                renderItem={({ item, section: { title } }) => <Item action={() =>  action(title)} title={item} />}
+                renderItem={({ item }) => <Item action={() =>  action(item)} title={item} />}
                 renderSectionHeader={({ section: { title} }) => <ItemHeader icon={getIcon(title)} title={title} />
                 }
             />
