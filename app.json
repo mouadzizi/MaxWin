@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MaxWin v1 test",
-    "slug": "maxwin-v1-test",
+    "name": "MaxWin v2",
+    "slug": "maxwin-v2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,7 +9,6 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,9 +16,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "facebookScheme":"fb424654075104803",
-    "facebookAppId":"424654075104803",
-    "facebookDisplayName":"MaxWin",
+    "facebookScheme": "fb424654075104803",
+    "facebookAppId": "424654075104803",
+    "facebookDisplayName": "MaxWin",
     "ios": {
       "supportsTablet": true
     },
@@ -30,7 +29,6 @@
       "package": "com.us.maxwin",
       "versionCode": 1,
       "googleServicesFile": "./src/API/google-services.json"
-
     },
     "description": ""
   }
