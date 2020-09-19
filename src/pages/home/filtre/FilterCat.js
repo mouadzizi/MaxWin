@@ -9,17 +9,17 @@ export default function FilterCat() {
     const getIcon = (title) => {
         switch (title) {
             case 'VEHICULES':
-                return <Fontisto name='car' size={35} color='#4898D3' />
+                return <Fontisto name='car' size={30} color='#000' />
             case "INFORMATIQUE ET MULTIMEDIA":
-                return <Fontisto name='laptop' size={35} color='#4898D3' />
+                return <Fontisto name='laptop' size={30} color='#000' />
             case 'IMMOBILIER':
-                return <FontAwesome5 name='building' size={35} color='#4898D3' />
+                return <FontAwesome5 name='building' size={30} color='#000' />
             case 'HABILLEMENT ET BIEN ETRE':
                 return <FontAwesome5
-                    name='tshirt' size={35} color='#4898D3' />
+                    name='tshirt' size={35} color='#000' />
             case 'MATERIELS & SERVICES':
                 return <Entypo
-                    name='shopping-cart' size={35} color='#4898D3' />
+                    name='shopping-cart' size={35} color='#000' />
         }
     }
     const action = (title) => {
