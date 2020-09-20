@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { View, Alert, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
-import { Searchbar,Button } from 'react-native-paper';
+import { View, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
+import { Searchbar } from 'react-native-paper';
 import {Ionicons} from 'react-native-vector-icons';
-
-import { auth } from '../../API/firebase';
-import * as Google from 'expo-google-sign-in';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import Product from '../../components/Product';
 
@@ -51,7 +47,7 @@ export default function DashBoard({ navigation }) {
             placeholder="Rechercher"
             onChangeText={onChangeSearch}
             value={searchQuery}
-            style={{width: '85%', margin:8}}
+            style={{width: '83%', margin:8}}
         />
         </View>
 
