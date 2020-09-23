@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react'
-import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
+import { View, SafeAreaView, ScrollView, TouchableOpacity, Text } from 'react-native';
+import {Picker} from '@react-native-community/picker';
 import {TextInput} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';

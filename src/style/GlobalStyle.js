@@ -173,8 +173,9 @@ export const GlobalStyle = StyleSheet.create({
       marginLeft: 2,
     },
 
-    cardState: {
+    LaivrasionTTMaroc: {
       color: '#B9B9BB',
+      backgroundColor:'#F16E44',
       fontSize: 12, 
       alignSelf: 'flex-end',
     },
@@ -189,7 +190,6 @@ export const GlobalStyle = StyleSheet.create({
       borderRadius: 8,
     },
   
-    wrapper: {},
   
     slide: {
       flex: 1,

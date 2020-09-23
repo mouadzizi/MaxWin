@@ -11,6 +11,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+
   const [loading, setLoading] = useState(false)
   const [gLoading, setGLoading] = useState(false)
   const [fbLoading, setFBLoading] = useState(false)
@@ -93,7 +95,7 @@ export default function SignIn({ navigation }) {
             setGLoading(false)
           });
       } else {
-        Alert.alert('Hint', 'user already singed in')
+        setErrorMessage('user already singed in')
       }
     });
   }
@@ -203,6 +205,9 @@ export default function SignIn({ navigation }) {
         <Text style={{ textAlign: 'center', color: '#C2C2C2', marginTop: 15, marginBottom: 5 }}> Ou connectez-vous avec E-mail </Text>
 
         <Divider />
+        <Text
+        style={{color:'red', alignSelf: 'center'}}
+        >{errorMessage}</Text>
         <View style={{ flex: 4, marginTop: 5 }}>
           <TextInput
             label='E-mail'

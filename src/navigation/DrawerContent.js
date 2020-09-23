@@ -69,6 +69,7 @@ export default function DrawerContent(props){
     return(
         <View style={{flex:1}}>
         <DrawerContentScrollView {...props}>
+
         {/* this section for header Drawer */}
         <View style={styles.DrawerContent}>
             <View style={styles.userInfoSection}>
@@ -107,11 +108,12 @@ export default function DrawerContent(props){
             icon={({color, size}) =>(
                 <Icon
                     name="exit-to-app"
-                    color={color}
+                    color='white'
                     size={size}
                 />
             )}
             label="Déconnecter"
+            inactiveTintColor='white'
             onPress={()=> logOut()}
         />
 
@@ -158,6 +160,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         borderTopColor: '#f4f4f4',
         borderTopWidth: 1,
+        backgroundColor: '#F16E44'
     },
     preference: {
         flexDirection: 'row',

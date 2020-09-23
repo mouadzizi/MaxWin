@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, ScrollView, Picker} from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import { textTheme } from '../../style/GlobalStyle';
 import { auth, db } from '../../API/firebase';
@@ -7,11 +7,15 @@ import { auth, db } from '../../API/firebase';
 
 
 export default function SignUp({ navigation }) {
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
     const [confPassword, setConfPassword] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [owner, setOwner]= useState("")
+    
 
 
     //firebase stuff
@@ -25,14 +29,15 @@ export default function SignUp({ navigation }) {
                 .catch(err => {
                     switch (err.code) {
                         case "auth/email-already-in-use":
-                            Alert.alert('Error', '(' + email + ') est déja utilisé')
+                            setErrorMessage("Cet e-mail est déjà utilisée")
                             break;
 
                         case 'auth/invalid-email':
-                            Alert.alert('Error', ' (' + email + ') est invalide')
+                            setErrorMessage("voulez-vous entrer un email valide exemple@mail.com")
                             break;
+
                         case 'auth/weak-password':
-                            Alert.alert('Error', 'Le mot de pass est trop faible')
+                            setErrorMessage("votre mot de passe est faible")
                             break;
 
                         default:
@@ -91,6 +96,9 @@ export default function SignUp({ navigation }) {
 
                 <View style={{ flex: 4 }}>
 
+                <Text
+                style={{color: 'red', alignSelf: 'center', marginBottom: 8}}>{errorMessage}</Text>
+
                     <TextInput
                         label='Nom d utilisateur'
                         mode='outlined'
@@ -105,16 +113,27 @@ export default function SignUp({ navigation }) {
                         mode='outlined'
                         placeholder='Votre-mail@mail.ma'
                         theme={textTheme}
-                        style={{ marginTop: 20 }}
+                        style={{ marginTop: 10 }}
                         onChangeText={email => setEmail(email)}
                     />
+                    
+                    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
+                    <Picker
+                    selectedValue={owner}
+                    style={{ height: 50, width: '100%'}}
+                    onValueChange={(itemValue, itemIndex) => setOwner(itemValue)}>
+                    
+                    <Picker.Item label="Particulier" value="Particulier" />
+                    <Picker.Item label="Professionel" value="Professionel" />
+                    </Picker>
+                    </View>
 
                     <TextInput
                         label='mot de passe'
                         mode='outlined'
                         secureTextEntry={true}
                         theme={textTheme}
-                        style={{ marginTop: 20 }}
+                        style={{ marginTop: 10 }}
                         onChangeText={password => setPassword(password)}
                     />
 
@@ -125,7 +144,7 @@ export default function SignUp({ navigation }) {
                         onSubmitEditing={() => createUser()}
                         secureTextEntry={true}
                         theme={textTheme}
-                        style={{ marginTop: 20 }}
+                        style={{ marginTop: 10 }}
                         onChangeText={text => setConfPassword(text)}
                     />
 
@@ -163,14 +182,15 @@ export default function SignUp({ navigation }) {
                         <Text
                             style={{ fontSize: 12, color: '#c2c2c2', textAlign: 'center' }}>
                             de MaxWin
-                </Text>
+                        </Text>
                     </View>
 
-
-
+                
                 </View>
+        
+       
 
-            </ScrollView>
+        </ScrollView>
         </SafeAreaView>
     );
 }
