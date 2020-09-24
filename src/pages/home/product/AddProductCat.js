@@ -1,7 +1,7 @@
 import React from 'react'
 import { SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesome5, Fontisto, Entypo } from 'react-native-vector-icons';
+import { FontAwesome5, Fontisto, Entypo, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { DATA, ItemHeader, Item } from '../Data'
 
 export default function AddProductCat({navigation,route}) {
@@ -19,6 +19,9 @@ export default function AddProductCat({navigation,route}) {
             case 'MATERIELS & SERVICES':
                 return <Entypo
                     name='shopping-cart' size={30} color='#000' />
+            case 'MAISON & DECO':
+                return <MaterialCommunityIcons
+                    name='lamp' size={30} color='#000' />
         }
     }
 
@@ -29,11 +32,21 @@ export default function AddProductCat({navigation,route}) {
             case 'Voiture':
                 return navigation.push('AddCar',{ cat:title })
 
-            case "INFORMATIQUE ET MULTIMEDIA":
+            case "Téléphones":
+                return navigation.push('AddPhone',{ cat:title })
+
+            case "Tablettes":
                 return navigation.push('AddPhone',{ cat:title })
 
             case 'Appartements':
                 return navigation.push('AddAppartement',{ cat:title })
+            
+            case 'Maisons & Villas':
+                return navigation.push('AddAppartement',{ cat:title })
+            
+            case 'Services et travaux professionnels':
+                return navigation.push('AddServices',{ cat:title })
+                
 
             default :
                 return navigation.push('AddProduct',{ cat:title })
