@@ -1,13 +1,17 @@
 import React, {useState,useEffect} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
-import {TextInput} from 'react-native-paper';
+import {TextInput, RadioButton} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
 export default function AddProduct({route}) {
 
+    const [title, setTitle] = useState("")
     const [city, setCity] = useState("")
+    const [price, setPrice] = useState("")
     const [etat, setEtat] = useState("")
+    const [description, setDescription] = useState("")
+    const [checked, setChecked] = useState('')
 
 
     return (
@@ -36,10 +40,12 @@ export default function AddProduct({route}) {
         <TextInput
             label='Titre de votre Produit'
             mode='outlined'
-            theme={textTheme}/>
+            theme={textTheme}
+            onChangeText={setTitle}
+            />
         <Text
         style={{color:'red', fontSize: 11}}>
-        Merci d’entrer le non exacte de votre article (Peugeot 308, Ford focus, Samsung J6..)
+        Merci d’entrer le Nom exacte de votre article
         </Text>
 
         <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
@@ -49,7 +55,15 @@ export default function AddProduct({route}) {
         onValueChange={(itemValue, itemIndex) => setCity(itemValue)}>
 
         <Picker.Item label="Touts les villes" value="ma" />
-        <Picker.Item label="Tanger" value="tn" />
+        <Picker.Item label="Tanger" value="Tanger" />
+        <Picker.Item label="Tétouan" value="Tétouan" />
+        <Picker.Item label="Ouejda" value="Ouejda" />
+        <Picker.Item label="Berkane" value="Berkane" />
+        <Picker.Item label="Rabat" value="Rabat" />
+        <Picker.Item label="Temara" value="Temara" />
+        <Picker.Item label="Casablanca" value="Casablanca" />
+        <Picker.Item label="El Jadida" value="El Jadida" />
+        <Picker.Item label="Merakech" value="Merakech" />
       </Picker>
       </View>
 
@@ -58,6 +72,7 @@ export default function AddProduct({route}) {
             mode='outlined'
             placeholder='DH'
             theme={textTheme}
+            onChangeText={setPrice}
             style={{marginTop: 10}}
             />
     
@@ -74,18 +89,43 @@ export default function AddProduct({route}) {
 
     <TextInput
             label='Description'
-            mode='outlined'
             placeholder='description de produit'
             theme={textTheme}
+            onChangeText={setDescription}
             style={{marginTop: 10, height: 100}}
+            theme={{colors: {primary  : '#4898D3', background  : '#fff', surface  : '#fff'}}}
             />
 
+    <View
+    style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
+
+    <Text
+    style={{marginTop: 5}}>Afficher le N° de Téléphone</Text>
+
+    <Text
+    style={{marginTop: 5}}>OUI</Text>
+      <RadioButton
+        value="first"
+        status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+
+      <Text
+      style={{marginTop: 5}}>Non</Text>
+      <RadioButton
+        value="second"
+        status={ checked === 'second' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('second')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+    </View>
 
 
     <TouchableOpacity
     style={[GlobalStyle.btn, {marginBottom: 30}]}>
         <Text
-        style={GlobalStyle.signInText}>Valider</Text>
+        style={GlobalStyle.signInText}>Valider l’annonce</Text>
     </TouchableOpacity>
 
       

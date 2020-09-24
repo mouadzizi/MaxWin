@@ -1,14 +1,19 @@
 import React, {useState,useEffect} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
-import {TextInput} from 'react-native-paper';
+import {TextInput, RadioButton} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
 export default function AddAppartement({route}) {
 
+    const [title, setTitle]= useState('')
     const [city, setCity] = useState("")
-    const [etat, setEtat] = useState("")
-    const [marque, setMarque] = useState("")
+    const [price, setPrice] = useState("")
+    const [piece, setPiece] = useState("")
+    const [superficie, setSuperficie] = useState("")
+    const [nature, setNature] = useState("")
+    const [description, setDescription] = useState("")
+    const [checked, setChecked] = useState('');
 
 
     return (
@@ -29,7 +34,7 @@ export default function AddAppartement({route}) {
         </View>
         <Text
         style={{color:'red', fontSize: 11}}>
-        les images multiplient les chances par 5 pour vendre votre produit</Text>
+        Les images multiplient les chances par 5 pour vendre votre produit</Text>
 
         <View
         style={{flex: 1, marginTop: 20}}>
@@ -37,10 +42,12 @@ export default function AddAppartement({route}) {
         <TextInput
             label='Titre de votre Produit'
             mode='outlined'
-            theme={textTheme}/>
+            theme={textTheme}
+            onChangeText={setTitle}
+            />
         <Text
         style={{color:'red', fontSize: 11}}>
-        Merci d’entrer le non exacte de votre article
+        Merci d’entrer le Nom exacte de votre article
         </Text>
 
         <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
@@ -62,15 +69,16 @@ export default function AddAppartement({route}) {
             placeholder='DH'
             theme={textTheme}
             style={{marginTop: 10}}
+            onChangeText={setPrice}
             />
     
  
 
     <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
         <Picker
-        selectedValue={marque}
+        selectedValue={nature}
         style={{ height: 50, width: '100%' }}
-        onValueChange={(itemValue, itemIndex) => setMarque(itemValue)}>
+        onValueChange={(itemValue, itemIndex) => setNature(itemValue)}>
         
         <Picker.Item label="nature de bien" value="tmq" />
         <Picker.Item label="Appartement " value="SAMSUNG " />
@@ -85,14 +93,15 @@ export default function AddAppartement({route}) {
             placeholder='(m²)'
             theme={textTheme}
             style={{marginTop: 10}}
+            onChangeText={setSuperficie}
             />
 
     <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
         <Picker
         mode='dropdown'
-        selectedValue={etat}
+        selectedValue={piece}
         style={{ height: 50, width: '100%' }}
-        onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}>
+        onValueChange={(itemValue, itemIndex) => setPiece(itemValue)}>
 
         <Picker.Item label="Nombre de pièces" value="neuf" />
         <Picker.Item label="1" value="1" />
@@ -106,12 +115,37 @@ export default function AddAppartement({route}) {
 
     <TextInput
             label='Description'
-            mode='outlined'
+            multiline={true}
             placeholder='description de produit'
             theme={textTheme}
-            style={{marginTop: 10, height: 100}}
-        
+            style={{marginTop: 10, height: 120}}
+            onChangeText={setDescription}
             />
+    
+    <View
+    style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
+
+    <Text
+    style={{marginTop: 5}}>Afficher le N° de Téléphone</Text>
+
+    <Text
+    style={{marginTop: 5}}>OUI</Text>
+      <RadioButton
+        value="first"
+        status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+
+      <Text
+      style={{marginTop: 5}}>Non</Text>
+      <RadioButton
+        value="second"
+        status={ checked === 'second' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('second')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+    </View>
 
 
 
