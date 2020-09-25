@@ -24,7 +24,6 @@ export default function SignUp({ navigation }) {
 
         if (password === confPassword && password.match('')) {
             var errs = false
-            auth.languageCode = 'fr'
             auth.createUserWithEmailAndPassword(email, password)
                 .catch(err => {
                     switch (err.code) {
@@ -68,11 +67,12 @@ export default function SignUp({ navigation }) {
     const saveUserInfo = async (user) => {
         await db.collection('users').doc(user.uid).set({
             uid: user.uid,
-            name: user.displayName,
+            name: userName,
             email: email,
             phone: '',
             location: '',
             aboutMe: '',
+            accountType:owner,
         })
 
     }

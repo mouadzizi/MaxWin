@@ -18,6 +18,7 @@ export default function Profil({navigation}) {
 
     useFocusEffect(()=>{
         userRef = db.collection('users').doc(auth.currentUser.uid)
+        setEmail(auth.email)
         if(!edit) {
             userRef.get().then(doc=>{
                 console.log('begin loading');

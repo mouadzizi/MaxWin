@@ -4,6 +4,8 @@ import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../style/GlobalStyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {auth} from '../../API/firebase'
+import * as Updates from 'expo-updates';
+
 
 
 export default function Splash({ navigation }) {
@@ -14,7 +16,9 @@ export default function Splash({ navigation }) {
   const width_image = width * 0.6;
 
   React.useEffect(() => {
-    setLoading(true)
+    checkUpdate()
+
+    //setLoading(true)
     const unsub = auth.onAuthStateChanged(user=>{
       if(user){
         navigation.replace('HomeTabs')
@@ -29,6 +33,20 @@ export default function Splash({ navigation }) {
       unsub()
     }
   }, [])
+
+  const checkUpdate = async()=>{
+    try {
+      const update = await Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        setLoading(true)
+        await Updates.fetchUpdateAsync().then(()=>setLoading(false))
+        
+        await Updates.reloadAsync();
+      }
+    } catch (e) {
+      // handle or log error
+    }
+  }
   
   function SwiperIntro() {
     return (

@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import AsyncStorage from '@react-native-community/async-storage';
+import { Ionicons } from '@expo/vector-icons'; 
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState('');
@@ -16,6 +17,7 @@ export default function SignIn({ navigation }) {
   const [loading, setLoading] = useState(false)
   const [gLoading, setGLoading] = useState(false)
   const [fbLoading, setFBLoading] = useState(false)
+  const [showPass,setShowPass]=useState(false)
 
   const { width, height } = Dimensions.get('window');
   const height_image = height * 0.3;
@@ -35,7 +37,20 @@ export default function SignIn({ navigation }) {
     Keyboard.dismiss()
     auth.signInWithEmailAndPassword(email.trim(), password)
       .catch(err => {
-        Alert.alert('Info', err.message)
+        switch (err.code) {
+          case 'auth/invalid-email':
+            setErrorMessage('email invalide')
+            break;
+          case 'auth/user-not-found':
+            setErrorMessage("Aucun compte n'a cette email")
+            break;
+          case 'auth/wrong-password':
+            setErrorMessage('mode de passe invalide')
+            break;
+            default:
+              setErrorMessage(err.code)
+      
+        }
         setLoading(false)
         isErr = true;
       })
@@ -59,7 +74,7 @@ export default function SignIn({ navigation }) {
       }
     } catch (e) {
       setGLoading(false)
-      Alert.alert('Google Error', e.message)
+      Alert.alert('Google Error', JSON.stringify(e))
 
     }
   }
@@ -142,7 +157,7 @@ export default function SignIn({ navigation }) {
         setFBLoading(false)
       }
     } catch (e) {
-      Alert.alert('Facebook Login Error:', JSON.stringify(e));
+      Alert.alert('Facebook Login Error:', e.message);
       setFBLoading(false)
     }
   }
@@ -163,6 +178,7 @@ export default function SignIn({ navigation }) {
       phone: '',
       location: '',
       aboutMe: '',
+      accountType:'Particulier'
     })
 
   }
@@ -202,7 +218,7 @@ export default function SignIn({ navigation }) {
 
 
 
-        <Text style={{ textAlign: 'center', color: '#C2C2C2', marginTop: 15, marginBottom: 5 }}> Ou connectez-vous avec E-mail </Text>
+        <Text style={{ textAlign: 'center', color: '#C2C2C2', marginTop: 15, marginBottom: 5 }}> Ou connectez-vous avec E-mail v3 </Text>
 
         <Divider />
         <Text
@@ -217,6 +233,7 @@ export default function SignIn({ navigation }) {
             placeholder='votre-mail@mail.com'
             returnKeyType='next'
             theme={textTheme}
+            
             onChangeText={email => setEmail(email)} />
 
           <TextInput
@@ -226,9 +243,10 @@ export default function SignIn({ navigation }) {
             returnKeyType='go'
             onSubmitEditing={() => SignIn()}
             theme={textTheme}
-            secureTextEntry={true}
+            secureTextEntry={showPass}
             style={{ marginTop: 20 }}
-            onChangeText={pass => setPassword(pass)} />
+            onChangeText={pass => setPassword(pass)}
+            right={<TextInput.Icon name={showPass? 'eye-off':'eye'}  onPress={()=>setShowPass(!showPass)} size={30} />} />
 
           <TouchableOpacity
             onPress={() => alert('comming up on the next virsion')}>
