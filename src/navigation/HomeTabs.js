@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Drawer from '../navigation/Drawer';
 import SettingsStack from './SettingsStack';
-import Chats from '../pages/chat/Chats';
+import StackChat from './StackChat';
 
 export default function HomeTabs() {
 
@@ -42,7 +42,7 @@ return (
 
       
         <Tab.Screen name="Accueil" component={Drawer} />
-        <Tab.Screen name="Discussions" component={Chats} />
+        <Tab.Screen name="Discussions" component={StackChat} />
         <Tab.Screen name="Paramètres" component={SettingsStack} />
 
       </Tab.Navigator>

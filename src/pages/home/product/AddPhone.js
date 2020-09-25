@@ -50,10 +50,11 @@ export default function AddPhone({route}) {
         Merci d’entrer le non exacte de votre article
         </Text>
 
-        <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
+        <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}>
         <Picker
         selectedValue={city}
         style={{ height: 50, width: '100%'}}
+        prompt='Ville'
         onValueChange={(itemValue, itemIndex) => setCity(itemValue)}>
 
         <Picker.Item label="Touts les villes" value="ma" />
@@ -74,9 +75,10 @@ export default function AddPhone({route}) {
     
  
 
-    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
         <Picker
         selectedValue={marque}
+        prompt='Marque'
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setMarque(itemValue)}>
         
@@ -90,7 +92,7 @@ export default function AddPhone({route}) {
       </Picker>
     </View>
 
-    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
         <Picker
         mode='dropdown'
         selectedValue={etat}

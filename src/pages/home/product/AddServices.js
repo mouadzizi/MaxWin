@@ -1,13 +1,18 @@
 import React, {useState,useEffect} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
-import {TextInput} from 'react-native-paper';
+import {TextInput, RadioButton} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
 export default function AddServices({route}) {
 
+    const [title, setTitle]= useState('')
     const [city, setCity] = useState("")
+    const [price, setPrice] = useState("")
     const [etat, setEtat] = useState("")
+    const [type, setType] = useState("")
+    const [description, setDescription] = useState("")
+    const [checked, setChecked] = useState('');
 
 
     return (
@@ -28,7 +33,7 @@ export default function AddServices({route}) {
         </View>
         <Text
         style={{color:'red', fontSize: 11}}>
-        Services</Text>
+        Les images multiplient les chances par 5 pour vendre votre produit</Text>
 
         <View
         style={{flex: 1, marginTop: 20}}>
@@ -36,13 +41,15 @@ export default function AddServices({route}) {
         <TextInput
             label='Titre de votre Produit'
             mode='outlined'
-            theme={textTheme}/>
+            theme={textTheme}
+            onChangeText={setTitle}
+            />
         <Text
         style={{color:'red', fontSize: 11}}>
-        Merci d’entrer le non exacte de votre article (Peugeot 308, Ford focus, Samsung J6..)
+        Merci d’entrer le non exacte de votre Service
         </Text>
 
-        <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
+        <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}>
         <Picker
         selectedValue={city}
         style={{ height: 50, width: '100%'}}
@@ -59,9 +66,10 @@ export default function AddServices({route}) {
             placeholder='DH'
             theme={textTheme}
             style={{marginTop: 10}}
+            onChangeText={setPrice}
             />
     
-    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
         <Picker
         selectedValue={etat}
         style={{ height: 50, width: '100%' }}
@@ -71,14 +79,69 @@ export default function AddServices({route}) {
         <Picker.Item label="Bon-Ocasion" value="tn" />
       </Picker>
     </View>
+    
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
+        <Picker
+        selectedValue={type}
+        prompt='Type'
+        style={{ height: 50, width: '100%' }}
+        onValueChange={(itemValue, itemIndex) => setType(itemValue)}>
+
+        <Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
+        <Picker.Item label="Electricien " value="Electricien" />
+        <Picker.Item label="Jardinier" value="Jardinier" />
+        <Picker.Item label="Informatique " value="informatique" />
+        <Picker.Item label="Maçonnerie" value="Maçonnerie" />
+        <Picker.Item label="Menuisier" value="Menuisier" />
+        <Picker.Item label="Peinture" value="Peinture" />
+        <Picker.Item label="Tapisserie" value="Tapisserie" />
+        <Picker.Item label="Plombier" value="Plombier" />
+        <Picker.Item label="Soudeur" value="Soudeur" />
+        <Picker.Item label="Vitre" value="Vitre" />
+        <Picker.Item label="AUTRES" value="AUTRES" />
+      </Picker>
+    </View>
 
     <TextInput
             label='Description'
-            mode='outlined'
             placeholder='description de produit'
             theme={textTheme}
-            style={{marginTop: 10, height: 100}}
+            multiline={true}
+            style={{marginTop: 10, height: 120}}
+            onChangeText={setDescription}
             />
+    <View
+    style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 15}}>
+
+    <Text
+    style={{marginTop: 5}}>Afficher le N° de Téléphone</Text>
+
+    <Text
+    style={{marginTop: 5}}>OUI</Text>
+      <RadioButton
+        value="first"
+        status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+
+      <Text
+      style={{marginTop: 5}}>Non</Text>
+      <RadioButton
+        value="second"
+        status={ checked === 'second' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('second')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+    </View>
+
+
+
+    <TouchableOpacity
+    style={[GlobalStyle.btn, {marginBottom: 30}]}>
+        <Text
+        style={GlobalStyle.signInText}>Valider l’annonce</Text>
+    </TouchableOpacity>
 
 
 

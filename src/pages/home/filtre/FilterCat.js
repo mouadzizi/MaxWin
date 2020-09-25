@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert, SectionList,} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesome5, Fontisto, Entypo } from 'react-native-vector-icons';
+import { FontAwesome5, MaterialCommunityIcons, Ionicons} from 'react-native-vector-icons';
 import {DATA,ItemHeader,Item} from '../Data'
 
 export default function FilterCat() {
@@ -9,17 +9,21 @@ export default function FilterCat() {
     const getIcon = (title) => {
         switch (title) {
             case 'VEHICULES':
-                return <Fontisto name='car' size={30} color='#000' />
+                return <FontAwesome5 name='car' size={30} color='#fff' />
             case "INFORMATIQUE ET MULTIMEDIA":
-                return <Fontisto name='laptop' size={30} color='#000' />
+                return <MaterialCommunityIcons name='desktop-mac-dashboard' size={30} color='#fff' />
             case 'IMMOBILIER':
-                return <FontAwesome5 name='building' size={30} color='#000' />
+                return <FontAwesome5 name='building' size={25} color='#fff' />
             case 'HABILLEMENT ET BIEN ETRE':
-                return <FontAwesome5
-                    name='tshirt' size={35} color='#000' />
+                return <Ionicons
+                    name='ios-shirt' size={35} color='#fff' />
+            case 'MAISON & DECO':
+                return <MaterialCommunityIcons
+                    name='lamp' size={30} color='#fff' />
             case 'MATERIELS & SERVICES':
-                return <Entypo
-                    name='shopping-cart' size={35} color='#000' />
+                return <FontAwesome5
+                    name='hammer' size={25} color='#fff' />
+            
         }
     }
     const action = (title) => {

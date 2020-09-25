@@ -5,8 +5,12 @@ import {Fontisto, Entypo} from 'react-native-vector-icons';
 import { Chip } from 'react-native-paper';
 
 export default function Product(props) {
-    return (
-
+   
+  const COD = props.chip1;
+  const LP = props.chip2;
+  
+  return (
+      
       <View>
 
         <TouchableOpacity
@@ -50,19 +54,23 @@ export default function Product(props) {
             <Text style={GlobalStyle.cardLocation}>{props.location}</Text>
             </View>
 
+        
             {/* Cips */}
-            <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 5}}>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-start', marginTop: 8}}>
 
                 {/* Cash On delevery */}
+         
               <View
-              style={{backgroundColor:'#F16E44', alignSelf: 'flex-start', borderRadius: 15, padding: 5}}>
-                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 10}}>Livraison dans tout le Maroc </Text>
+              style={{backgroundColor:'#4898D3', borderRadius: 15, padding: 5, marginLeft: 7}}>
+                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 12}}>livraison possible</Text>
               </View>
+        
+             
 
-                {/* Cash On delevery */}
+                {/* Payment Possible */}
               <View
-              style={{backgroundColor:'#4898D3', alignSelf: 'flex-end', borderRadius: 15, padding: 5}}>
-                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 10}}>Cash on delevery</Text>
+              style={{backgroundColor:'#4898D3', borderRadius: 15, padding: 5, marginLeft: 7}}>
+                <Text style={{color: 'black', fontWeight: 'bold', fontSize: 12}}>paiement à la livraison</Text>
               </View>
 
             </View>

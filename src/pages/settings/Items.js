@@ -11,6 +11,8 @@ export default function Items({navigation}) {
         <ScrollView showsVerticalScrollIndicator={false}>
 
         <ProductEdit />
+        <ProductEdit />
+        <ProductEdit />
         </ScrollView>
         </SafeAreaView>
 

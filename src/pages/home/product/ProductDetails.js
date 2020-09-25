@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import Swiper from 'react-native-swiper';
 import {GlobalStyle} from '../../../style/GlobalStyle';
 import {Entypo} from 'react-native-vector-icons'
@@ -14,7 +14,6 @@ export default function ProductDetails() {
         <View style={GlobalStyle.sliderContainer}>
         <Swiper
           autoplay
-          horizontal={false}
           height={200}
           activeDotColor="#FF6347"
         >
@@ -31,16 +30,25 @@ export default function ProductDetails() {
           {/* Swiper 2*/}
           <View style={GlobalStyle.slide}>
             <Image
-            source={require("../../../../assets/p2.jpg")}
+            source={require("../../../../assets/produit01.jpg")}
               resizeMode="contain"
               style={GlobalStyle.sliderImage}
             />
           </View>
           
-          {/* Swiper 2*/}
+          {/* Swiper 3*/}
           <View style={GlobalStyle.slide}>
             <Image
-            source={require("../../../../assets/p3.jpg")}
+            source={require("../../../../assets/logo.jpg")}
+              resizeMode="cover"
+              style={GlobalStyle.sliderImage}
+            />
+          </View>
+
+          {/* Swiper 4*/}
+          <View style={GlobalStyle.slide}>
+            <Image
+            source={require("../../../../assets/produit02.jpg")}
               resizeMode="cover"
               style={GlobalStyle.sliderImage}
             />
@@ -50,20 +58,21 @@ export default function ProductDetails() {
       </View>
 
       <View style={GlobalStyle.infoContainer}>
-        <Text style={GlobalStyle.h1}>Tajin beldi | mazal jedid | En gros</Text>
+        <Text style={GlobalStyle.h1}>Titre de produit</Text>
 
         <View
         style={{flexDirection: 'row', marginTop: 10, }}>
 
-      <Text style={[GlobalStyle.cardPrice, {fontSize: 20, width: '50%', fontWeight: '600', fontFamily: 'Roboto'} ]}>300.00 MAD</Text>
+      <Text style={[GlobalStyle.cardPrice, {fontSize: 18, width: '50%', fontWeight: '700', fontFamily: 'Roboto'} ]}>300.00 DHS</Text>
         <View
             style={{flexDirection: 'row', width: '50%'}}>
             <Entypo 
               name='user'
-              color='#4898D3'
-              size={23}
+              color='#FF6347'
+              size={20}
+              style={{marginRight: 5}}
             />
-            <Text style={{color: '#4898D3', fontSize: 17, fontWeight: 'bold', fontFamily: 'monospace'}}>Moad Zizi</Text>
+            <Text style={{color: '#FF6347', fontSize: 17, fontFamily: 'serif'}}>Mohammed Mb</Text>
             </View>
 
         </View>
@@ -71,12 +80,25 @@ export default function ProductDetails() {
       </View>
       
       <Text
-      style={{color: '#4898D3', marginLeft: 25}}>
+      style={{color: '#4898D3', marginLeft: 20}}>
       Contact</Text>
 
-      <View style={{flexDirection: 'row', marginTop: 15, marginBottom: 15, flex: 1}}>
+      <View style={{flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1}}>
+      
+      <TouchableOpacity
+      onPress={()=>Alert.alert("+212.6 .26.617 611")}
+      style={{backgroundColor: '#FF6347', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
+      <Entypo 
+              name='phone'
+              color='#fff'
+              size={40}
+            />
+      <Text
+      style={{color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity
+      onPress={()=>Alert.alert("Chat avec Mohammmed Mb")}
       style={{backgroundColor: '#4898D3', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
       <Entypo 
               name='chat'
@@ -84,24 +106,15 @@ export default function ProductDetails() {
               size={40}
             />
       <Text
-      style={{color: '#fff', fontSize: 17}}>Discuter</Text>
+      style={{color: '#fff', fontSize: 18, fontFamily: 'serif'}}>Discuter</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-      style={{backgroundColor: '#ccc', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
-      <Entypo 
-              name='phone'
-              color='#4898D3'
-              size={40}
-            />
-      <Text
-      style={{color: '#4898D3', fontSize: 17}}>Appeler</Text>
-      </TouchableOpacity>
+      
  
       </View>
 
       <Text
-      style={{color: '#4898D3', marginLeft: 25}}>
+      style={{color: '#4898D3', marginLeft: 20}}>
       Description</Text>
 
       <View style={GlobalStyle.infoContainer}>
@@ -110,13 +123,14 @@ export default function ProductDetails() {
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
         ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-        esse cillum dolore eu fugiat nulla pariatur. 
+        esse cillum dolore eu fugiat nulla pariatur.
+        😉😉😉😉 
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
         deserunt mollit anim id est laborum.</Text>
       </View>
 
       <Text
-      style={{color: '#4898D3', marginLeft: 25}}>
+      style={{color: '#4898D3', marginLeft: 20}}>
        Caractéristiques</Text>
 
       <View style={GlobalStyle.infoContainer}>

@@ -102,9 +102,8 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     h1:{
-      fontSize: 17,
-      fontWeight: '600',
-      fontFamily: 'Roboto',
+      fontSize: 18,
+      fontFamily: 'serif',
     },
     
     p:{

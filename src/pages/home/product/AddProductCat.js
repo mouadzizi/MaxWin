@@ -1,7 +1,7 @@
 import React from 'react'
 import { SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesome5, Fontisto, MaterialCommunityIcons, Ionicons} from 'react-native-vector-icons';
+import { FontAwesome5, MaterialCommunityIcons, Ionicons} from 'react-native-vector-icons';
 import { DATA, ItemHeader, Item } from '../Data'
 
 export default function AddProductCat({navigation,route}) {
