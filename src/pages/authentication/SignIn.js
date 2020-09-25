@@ -7,7 +7,6 @@ import firebase from 'firebase';
 import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Ionicons } from '@expo/vector-icons'; 
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState('');
@@ -218,7 +217,7 @@ export default function SignIn({ navigation }) {
 
 
 
-        <Text style={{ textAlign: 'center', color: '#C2C2C2', marginTop: 15, marginBottom: 5 }}> Ou connectez-vous avec E-mail v3 </Text>
+        <Text style={{ textAlign: 'center', color: '#C2C2C2', marginTop: 15, marginBottom: 5 }}> Ou connectez-vous avec E-mail </Text>
 
         <Divider />
         <Text
