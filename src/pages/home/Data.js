@@ -1,6 +1,6 @@
 import React  from 'react'
 import {View} from 'react-native'
-import { List } from 'react-native-paper';
+import { List, Devider, Divider } from 'react-native-paper';
 
 
 export  const DATA = [
@@ -50,34 +50,28 @@ export  const DATA = [
 ]
 export const ItemHeader = ({ title,icon }) => (
 
-    <View >
-        <List.Section title="Accordions">
-        
-        <List.Accordion
-        itleStyle={{
-                fontWeight: 'bold',
-                fontSize: 19,
-                color: '#444'
+    <View 
+    style={{backgroundColor: '#F16E44'}}>
 
-            }}
+        
+        <List.Item
+        titleStyle={{
+            fontSize: 18,
+            marginLeft: 10,
+            fontFamily: 'Roboto',
+            fontWeight : 'bold',
+            color: 'white'
+        }}
         title={title}
         left={() => icon}>
         
         <List.Item
-            titleStyle={{
-                fontWeight: 'bold',
-                fontSize: 19,
-                color: '#444'
-
-            }}
             title={title}
             left={() => icon} />
 
-        </List.Accordion>
-        </List.Section>
-      
+        </List.Item>
 
-   
+        <Divider />
 
     </View>
 
@@ -86,7 +80,9 @@ export const ItemHeader = ({ title,icon }) => (
 export const Item = ({ title,action }) => (
     <List.Item
         titleStyle={{
-            fontSize: 18
+            fontSize: 15,
+            marginLeft: 20,
+            fontFamily: 'serif'
         }}
         title={title}
         onPress={action}

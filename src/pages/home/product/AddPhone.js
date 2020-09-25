@@ -1,15 +1,19 @@
 import React, {useState,useEffect} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
-import {TextInput} from 'react-native-paper';
+import {TextInput, RadioButton} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
 export default function AddPhone({route}) {
 
+    const [title, setTitle]= useState('')
     const [city, setCity] = useState("")
+    const [price, setPrice] = useState("")
     const [etat, setEtat] = useState("")
     const [marque, setMarque] = useState("")
-    const [carburant, setCarburant] = useState("")
+    const [description, setDescription] = useState("")
+    const [checked, setChecked] = useState('');
+
 
 
     return (
@@ -30,7 +34,7 @@ export default function AddPhone({route}) {
         </View>
         <Text
         style={{color:'red', fontSize: 11}}>
-        les images multiplient les chances par 5 pour vendre votre produit</Text>
+        Les images multiplient les chances par 5 pour vendre votre produit</Text>
 
         <View
         style={{flex: 1, marginTop: 20}}>
@@ -38,7 +42,9 @@ export default function AddPhone({route}) {
         <TextInput
             label='Titre de votre Produit'
             mode='outlined'
+            onChangeText={setTitle}
             theme={textTheme}/>
+        
         <Text
         style={{color:'red', fontSize: 11}}>
         Merci d’entrer le non exacte de votre article
@@ -63,6 +69,7 @@ export default function AddPhone({route}) {
             placeholder='DH'
             theme={textTheme}
             style={{marginTop: 10}}
+            onChangeText={setPrice}
             />
     
  
@@ -99,19 +106,44 @@ export default function AddPhone({route}) {
 
     <TextInput
             label='Description'
-            mode='outlined'
             placeholder='description de produit'
             theme={textTheme}
-            style={{marginTop: 10, height: 100}}
-        
+            style={{marginTop: 10, height: 120}}
+            onChangeText={setDescription}
+            multiline={true}
             />
+    
+    <View
+    style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
+
+    <Text
+    style={{marginTop: 5}}>Afficher le N° de Téléphone</Text>
+
+    <Text
+    style={{marginTop: 5}}>OUI</Text>
+      <RadioButton
+        value="first"
+        status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+
+      <Text
+      style={{marginTop: 5}}>Non</Text>
+      <RadioButton
+        value="second"
+        status={ checked === 'second' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('second')}
+        theme = {{ colors : {accent : "#4898D3"}}}
+      />
+    </View>
 
 
 
     <TouchableOpacity
     style={[GlobalStyle.btn, {marginBottom: 30}]}>
         <Text
-        style={GlobalStyle.signInText}>Valider</Text>
+        style={GlobalStyle.signInText}>Valider l’annonce</Text>
     </TouchableOpacity>
 
       
