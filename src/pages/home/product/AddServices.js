@@ -142,11 +142,6 @@ export default function AddServices({route}) {
         style={GlobalStyle.signInText}>Valider l’annonce</Text>
     </TouchableOpacity>
 
-
-
-
-      
-
         </View>
         </ScrollView>
         </SafeAreaView>

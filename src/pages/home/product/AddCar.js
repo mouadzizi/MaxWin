@@ -1,6 +1,6 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native';
-import {TextInput, RadioButton, Checkbox } from 'react-native-paper';
+import {TextInput, Checkbox } from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
@@ -226,9 +226,10 @@ export default function AddCar({route}) {
 
 
     <TouchableOpacity
-    style={[GlobalStyle.btn, {marginBottom: 30}]}>
+    style={[GlobalStyle.btn, {marginBottom: 30}]}
+    onPress={()=>navigation.navigate('CarDetails')}>
         <Text
-        style={GlobalStyle.signInText}>Valider l’annonce</Text>
+        style={GlobalStyle.signInText}>Suivante</Text>
     </TouchableOpacity>
 
         </View>

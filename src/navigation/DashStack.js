@@ -8,6 +8,7 @@ import ProductDetails from '../pages/home/product/ProductDetails';
 import AddProduct from '../pages/home/product/AddProduct';
 import AddProductCat from '../pages/home/product/AddProductCat';
 import AddCar from '../pages/home/product/AddCar';
+import CarDetails from '../pages/home/product/CarDtails';
 import AddPhone from '../pages/home/product/AddPhone';
 import AddAppartement from '../pages/home/product/AddAppartement';
 import AddServices from '../pages/home/product/AddServices';
@@ -59,7 +60,18 @@ export default function DashStack(){
 
             <Stack.Screen name="AddCar" component={AddCar}
             options={{ 
-            title: 'Ajouter Produit', headerTitleAlign: 'center', 
+            title: 'Ajouter Voiture', headerTitleAlign: 'center', 
+            headerStyle: {
+              backgroundColor: '#4898D3',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '500',
+            },}}/>
+
+          <Stack.Screen name="AddCar" component={CarDetails}
+            options={{ 
+            title: 'Ajouter voiture', headerTitleAlign: 'center', 
             headerStyle: {
               backgroundColor: '#4898D3',
             },
