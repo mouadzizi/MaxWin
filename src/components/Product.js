@@ -1,12 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import {GlobalStyle} from '../style/GlobalStyle';
 import {FontAwesome, Entypo, MaterialCommunityIcons} from 'react-native-vector-icons';
 
 export default function Product(props) {
-  
+
   return (
-      
       <View>
 
         <TouchableOpacity
@@ -58,7 +57,7 @@ export default function Product(props) {
             size={15}
             color='#4898D3'
             />
-            <Text style={GlobalStyle.cardChip}> Lavraison possible</Text>
+            <Text style={GlobalStyle.cardChip}> Laivraison possible</Text>
             </View>
 
             {/* chip 2*/}

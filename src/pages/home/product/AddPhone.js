@@ -1,6 +1,6 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
-import {TextInput, RadioButton} from 'react-native-paper';
+import {TextInput, Checkbox} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
@@ -12,15 +12,16 @@ export default function AddPhone({route}) {
     const [etat, setEtat] = useState("")
     const [marque, setMarque] = useState("")
     const [description, setDescription] = useState("")
-    const [checked, setChecked] = useState('');
+
+    const [phone, setPhone] = useState(false);
+    const [laivraison, setLaivraison] = useState(false);
+    const [paiement, setPaiement] = useState(false);
 
 
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}} >
-        <ScrollView
-        style={{padding: 20}}
-         showsVerticalScrollIndicator={false}>
+        <ScrollView style={{padding: 20}} showsVerticalScrollIndicator={false}>
 
         <View
         style={{flexDirection: 'row'}}>
@@ -32,8 +33,9 @@ export default function AddPhone({route}) {
             />
         </TouchableOpacity>
         </View>
+
         <Text
-        style={{color:'red', fontSize: 11}}>
+        style={{color:'#4898D3', fontSize: 11}}>
         Les images multiplient les chances par 5 pour vendre votre produit</Text>
 
         <View
@@ -46,8 +48,8 @@ export default function AddPhone({route}) {
             theme={textTheme}/>
         
         <Text
-        style={{color:'red', fontSize: 11}}>
-        Merci d’entrer le non exacte de votre article
+        style={{color:'#4898D3', fontSize: 11}}>
+        Merci d’entrer le Nom exacte de votre article
         </Text>
 
         <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}>
@@ -59,7 +61,13 @@ export default function AddPhone({route}) {
 
         <Picker.Item label="Touts les villes" value="ma" />
         <Picker.Item label="Tanger" value="Tanger" />
+        <Picker.Item label="Tétouan" value="Tétouan" />
+        <Picker.Item label="Ouejda" value="Ouejda" />
+        <Picker.Item label="Berkane" value="Berkane" />
+        <Picker.Item label="Rabat" value="Rabat" />
+        <Picker.Item label="Temara" value="Temara" />
         <Picker.Item label="Casablanca" value="Casablanca" />
+        <Picker.Item label="El Jadida" value="El Jadida" />
         <Picker.Item label="Merakech" value="Merakech" />
       </Picker>
       </View>
@@ -69,12 +77,14 @@ export default function AddPhone({route}) {
             mode='outlined'
             placeholder='DH'
             theme={textTheme}
+            keyboardType='numeric'
             style={{marginTop: 10}}
             onChangeText={setPrice}
             />
     
  
-
+    <Text
+        style={{color: '#4898D3', marginTop: 5}}>Marque</Text>
     <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
         <Picker
         selectedValue={marque}
@@ -82,7 +92,7 @@ export default function AddPhone({route}) {
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setMarque(itemValue)}>
         
-        <Picker.Item label="Tout les marques" value="tmq" />
+        <Picker.Item label="Choissisez votre marque" value="rien" />
         <Picker.Item label="SAMSUNG " value="SAMSUNG " />
         <Picker.Item label="IPHONE" value="IPHONE" />
         <Picker.Item label="OPPO" value="OPPO" />
@@ -92,9 +102,11 @@ export default function AddPhone({route}) {
       </Picker>
     </View>
 
+    <Text
+        style={{color: '#4898D3', marginTop: 5}}>Etat</Text>
     <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
         <Picker
-        mode='dropdown'
+        prompt='Etat'
         selectedValue={etat}
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}>
@@ -103,8 +115,6 @@ export default function AddPhone({route}) {
         <Picker.Item label="ANCIEN" value="ANCIEN" />
       </Picker>
     </View>
-    
-
 
     <TextInput
             label='Description'
@@ -116,28 +126,47 @@ export default function AddPhone({route}) {
             />
     
     <View
-    style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
+    style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
+    <Text
+    style={{marginTop: 7}}>Afficher le N° de Téléphone</Text>
+
+    <Checkbox
+      status={phone ? 'checked' : 'unchecked'}
+      onPress={() => {
+        setPhone(!phone);
+      }}
+      color='#4898D3'
+    />
+    </View>
+
+    <View
+    style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
+    <Text
+    style={{marginTop: 7}}>Laivraison Possible</Text>
+
+    <Checkbox
+          status={laivraison ? 'checked' : 'unchecked'}
+          onPress={() => {
+            setLaivraison(!laivraison);
+          }}
+          color='#4898D3'
+        />
+
+    </View>
+
+    <View
+    style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
 
     <Text
-    style={{marginTop: 5}}>Afficher le N° de Téléphone</Text>
+    style={{marginTop: 7}}>Paiement à la livraison</Text>
 
-    <Text
-    style={{marginTop: 5}}>OUI</Text>
-      <RadioButton
-        value="first"
-        status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')}
-        theme = {{ colors : {accent : "#4898D3"}}}
-      />
-
-      <Text
-      style={{marginTop: 5}}>Non</Text>
-      <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-        theme = {{ colors : {accent : "#4898D3"}}}
-      />
+    <Checkbox
+      status={paiement ? 'checked' : 'unchecked'}
+      onPress={() => {
+        setPaiement(!paiement);
+      }}
+      color='#4898D3'
+    />
     </View>
 
 

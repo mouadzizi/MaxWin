@@ -1,6 +1,6 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState} from 'react'
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native'
-import {TextInput, RadioButton} from 'react-native-paper';
+import {TextInput, RadioButton, Checkbox} from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
@@ -12,6 +12,10 @@ export default function AddProduct({route}) {
     const [etat, setEtat] = useState("")
     const [description, setDescription] = useState("")
     const [checked, setChecked] = useState('')
+
+    const [phone, setPhone] = useState(false);
+    const [laivraison, setLaivraison] = useState(false);
+    const [paiement, setPaiement] = useState(false);
 
 
     return (
@@ -31,20 +35,19 @@ export default function AddProduct({route}) {
         </TouchableOpacity>
         </View>
         <Text
-        style={{color:'red', fontSize: 11}}>
+        style={{color:'#4898D3', fontSize: 11}}>
         les images multiplient les chances par 5 pour vendre votre produit</Text>
 
         <View
         style={{flex: 1, marginTop: 20}}>
-
         <TextInput
             label='Titre de votre Produit'
             mode='outlined'
             theme={textTheme}
             onChangeText={setTitle}
-            />
+        />
         <Text
-        style={{color:'red', fontSize: 11}}>
+        style={{color:'#4898D3', fontSize: 11}}>
         Merci d’entrer le Nom exacte de votre article
         </Text>
 
@@ -75,10 +78,13 @@ export default function AddProduct({route}) {
             onChangeText={setPrice}
             style={{marginTop: 10}}
             />
-    
-    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10}}>
+
+    <Text
+    style={{color: '#4898D3', marginTop: 5}}>Etat</Text>
+    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5}}>
         <Picker
         selectedValue={etat}
+        prompt="Etat"
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}>
 
@@ -92,34 +98,55 @@ export default function AddProduct({route}) {
             placeholder='description de produit'
             theme={textTheme}
             onChangeText={setDescription}
-            style={{marginTop: 10, height: 100}}
+            multiline={true}
+            style={{marginTop: 10, height: 120}}
             theme={{colors: {primary  : '#4898D3', background  : '#fff', surface  : '#fff'}}}
-            />
+    />
 
     <View
-    style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
-
+    style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
     <Text
-    style={{marginTop: 5}}>Afficher le N° de Téléphone</Text>
+    style={{marginTop: 7}}>Afficher le N° de Téléphone</Text>
 
-    <Text
-    style={{marginTop: 5}}>OUI</Text>
-      <RadioButton
-        value="first"
-        status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')}
-        theme = {{ colors : {accent : "#4898D3"}}}
-      />
-
-      <Text
-      style={{marginTop: 5}}>Non</Text>
-      <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-        theme = {{ colors : {accent : "#4898D3"}}}
-      />
+    <Checkbox
+      status={phone ? 'checked' : 'unchecked'}
+      onPress={() => {
+        setPhone(!phone);
+      }}
+      color='#4898D3'
+    />
     </View>
+
+    <View
+    style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
+    <Text
+    style={{marginTop: 7}}>Laivraison Possible</Text>
+
+    <Checkbox
+          status={laivraison ? 'checked' : 'unchecked'}
+          onPress={() => {
+            setLaivraison(!laivraison);
+          }}
+          color='#4898D3'
+        />
+
+    </View>
+
+    <View
+    style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
+
+    <Text
+    style={{marginTop: 7}}>Paiement à la livraison</Text>
+
+    <Checkbox
+      status={paiement ? 'checked' : 'unchecked'}
+      onPress={() => {
+        setPaiement(!paiement);
+      }}
+      color='#4898D3'
+    />
+    </View>
+
 
 
     <TouchableOpacity

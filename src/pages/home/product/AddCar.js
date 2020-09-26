@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native';
-import {TextInput, RadioButton } from 'react-native-paper';
+import {TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
@@ -16,14 +16,17 @@ export default function AddCar({route}) {
     const [puissance, setPuissance] = useState("")
     const [transtaction, setTransaction] = useState("")
     const [description, setDescription] = useState("")
-    const [checked, setChecked] = useState('');
+
+    const [phone, setPhone] = useState(false);
+    const [laivraison, setLaivraison] = useState(false);
+    const [paiement, setPaiement] = useState(false);
+
 
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}} >
-        <ScrollView
-        style={{padding: 20}}
-         showsVerticalScrollIndicator={false}>
+        
+        <ScrollView style={{padding: 20}} showsVerticalScrollIndicator={false}>
 
         <View
         style={{flexDirection: 'row'}}>
@@ -35,25 +38,25 @@ export default function AddCar({route}) {
             />
         </TouchableOpacity>
         </View>
-        <Text
-        style={{color:'red', fontSize: 11}}>
-        Les images multiplient les chances par 5 pour vendre votre produit.</Text>
 
-        <View
-        style={{flex: 1, marginTop: 20}}>
+        <Text style={{color:'#4898D3', fontSize: 11}}>
+        Les images multiplient les chances par 5 pour vendre votre produit.
+        </Text>
 
-        <TextInput
+      <View
+      style={{flex: 1, marginTop: 20}}>
+
+      <TextInput
             label='Titre de votre Produit'
             mode='outlined'
             theme={textTheme}
             onChangeText={setTitle}
-            />
+      />
   
-        <Text
-        style={{color:'red', fontSize: 11}}>
+      <Text
+        style={{color:'#4898D3', fontSize: 11}}>
         Merci d’entrer le Nom exacte de votre article. </Text>
-
-        <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
+      <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
         <Picker
         selectedValue={city}
         style={{ height: 50, width: '100%'}}
@@ -81,26 +84,30 @@ export default function AddCar({route}) {
             style={{marginTop: 10}}
             />
     
-    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
+    <Text
+    style={{color: '#4898D3', marginTop: 5}}>Etat</Text>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5}}>
         <Picker
         prompt='Etat'
         selectedValue={etat}
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}>
 
-        <Picker.Item label="Neuf" value="neuf" />
         <Picker.Item label="ANCIEN" value="ANCIEN" />
+        <Picker.Item label="Neuf" value="neuf" />
       </Picker>
     </View>
 
-    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
+    <Text
+    style={{color: '#4898D3', marginTop: 5}}>Marque</Text>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5}}>
         <Picker
         selectedValue={marque}
         prompt='Marque'
         style={{ height: 50, width: '100%' }}
         onValueChange={(itemValue, itemIndex) => setMarque(itemValue)}>
-        
-        <Picker.Item label="Tout les marques" value="tmq" />
+       
+        <Picker.Item label="choisissez votre marque " value="rien" />
         <Picker.Item label="AUDI" value="AUDI" />
         <Picker.Item label="BMW" value="BMW" />
         <Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -133,7 +140,6 @@ export default function AddCar({route}) {
         <Picker.Item label="AUTRE" value="AUTRE" />
       </Picker>
     </View>
-
     
     <TextInput
             
@@ -144,9 +150,11 @@ export default function AddCar({route}) {
             keyboardType='numeric'
             theme={textTheme}
             style={{marginTop: 10}}
-            />
-    
-    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
+    />
+
+    <Text
+    style={{color: '#4898D3', marginTop: 5}}>Carburant</Text>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5}}>
         <Picker
         selectedValue={carburant}
         style={{ height: 50, width: '100%' }}
@@ -158,7 +166,9 @@ export default function AddCar({route}) {
       </Picker>
     </View>
 
-    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
+    <Text
+    style={{color: '#4898D3', marginTop: 5}}>Puissance fiscale</Text>
+    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
         <Picker
         selectedValue={puissance}
         prompt='Puissance Fiscale'
@@ -176,7 +186,9 @@ export default function AddCar({route}) {
       </Picker>
       </View>
 
-<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
+    <Text
+    style={{color: '#4898D3', marginTop: 5}}>Transaction</Text>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5}}>
         <Picker
         mode='dropdown'
         selectedValue={transtaction}
@@ -195,31 +207,20 @@ export default function AddCar({route}) {
             theme={textTheme}
             multiline={true}
             style={{marginTop: 10, height: 150}}
-        
-            />
+    />
+
     <View
-    style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
-
+    style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
     <Text
-    style={{marginTop: 5}}>Afficher le N° de Téléphone</Text>
+    style={{marginTop: 7}}>Afficher le N° de Téléphone</Text>
 
-    <Text
-    style={{marginTop: 5}}>OUI</Text>
-      <RadioButton
-        value="first"
-        status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')}
-        theme = {{ colors : {accent : "#4898D3"}}}
-      />
-
-      <Text
-      style={{marginTop: 5}}>Non</Text>
-      <RadioButton
-        value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
-        theme = {{ colors : {accent : "#4898D3"}}}
-      />
+    <Checkbox
+      status={phone ? 'checked' : 'unchecked'}
+      onPress={() => {
+        setPhone(!phone);
+      }}
+      color='#4898D3'
+    />
     </View>
 
 
