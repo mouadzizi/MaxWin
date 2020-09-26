@@ -15,8 +15,7 @@ export default function ProductDetails() {
         <Swiper
           autoplay
           height={200}
-          activeDotColor="#FF6347"
-        >
+          activeDotColor="#FF6347">
 
           {/* Swiper 1*/}
           <View style={GlobalStyle.slide}>
@@ -63,17 +62,19 @@ export default function ProductDetails() {
         <View
         style={{flexDirection: 'row', marginTop: 10, }}>
 
-      <Text style={[GlobalStyle.cardPrice, {fontSize: 18, width: '50%', fontWeight: '700', fontFamily: 'Roboto'} ]}>300.00 DHS</Text>
         <View
             style={{flexDirection: 'row', width: '50%'}}>
             <Entypo 
               name='user'
-              color='#FF6347'
+              color='#4898D3'
               size={20}
               style={{marginRight: 5}}
             />
-            <Text style={{color: '#FF6347', fontSize: 17, fontFamily: 'serif'}}>Mohammed Mb</Text>
-            </View>
+            <Text style={{color: '#4898D3', fontSize: 17, fontFamily: 'serif'}}>Mohammed </Text>
+        </View>
+
+      <Text style={[GlobalStyle.cardPrice, {fontSize: 18, width: '50%', fontWeight: '700', fontFamily: 'Roboto'} ]}>300.00 DHS</Text>
+
 
         </View>
         
@@ -84,18 +85,6 @@ export default function ProductDetails() {
       Contact</Text>
 
       <View style={{flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1}}>
-      
-      <TouchableOpacity
-      onPress={()=>Alert.alert("+212.6 .26.617 611")}
-      style={{backgroundColor: '#FF6347', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
-      <Entypo 
-              name='phone'
-              color='#fff'
-              size={40}
-            />
-      <Text
-      style={{color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
-      </TouchableOpacity>
 
       <TouchableOpacity
       onPress={()=>Alert.alert("Chat avec Mohammmed Mb")}
@@ -109,7 +98,17 @@ export default function ProductDetails() {
       style={{color: '#fff', fontSize: 18, fontFamily: 'serif'}}>Discuter</Text>
       </TouchableOpacity>
 
-      
+      <TouchableOpacity
+      onPress={()=>Alert.alert("+212.6 .26.617 611")}
+      style={{backgroundColor: '#FF6347', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
+      <Entypo 
+              name='phone'
+              color='#fff'
+              size={40}
+            />
+      <Text
+      style={{color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
+      </TouchableOpacity>
  
       </View>
 

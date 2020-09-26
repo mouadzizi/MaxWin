@@ -145,12 +145,12 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     cardTitle: {
-      fontSize: 13,
+      fontSize: 14,
+      fontFamily: 'serif',
     },
 
     cardPrice: {
       fontSize: 16,
-      fontWeight: '600',
       color: '#F16E44'
     },
 
@@ -167,10 +167,18 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     cardLocation: {
-      color: '#B9B9BB', 
+      color: '#B9B9BB',
       fontSize: 12, 
       alignSelf: 'center', 
       marginLeft: 2,
+    },
+
+    cardChip: {
+      color: '#B9B9BB', 
+      fontSize: 12,
+      alignSelf: 'center', 
+      marginLeft: 2,
+      fontWeight: 'bold'
     },
 
     LaivrasionTTMaroc: {

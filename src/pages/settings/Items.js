@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import {Divider} from 'react-native-paper'
 
 
 
@@ -11,7 +12,9 @@ export default function Items({navigation}) {
         <ScrollView showsVerticalScrollIndicator={false}>
 
         <ProductEdit />
+        <Divider/>
         <ProductEdit />
+        <Divider/>
         <ProductEdit />
         </ScrollView>
         </SafeAreaView>

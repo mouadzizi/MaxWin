@@ -7,7 +7,7 @@ export  const DATA = [
     
     {
         title: 'VEHICULES',
-        data: ["Voiture", "Location de Voiture", "Motos & vélos", "Véhicules professionnels", "Camions", "Autre"]
+        data: ["Voiture", "Location de Voiture", "Motos & vélos", "Véhicules professionnels", "Autre"]
     },
 
     {
@@ -55,10 +55,11 @@ export const ItemHeader = ({ title,icon }) => (
 
         
         <List.Item
+        style={{height: 45}}
         titleStyle={{
-            fontSize: 18,
+            fontSize: 16,
             marginLeft: 10,
-            fontFamily: 'Roboto',
+            fontFamily: 'monospace',
             fontWeight : 'bold',
             color: 'white'
         }}
