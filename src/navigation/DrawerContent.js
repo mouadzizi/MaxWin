@@ -3,7 +3,7 @@ import {View, StyleSheet,TouchableOpacity} from 'react-native';
 
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { auth } from '../API/firebase';
+import { auth,db } from '../API/firebase';
 import * as Google from 'expo-google-sign-in';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -18,7 +18,11 @@ export default function DrawerContent(props){
     const [provider, setProvider] = useState('')
     const [userToken, setUserToken] = useState('')
     const [uid, setUID] = useState('')
-
+    const [user,setUser]=useState({
+        name:'',
+        accountType:'',
+      
+    })
 
     useEffect(() => {
         var unsub = auth.onAuthStateChanged(user => {
@@ -30,8 +34,14 @@ export default function DrawerContent(props){
             if (!user) props.navigation.replace('Splash')
         })
         getData();
+        db.collection('users').doc(auth.currentUser.uid).get().then(snap=>{
+           setUser({
+               name:snap.data().name,
+                accountType:snap.data().accountType
+            })
+        })
         return () => {
-            unsub()
+            unsub();
         }
     }, [])
 
@@ -76,8 +86,8 @@ export default function DrawerContent(props){
 
 
                 <View style={{marginLeft:15,marginTop: 15,flexDirection: 'column'}}>
-                    <Title style={styles.title}> Mouad zizi  </Title>
-                    <Caption style={styles.caption}>Particulier</Caption>
+                    <Title style={styles.title}> {user.name} </Title>
+                    <Caption style={styles.caption}>{user.accountType}</Caption>
                 </View>
             </View>
 

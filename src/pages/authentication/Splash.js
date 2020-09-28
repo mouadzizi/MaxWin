@@ -18,11 +18,10 @@ export default function Splash({ navigation }) {
   React.useEffect(() => {
     checkUpdate()
 
-    //setLoading(true)
+    setLoading(true)
     const unsub = auth.onAuthStateChanged(user=>{
       if(user){
         navigation.replace('HomeTabs')
-        setLoading(false)
       }
       else {
         setLoading(false)
@@ -30,6 +29,8 @@ export default function Splash({ navigation }) {
     })
 
     return ()=>{
+      setLoading(false)
+
       unsub()
     }
   }, [])
