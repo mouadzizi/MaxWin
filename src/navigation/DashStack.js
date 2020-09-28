@@ -69,7 +69,7 @@ export default function DashStack(){
               fontWeight: '500',
             },}}/>
 
-          <Stack.Screen name="AddCar" component={CarDetails}
+          <Stack.Screen name="carDetails" component={CarDetails}
             options={{ 
             title: 'Ajouter voiture', headerTitleAlign: 'center', 
             headerStyle: {
