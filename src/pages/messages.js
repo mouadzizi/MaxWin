@@ -1,11 +1,16 @@
 import React from 'react'
-import { View, Text } from 'react-native';
+import { View, Text, KeyboardAvoidingView } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 export default function messages() {
+   
     return (
-        <View>
-            <Text>Messages</Text>
-        </View>
+      
+        <View style={{ flex: 1 }}>
+        <GiftedChat />
+        {
+           Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />
+        }
+     </View>
     )
 }

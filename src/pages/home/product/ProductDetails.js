@@ -5,7 +5,7 @@ import {GlobalStyle} from '../../../style/GlobalStyle';
 import {Entypo} from 'react-native-vector-icons'
 
 
-export default function ProductDetails() {
+export default function ProductDetails({navigation}) {
 
     return (
 
@@ -87,7 +87,7 @@ export default function ProductDetails() {
       <View style={{flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1}}>
 
       <TouchableOpacity
-      onPress={()=>Alert.alert("Chat avec Mohammmed Mb")}
+      onPress={()=>navigation.navigate("Messages")}
       style={{backgroundColor: '#4898D3', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
       <Entypo 
               name='chat'
