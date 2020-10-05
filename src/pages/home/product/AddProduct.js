@@ -5,24 +5,23 @@ import {GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import {MaterialIcons} from 'react-native-vector-icons';
 
 export default function AddProduct({route}) {
-
+{/*Variables for inputs*/}
     const [title, setTitle] = useState("")
     const [city, setCity] = useState("")
     const [price, setPrice] = useState("")
     const [etat, setEtat] = useState("")
     const [description, setDescription] = useState("")
     const [checked, setChecked] = useState('')
-
+{/*Variables for chips*/}
     const [phone, setPhone] = useState(false);
     const [laivraison, setLaivraison] = useState(false);
     const [paiement, setPaiement] = useState(false);
-
+{/*Chips Visibility*/}
+    const [chips, setChips] = useState(true);
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}} >
-        <ScrollView
-        style={{padding: 20}}
-         showsVerticalScrollIndicator={false}>
+        <ScrollView style={{padding: 20}} showsVerticalScrollIndicator={false}>
 
         <View
         style={{flexDirection: 'row'}}>
@@ -34,24 +33,26 @@ export default function AddProduct({route}) {
             />
         </TouchableOpacity>
         </View>
+
         <Text
         style={{color:'#4898D3', fontSize: 11}}>
         les images multiplient les chances par 5 pour vendre votre produit</Text>
 
         <View
         style={{flex: 1, marginTop: 20}}>
+
         <TextInput
             label='Titre de votre Produit'
             mode='outlined'
             theme={textTheme}
-            onChangeText={setTitle}
-        />
+            onChangeText={setTitle}/>
         <Text
         style={{color:'#4898D3', fontSize: 11}}>
         Merci d’entrer le Nom exacte de votre article
         </Text>
 
         <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
+        
         <Picker
         selectedValue={city}
         style={{ height: 50, width: '100%'}}
@@ -68,6 +69,7 @@ export default function AddProduct({route}) {
         <Picker.Item label="El Jadida" value="El Jadida" />
         <Picker.Item label="Merakech" value="Merakech" />
       </Picker>
+
       </View>
 
       <TextInput
@@ -76,11 +78,11 @@ export default function AddProduct({route}) {
             placeholder='DH'
             theme={textTheme}
             onChangeText={setPrice}
-            style={{marginTop: 10}}
-            />
+            style={{marginTop: 10}}/>
 
     <Text
     style={{color: '#4898D3', marginTop: 5}}>Etat</Text>
+
     <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5}}>
         <Picker
         selectedValue={etat}
@@ -100,23 +102,25 @@ export default function AddProduct({route}) {
             onChangeText={setDescription}
             multiline={true}
             style={{marginTop: 10, height: 120}}
-            theme={{colors: {primary  : '#4898D3', background  : '#fff', surface  : '#fff'}}}
-    />
+            theme={{colors: {primary  : '#4898D3', background  : '#fff', surface  : '#fff'}}}/>
 
     <View
     style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
+
     <Text
     style={{marginTop: 7}}>Afficher le N° de Téléphone</Text>
-
     <Checkbox
       status={phone ? 'checked' : 'unchecked'}
       onPress={() => {
         setPhone(!phone);
       }}
-      color='#4898D3'
-    />
+      color='#4898D3'/>
+      
     </View>
+    
+    {chips ? 
 
+    <View>
     <View
     style={{flexDirection: 'row', marginTop: 10, marginLeft: 5}}>
     <Text
@@ -146,6 +150,10 @@ export default function AddProduct({route}) {
       color='#4898D3'
     />
     </View>
+
+    </View>
+
+    : null }
 
 
 

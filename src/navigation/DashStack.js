@@ -15,6 +15,9 @@ import AddServices from '../pages/home/product/AddServices';
 {/* Filtre */}
 import Filtre from '../pages/home/filtre/Filtre';
 import FilterCat from '../pages/home/filtre/FilterCat';
+{/* pages */}
+import Messages from '../pages/messages';
+import Results from '../pages/results';
 
 export default function DashStack(){
 
@@ -127,6 +130,28 @@ export default function DashStack(){
           <Stack.Screen name="FilterCat" component={FilterCat}
             options={{ 
             title: 'choisissez votre catégorie', headerTitleAlign: 'center', 
+            headerStyle: {
+              backgroundColor: '#4898D3',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '500',
+            },}}/>
+
+          <Stack.Screen name="Messages" component={Messages}
+            options={{ 
+            title: 'Messages', headerTitleAlign: 'center', 
+            headerStyle: {
+              backgroundColor: '#4898D3',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '500',
+            },}}/>
+
+          <Stack.Screen name="Results" component={Results}
+            options={{ 
+            title: 'Results', headerTitleAlign: 'center', 
             headerStyle: {
               backgroundColor: '#4898D3',
             },

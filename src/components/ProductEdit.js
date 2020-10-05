@@ -1,16 +1,17 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, Image, Alert} from 'react-native';
+import React, {useState} from 'react'
+import { View, Text, Image, Alert} from 'react-native';
+import {Menu, Divider, Button, Provider} from 'react-native-paper';
 import {GlobalStyle} from '../style/GlobalStyle';
 
 export default function ProductEdit(props) {
-  
-  const image2 = require('../../assets/produit3.png')
+
+  const image2 = require('../../assets/produit02.jpg')
 
     return (
-        
+
         <View>
-        <View style={[GlobalStyle.card, {height: 70}]}>
-          <View style={GlobalStyle.cardImgWrapper}>
+        <View style={{height: 100, width: '100%', flexDirection: 'row', borderWidth: 1, borderColor: '#c2c2c2'}}>
+          <View style={{flex: 2}}>
             <Image
               source={image2}
               resizeMode="contain"
@@ -18,30 +19,18 @@ export default function ProductEdit(props) {
             />
           </View>
 
-          <View style={{flex: 1}}>
-            <Text style={GlobalStyle.cardTitle}>Product title</Text>
-            <Text style={GlobalStyle.cardPrice}>50 MAD</Text>
+          <View style={{flex: 3}}>
+            <Text style={{fontSize: 19, fontWeight: 'bold'}}>Product title</Text>
+            <Text style={{color: '#4898D3', fontSize: 18}}>50 MAD</Text>
           </View>
 
           <View style={{flex: 1}}>
-            <TouchableOpacity
-            onPress={()=>Alert.alert('Edit Product')}
-            style={{height: '40%', backgroundColor: '#4898D3', borderRadius: 10}}>
-              <Text
-              style={{textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: 15 }}>Modifier</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-            onPress={()=>Alert.alert('Delete Product')}
-            style={{height: '40%', backgroundColor : 'red', textAlignVertical: 'center', borderRadius: 10, marginTop: 5}}>
-              <Text
-              style={{textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: 15 }}>Surprimer</Text>
-            </TouchableOpacity>
+          <Menu.Item icon="delete" onPress={() => {Alert.alert("Suprimer")}}/>
+          <Menu.Item icon="square-edit-outline" onPress={() => {Alert.alert("Edit")}}/>
           </View>
           </View>
-          <Text></Text>
-          
         </View>
+        
 
 
     )

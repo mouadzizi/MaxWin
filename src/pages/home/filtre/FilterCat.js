@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5, MaterialCommunityIcons, Ionicons} from 'react-native-vector-icons';
 import {DATA,ItemHeader,Item} from '../Data'
 
-export default function FilterCat() {
+export default function FilterCat({navigation}) {
 
     const getIcon = (title) => {
         switch (title) {
@@ -26,8 +26,8 @@ export default function FilterCat() {
             
         }
     }
-    const action = (title) => {
-        Alert.alert('Hint', 'redirect to ' + title)
+    const action = () => {
+        navigation.navigate('Filtre')
     }
     return (
         <SafeAreaView>

@@ -112,7 +112,6 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     card: {
-      height: 130,
       flexDirection: 'row',
       backgroundColor: '#fff'
     },

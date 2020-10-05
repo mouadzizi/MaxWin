@@ -1,6 +1,6 @@
 import React  from 'react'
 import {View} from 'react-native'
-import { List, Devider, Divider } from 'react-native-paper';
+import { List } from 'react-native-paper';
 
 
 export  const DATA = [
@@ -55,9 +55,9 @@ export const ItemHeader = ({ title,icon }) => (
 
         
         <List.Item
-        style={{height: 45}}
+        style={{height: 40}}
         titleStyle={{
-            fontSize: 16,
+            fontSize: 15,
             marginLeft: 10,
             fontFamily: 'monospace',
             fontWeight : 'bold',
@@ -71,8 +71,6 @@ export const ItemHeader = ({ title,icon }) => (
             left={() => icon} />
 
         </List.Item>
-
-        <Divider />
 
     </View>
 

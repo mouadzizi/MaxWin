@@ -4,13 +4,19 @@ import {GlobalStyle} from '../style/GlobalStyle';
 import {FontAwesome, Entypo, MaterialCommunityIcons} from 'react-native-vector-icons';
 
 export default function Product(props) {
+  const [chip1, setChip1] = useState(false)
+  const [chip2, setChip2] = useState(false)
 
   return (
       <View>
-
         <TouchableOpacity
         onPress={props.click}>
-        <View style={GlobalStyle.card}>
+        <View 
+        style={ 
+        (chip1 && chip2) ? {flexDirection: "row", backgroundColor: '#fff', height: 130} :
+        ( (!chip1 && chip2) || (!chip2 && chip1) )  ? {flexDirection: "row", backgroundColor: '#fff', height: 110} :
+        {flexDirection: "row", backgroundColor: '#fff', height: 100}}>
+          
           <View style={GlobalStyle.cardImgWrapper}>
             <Image
               source={props.img}
@@ -49,8 +55,8 @@ export default function Product(props) {
             <Text style={GlobalStyle.cardLocation}>{props.location}</Text>
             </View>
 
-            {/* chip 1*/}
-            <View
+            {chip1 ? 
+              <View
             style={{flexDirection: 'row', marginTop: 2}}>
             <MaterialCommunityIcons
             name='truck-fast'
@@ -59,9 +65,10 @@ export default function Product(props) {
             />
             <Text style={GlobalStyle.cardChip}> Laivraison possible</Text>
             </View>
+            : null}
+            
 
-            {/* chip 2*/}
-            <View
+            {chip2 ? <View
             style={{flexDirection: 'row', marginTop: 2}}>
             <FontAwesome
             name='money'
@@ -70,6 +77,8 @@ export default function Product(props) {
             />
             <Text style={GlobalStyle.cardChip}> Paiement à la livraison</Text>
             </View>
+            : null}
+            
 
 
           </View>
