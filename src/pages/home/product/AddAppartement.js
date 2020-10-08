@@ -11,7 +11,6 @@ export default function AddAppartement({route}) {
     const [price, setPrice] = useState("")
     const [piece, setPiece] = useState("")
     const [superficie, setSuperficie] = useState("")
-    const [nature, setNature] = useState("")
     const [description, setDescription] = useState("")
 
     const [phone, setPhone] = useState(false);
@@ -72,26 +71,12 @@ export default function AddAppartement({route}) {
       <TextInput
             label='Prix'
             mode='outlined'
-            placeholder='DH'
+            placeholder='DHS'
             theme={textTheme}
             keyboardType='numeric'
             style={{marginTop: 10}}
             onChangeText={setPrice}
       />
-    
-    <Text
-        style={{color: '#4898D3', marginTop: 5}}>Nature de bien</Text>
-    <View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5}}>
-        <Picker
-        selectedValue={nature}
-        style={{ height: 50, width: '100%' }}
-        onValueChange={(itemValue, itemIndex) => setNature(itemValue)}>
-        
-        <Picker.Item label="Appartement " value="SAMSUNG " />
-        <Picker.Item label="Maison" value="IPHONE" />
-        <Picker.Item label="Villa" value="OPPO" />
-      </Picker>
-    </View>
 
     <TextInput
             label='Superficie'
