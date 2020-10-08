@@ -219,11 +219,10 @@ export const GlobalStyle = StyleSheet.create({
       paddingBottom: 15,
     },
     modalView: {
-    width: 200,
+    width: '90%',
     backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
+    borderRadius: 15,
+    padding: 15,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -236,9 +235,9 @@ export const GlobalStyle = StyleSheet.create({
 
     modalContainer:{
       flex: 1,
-      justifyContent: "center",
       alignItems: "center",
-      marginTop: 22
+      marginTop: 20,
+      marginBottom: 100,
     },
   });
 

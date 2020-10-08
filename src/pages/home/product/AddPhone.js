@@ -36,7 +36,7 @@ export default function AddPhone({route}) {
 
         <Text
         style={{color:'#4898D3', fontSize: 11}}>
-        Les images multiplient les chances par 5 pour vendre votre produit</Text>
+        Une bonne annonce commence par une par une bonne photo</Text>
 
         <View
         style={{flex: 1, marginTop: 20}}>
@@ -75,7 +75,7 @@ export default function AddPhone({route}) {
       <TextInput
             label='Prix'
             mode='outlined'
-            placeholder='DH'
+            placeholder='DHS'
             theme={textTheme}
             keyboardType='numeric'
             style={{marginTop: 10}}

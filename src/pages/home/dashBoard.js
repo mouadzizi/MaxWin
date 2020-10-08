@@ -73,7 +73,7 @@ export default function DashBoard({ navigation }) {
                 </TouchableOpacity>            
 
                 <TouchableOpacity
-                    onPress={()=>{navigation.navigate("FilterCat")}}
+                    onPress={()=>{navigation.push("Filtre")}}
                     style={{flexDirection: 'row', width: '50%', backgroundColor: '#4898D3', justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
                     
                     <Ionicons

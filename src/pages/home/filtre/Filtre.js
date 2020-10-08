@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { View, SafeAreaView, ScrollView, Modal, Text, TouchableOpacity, Picker } from 'react-native';
 import {TextInput} from 'react-native-paper'
 import {GlobalStyle, textTheme} from '../../../style/GlobalStyle';
+import {AntDesign} from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat'
 
 
@@ -19,11 +20,12 @@ export default function Filtre() {
         <ScrollView style={{padding: 20}} showsVerticalScrollIndicator={false}>
 
     <TouchableOpacity
+    style={{borderWidth: 1, borderRadius: 5, height: 45}}
         onPress={() => {
           setModalVisible(true);
-        }}
-      >
-        <Text>Choisisez votre categorie</Text>
+        }}>
+        <Text
+        style={{alignSelf: 'center', textAlign: 'center', marginTop: 10}}>Choisisez votre categorie</Text>
       </TouchableOpacity>
 
     <Modal
@@ -35,15 +37,21 @@ export default function Filtre() {
         }}>
 
         <View style={GlobalStyle.modalContainer}>
+        
           <View style={GlobalStyle.modalView}>
+
             <FilterCategory />
 
-            <TouchableOpacity
-              onPress={() => {
+          <TouchableOpacity
+            style={{alignContent: 'center', alignItems: 'center'}}
+            onPress={() => {
                 setModalVisible(!modalVisible);
-              }}
-            >
-              <Text>Hide Modal</Text>
+              }}>
+            <AntDesign
+            name='closesquare'
+            size={30}
+            color='#F16E44'
+            />
             </TouchableOpacity>
           </View>
         </View>

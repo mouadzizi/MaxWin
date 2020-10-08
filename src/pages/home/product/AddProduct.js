@@ -36,7 +36,7 @@ export default function AddProduct({route}) {
 
         <Text
         style={{color:'#4898D3', fontSize: 11}}>
-        les images multiplient les chances par 5 pour vendre votre produit</Text>
+        Une bonne annonce commence par une par une bonne photo.</Text>
 
         <View
         style={{flex: 1, marginTop: 20}}>
