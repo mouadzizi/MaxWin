@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { View, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
+
 import { Searchbar } from 'react-native-paper';
 import {Ionicons} from 'react-native-vector-icons';
 
