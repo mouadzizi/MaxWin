@@ -20,12 +20,14 @@ export default function Filtre() {
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
   const [ transtaction, setTransaction ] = useState('');
-  
+  const [type, setType] = useState("");
   const [Superficie, setSuperficie] = useState("");
+  const [marque2, setMarque2] = useState("");
 
   const [voiture, setVoiture] = useState(false);
   const [appartement, setAppartement] = useState(true);
   const [service, setService] = useState(true)
+  const [phone, setPhone] = useState(true)
   
 
     return (
@@ -253,8 +255,58 @@ export default function Filtre() {
             />
     
     : null}
+
+    {phone ?  
+    <View>
+      <Text
+        style={{color: '#4898D3', marginTop: 5}}>Marque</Text>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
+        <Picker
+        selectedValue={marque2}
+        prompt='Marque'
+        style={{ height: 50, width: '100%' }}
+        onValueChange={(itemValue, itemIndex) => setMarque2(itemValue)}>
+        
+        <Picker.Item label="Choissisez votre marque" value="rien" />
+        <Picker.Item label="SAMSUNG " value="SAMSUNG " />
+        <Picker.Item label="IPHONE" value="IPHONE" />
+        <Picker.Item label="OPPO" value="OPPO" />
+        <Picker.Item label="HUAWEI" value="HUAWEI" />
+        <Picker.Item label="SONY" value="SONY" />
+        <Picker.Item label="NOKIA" value="NOKIA" />
+      </Picker>
+    </View>
+    </View>
     
+    : null}
     
+    {service ?  
+      <View>
+      <Text
+        style={{color: '#4898D3', marginTop: 5}}>Type de service</Text>
+    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5}}>
+        <Picker
+        selectedValue={type}
+        prompt='Type de service'
+        style={{ height: 50, width: '100%' }}
+        onValueChange={(itemValue, itemIndex) => setType(itemValue)}>
+
+        <Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
+        <Picker.Item label="Electricien " value="Electricien" />
+        <Picker.Item label="Jardinier" value="Jardinier" />
+        <Picker.Item label="Informatique " value="informatique" />
+        <Picker.Item label="Maçonnerie" value="Maçonnerie" />
+        <Picker.Item label="Menuisier" value="Menuisier" />
+        <Picker.Item label="Peinture" value="Peinture" />
+        <Picker.Item label="Tapisserie" value="Tapisserie" />
+        <Picker.Item label="Plombier" value="Plombier" />
+        <Picker.Item label="Soudeur" value="Soudeur" />
+        <Picker.Item label="Vitre" value="Vitre" />
+        <Picker.Item label="AUTRES" value="AUTRES" />
+      </Picker>
+    </View>
+    </View>
+    : null}
 
 
 

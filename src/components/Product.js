@@ -4,9 +4,9 @@ import {GlobalStyle} from '../style/GlobalStyle';
 import {FontAwesome, Entypo, MaterialCommunityIcons} from 'react-native-vector-icons';
 
 export default function Product(props) {
-  const [chip1, setChip1] = useState(false)
-  const [chip2, setChip2] = useState(false)
-
+  const [chip1, setChip1] = useState(false);
+  const [chip2, setChip2] = useState(false);
+  const [state, setState] = useState(props.particulier);
   return (
       <View>
         <TouchableOpacity
@@ -35,6 +35,7 @@ export default function Product(props) {
             <Text style={GlobalStyle.cardPrice}>{props.price} DHS</Text>
 
             {/* Product owner */}
+            {state ? 
             <View
             style={{flexDirection: 'row'}}>
             <Entypo 
@@ -42,7 +43,18 @@ export default function Product(props) {
               color='#B9B9BB'
             />
             <Text style={GlobalStyle.cardOwner}>{props.owner}</Text>
+            </View> 
+            : 
+            <View
+            style={{flexDirection: 'row'}}>
+            <Entypo 
+              name='shop'
+              color='#B9B9BB'
+            />
+            <Text style={GlobalStyle.cardOwner}>{props.owner}</Text>
             </View>
+            }
+           
 
             {/* Location */}
             <View

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Drawer from '../navigation/Drawer';
+import Drawer from './Drawer';
 import SettingsStack from './SettingsStack';
 import StackChat from './StackChat';
 

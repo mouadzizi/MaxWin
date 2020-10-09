@@ -26,46 +26,12 @@ export default function AddProductCat({navigation,route}) {
         }
     }
 
-    const action = (title) => {
-        
-        switch (title) {
-
-            case 'Voiture':
-                return navigation.push('AddCar',{ cat:title })
-
-            case 'Location de Voiture':
-                return navigation.push('AddCar',{ cat:title })
-
-            case "Téléphones":
-                return navigation.push('AddPhone',{ cat:title })
-
-            case "Tablettes":
-                return navigation.push('AddPhone',{ cat:title })
-
-            case 'Appartements':
-                return navigation.push('AddAppartement',{ cat:title })
-            
-            case 'Maisons & Villas':
-                return navigation.push('AddAppartement',{ cat:title })
-
-            case 'Location courte durée (vacances)':
-                return navigation.push('AddAppartement',{ cat:title })
-
-            case 'Location long durée':
-                return navigation.push('AddAppartement',{ cat:title })
-            
-            case 'Services et travaux professionnels':
-                return navigation.push('AddServices',{ cat:title })
-                
-
-            default :
-                return navigation.push('AddProduct',{ cat:title })
-
-        }
+    const action = () => {
+        navigation.navigate('AddProduct')
     }
     
     return (
-        <SafeAreaView>
+        <SafeAreaView> 
 
             <SectionList
                 sections={DATA}

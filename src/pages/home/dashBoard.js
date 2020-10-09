@@ -40,12 +40,13 @@ export default function DashBoard({ navigation }) {
         style={{flexDirection:'row'}}>
 
         <Ionicons
+        onPress={()=> navigation.openDrawer()}
         name="md-menu"
         size={40}
         color='#fff'
         style={{alignSelf: 'center', margin: 5, marginLeft: 10}}
-        onPress={()=>navigation.toggleDrawer()}
         />
+
         <Searchbar
             placeholder="Rechercher"
             onChangeText={onChangeSearch}
@@ -73,7 +74,7 @@ export default function DashBoard({ navigation }) {
                 </TouchableOpacity>            
 
                 <TouchableOpacity
-                    onPress={()=>{navigation.push("Filtre")}}
+                    onPress={()=>{navigation.navigate("Filtre")}}
                     style={{flexDirection: 'row', width: '50%', backgroundColor: '#4898D3', justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
                     
                     <Ionicons
@@ -89,12 +90,15 @@ export default function DashBoard({ navigation }) {
 
             {/* Products Lists */}
 
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin Beldi' price={35.50} owner='moad zizi' location='Tanger-Tétouan' state='Neuf' img={image1} />
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Trico' price={125} owner='Nezha' location='Merakech' img={image4} />
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Pasta Torilla' price={450} owner='PA kokols' location='Rabat' state='Neuf' img={image5} />
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin Beldi' price={35.50} owner='moad zizi' location='Tanger-Tétouan' state='Neuf' img={image6} />
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Pasta Torilla' price={450} owner='PA kokols' location='Rabat' state='Neuf' img={image2} />
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin Beldi' price={35.50} owner='moad zizi' location='Tanger-Tétouan' state='Neuf' img={image3} />
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin' price={35.50} owner='moad zizi' location='Tanger' img={image1} particulier={true}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Titre Vit' price={125} owner='Nezha' location='Merakech' img={image4} particulier={false}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Appartemen Mesnana' price={2550} owner='Mohammed' location='Rabat' img={image5} particulier={true}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Pc Dell i5 5éme' price={3000} owner='moad zizi' location='Tétouan' img={image6} particulier={false}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Passate' price={45000} owner='Sanae' location='Rabat' img={image2} particulier={true}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Macarona' price={25} owner='Boutique Sourie' location='Casablanca' img={image3} particulier={false}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Pc i7 neuf' price={7500} owner='TotoPRo' location='Agadir' img={image6} particulier={true} />
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Voiture test' price={45000} owner='PA kokols' location='Rabat' img={image2} particulier={false}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='PAsta italian' price={37} owner='moad zizi' location='Tétouan' state='Neuf' img={image3} particulier={true}/>
 
 
         </ScrollView>

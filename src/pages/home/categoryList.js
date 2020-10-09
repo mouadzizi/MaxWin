@@ -1,10 +1,10 @@
 import React from 'react'
-import { Alert, SectionList,} from 'react-native';
+import { SectionList,} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5, MaterialCommunityIcons, Ionicons} from 'react-native-vector-icons';
-import {DATA,ItemHeader,Item} from '../Data';
+import {DATA,ItemHeader,Item} from '../home/Data'
 
-export default function FilterCat({navigation}) {
+export default function categoryList({navigation}) {
 
     const getIcon = (title) => {
         switch (title) {
@@ -27,7 +27,7 @@ export default function FilterCat({navigation}) {
         }
     }
     const action = () => {
-        Alert.alert('Good job')
+        navigation.navigate('Filtre')
     }
     return (
         <SafeAreaView>
