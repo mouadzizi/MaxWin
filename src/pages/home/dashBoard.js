@@ -7,7 +7,6 @@ import {Ionicons} from 'react-native-vector-icons';
 import {colors} from '../../style/GlobalStyle';
 import Product from '../../components/Product';
 
-
 export default function DashBoard({ navigation }) {
     
 
