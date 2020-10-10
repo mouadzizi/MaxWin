@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { View, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
+import { View, ScrollView, Text, StatusBar, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 
 import { Searchbar } from 'react-native-paper';
 import {Ionicons} from 'react-native-vector-icons';
-
+import {colors} from '../../style/GlobalStyle';
 import Product from '../../components/Product';
 
 
@@ -31,11 +31,11 @@ export default function DashBoard({ navigation }) {
         <SafeAreaView>
 
         <StatusBar
-        backgroundColor="#4898D3" />
+        backgroundColor={colors.primary} />
 
         <ScrollView showsVerticalScrollIndicator={false}>
 
-        <View style={{flex:1, backgroundColor: "#4898D3"}}>
+        <View style={{flex:1, backgroundColor: colors.primary}}>
 
         <View
         style={{flexDirection:'row'}}>
@@ -61,10 +61,11 @@ export default function DashBoard({ navigation }) {
         {/* Filtre product & Add product */}
         <View style={{flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2}}>
                 
-                <TouchableOpacity
+                <TouchableWithoutFeedback 
                     onPress={()=>{navigation.navigate("AddProductCat")}}
-                    style={{flexDirection: 'row', width: '50%', backgroundColor: '#F16E44', justifyContent: 'center'}}>
-                   
+                    accessibilityRole='button'>
+                    <View
+                    style={{flexDirection: 'row', width: '50%', backgroundColor: colors.second, justifyContent: 'center'}}>       
                     <Ionicons
                         name="md-add-circle"
                         size={35}
@@ -72,11 +73,15 @@ export default function DashBoard({ navigation }) {
                         style={{alignSelf: 'center'}}   
                     />
                     <Text style={{textAlignVertical: 'center' ,marginLeft: 15, fontWeight: 'bold', color: '#fff'}}>Ajouter Produit</Text>
-                </TouchableOpacity>            
+               
+                    </View>
+                  </TouchableWithoutFeedback>            
 
-                <TouchableOpacity
-                    onPress={()=>{navigation.navigate("Filtre")}}
-                    style={{flexDirection: 'row', width: '50%', backgroundColor: '#4898D3', justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
+                <TouchableWithoutFeedback
+                    onPress={()=>{navigation.navigate("Filtre")}}>
+                    <View
+                    
+                    style={{flexDirection: 'row', width: '50%', backgroundColor: colors.primary, justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
                     
                     <Ionicons
                         name='ios-options'
@@ -85,7 +90,10 @@ export default function DashBoard({ navigation }) {
                         style={{alignSelf: 'center'}}
                     />
                     <Text style={{textAlignVertical: 'center' ,marginLeft: 15, fontWeight: 'bold', color: '#fff'}}>Filtre</Text>
-                </TouchableOpacity> 
+
+                    </View>
+                    
+                </TouchableWithoutFeedback> 
 
             </View>
 

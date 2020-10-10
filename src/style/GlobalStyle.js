@@ -248,4 +248,8 @@ export const GlobalStyle = StyleSheet.create({
 
     },
   }
+    export const colors ={
+        primary:'#4898D3',
+        second: '#F16E44'
+    }
 
