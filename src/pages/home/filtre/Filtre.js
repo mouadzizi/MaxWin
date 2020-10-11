@@ -11,6 +11,7 @@ export default function Filtre() {
 	const [ priceMax, setPriceMax ] = useState('');
 	const [ priceMin, setPriceMin ] = useState('');
 	const [ etat, setEtat ] = useState('');
+	const [ is, setIs ] = useState('');
 
 	const [ marque, setMarque ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
@@ -28,12 +29,13 @@ export default function Filtre() {
 
 	const choiseAction = (item) => {
 		setModalVisible(false);
+		setIs(item);
 		console.log(item);
 		switch (item) {
-			case 'VEHICULES':
+			case 'Voiture':
 				setVoiture(!voiture);
 				break;
-			case 'INFORMATIQUE ET MULTIMEDIA':
+			case 'Motos & vélos':
 				setPhone(!phone);
 				break;
 			case 'IMMOBILIER':
@@ -78,7 +80,7 @@ export default function Filtre() {
 				>
 					<View style={GlobalStyle.modalContainer}>
 						<View style={GlobalStyle.modalView}>
-							<FilterCategory event={(item) => choiseAction(item)} />
+							<FilterCategory is={is} event={(item) => choiseAction(item)} />
 
 							<TouchableOpacity
 								style={{ alignContent: 'center', alignItems: 'center' }}
