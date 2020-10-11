@@ -10,10 +10,10 @@ import Product from '../../components/Product';
 export default function DashBoard({ navigation }) {
     
 
-    const image1 = require('../../../assets/produit.jpg')
+    const image1 = require('../../../assets/produit8.png')
     const image2 = require('../../../assets/prod2.jpg')
     const image3 = require('../../../assets/produit3.png')
-    const image4 = require('../../../assets/produit01.jpg')
+    const image4 = require('../../../assets/produit5.jpg')
     const image5 = require('../../../assets/produit02.jpg')
     const image6 = require('../../../assets/produit03.jpg')
 
@@ -98,14 +98,11 @@ export default function DashBoard({ navigation }) {
 
             {/* Products Lists */}
 
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Tajin' price={35.50} owner='moad zizi' location='Tanger' img={image1} particulier={true}/>
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Titre Vit' price={125} owner='Nezha' location='Merakech' img={image4} particulier={false}/>
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Appartemen Mesnana' price={2550} owner='Mohammed' location='Rabat' img={image5} particulier={true}/>
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Pc Dell i5 5éme' price={3000} owner='moad zizi' location='Tétouan' img={image6} particulier={false}/>
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Passate' price={45000} owner='Sanae' location='Rabat' img={image2} particulier={true}/>
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Macarona' price={25} owner='Boutique Sourie' location='Casablanca' img={image3} particulier={false}/>
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Pc i7 neuf' price={7500} owner='TotoPRo' location='Agadir' img={image6} particulier={true} />
-            <Product click={()=>navigation.navigate('ProductDetails')} name='Voiture test' price={45000} owner='PA kokols' location='Rabat' img={image2} particulier={false}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Appartement 60m' price={3500} owner='Mohammed' location='Tanger' img={image5} particulier={true}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Pc Dell i5 5éme generation' price={3000} owner='TechPic' location='Tétouan' img={image6} particulier={false} p1={true} p2={true}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Passat cc' price={130000} owner='CatPick' location='Rabat' img={image2} particulier={false}/>
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Pc i7 neuf' price={7500} owner='Karima' location='Agadir' img={image4} particulier={true} p2={true} />
+            <Product click={()=>navigation.navigate('ProductDetails')} name='Top côtelé unicolore' price={550} owner='Shushu store' location='Casablanca' img={image1} particulier={false} p1={true}/>
             <Product click={()=>navigation.navigate('ProductDetails')} name='PAsta italian' price={37} owner='moad zizi' location='Tétouan' state='Neuf' img={image3} particulier={true}/>
 
 

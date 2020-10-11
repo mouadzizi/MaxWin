@@ -4,8 +4,9 @@ import {GlobalStyle} from '../style/GlobalStyle';
 import {FontAwesome, Entypo, MaterialCommunityIcons} from 'react-native-vector-icons';
 
 export default function Product(props) {
-  const [chip1, setChip1] = useState(false);
-  const [chip2, setChip2] = useState(false);
+  
+  const [chip1, setChip1] = useState(props.p1);
+  const [chip2, setChip2] = useState(props.p2);
   const [state, setState] = useState(props.particulier);
   return (
       <View>
