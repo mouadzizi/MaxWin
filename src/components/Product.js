@@ -11,6 +11,7 @@ export default function Product(props) {
   return (
       <View>
         <TouchableOpacity
+        delayPressIn={0}
         onPress={props.click}>
         <View 
         style={ 

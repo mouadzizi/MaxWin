@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, ScrollView, Picker} from 'react-native';
+import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, ScrollView, Picker } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import { textTheme } from '../../style/GlobalStyle';
 import { auth, db } from '../../API/firebase';
@@ -14,8 +14,8 @@ export default function SignUp({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
     const [confPassword, setConfPassword] = useState("");
-    const [owner, setOwner]= useState("")
-    
+    const [owner, setOwner] = useState("")
+
 
 
     //firebase stuff
@@ -57,8 +57,8 @@ export default function SignUp({ navigation }) {
                     }
                 })
         }
-        if (!password === confPassword) {
-            Alert.alert('Error', "Password didn't match")
+        else{
+            setErrorMessage("Password didn't match")
             setLoading(false)
         }
 
@@ -72,7 +72,7 @@ export default function SignUp({ navigation }) {
             phone: '',
             location: '',
             aboutMe: '',
-            accountType:owner,
+            accountType: owner,
         })
 
     }
@@ -96,8 +96,8 @@ export default function SignUp({ navigation }) {
 
                 <View style={{ flex: 4 }}>
 
-                <Text
-                style={{color: 'red', alignSelf: 'center', marginBottom: 8}}>{errorMessage}</Text>
+                    <Text
+                        style={{ color: 'red', alignSelf: 'center', marginBottom: 8 }}>{errorMessage}</Text>
 
                     <TextInput
                         label='Nom d utilisateur'
@@ -116,16 +116,16 @@ export default function SignUp({ navigation }) {
                         style={{ marginTop: 10 }}
                         onChangeText={email => setEmail(email)}
                     />
-                    
-                    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10}}>
-                    <Picker
-                    selectedValue={owner}
-                    style={{ height: 50, width: '100%'}}
-                    onValueChange={(itemValue, itemIndex) => setOwner(itemValue)}>
-                    
-                    <Picker.Item label="Particulier" value="Particulier" />
-                    <Picker.Item label="Professionel" value="Professionel" />
-                    </Picker>
+
+                    <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}>
+                        <Picker
+                            selectedValue={owner}
+                            style={{ height: 50, width: '100%' }}
+                            onValueChange={(itemValue, itemIndex) => setOwner(itemValue)}>
+
+                            <Picker.Item label="Particulier" value="Particulier" />
+                            <Picker.Item label="Professionel" value="Professionel" />
+                        </Picker>
                     </View>
 
                     <TextInput
@@ -185,12 +185,12 @@ export default function SignUp({ navigation }) {
                         </Text>
                     </View>
 
-                
-                </View>
-        
-       
 
-        </ScrollView>
+                </View>
+
+
+
+            </ScrollView>
         </SafeAreaView>
     );
 }

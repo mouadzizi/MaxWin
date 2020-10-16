@@ -103,7 +103,7 @@ export default function DrawerContent(props){
                 />
             )}
             label="Accueil"
-            onPress={()=>{props.navigation.navigate('Dasboard')}}
+            onPress={()=>{props.navigation.navigate('DashStack')}}
             />
 
         </Drawer.Section>

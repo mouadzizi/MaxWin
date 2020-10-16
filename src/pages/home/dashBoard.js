@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, ScrollView, Text, StatusBar, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import { View, ScrollView, Text, StatusBar, SafeAreaView, TouchableOpacity } from 'react-native';
 
 import { Searchbar } from 'react-native-paper';
 import {Ionicons} from 'react-native-vector-icons';
@@ -60,27 +60,25 @@ export default function DashBoard({ navigation }) {
         {/* Filtre product & Add product */}
         <View style={{flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2}}>
                 
-                <TouchableWithoutFeedback 
-                    onPress={()=>{navigation.navigate("AddProductCat")}}
-                    accessibilityRole='button'>
-                    <View
-                    style={{flexDirection: 'row', width: '50%', backgroundColor: colors.second, justifyContent: 'center'}}>       
-                    <Ionicons
+                <TouchableOpacity
+                delayPressIn={0}
+                onPress={()=>{navigation.navigate("AddProductCat")}}
+                style={{flexDirection: 'row', width: '50%', backgroundColor: colors.second, justifyContent: 'center'}}>       
+                    
+                   <Ionicons
                         name="md-add-circle"
                         size={35}
                         color='#fff'
-                        style={{alignSelf: 'center'}}   
-                    />
+                        style={{alignSelf: 'center'}}/>
+                        
                     <Text style={{textAlignVertical: 'center' ,marginLeft: 15, fontWeight: 'bold', color: '#fff'}}>Ajouter Produit</Text>
-               
-                    </View>
-                  </TouchableWithoutFeedback>            
+ 
+                </TouchableOpacity>            
 
-                <TouchableWithoutFeedback
-                    onPress={()=>{navigation.navigate("Filtre")}}>
-                    <View
-                    
-                    style={{flexDirection: 'row', width: '50%', backgroundColor: colors.primary, justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
+                <TouchableOpacity
+                delayPressIn={0}
+                onPress={()=>{navigation.navigate("Filtre")}}
+                style={{flexDirection: 'row', width: '50%', backgroundColor: colors.primary, justifyContent: 'center', borderWidth: 1.5, borderColor: '#F16E44', elevation: 3}}>
                     
                     <Ionicons
                         name='ios-options'
@@ -90,9 +88,8 @@ export default function DashBoard({ navigation }) {
                     />
                     <Text style={{textAlignVertical: 'center' ,marginLeft: 15, fontWeight: 'bold', color: '#fff'}}>Filtre</Text>
 
-                    </View>
                     
-                </TouchableWithoutFeedback> 
+                </TouchableOpacity> 
 
             </View>
 

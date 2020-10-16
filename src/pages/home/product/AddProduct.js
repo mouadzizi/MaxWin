@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native';
-import { TextInput, RadioButton, Checkbox } from 'react-native-paper';
+import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons } from 'react-native-vector-icons';
 
@@ -13,7 +13,6 @@ export default function AddProduct({ route }) {
 	const [ price, setPrice ] = useState('');
 	const [ etat, setEtat ] = useState('');
 	const [ description, setDescription ] = useState('');
-	const [ checked, setChecked ] = useState('');
 
 	{
 		/*Variables for inputs for Voiture product*/
@@ -59,67 +58,45 @@ export default function AddProduct({ route }) {
 		const { parent } = route.params;
 		switch (parent) {
 			case 'Voiture':
-				setVoiture(!voiture);
+				setVoiture(true);
+				setChips(false);
+				break;
+			case 'VEHICULES': 
+				setChips(false)
 				break;
 			case 'Téléphones':
-				setTelephone(!voiture);
+				setTelephone(true);
 				break;
 			case 'Tablettes':
-				setVoiture(!voiture);
-				break;
-			case 'Ordinateurs':
-				setVoiture(!voiture);
-				break;
-			case 'Jeux vidéo & Consoles':
-				setVoiture(!voiture);
-				break;
-			case 'Télévisions':
-				setVoiture(!voiture);
-				break;
-			case 'Appareils photo':
-				setVoiture(!voiture);
-				break;
-			case 'Accessoires informatique':
-				setVoiture(!voiture);
-				break;
-			case 'Accessoires H-TECH':
-				setVoiture(!voiture);
+				setTelephone(true);
 				break;
 			case 'Location de Voiture':
-				setVoiture(!voiture);
+				setVoiture(true);
+				setChips(false)
 				break;
-			case 'Motos & vélos':
-				setVoiture(!voiture);
+			case 
+				'Appartements':
+				setLocation(true);
+				setChips(false)
 				break;
-			case 'Véhicules professionnels':
-				setVoiture(!voiture);
+			case 
+				'Maisons & Villas':
+				setLocation(true);
+				setChips(false)
 				break;
-			case 'Appartements':
-				setVoiture(!voiture);
+			case 
+				'Terrains':
+				setChips(false)
 				break;
-			case 'Maisons & Villas':
-				setVoiture(!voiture);
+			case 'Services et travaux professionnels':
+				setServices(true);
+				setChips(false)
 				break;
-			case 'Terrains':
-				setVoiture(!voiture);
-				break;
-			case 'Commerces & Bureaux':
-				setVoiture(!voiture);
-				break;
-			case 'Location courte durée (vacances)':
-				setVoiture(!voiture);
-				break;
-			case 'Location long durée':
-				setVoiture(!voiture);
-				break;
-			case 'Electroménagers':
-				setVoiture(!voiture);
-				break;
-			case 'Meubles et déco':
-				setVoiture(!voiture);
-				break;
-			case 'Autres':
-				setVoiture(!voiture);
+			case 'Formations & autres':
+					setChips(false)
+					break;
+			case 'Autre':
+				setLocation(false)
 				break;
 
 			default:
@@ -127,11 +104,13 @@ export default function AddProduct({ route }) {
 		}
 		return () => {};
 	}, []);
+
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				<View style={{ flexDirection: 'row' }}>
-					<TouchableOpacity>
+					<TouchableOpacity
+					delayPressIn={0}>
 						<MaterialIcons name="add-a-photo" color="#444" size={100} />
 					</TouchableOpacity>
 				</View>
@@ -173,9 +152,10 @@ export default function AddProduct({ route }) {
 					<TextInput
 						label="Prix"
 						mode="outlined"
-						placeholder="DH"
+						placeholder="DHS"
 						theme={textTheme}
 						onChangeText={setPrice}
+						keyboardType='numeric'
 						style={{ marginTop: 10 }}
 					/>
 
@@ -372,16 +352,18 @@ export default function AddProduct({ route }) {
 
 					<TextInput
 						label="Description"
-						placeholder="description de produit"
-						theme={textTheme}
+						mode='outlined'
+						numberOfLines={5}
+						maxLength={266}
+						placeholder="description"
+						style={{marginTop: 10}}
+						theme={{ colors: { primary: '#4898D3', background: '#fff', surface: '#fff', accent : '#fff', backdrop : '#fff' } }}
 						onChangeText={setDescription}
 						multiline={true}
-						style={{ marginTop: 10, height: 120 }}
-						theme={{ colors: { primary: '#4898D3', background: '#fff', surface: '#fff' } }}
-					/>
+						/>
 
 					<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-						<Text style={{ marginTop: 7 }}>Afficher le N° de Téléphone</Text>
+						<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
 						<Checkbox
 							status={phone ? 'checked' : 'unchecked'}
 							onPress={() => {
@@ -392,8 +374,9 @@ export default function AddProduct({ route }) {
 					</View>
 					{chips ? (
 						<View>
+						
 							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-								<Text style={{ marginTop: 7 }}>Laivraison Possible</Text>
+								<Text style={{ marginTop: 7, width: '60%' }}>Laivraison Possible</Text>
 
 								<Checkbox
 									status={laivraison ? 'checked' : 'unchecked'}
@@ -405,7 +388,7 @@ export default function AddProduct({ route }) {
 							</View>
 
 							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-								<Text style={{ marginTop: 7 }}>Paiement à la livraison</Text>
+								<Text style={{ marginTop: 7,  width: '60%' }}>Paiement à la livraison</Text>
 
 								<Checkbox
 									status={paiement ? 'checked' : 'unchecked'}

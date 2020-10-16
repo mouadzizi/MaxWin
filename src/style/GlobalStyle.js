@@ -196,7 +196,6 @@ export const GlobalStyle = StyleSheet.create({
       borderRadius: 8,
     },
   
-  
     slide: {
       flex: 1,
       justifyContent: 'center',
@@ -219,10 +218,10 @@ export const GlobalStyle = StyleSheet.create({
       paddingBottom: 15,
     },
     modalView: {
-    width: '90%',
+    width: '92%',
     backgroundColor: "white",
     borderRadius: 15,
-    padding: 15,
+    padding: 8,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -236,7 +235,7 @@ export const GlobalStyle = StyleSheet.create({
     modalContainer:{
       flex: 1,
       alignItems: "center",
-      marginTop: 20,
+      padding: 15,
       marginBottom: 100,
     },
   });

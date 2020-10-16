@@ -77,7 +77,7 @@ export const ItemHeader = ({ title, icon }) => (
 );
 export const Item = ({ title, action, isSelected }) => (
 	<List.Item
-		delayPressIn={10}
+		delayPressIn={0}
 		style={{ backgroundColor: isSelected === title ? 'rgba(230, 126, 34,0.7)' : '#fff', paddingHorizontal: 5 }}
 		titleStyle={{
 			fontSize: 15,

@@ -87,6 +87,7 @@ export default function ProductDetails({navigation}) {
       <View style={{flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1}}>
 
       <TouchableOpacity
+      delayPressIn={0}
       onPress={()=>navigation.navigate("Messages")}
       style={{backgroundColor: '#4898D3', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
       <Entypo 
@@ -99,6 +100,7 @@ export default function ProductDetails({navigation}) {
       </TouchableOpacity>
 
       <TouchableOpacity
+      delayPressIn={0}
       onPress={()=>Alert.alert("+212.6 .26.617 611")}
       style={{backgroundColor: '#FF6347', flex: 1, height: 75, justifyContent: 'center', alignItems: 'center'}}>
       <Entypo 

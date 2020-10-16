@@ -6,52 +6,120 @@ import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
 
 export default function Filtre() {
-	const [ modalVisible, setModalVisible ] = useState(false);
+	const [ is, setIs ] = useState('');
+	const [ etat, setEtat ] = useState('');
+
+	{/* filter variables Standard */}
 	const [ city, setCity ] = useState('');
 	const [ priceMax, setPriceMax ] = useState('');
 	const [ priceMin, setPriceMin ] = useState('');
-	const [ etat, setEtat ] = useState('');
-	const [ is, setIs ] = useState('');
 
-	const [ marque, setMarque ] = useState('');
+	{/* filter variables Voiture */}
+	const [ marqueVoiture, setMarqueVoiture ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
-	const [ type, setType ] = useState('');
-	const [ Superficie, setSuperficie ] = useState('');
-	const [ marque2, setMarque2 ] = useState('');
 
+	{/* filter variables Location */}
+	const [ Superficie, setSuperficie ] = useState('');
+
+	{/* filter variables phone */}
+	const [ marquePhone, setMarquePhone ] = useState('');
+
+	{/* filter variables phone */}
+	const [ typeService, setTypeService ] = useState('');
+
+	{/* Visibility */}
+	const [ modalVisible, setModalVisible ] = useState(false);
 	const [ voiture, setVoiture ] = useState(false);
-	const [ appartement, setAppartement ] = useState(false);
+	const [ location, setLocation ] = useState(false);
 	const [ service, setService ] = useState(false);
 	const [ phone, setPhone ] = useState(false);
+	const [ etatViisbility, setEtatVisibility ] = useState(true);
 
 	const choiseAction = (item) => {
 		setModalVisible(false);
 		setIs(item);
-		console.log(item);
 		switch (item) {
 			case 'Voiture':
 				setVoiture(!voiture);
+				setLocation(false);
+				setService(false);
+				setPhone(false);
 				break;
-			case 'Motos & vélos':
+			case 'Téléphones':
 				setPhone(!phone);
+				setLocation(false);
+				setService(false);
+				setVoiture(false);
 				break;
-			case 'IMMOBILIER':
-				//setPhone(true);
+			case 'Tablettes':
+				setPhone(!phone);
+				setLocation(false);
+				setService(false);
+				setVoiture(false);
 				break;
-			case 'MAISON & DECO':
-				//	setPhone(true);
+			case 'Location de Voiture':
+				setVoiture(!voiture);
+				setLocation(false);
+				setService(false);
+				setPhone(false);
 				break;
-			case 'HABILLEMENT ET BIEN ETRE':
-				//setPhone(true);
+			case
+				'Appartements':
+				setLocation(!location);
+				setPhone(false);
+				setService(false);
+				setVoiture(false);
+				setEtatVisibility(false);
 				break;
-			case 'MATERIELS & SERVICES':
+			case 
+				'Maisons & Villas':
+				setLocation(!location);
+				setPhone(false);
+				setService(false);
+				setVoiture(false);
+				setEtatVisibility(false);
+				break;
+			case 
+				'Terrains':
+				setLocation(!location);
+				setPhone(false);
+				setService(false);
+				setVoiture(false);
+				setEtatVisibility(false);
+				break;
+			case 
+				'Commerces & Bureaux':
+				setLocation(!location);
+				setPhone(false);
+				setService(false);
+				setVoiture(false);
+				setEtatVisibility(false);
+				break;
+			case 
+				'Location courte durée (vacances)':
+				setLocation(!location);
+				setPhone(false);
+				setService(false);
+				setVoiture(false);
+				setEtatVisibility(false);
+				break;
+			case 'Services et travaux professionnels':
 				setService(!service);
+				setLocation(false);
+				setPhone(false);
+				setVoiture(false);
+				setEtatVisibility(false);
 				break;
-
+				
 			default:
+				setService(false);
+				setLocation(false);
+				setPhone(false);
+				setVoiture(false);
+				setEtatVisibility(true);
 				break;
 		}
 	};
@@ -76,26 +144,25 @@ export default function Filtre() {
 					visible={modalVisible}
 					onRequestClose={() => {
 						setModalVisible(!modalVisible);
-					}}
-				>
+					}}>
 					<View style={GlobalStyle.modalContainer}>
+					
+					<TouchableOpacity
+					style={{alignSelf: 'flex-end', marginRight: 25}}
+					onPress={()=>
+						setModalVisible(!modalVisible)}>
+						<AntDesign 
+							name='closesquare'
+							color='red'
+							size={30}
+						/>
+					</TouchableOpacity>
+					
 						<View style={GlobalStyle.modalView}>
+
 							<FilterCategory is={is} event={(item) => choiseAction(item)} />
 
-							<TouchableOpacity
-								style={{ alignContent: 'center', alignItems: 'center' }}
-								onPress={() => {}}
-							>
-								<AntDesign
-									name="closesquare"
-									size={30}
-									color="#F16E44"
-									onPress={() => {
-										console.log('icon click');
-										setModalVisible(!modalVisible);
-									}}
-								/>
-							</TouchableOpacity>
+
 						</View>
 					</View>
 				</Modal>
@@ -144,7 +211,9 @@ export default function Filtre() {
 								style={{ width: '45%' }}
 							/>
 						</View>
-
+						
+						{etatViisbility ?
+						<View>
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
 						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
 							<Picker
@@ -157,16 +226,18 @@ export default function Filtre() {
 								<Picker.Item label="Bon-Ocasion" value="tn" />
 							</Picker>
 						</View>
+						</View> : null}
+						
 
 						{voiture ? (
 							<View>
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 									<Picker
-										selectedValue={marque}
+										selectedValue={marqueVoiture}
 										prompt="Marque"
 										style={{ height: 50, width: '100%' }}
-										onValueChange={(itemValue, itemIndex) => setMarque(itemValue)}
+										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
 										<Picker.Item label="choisissez votre marque " value="rien" />
 										<Picker.Item label="AUDI" value="AUDI" />
@@ -259,7 +330,7 @@ export default function Filtre() {
 							</View>
 						) : null}
 
-						{appartement ? (
+						{location ? (
 							<TextInput
 								label="Superficie"
 								mode="outlined"
@@ -278,10 +349,10 @@ export default function Filtre() {
 									style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}
 								>
 									<Picker
-										selectedValue={marque2}
+										selectedValue={marquePhone}
 										prompt="Marque"
 										style={{ height: 50, width: '100%' }}
-										onValueChange={(itemValue, itemIndex) => setMarque2(itemValue)}
+										onValueChange={(itemValue, itemIndex) => setMarquePhone(itemValue)}
 									>
 										<Picker.Item label="Choissisez votre marque" value="rien" />
 										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
@@ -300,10 +371,10 @@ export default function Filtre() {
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Type de service</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 									<Picker
-										selectedValue={type}
+										selectedValue={typeService}
 										prompt="Type de service"
 										style={{ height: 50, width: '100%' }}
-										onValueChange={(itemValue, itemIndex) => setType(itemValue)}
+										onValueChange={(itemValue, itemIndex) => setTypeService(itemValue)}
 									>
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
