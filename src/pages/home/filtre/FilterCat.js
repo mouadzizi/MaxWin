@@ -31,7 +31,7 @@ export default function FilterCat({ event, is }) {
 					<Item
 						isSelected={is}
 						action={() => {
-							event(item);
+							event(item, title);
 						}}
 						title={item}
 					/>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker } from 'react-native';
+import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker, ActivityIndicator } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons } from 'react-native-vector-icons';
+import { addProduct } from './APIFunctions';
+import { auth } from '../../../API/firebase';
 
 export default function AddProduct({ route }) {
 	{
@@ -58,12 +60,17 @@ export default function AddProduct({ route }) {
 	const [ Location, setLocation ] = useState(false);
 	const [ services, setServices ] = useState(false);
 	const [ Telephone, setTelephone ] = useState(false);
+	const [ loading, setLoading ] = useState(false);
 
 	useEffect(() => {
 		const { parent } = route.params;
 		switch (parent) {
+			
 			case 'Voiture':
 				setVoiture(true);
+				setChips(false);
+				break;
+			case 'VEHICULES':
 				setChips(false);
 				break;
 			case 'Téléphones':
@@ -74,36 +81,28 @@ export default function AddProduct({ route }) {
 				break;
 			case 'Location de Voiture':
 				setVoiture(true);
-				setChips(false)
+				setChips(false);
 				break;
-			case 
-				'Appartements':
+			case 'Appartements':
 				setLocation(true);
 				setChips(false);
-				setEtatVisible(false);
 				break;
-			case 
-				'Maisons & Villas':
+			case 'Maisons & Villas':
 				setLocation(true);
 				setChips(false);
-				setEtatVisible(false);
 				break;
-			case 
-				'Terrains':
+			case 'Terrains':
 				setChips(false);
-				setEtatVisible(false);
 				break;
 			case 'Services et travaux professionnels':
 				setServices(true);
 				setChips(false);
-				setEtatVisible(false);
 				break;
 			case 'Formations & autres':
 				setChips(false);
-				setEtatVisible(false);
-					break;
+				break;
 			case 'Autre':
-				setLocation(false)
+				setLocation(false);
 				break;
 
 			default:
@@ -112,12 +111,40 @@ export default function AddProduct({ route }) {
 		return () => {};
 	}, []);
 
+	const upload = () => {
+		setLoading(true);
+		var item = {
+			title,
+			city,
+			price,
+			etat,
+			description,
+			marqueVoiture,
+			carburant,
+			fabrication,
+			puissance,
+			transtaction,
+			piece,
+			superficie,
+			servicetype,
+			phoneMarque,
+			phone,
+			laivraison,
+			paiement,
+			voiture,
+			Location,
+			services,
+			Telephone,
+			uuid: auth.currentUser.uid
+		};
+		addProduct(item).then(() => setLoading(false));
+	};
+
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				<View style={{ flexDirection: 'row' }}>
-					<TouchableOpacity
-					delayPressIn={0}>
+					<TouchableOpacity delayPressIn={0}>
 						<MaterialIcons name="add-a-photo" color="#444" size={100} />
 					</TouchableOpacity>
 				</View>
@@ -162,7 +189,7 @@ export default function AddProduct({ route }) {
 						placeholder="DHS"
 						theme={textTheme}
 						onChangeText={setPrice}
-						keyboardType='numeric'
+						keyboardType="numeric"
 						style={{ marginTop: 10 }}
 					/>
 					{etatVisible ?   
@@ -363,15 +390,23 @@ export default function AddProduct({ route }) {
 
 					<TextInput
 						label="Description"
-						mode='outlined'
+						mode="outlined"
 						numberOfLines={5}
 						maxLength={266}
 						placeholder="description"
-						style={{marginTop: 10}}
-						theme={{ colors: { primary: '#4898D3', background: '#fff', surface: '#fff', accent : '#fff', backdrop : '#fff' } }}
+						style={{ marginTop: 10 }}
+						theme={{
+							colors: {
+								primary: '#4898D3',
+								background: '#fff',
+								surface: '#fff',
+								accent: '#fff',
+								backdrop: '#fff'
+							}
+						}}
 						onChangeText={setDescription}
 						multiline={true}
-						/>
+					/>
 
 					<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 						<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
@@ -385,7 +420,6 @@ export default function AddProduct({ route }) {
 					</View>
 					{chips ? (
 						<View>
-						
 							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 								<Text style={{ marginTop: 7, width: '60%' }}>Laivraison Possible</Text>
 
@@ -399,7 +433,7 @@ export default function AddProduct({ route }) {
 							</View>
 
 							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-								<Text style={{ marginTop: 7,  width: '60%' }}>Paiement à la livraison</Text>
+								<Text style={{ marginTop: 7, width: '60%' }}>Paiement à la livraison</Text>
 
 								<Checkbox
 									status={paiement ? 'checked' : 'unchecked'}
@@ -412,7 +446,11 @@ export default function AddProduct({ route }) {
 						</View>
 					) : null}
 
-					<TouchableOpacity style={[ GlobalStyle.btn, { marginBottom: 30 } ]}>
+					<TouchableOpacity
+						onPress={() => upload()}
+						delayPressIn={10}
+						style={[ GlobalStyle.btn, { marginBottom: 30 } ]}
+					>
 						<Text style={GlobalStyle.signInText}>Valider l’annonce</Text>
 					</TouchableOpacity>
 				</View>

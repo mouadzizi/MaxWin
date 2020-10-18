@@ -11,28 +11,40 @@ export default function Filtre() {
 	const [ is, setIs ] = useState('');
 	const [ etat, setEtat ] = useState('');
 
-	{/* filter variables Standard */}
+	{
+		/* filter variables Standard */
+	}
 	const [ city, setCity ] = useState('');
 	const [ priceMax, setPriceMax ] = useState('');
 	const [ priceMin, setPriceMin ] = useState('');
 
-	{/* filter variables Voiture */}
+	{
+		/* filter variables Voiture */
+	}
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
 
-	{/* filter variables Location */}
+	{
+		/* filter variables Location */
+	}
 	const [ Superficie, setSuperficie ] = useState('');
 
-	{/* filter variables phone */}
+	{
+		/* filter variables phone */
+	}
 	const [ marquePhone, setMarquePhone ] = useState('');
 
-	{/* filter variables phone */}
+	{
+		/* filter variables phone */
+	}
 	const [ typeService, setTypeService ] = useState('');
 
-	{/* Visibility */}
+	{
+		/* Visibility */
+	}
 	const [ modalVisible, setModalVisible ] = useState(false);
 	const [ voiture, setVoiture ] = useState(false);
 	const [ location, setLocation ] = useState(false);
@@ -40,8 +52,9 @@ export default function Filtre() {
 	const [ phone, setPhone ] = useState(false);
 	const [ etatViisbility, setEtatVisibility ] = useState(true);
 
-	const choiseAction = (item) => {
+	const choiseAction = (item, title) => {
 		setModalVisible(false);
+		console.log(title);
 		setIs(item);
 		switch (item) {
 			case 'Voiture':
@@ -72,8 +85,7 @@ export default function Filtre() {
 				setPhone(false);
 				setTittreModal('Location de Voiture')
 				break;
-			case
-				'Appartements':
+			case 'Appartements':
 				setLocation(!location);
 				setPhone(false);
 				setService(false);
@@ -81,8 +93,7 @@ export default function Filtre() {
 				setEtatVisibility(false);
 				setTittreModal('Location de Voiture')
 				break;
-			case 
-				'Maisons & Villas':
+			case 'Maisons & Villas':
 				setLocation(!location);
 				setPhone(false);
 				setService(false);
@@ -90,9 +101,7 @@ export default function Filtre() {
 				setEtatVisibility(false);
 				setTittreModal('Location de Voiture')
 				break;
-
-			case 
-				'Terrains':
+			case 'Terrains':
 				setLocation(!location);
 				setPhone(false);
 				setService(false);
@@ -100,8 +109,7 @@ export default function Filtre() {
 				setEtatVisibility(false);
 				setTittreModal('Terrains')
 				break;
-			case 
-				'Commerces & Bureaux':
+			case 'Commerces & Bureaux':
 				setLocation(!location);
 				setPhone(false);
 				setService(false);
@@ -109,8 +117,7 @@ export default function Filtre() {
 				setEtatVisibility(false);
 				setTittreModal('ommerces & Bureaux')
 				break;
-			case 
-				'Location courte durée (vacances)':
+			case 'Location courte durée (vacances)':
 				setLocation(!location);
 				setPhone(false);
 				setService(false);
@@ -126,7 +133,7 @@ export default function Filtre() {
 				setEtatVisibility(false);
 				setTittreModal('Services et travaux professionnels')
 				break;
-				
+
 			default:
 				setService(false);
 				setLocation(false);
@@ -157,25 +164,18 @@ export default function Filtre() {
 					visible={modalVisible}
 					onRequestClose={() => {
 						setModalVisible(!modalVisible);
-					}}>
+					}}
+				>
 					<View style={GlobalStyle.modalContainer}>
-					
-					<TouchableOpacity
-					style={{alignSelf: 'flex-end', marginRight: 25}}
-					onPress={()=>
-						setModalVisible(!modalVisible)}>
-						<AntDesign 
-							name='closesquare'
-							color='red'
-							size={30}
-						/>
-					</TouchableOpacity>
-					
+						<TouchableOpacity
+							style={{ alignSelf: 'flex-end', marginRight: 25 }}
+							onPress={() => setModalVisible(!modalVisible)}
+						>
+							<AntDesign name="closesquare" color="red" size={30} />
+						</TouchableOpacity>
+
 						<View style={GlobalStyle.modalView}>
-
-							<FilterCategory is={is} event={(item) => choiseAction(item)} />
-
-
+							<FilterCategory is={is} event={(item, title) => choiseAction(item, title)} />
 						</View>
 					</View>
 				</Modal>
@@ -224,23 +224,23 @@ export default function Filtre() {
 								style={{ width: '45%' }}
 							/>
 						</View>
-						
-						{etatViisbility ?
-						<View>
-						<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
-						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
-							<Picker
-								selectedValue={etat}
-								prompt="Etat"
-								style={{ height: 50, width: '100%' }}
-								onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
-							>
-								<Picker.Item label="Neuf" value="neuf" />
-								<Picker.Item label="Bon-Ocasion" value="tn" />
-							</Picker>
-						</View>
-						</View> : null}
-						
+
+						{etatViisbility ? (
+							<View>
+								<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
+								<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
+									<Picker
+										selectedValue={etat}
+										prompt="Etat"
+										style={{ height: 50, width: '100%' }}
+										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
+									>
+										<Picker.Item label="Neuf" value="neuf" />
+										<Picker.Item label="Bon-Ocasion" value="tn" />
+									</Picker>
+								</View>
+							</View>
+						) : null}
 
 						{voiture ? (
 							<View>
