@@ -5,6 +5,7 @@ import { FontAwesome5, MaterialCommunityIcons, Ionicons } from 'react-native-vec
 import { DATA, ItemHeader, Item } from '../Data';
 
 export default function AddProductCat({ navigation, route }) {
+	
 	const getIcon = (title) => {
 		switch (title) {
 			case 'VEHICULES':

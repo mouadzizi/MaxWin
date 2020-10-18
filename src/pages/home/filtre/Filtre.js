@@ -6,6 +6,8 @@ import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
 
 export default function Filtre() {
+	
+	const [ titreModal, setTittreModal ] = useState('Choisisez votre category');
 	const [ is, setIs ] = useState('');
 	const [ etat, setEtat ] = useState('');
 
@@ -47,24 +49,28 @@ export default function Filtre() {
 				setLocation(false);
 				setService(false);
 				setPhone(false);
+				setTittreModal('Voiture')
 				break;
 			case 'Téléphones':
 				setPhone(!phone);
 				setLocation(false);
 				setService(false);
 				setVoiture(false);
+				setTittreModal('Téléphones')
 				break;
 			case 'Tablettes':
 				setPhone(!phone);
 				setLocation(false);
 				setService(false);
 				setVoiture(false);
+				setTittreModal('Tablettes')
 				break;
 			case 'Location de Voiture':
 				setVoiture(!voiture);
 				setLocation(false);
 				setService(false);
 				setPhone(false);
+				setTittreModal('Location de Voiture')
 				break;
 			case
 				'Appartements':
@@ -73,6 +79,7 @@ export default function Filtre() {
 				setService(false);
 				setVoiture(false);
 				setEtatVisibility(false);
+				setTittreModal('Location de Voiture')
 				break;
 			case 
 				'Maisons & Villas':
@@ -81,7 +88,9 @@ export default function Filtre() {
 				setService(false);
 				setVoiture(false);
 				setEtatVisibility(false);
+				setTittreModal('Location de Voiture')
 				break;
+
 			case 
 				'Terrains':
 				setLocation(!location);
@@ -89,6 +98,7 @@ export default function Filtre() {
 				setService(false);
 				setVoiture(false);
 				setEtatVisibility(false);
+				setTittreModal('Terrains')
 				break;
 			case 
 				'Commerces & Bureaux':
@@ -97,6 +107,7 @@ export default function Filtre() {
 				setService(false);
 				setVoiture(false);
 				setEtatVisibility(false);
+				setTittreModal('ommerces & Bureaux')
 				break;
 			case 
 				'Location courte durée (vacances)':
@@ -105,6 +116,7 @@ export default function Filtre() {
 				setService(false);
 				setVoiture(false);
 				setEtatVisibility(false);
+				setTittreModal('Location courte durée (vacances)')
 				break;
 			case 'Services et travaux professionnels':
 				setService(!service);
@@ -112,6 +124,7 @@ export default function Filtre() {
 				setPhone(false);
 				setVoiture(false);
 				setEtatVisibility(false);
+				setTittreModal('Services et travaux professionnels')
 				break;
 				
 			default:
@@ -134,7 +147,7 @@ export default function Filtre() {
 					}}
 				>
 					<Text style={{ alignSelf: 'center', textAlign: 'center', marginTop: 10 }}>
-						Choisisez votre categorie
+						{titreModal}
 					</Text>
 				</TouchableOpacity>
 

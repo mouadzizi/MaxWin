@@ -11,11 +11,10 @@ export default function AddProduct({ route }) {
 	const [ title, setTitle ] = useState('');
 	const [ city, setCity ] = useState('');
 	const [ price, setPrice ] = useState('');
-	const [ etat, setEtat ] = useState('');
 	const [ description, setDescription ] = useState('');
 
 	{
-		/*Variables for inputs for Voiture product*/
+		/*Variables for inputs for Voiture*/
 	}
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
@@ -23,18 +22,23 @@ export default function AddProduct({ route }) {
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
 	{
-		/*Variables for inputs for Location product*/
+		/*Variables for inputs for Location*/
 	}
 	const [ piece, setPiece ] = useState('');
 	const [ superficie, setSuperficie ] = useState('');
 	{
-		/*Variables for inputs for Location product*/
+		/*Variables for inputs for Services*/
 	}
 	const [ servicetype, setServiceType ] = useState('');
 	{
-		/*Variables for inputs for Location product*/
+		/*Variables for inputs for Phone*/
 	}
 	const [ phoneMarque, setPhoneMarque ] = useState(false);
+
+	{
+		/*Visibility for State*/
+	}
+	const [ etat, setEtat ] = useState('');
 
 	{
 		/*Variables for chips*/
@@ -46,6 +50,7 @@ export default function AddProduct({ route }) {
 		/*Chips Visibility*/
 	}
 	const [ chips, setChips ] = useState(true);
+	const [ etatVisible, setEtatVisible ] = useState(true)
 	{
 		/*Category Visibility*/
 	}
@@ -61,9 +66,6 @@ export default function AddProduct({ route }) {
 				setVoiture(true);
 				setChips(false);
 				break;
-			case 'VEHICULES': 
-				setChips(false)
-				break;
 			case 'Téléphones':
 				setTelephone(true);
 				break;
@@ -77,23 +79,28 @@ export default function AddProduct({ route }) {
 			case 
 				'Appartements':
 				setLocation(true);
-				setChips(false)
+				setChips(false);
+				setEtatVisible(false);
 				break;
 			case 
 				'Maisons & Villas':
 				setLocation(true);
-				setChips(false)
+				setChips(false);
+				setEtatVisible(false);
 				break;
 			case 
 				'Terrains':
-				setChips(false)
+				setChips(false);
+				setEtatVisible(false);
 				break;
 			case 'Services et travaux professionnels':
 				setServices(true);
-				setChips(false)
+				setChips(false);
+				setEtatVisible(false);
 				break;
 			case 'Formations & autres':
-					setChips(false)
+				setChips(false);
+				setEtatVisible(false);
 					break;
 			case 'Autre':
 				setLocation(false)
@@ -158,7 +165,8 @@ export default function AddProduct({ route }) {
 						keyboardType='numeric'
 						style={{ marginTop: 10 }}
 					/>
-
+					{etatVisible ?   
+					<View>
 					<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
 
 					<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
@@ -172,6 +180,9 @@ export default function AddProduct({ route }) {
 							<Picker.Item label="Bon-Ocasion" value="tn" />
 						</Picker>
 					</View>
+
+					</View>
+					: null}
 
 					{Telephone ? (
 						<View>

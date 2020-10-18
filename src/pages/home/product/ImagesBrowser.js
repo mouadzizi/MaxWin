@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Text, View } from 'react-native';
 
 export default function ImagesBrowser() {
 	return (
@@ -8,5 +8,3 @@ export default function ImagesBrowser() {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({});
