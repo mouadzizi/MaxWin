@@ -47,7 +47,7 @@ export const DATA = [
 			'Vêtements femmes',
 			'Vêtements bébés & enfants',
 			'Montres, Bijoux & accessoires',
-			'Services & Produits de bien être',
+			'Produits de bien être',
 			'Autre'
 		]
 	},

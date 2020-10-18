@@ -8,19 +8,14 @@ import FilterCategory from '../filtre/FilterCat';
 export default function Filtre() {
 	
 	const [ titreModal, setTittreModal ] = useState('Choisisez votre category');
-	const [ is, setIs ] = useState('');
 	const [ etat, setEtat ] = useState('');
 
-	{
-		/* filter variables Standard */
-	}
+	{/* filter variables Standard */}
 	const [ city, setCity ] = useState('');
 	const [ priceMax, setPriceMax ] = useState('');
 	const [ priceMin, setPriceMin ] = useState('');
 
-	{
-		/* filter variables Voiture */
-	}
+	{ /* filter variables Voiture */}
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
@@ -32,19 +27,13 @@ export default function Filtre() {
 	}
 	const [ Superficie, setSuperficie ] = useState('');
 
-	{
-		/* filter variables phone */
-	}
+	{ /* filter variables phone */ }
 	const [ marquePhone, setMarquePhone ] = useState('');
 
-	{
-		/* filter variables phone */
-	}
+	{ /* filter variables phone */ }
 	const [ typeService, setTypeService ] = useState('');
 
-	{
-		/* Visibility */
-	}
+	{ /* Visibility */ }
 	const [ modalVisible, setModalVisible ] = useState(false);
 	const [ voiture, setVoiture ] = useState(false);
 	const [ location, setLocation ] = useState(false);
@@ -52,86 +41,25 @@ export default function Filtre() {
 	const [ phone, setPhone ] = useState(false);
 	const [ etatViisbility, setEtatVisibility ] = useState(true);
 
-	const choiseAction = (item, title) => {
+	const choiseAction = (item) => {
+		setTittreModal(item)
 		setModalVisible(false);
-		console.log(title);
-		setIs(item);
-		switch (item) {
-			case 'Voiture':
-				setVoiture(!voiture);
-				setLocation(false);
-				setService(false);
-				setPhone(false);
-				setTittreModal('Voiture')
+		switch (true) {
+
+			case (item === 'Voiture' || item === 'Location de Voiture' || item === 'Véhicules professionnels') :
+				setVoiture(true)
 				break;
-			case 'Téléphones':
-				setPhone(!phone);
-				setLocation(false);
-				setService(false);
-				setVoiture(false);
-				setTittreModal('Téléphones')
+			
+			case (item === 'Téléphones' || item === 'Tablettes') :
+				setPhone(true)
 				break;
-			case 'Tablettes':
-				setPhone(!phone);
-				setLocation(false);
-				setService(false);
-				setVoiture(false);
-				setTittreModal('Tablettes')
+
+			case (item === 'Appartements' || item === 'Maisons & Villas' || item === 'Location courte durée (vacances)' || item === 'Location long durée') :
+				setLocation(true)
 				break;
-			case 'Location de Voiture':
-				setVoiture(!voiture);
-				setLocation(false);
-				setService(false);
-				setPhone(false);
-				setTittreModal('Location de Voiture')
-				break;
-			case 'Appartements':
-				setLocation(!location);
-				setPhone(false);
-				setService(false);
-				setVoiture(false);
-				setEtatVisibility(false);
-				setTittreModal('Location de Voiture')
-				break;
-			case 'Maisons & Villas':
-				setLocation(!location);
-				setPhone(false);
-				setService(false);
-				setVoiture(false);
-				setEtatVisibility(false);
-				setTittreModal('Location de Voiture')
-				break;
-			case 'Terrains':
-				setLocation(!location);
-				setPhone(false);
-				setService(false);
-				setVoiture(false);
-				setEtatVisibility(false);
-				setTittreModal('Terrains')
-				break;
-			case 'Commerces & Bureaux':
-				setLocation(!location);
-				setPhone(false);
-				setService(false);
-				setVoiture(false);
-				setEtatVisibility(false);
-				setTittreModal('ommerces & Bureaux')
-				break;
-			case 'Location courte durée (vacances)':
-				setLocation(!location);
-				setPhone(false);
-				setService(false);
-				setVoiture(false);
-				setEtatVisibility(false);
-				setTittreModal('Location courte durée (vacances)')
-				break;
-			case 'Services et travaux professionnels':
-				setService(!service);
-				setLocation(false);
-				setPhone(false);
-				setVoiture(false);
-				setEtatVisibility(false);
-				setTittreModal('Services et travaux professionnels')
+		
+			case (item === 'Services et travaux professionnels') :
+				setService(true)
 				break;
 
 			default:
@@ -162,9 +90,7 @@ export default function Filtre() {
 					animationType="slide"
 					transparent={true}
 					visible={modalVisible}
-					onRequestClose={() => {
-						setModalVisible(!modalVisible);
-					}}
+					onRequestClose={() => {setModalVisible(!modalVisible);}}
 				>
 					<View style={GlobalStyle.modalContainer}>
 						<TouchableOpacity
@@ -175,7 +101,7 @@ export default function Filtre() {
 						</TouchableOpacity>
 
 						<View style={GlobalStyle.modalView}>
-							<FilterCategory is={is} event={(item, title) => choiseAction(item, title)} />
+							<FilterCategory event={(item, title) => choiseAction(item, title)} />
 						</View>
 					</View>
 				</Modal>
@@ -236,7 +162,7 @@ export default function Filtre() {
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
 										<Picker.Item label="Neuf" value="neuf" />
-										<Picker.Item label="Bon-Ocasion" value="tn" />
+										<Picker.Item label="Ancien" value="tn" />
 									</Picker>
 								</View>
 							</View>
