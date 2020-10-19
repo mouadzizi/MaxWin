@@ -76,7 +76,7 @@ export default function Splash({ navigation }) {
         <View style={GlobalStyle.swiperContainer}>
 
         
-        <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
+        <Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 
           <Image
             source={require("../../../assets/slide1.jpg")}
@@ -93,7 +93,7 @@ export default function Splash({ navigation }) {
         <View style={GlobalStyle.swiperContainer}>
 
         
-        <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
+        <Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 
           <Image
             source={require("../../../assets/slide3.jpg")}
@@ -109,7 +109,7 @@ export default function Splash({ navigation }) {
         <View style={GlobalStyle.swiperContainer}>
 
         
-        <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
+        <Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 
           <Image
             source={require("../../../assets/slide2.jpg")}

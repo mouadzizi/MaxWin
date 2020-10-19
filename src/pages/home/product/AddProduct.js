@@ -211,7 +211,7 @@ export default function AddProduct({ route, navigation }) {
 				</View>
 
 				<Text style={{ color: '#4898D3', fontSize: 11 }}>
-					Une bonne annonce commence par une par une bonne photo.
+					Une bonne annonce commence par une bonne photo.
 				</Text>
 
 				<View style={{ flex: 1, marginTop: 20 }}>
