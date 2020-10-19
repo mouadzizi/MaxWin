@@ -93,9 +93,11 @@ export default function AddProduct({ route, navigation }) {
 	//Get pictures once the screen focused
 	useFocusEffect(
 		React.useCallback(() => {
+			console.log('add product focused');
 			const { params } = route;
 			if (params) {
 				const { photos } = params;
+				console.log(photos);
 				photos ? setImages(photos) : null;
 				delete params.photos;
 			}
