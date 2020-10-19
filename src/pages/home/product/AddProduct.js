@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker, ActivityIndicator } from 'react-native';
+import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker, ActivityIndicator, Switch } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons } from 'react-native-vector-icons';
@@ -13,30 +13,35 @@ export default function AddProduct({ route }) {
 	const [ title, setTitle ] = useState('');
 	const [ city, setCity ] = useState('');
 	const [ price, setPrice ] = useState('');
-	const [ etat, setEtat ] = useState('');
 	const [ description, setDescription ] = useState('');
 
 	{
-		/*Variables for inputs for Voiture product*/
+		/*Variables for inputs for Voiture*/
 	}
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
+	const [ kilometrage, setKilometrage] = useState('')
 	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
 	{
-		/*Variables for inputs for Location product*/
+		/*Variables for inputs for Location*/
 	}
 	const [ piece, setPiece ] = useState('');
 	const [ superficie, setSuperficie ] = useState('');
 	{
-		/*Variables for inputs for Location product*/
+		/*Variables for inputs for Services*/
 	}
 	const [ servicetype, setServiceType ] = useState('');
 	{
-		/*Variables for inputs for Location product*/
+		/*Variables for inputs for Phone*/
 	}
 	const [ phoneMarque, setPhoneMarque ] = useState(false);
+
+	{
+		/*Visibility for State*/
+	}
+	const [ etat, setEtat ] = useState('');
 
 	{
 		/*Variables for chips*/
@@ -48,6 +53,7 @@ export default function AddProduct({ route }) {
 		/*Chips Visibility*/
 	}
 	const [ chips, setChips ] = useState(true);
+	const [ etatVisible, setEtatVisible ] = useState(true)
 	{
 		/*Category Visibility*/
 	}
@@ -57,46 +63,53 @@ export default function AddProduct({ route }) {
 	const [ Telephone, setTelephone ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
 
+	{/* Switchs*/}
+	const [jantesAluminium, setJantesAluminium] = useState(false);
+	const toggleSwitchJanets = () => setJantesAluminium(previousState => !previousState);
+
+	
+	const [Airbags, setAirbags] = useState(false);
+	const toggleSwitchAirBags = () => setAirbags(previousState => !previousState);
+
+	
+	const [vitres, setVitres] = useState(false);
+	const toggleSwitchVitres = () => setVitres(previousState => !previousState);
+
+	
+	const [climatisation, setClimatisation] = useState(false);
+	const toggleSwitchClimatisation = () => setClimatisation(previousState => !previousState);
+
+
 	useEffect(() => {
 		const { parent } = route.params;
-		switch (parent) {
-			case 'Voiture':
-				setVoiture(true);
-				setChips(false);
+		switch (true) {
+
+			case (parent.title == 'VEHICULES') && (parent.item == 'Voiture' || parent.item == 'Location de Voiture' || parent.item == 'Véhicules professionnels') :
+				setChips(false)
+				setVoiture(true)
 				break;
-			case 'VEHICULES':
-				setChips(false);
+			case (parent.title == 'VEHICULES'):
+				setChips(false)
 				break;
-			case 'Téléphones':
-				setTelephone(true);
+			
+			case (parent.title == 'INFORMATIQUE ET MULTIMEDIA') && (parent.item == 'Téléphones' || parent.item == 'Tablettes') :
+				setTelephone(true)
 				break;
-			case 'Tablettes':
-				setTelephone(true);
+			
+			case (parent.title == 'IMMOBILIER' && (parent.item == 'Appartements' || parent.item == 'Maisons & Villas' || parent.item == 'Location courte durée (vacances)' || parent.item == 'Location long durée')) :
+					setChips(false)
+					setEtatVisible(false)
+					setLocation(true)
+					break;
+			case (parent.title == 'IMMOBILIER'):
+				setChips(false)
+				setEtatVisible(false)
 				break;
-			case 'Location de Voiture':
-				setVoiture(true);
-				setChips(false);
-				break;
-			case 'Appartements':
-				setLocation(true);
-				setChips(false);
-				break;
-			case 'Maisons & Villas':
-				setLocation(true);
-				setChips(false);
-				break;
-			case 'Terrains':
-				setChips(false);
-				break;
-			case 'Services et travaux professionnels':
-				setServices(true);
-				setChips(false);
-				break;
-			case 'Formations & autres':
-				setChips(false);
-				break;
-			case 'Autre':
-				setLocation(false);
+
+			case (parent.item == 'MATERIELS & SERVICES' || parent.item == 'Services et travaux professionnels' || parent.item == 'Formations & autres') :
+				setChips(false)
+				setEtatVisible(false)
+				setServices(true)
 				break;
 
 			default:
@@ -114,6 +127,7 @@ export default function AddProduct({ route }) {
 			etat,
 			description,
 			marqueVoiture,
+			kilometrage,
 			carburant,
 			fabrication,
 			puissance,
@@ -186,7 +200,8 @@ export default function AddProduct({ route }) {
 						keyboardType="numeric"
 						style={{ marginTop: 10 }}
 					/>
-
+					{etatVisible ?   
+					<View>
 					<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
 
 					<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
@@ -197,9 +212,12 @@ export default function AddProduct({ route }) {
 							onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 						>
 							<Picker.Item label="Neuf" value="neuf" />
-							<Picker.Item label="Bon-Ocasion" value="tn" />
+							<Picker.Item label="Ancien" value="ancien" />
 						</Picker>
 					</View>
+
+					</View>
+					: null}
 
 					{Telephone ? (
 						<View>
@@ -268,6 +286,16 @@ export default function AddProduct({ route }) {
 							</View>
 
 							<TextInput
+								onChangeText={setKilometrage}
+								label="Kilometrage"
+								mode="outlined"
+								placeholder="12.000 Km"
+								keyboardType="numeric"
+								theme={textTheme}
+								style={{ marginTop: 10 }}
+							/>
+
+							<TextInput
 								onChangeText={setFabrication}
 								label="Année de fabrication"
 								mode="outlined"
@@ -276,6 +304,7 @@ export default function AddProduct({ route }) {
 								theme={textTheme}
 								style={{ marginTop: 10 }}
 							/>
+							
 
 							<Text style={{ color: '#4898D3', marginTop: 5 }}>Carburant</Text>
 							<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
@@ -321,6 +350,63 @@ export default function AddProduct({ route }) {
 									<Picker.Item label="Automatique" value="Automatique" />
 								</Picker>
 							</View>
+						
+
+						<Text style={{ color: '#4898D3', marginTop: 5 }}>Équipements</Text>
+						<View
+						style={{borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5}}>
+							
+							<View 
+							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
+								<Text
+								style={{width: '50%', marginLeft: 5}}>Jantes Aluminium</Text>
+								<Switch 
+									trackColor={{ false: "#767577", true: "#4898D3" }}
+									thumbColor={jantesAluminium ? "#4898D3" : "#fff"}
+									onValueChange={toggleSwitchJanets}
+									value={jantesAluminium}
+								/>
+							</View>
+
+							<View 
+							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
+								<Text
+								style={{width: '50%', marginStart: 5}}>Airbags</Text>
+								<Switch 
+									trackColor={{ false: "#767577", true: "#4898D3" }}
+									thumbColor={Airbags ? "#4898D3" : "#fff"}
+									ios_backgroundColor="#3e3e3e"
+									onValueChange={toggleSwitchAirBags}
+									value={Airbags}
+								/>
+							</View>
+
+							<View 
+							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
+								<Text
+								style={{width: '50%', marginStart: 5}}>Climatisation</Text>
+								<Switch 
+									trackColor={{ false: "#767577", true: "#4898D3" }}
+									thumbColor={climatisation ? "#4898D3" : "#fff"}
+									ios_backgroundColor="#3e3e3e"
+									onValueChange={toggleSwitchClimatisation}
+									value={climatisation}
+								/>
+							</View>
+
+							<View 
+							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
+								<Text
+								style={{width: '50%', marginStart: 5}}>Vitres Électriques</Text>
+								<Switch 
+									trackColor={{ false: "#767577", true: "#4898D3" }}
+									thumbColor={vitres ? "#4898D3" : "#fff"}
+									ios_backgroundColor="#3e3e3e"
+									onValueChange={toggleSwitchVitres}
+									value={vitres}
+								/>
+							</View>
+						</View>
 						</View>
 					) : null}
 					{services ? (
@@ -381,19 +467,11 @@ export default function AddProduct({ route }) {
 					<TextInput
 						label="Description"
 						mode="outlined"
-						numberOfLines={5}
+						theme={textTheme}
+						numberOfLines={4}
 						maxLength={266}
 						placeholder="description"
 						style={{ marginTop: 10 }}
-						theme={{
-							colors: {
-								primary: '#4898D3',
-								background: '#fff',
-								surface: '#fff',
-								accent: '#fff',
-								backdrop: '#fff'
-							}
-						}}
 						onChangeText={setDescription}
 						multiline={true}
 					/>
@@ -411,7 +489,7 @@ export default function AddProduct({ route }) {
 					{chips ? (
 						<View>
 							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-								<Text style={{ marginTop: 7, width: '60%' }}>Laivraison Possible</Text>
+								<Text style={{ marginTop: 7, width: '60%' }}>Livraison Possible</Text>
 
 								<Checkbox
 									status={laivraison ? 'checked' : 'unchecked'}

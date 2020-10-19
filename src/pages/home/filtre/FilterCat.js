@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5, MaterialCommunityIcons, Ionicons } from 'react-native-vector-icons';
 import { DATA, ItemHeader, Item } from '../Data';
 
-export default function FilterCat({ event, is }) {
+export default function FilterCat({ event }) {
 	const getIcon = (title) => {
 		switch (title) {
 			case 'VEHICULES':
@@ -29,10 +29,7 @@ export default function FilterCat({ event, is }) {
 				keyExtractor={(item, index) => item + index}
 				renderItem={({ item, section: { title } }) => (
 					<Item
-						isSelected={is}
-						action={() => {
-							event(item, title);
-						}}
+						action={() => { event(item, title);}}
 						title={item}
 					/>
 				)}

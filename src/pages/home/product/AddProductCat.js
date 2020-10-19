@@ -5,6 +5,7 @@ import { FontAwesome5, MaterialCommunityIcons, Ionicons } from 'react-native-vec
 import { DATA, ItemHeader, Item } from '../Data';
 
 export default function AddProductCat({ navigation, route }) {
+	
 	const getIcon = (title) => {
 		switch (title) {
 			case 'VEHICULES':
@@ -22,8 +23,8 @@ export default function AddProductCat({ navigation, route }) {
 		}
 	};
 
-	const action = (item) => {
-		navigation.navigate('AddProduct', { parent: item });
+	const action = (item, title) => {
+		navigation.navigate('AddProduct', { parent: {item, title} });
 	};
 
 	return (
@@ -31,7 +32,7 @@ export default function AddProductCat({ navigation, route }) {
 			<SectionList
 				sections={DATA}
 				keyExtractor={(item, index) => item + index}
-				renderItem={({ item }) => <Item action={() => action(item)} title={item} />}
+				renderItem={({ item, section: {title} }) => <Item action={() => action(item, title)} title={item} />}
 				renderSectionHeader={({ section: { title } }) => <ItemHeader icon={getIcon(title)} title={title} />}
 			/>
 		</SafeAreaView>
