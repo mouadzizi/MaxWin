@@ -67,7 +67,6 @@ export default function Filtre() {
 				setLocation(false);
 				setPhone(false);
 				setVoiture(false);
-				setEtatVisibility(true);
 				break;
 		}
 	};
