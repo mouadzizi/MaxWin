@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker, ActivityIndicator, Switch } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import {
+	View,
+	SafeAreaView,
+	ScrollView,
+	TouchableOpacity,
+	Text,
+	Picker,
+	ActivityIndicator,
+	Switch
+} from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons } from 'react-native-vector-icons';
 import { addProduct } from './APIFunctions';
-import { auth } from '../../../API/firebase';
+import { auth, st } from '../../../API/firebase';
 
-export default function AddProduct({ route }) {
+export default function AddProduct({ route, navigation }) {
 	{
 		/*Variables for inputs for standar product*/
 	}
@@ -19,7 +29,7 @@ export default function AddProduct({ route }) {
 		/*Variables for inputs for Voiture*/
 	}
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
-	const [ kilometrage, setKilometrage] = useState('')
+	const [ kilometrage, setKilometrage ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
@@ -53,7 +63,7 @@ export default function AddProduct({ route }) {
 		/*Chips Visibility*/
 	}
 	const [ chips, setChips ] = useState(true);
-	const [ etatVisible, setEtatVisible ] = useState(true)
+	const [ etatVisible, setEtatVisible ] = useState(true);
 	{
 		/*Category Visibility*/
 	}
@@ -63,53 +73,74 @@ export default function AddProduct({ route }) {
 	const [ Telephone, setTelephone ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
 
-	{/* Switchs*/}
-	const [jantesAluminium, setJantesAluminium] = useState(false);
-	const toggleSwitchJanets = () => setJantesAluminium(previousState => !previousState);
+	{
+		/* Switchs*/
+	}
+	const [ jantesAluminium, setJantesAluminium ] = useState(false);
+	const toggleSwitchJanets = () => setJantesAluminium((previousState) => !previousState);
 
-	
-	const [Airbags, setAirbags] = useState(false);
-	const toggleSwitchAirBags = () => setAirbags(previousState => !previousState);
+	const [ Airbags, setAirbags ] = useState(false);
+	const toggleSwitchAirBags = () => setAirbags((previousState) => !previousState);
 
-	
-	const [vitres, setVitres] = useState(false);
-	const toggleSwitchVitres = () => setVitres(previousState => !previousState);
+	const [ vitres, setVitres ] = useState(false);
+	const toggleSwitchVitres = () => setVitres((previousState) => !previousState);
 
-	
-	const [climatisation, setClimatisation] = useState(false);
-	const toggleSwitchClimatisation = () => setClimatisation(previousState => !previousState);
+	const [ climatisation, setClimatisation ] = useState(false);
+	const [ images, setImages ] = useState([]);
+	const [ imagesUrls, setUrls ] = useState([]);
+	const toggleSwitchClimatisation = () => setClimatisation((previousState) => !previousState);
 
+	//Get pictures once the screen focused
+	useFocusEffect(
+		React.useCallback(() => {
+			const { params } = route;
+			if (params) {
+				const { photos } = params;
+				photos ? setImages(photos) : null;
+				delete params.photos;
+			}
+		}, [])
+	);
 
 	useEffect(() => {
 		const { parent } = route.params;
 		switch (true) {
-
-			case (parent.title == 'VEHICULES') && (parent.item == 'Voiture' || parent.item == 'Location de Voiture' || parent.item == 'Véhicules professionnels') :
-				setChips(false)
-				setVoiture(true)
+			case parent.title == 'VEHICULES' &&
+				(parent.item == 'Voiture' ||
+					parent.item == 'Location de Voiture' ||
+					parent.item == 'Véhicules professionnels'):
+				setChips(false);
+				setVoiture(true);
 				break;
-			case (parent.title == 'VEHICULES'):
-				setChips(false)
-				break;
-			
-			case (parent.title == 'INFORMATIQUE ET MULTIMEDIA') && (parent.item == 'Téléphones' || parent.item == 'Tablettes') :
-				setTelephone(true)
-				break;
-			
-			case (parent.title == 'IMMOBILIER' && (parent.item == 'Appartements' || parent.item == 'Maisons & Villas' || parent.item == 'Location courte durée (vacances)' || parent.item == 'Location long durée')) :
-					setChips(false)
-					setEtatVisible(false)
-					setLocation(true)
-					break;
-			case (parent.title == 'IMMOBILIER'):
-				setChips(false)
-				setEtatVisible(false)
+			case parent.title == 'VEHICULES':
+				setChips(false);
 				break;
 
-			case (parent.item == 'MATERIELS & SERVICES' || parent.item == 'Services et travaux professionnels' || parent.item == 'Formations & autres') :
-				setChips(false)
-				setEtatVisible(false)
-				setServices(true)
+			case parent.title == 'INFORMATIQUE ET MULTIMEDIA' &&
+				(parent.item == 'Téléphones' || parent.item == 'Tablettes'):
+				setTelephone(true);
+				break;
+
+			case parent.title == 'IMMOBILIER' &&
+				(parent.item == 'Appartements' ||
+					parent.item == 'Maisons & Villas' ||
+					parent.item == 'Location courte durée (vacances)' ||
+					parent.item == 'Location long durée'):
+				setChips(false);
+				setEtatVisible(false);
+				setLocation(true);
+				break;
+			case parent.title == 'IMMOBILIER':
+				setChips(false);
+				setEtatVisible(false);
+				break;
+
+			case parent.item == 'MATERIELS & SERVICES' ||
+				parent.item == 'Services et travaux professionnels' ||
+				parent.item == 'Formations & autres':
+				setChips(false);
+				setEtatVisible(false);
+				setServices(true);
 				break;
 
 			default:
@@ -143,16 +174,36 @@ export default function AddProduct({ route }) {
 			Location,
 			services,
 			Telephone,
+			imagesUrls,
 			uuid: auth.currentUser.uid
 		};
-		addProduct(item).then(() => setLoading(false));
+		uploadPics(images).then(() => {
+			addProduct(item).then(() => setLoading(false));
+		});
+	};
+
+	const uploadPics = async (pics) => {
+		console.log('invoke upload pics');
+		console.log(pics);
+		for (let p of pics) {
+			console.log(p.name);
+			const response = await fetch(p.uri);
+			const blob = await response.blob();
+			var ref = st.ref().child('images/' + auth.currentUser.uid + '/' + p.name);
+			await ref.put(blob).then((snapShoot) => {
+				snapShoot.ref.getDownloadURL().then((link) => {
+					setUrls((prevState) => [ ...prevState, link ]);
+				});
+			});
+		}
+		console.log(imagesUrls);
 	};
 
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				<View style={{ flexDirection: 'row' }}>
-					<TouchableOpacity delayPressIn={0}>
+					<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
 						<MaterialIcons name="add-a-photo" color="#444" size={100} />
 					</TouchableOpacity>
 				</View>
@@ -200,24 +251,23 @@ export default function AddProduct({ route }) {
 						keyboardType="numeric"
 						style={{ marginTop: 10 }}
 					/>
-					{etatVisible ?   
-					<View>
-					<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
+					{etatVisible ? (
+						<View>
+							<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
 
-					<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
-						<Picker
-							selectedValue={etat}
-							prompt="Etat"
-							style={{ height: 50, width: '100%' }}
-							onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
-						>
-							<Picker.Item label="Neuf" value="neuf" />
-							<Picker.Item label="Ancien" value="ancien" />
-						</Picker>
-					</View>
-
-					</View>
-					: null}
+							<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
+								<Picker
+									selectedValue={etat}
+									prompt="Etat"
+									style={{ height: 50, width: '100%' }}
+									onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
+								>
+									<Picker.Item label="Neuf" value="neuf" />
+									<Picker.Item label="Ancien" value="ancien" />
+								</Picker>
+							</View>
+						</View>
+					) : null}
 
 					{Telephone ? (
 						<View>
@@ -304,7 +354,6 @@ export default function AddProduct({ route }) {
 								theme={textTheme}
 								style={{ marginTop: 10 }}
 							/>
-							
 
 							<Text style={{ color: '#4898D3', marginTop: 5 }}>Carburant</Text>
 							<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
@@ -350,63 +399,52 @@ export default function AddProduct({ route }) {
 									<Picker.Item label="Automatique" value="Automatique" />
 								</Picker>
 							</View>
-						
 
-						<Text style={{ color: '#4898D3', marginTop: 5 }}>Équipements</Text>
-						<View
-						style={{borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5}}>
-							
-							<View 
-							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
-								<Text
-								style={{width: '50%', marginLeft: 5}}>Jantes Aluminium</Text>
-								<Switch 
-									trackColor={{ false: "#767577", true: "#4898D3" }}
-									thumbColor={jantesAluminium ? "#4898D3" : "#fff"}
-									onValueChange={toggleSwitchJanets}
-									value={jantesAluminium}
-								/>
-							</View>
+							<Text style={{ color: '#4898D3', marginTop: 5 }}>Équipements</Text>
+							<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
+								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
+									<Text style={{ width: '50%', marginLeft: 5 }}>Jantes Aluminium</Text>
+									<Switch
+										trackColor={{ false: '#767577', true: '#4898D3' }}
+										thumbColor={jantesAluminium ? '#4898D3' : '#fff'}
+										onValueChange={toggleSwitchJanets}
+										value={jantesAluminium}
+									/>
+								</View>
 
-							<View 
-							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
-								<Text
-								style={{width: '50%', marginStart: 5}}>Airbags</Text>
-								<Switch 
-									trackColor={{ false: "#767577", true: "#4898D3" }}
-									thumbColor={Airbags ? "#4898D3" : "#fff"}
-									ios_backgroundColor="#3e3e3e"
-									onValueChange={toggleSwitchAirBags}
-									value={Airbags}
-								/>
-							</View>
+								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
+									<Text style={{ width: '50%', marginStart: 5 }}>Airbags</Text>
+									<Switch
+										trackColor={{ false: '#767577', true: '#4898D3' }}
+										thumbColor={Airbags ? '#4898D3' : '#fff'}
+										ios_backgroundColor="#3e3e3e"
+										onValueChange={toggleSwitchAirBags}
+										value={Airbags}
+									/>
+								</View>
 
-							<View 
-							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
-								<Text
-								style={{width: '50%', marginStart: 5}}>Climatisation</Text>
-								<Switch 
-									trackColor={{ false: "#767577", true: "#4898D3" }}
-									thumbColor={climatisation ? "#4898D3" : "#fff"}
-									ios_backgroundColor="#3e3e3e"
-									onValueChange={toggleSwitchClimatisation}
-									value={climatisation}
-								/>
-							</View>
+								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
+									<Text style={{ width: '50%', marginStart: 5 }}>Climatisation</Text>
+									<Switch
+										trackColor={{ false: '#767577', true: '#4898D3' }}
+										thumbColor={climatisation ? '#4898D3' : '#fff'}
+										ios_backgroundColor="#3e3e3e"
+										onValueChange={toggleSwitchClimatisation}
+										value={climatisation}
+									/>
+								</View>
 
-							<View 
-							style={{flexDirection: 'row', height: 25, marginTop: 5 }}>
-								<Text
-								style={{width: '50%', marginStart: 5}}>Vitres Électriques</Text>
-								<Switch 
-									trackColor={{ false: "#767577", true: "#4898D3" }}
-									thumbColor={vitres ? "#4898D3" : "#fff"}
-									ios_backgroundColor="#3e3e3e"
-									onValueChange={toggleSwitchVitres}
-									value={vitres}
-								/>
+								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
+									<Text style={{ width: '50%', marginStart: 5 }}>Vitres Électriques</Text>
+									<Switch
+										trackColor={{ false: '#767577', true: '#4898D3' }}
+										thumbColor={vitres ? '#4898D3' : '#fff'}
+										ios_backgroundColor="#3e3e3e"
+										onValueChange={toggleSwitchVitres}
+										value={vitres}
+									/>
+								</View>
 							</View>
-						</View>
 						</View>
 					) : null}
 					{services ? (

@@ -1,39 +1,50 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { ImageBrowser } from 'expo-image-picker-multiple';
 
 export default function ImagesBrowser({ navigation }) {
-	updateHandler = (count, onSubmit) => {};
+	const [ images, setImages ] = useState([]);
+	const [ imagesUrls, setImagesUrls ] = useState([]);
 
-	imagesCallback = (callback) => {
-		callback
-			.then(async (photos) => {
-				const cPhotos = [];
-				for (let photo of photos) {
-					cPhotos.push({
-						uri: pPhoto.uri,
-						name: photo.filename,
-						type: 'image/jpg'
-					});
-				}
-				navigation.navigate('Main', { photos: cPhotos });
-			})
-			.catch((e) => console.log(e));
-	};
-	constrenderSelectedComponent = (number) => (
+	const renderSelectedComponent = (number) => (
 		<View style={styles.countBadge}>
 			<Text style={styles.countBadgeText}>{number}</Text>
 		</View>
 	);
 
+	const emptyStayComponent = <Text style={styles.emptyStay}>Empty =(</Text>;
+	const noCameraPermissionComponent = <Text style={styles.emptyStay}>No access to camera</Text>;
+
+	const updateHandler = (count, onSubmit) => {
+		onSubmit();
+	};
+
+	const imagesCallback = (callback) => {
+		callback
+			.then(async (photos) => {
+				const cPhotos = [];
+				for (let photo of photos) {
+					cPhotos.push({
+						uri: photo.uri,
+						name: photo.filename,
+						type: 'image/jpg'
+					});
+				}
+				setImages(cPhotos);
+			})
+			.catch((e) => console.log(e));
+	};
+
 	return (
 		<View style={[ styles.flex, styles.container ]}>
+			<Button title="Upload" onPress={() => navigation.navigate('AddProduct', { photos: images })} />
 			<ImageBrowser
 				max={4}
-				onChange={updateHandler}
+				onChange={(count, onSubmit) => updateHandler(count, onSubmit)}
 				callback={imagesCallback}
 				renderSelectedComponent={(n) => renderSelectedComponent(n)}
 				emptyStayComponent={emptyStayComponent}
+				noCameraPermissionComponent={noCameraPermissionComponent}
 			/>
 		</View>
 	);
@@ -66,3 +77,4 @@ const styles = StyleSheet.create({
 		color: '#ffffff'
 	}
 });
+1;
