@@ -8,7 +8,6 @@ export default function ImagesBrowser({ navigation }) {
 	imagesCallback = (callback) => {
 		callback
 			.then(async (photos) => {
-				ñ;
 				const cPhotos = [];
 				for (let photo of photos) {
 					cPhotos.push({
