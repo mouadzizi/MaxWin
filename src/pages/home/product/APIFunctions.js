@@ -1,8 +1,12 @@
 import { db } from '../../../API/firebase';
 
-export const addProduct = async (post) => {
+export const addProduct = async (post, urls) => {
 	var docId;
-	await db.collection('posts').add(post).then((doc) => {
+	var postToPersist = {
+		...post,
+		urls
+	};
+	await db.collection('posts').add(postToPersist).then((doc) => {
 		docId = doc.id;
 	});
 

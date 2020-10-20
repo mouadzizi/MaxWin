@@ -15,6 +15,7 @@ import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons } from 'react-native-vector-icons';
 import { addProduct } from './APIFunctions';
 import { auth, st } from '../../../API/firebase';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function AddProduct({ route, navigation }) {
 	{
@@ -93,16 +94,17 @@ export default function AddProduct({ route, navigation }) {
 	//Get pictures once the screen focused
 	useFocusEffect(
 		React.useCallback(() => {
-			console.log('add product focused');
-			const { params } = route;
-			if (params) {
-				const { photos } = params;
-				console.log(photos);
-				photos ? setImages(photos) : null;
-				delete params.photos;
-			}
+			console.log('focused');
+			getPhotos().then((obj) => {
+				let imgs = JSON.parse(obj);
+				setImages(imgs);
+			});
 		}, [])
 	);
+
+	const getPhotos = async () => {
+		return await AsyncStorage.getItem('images');
+	};
 
 	useEffect(() => {
 		const { parent } = route.params;
@@ -176,29 +178,28 @@ export default function AddProduct({ route, navigation }) {
 			Location,
 			services,
 			Telephone,
-			imagesUrls,
 			uuid: auth.currentUser.uid
 		};
-		uploadPics(images).then(() => {
-			addProduct(item).then(() => setLoading(false));
+		uploadPics(images).then((imagesUrls) => {
+			addProduct(item, imagesUrls).then(() => setLoading(false));
 		});
 	};
 
 	const uploadPics = async (pics) => {
 		console.log('invoke upload pics');
-		console.log(pics);
+		let urls = [];
 		for (let p of pics) {
 			console.log(p.name);
 			const response = await fetch(p.uri);
 			const blob = await response.blob();
 			var ref = st.ref().child('images/' + auth.currentUser.uid + '/' + p.name);
-			await ref.put(blob).then((snapShoot) => {
-				snapShoot.ref.getDownloadURL().then((link) => {
-					setUrls((prevState) => [ ...prevState, link ]);
+			await ref.put(blob).then(async (snapShoot) => {
+				await snapShoot.ref.getDownloadURL().then((link) => {
+					urls.push(link);
 				});
 			});
 		}
-		console.log(imagesUrls);
+		return urls;
 	};
 
 	return (
@@ -210,9 +211,7 @@ export default function AddProduct({ route, navigation }) {
 					</TouchableOpacity>
 				</View>
 
-				<Text style={{ color: '#4898D3', fontSize: 11 }}>
-					Une bonne annonce commence par une bonne photo.
-				</Text>
+				<Text style={{ color: '#4898D3', fontSize: 11 }}>Une bonne annonce commence par une bonne photo.</Text>
 
 				<View style={{ flex: 1, marginTop: 20 }}>
 					<TextInput

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { ImageBrowser } from 'expo-image-picker-multiple';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function ImagesBrowser({ navigation }) {
 	const [ images, setImages ] = useState([]);
@@ -25,19 +26,26 @@ export default function ImagesBrowser({ navigation }) {
 				const cPhotos = [];
 				for (let photo of photos) {
 					cPhotos.push({
-						uri: photo.uri,
 						name: photo.filename,
+						uri: photo.uri,
 						type: 'image/jpg'
 					});
 				}
-				setImages(cPhotos);
+				savePhotos(cPhotos);
 			})
 			.catch((e) => console.log(e));
 	};
 
+	const savePhotos = async (images) => {
+		try {
+			await AsyncStorage.setItem('images', JSON.stringify(images));
+		} catch (e) {
+			alert(e.message);
+		}
+	};
 	return (
 		<View style={[ styles.flex, styles.container ]}>
-			<Button title="Upload" onPress={() => navigation.navigate('AddProduct', { photos: images })} />
+			<Button title="Upload" onPress={() => navigation.goBack()} />
 			<ImageBrowser
 				max={4}
 				onChange={(count, onSubmit) => updateHandler(count, onSubmit)}
