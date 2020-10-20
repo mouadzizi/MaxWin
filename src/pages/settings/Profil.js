@@ -150,7 +150,7 @@ export default function Profil() {
 
 			<FAB
 				style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, backgroundColor: '#4898D3' }}
-				label={edit ? 'save' : 'modifier le profil'}
+				label={edit ? 'enregistrer' : 'modifier'}
 				color="#fff"
 				onPress={() => action()}
 			/>
