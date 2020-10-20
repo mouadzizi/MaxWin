@@ -60,6 +60,7 @@ export default function Filtre() {
 		
 			case (item === 'Services et travaux professionnels') :
 				setService(true)
+				setEtatVisibility(false)
 				break;
 
 			default:
