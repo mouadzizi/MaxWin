@@ -66,7 +66,7 @@ export default function DashStack() {
 				name="AddProduct"
 				component={AddProduct}
 				options={{
-					title: 'Ajouter Produit',
+					title: 'Ajouter votre Produit',
 					headerTitleAlign: 'center',
 					headerStyle: {
 						backgroundColor: '#4898D3'
@@ -124,7 +124,20 @@ export default function DashStack() {
 					}
 				}}
 			/>
-			<Stack.Screen name="image" component={Img} />
+			<Stack.Screen name="image" 
+			component={Img} 
+			options={{
+					title: 'Images',
+					headerTitleAlign: 'center',
+					headerStyle: {
+						backgroundColor: '#4898D3'
+					},
+					headerTintColor: '#fff',
+					headerTitleStyle: {
+						fontWeight: '500'
+					}
+				}}
+			/>
 		</Stack.Navigator>
 	);
 }

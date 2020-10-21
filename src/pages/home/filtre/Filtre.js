@@ -76,12 +76,12 @@ export default function Filtre() {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				<TouchableOpacity
-					style={{ borderWidth: 1, borderRadius: 5, height: 45 }}
+					style={{ borderWidth: 1.5, borderRadius: 5, height: 45, borderColor: '#4898D3'  }}
 					onPress={() => {
 						setModalVisible(true);
 					}}
 				>
-					<Text style={{ alignSelf: 'center', textAlign: 'center', marginTop: 10 }}>
+					<Text style={{ alignSelf: 'center', textAlign: 'center', marginTop: 10, color: '#4898D3', fontSize: 18}}>
 						{titreModal}
 					</Text>
 				</TouchableOpacity>

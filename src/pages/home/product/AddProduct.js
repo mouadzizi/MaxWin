@@ -7,7 +7,6 @@ import {
 	TouchableOpacity,
 	Text,
 	Picker,
-	ActivityIndicator,
 	Switch
 } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
@@ -61,22 +60,23 @@ export default function AddProduct({ route, navigation }) {
 	const [ laivraison, setLaivraison ] = useState(false);
 	const [ paiement, setPaiement ] = useState(false);
 	{
-		/*Chips Visibility*/
+		/*components Visibility*/
 	}
 	const [ chips, setChips ] = useState(true);
 	const [ etatVisible, setEtatVisible ] = useState(true);
-	{
-		/*Category Visibility*/
-	}
+	const [ imageViisible, setImageViible ] = useState(false);
+	
+	//Category Visibility
+	
 	const [ voiture, setVoiture ] = useState(false);
 	const [ Location, setLocation ] = useState(false);
 	const [ services, setServices ] = useState(false);
 	const [ Telephone, setTelephone ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
 
-	{
-		/* Switchs*/
-	}
+	
+	// Switchs
+	
 	const [ jantesAluminium, setJantesAluminium ] = useState(false);
 	const toggleSwitchJanets = () => setJantesAluminium((previousState) => !previousState);
 
@@ -86,15 +86,24 @@ export default function AddProduct({ route, navigation }) {
 	const [ vitres, setVitres ] = useState(false);
 	const toggleSwitchVitres = () => setVitres((previousState) => !previousState);
 
+	const [ abs, setAbs ] = useState(false);
+	const toggleSwitchAbs = () => setAbs((previousState) => !previousState);
+
+	
+	const [ radar, setRadar ] = useState(false);
+	const toggleSwitchRadar = () => setRadar((previousState) => !previousState);
+
+	
 	const [ climatisation, setClimatisation ] = useState(false);
-	const [ images, setImages ] = useState([]);
-	const [ imagesUrls, setUrls ] = useState([]);
 	const toggleSwitchClimatisation = () => setClimatisation((previousState) => !previousState);
 
 	//Get pictures once the screen focused
+	
+	const [ images, setImages ] = useState([]);
+	const [ imagesUrls, setUrls ] = useState([]);
+
 	useFocusEffect(
 		React.useCallback(() => {
-			console.log('focused');
 			getPhotos().then((obj) => {
 				let imgs = JSON.parse(obj);
 				setImages(imgs);
@@ -109,15 +118,17 @@ export default function AddProduct({ route, navigation }) {
 	useEffect(() => {
 		const { parent } = route.params;
 		switch (true) {
+
 			case parent.title == 'VEHICULES' &&
-				(parent.item == 'Voiture' ||
-					parent.item == 'Location de Voiture' ||
-					parent.item == 'Véhicules professionnels'):
+				(parent.item == 'Voiture' || parent.item == 'Location de Voiture'):
 				setChips(false);
 				setVoiture(true);
+				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
 				break;
+
 			case parent.title == 'VEHICULES':
 				setChips(false);
+				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
 				break;
 
 			case parent.title == 'INFORMATIQUE ET MULTIMEDIA' &&
@@ -129,22 +140,36 @@ export default function AddProduct({ route, navigation }) {
 				(parent.item == 'Appartements' ||
 					parent.item == 'Maisons & Villas' ||
 					parent.item == 'Location courte durée (vacances)' ||
+					parent.item == 'Commerces & Bureaux' ||
 					parent.item == 'Location long durée'):
 				setChips(false);
 				setEtatVisible(false);
 				setLocation(true);
+				navigation.setOptions({ title: 'Ajouter votre Immobilier' });
 				break;
+
 			case parent.title == 'IMMOBILIER':
 				setChips(false);
 				setEtatVisible(false);
+				navigation.setOptions({ title: 'Ajouter Immobilier' });
 				break;
 
-			case parent.item == 'MATERIELS & SERVICES' ||
-				parent.item == 'Services et travaux professionnels' ||
-				parent.item == 'Formations & autres':
+			case parent.item == 'Matériels professionnels': 
+			setServices(true);
+			navigation.setOptions({ title: 'Matériels professionnels' });
+			break;
+
+			case parent.item == 'Services et travaux professionnels' :
 				setChips(false);
 				setEtatVisible(false);
 				setServices(true);
+				navigation.setOptions({ title: 'Services et travaux' });
+				break;
+
+			case parent.item == 'Formations & autres' :
+				setChips(false);
+				setEtatVisible(false);
+				navigation.setOptions({ title: 'Formations & autres' });
 				break;
 
 			default:
@@ -186,10 +211,8 @@ export default function AddProduct({ route, navigation }) {
 	};
 
 	const uploadPics = async (pics) => {
-		console.log('invoke upload pics');
 		let urls = [];
 		for (let p of pics) {
-			console.log(p.name);
 			const response = await fetch(p.uri);
 			const blob = await response.blob();
 			var ref = st.ref().child('images/' + auth.currentUser.uid + '/' + p.name);
@@ -205,13 +228,39 @@ export default function AddProduct({ route, navigation }) {
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
-				<View style={{ flexDirection: 'row' }}>
+
+			{imageViisible ?
+			<View style={{ flexDirection: 'row' }}> 
+			<View style={{flex: 1}}>
+				<Text>Image 1</Text>
+			</View>
+
+			<View style={{flex: 1}}>
+				<Text>Image 2</Text>
+			</View>
+
+			<View style={{flex: 1}}>
+				<Text>Image 3</Text>
+			</View>
+
+			<View style={{flex: 1}}>
+				<Text>Image 4</Text>
+			</View>
+
+
+			</View> 
+			:
+			<View>
+			<View style={{ flexDirection: 'row' }}>
 					<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
 						<MaterialIcons name="add-a-photo" color="#444" size={100} />
 					</TouchableOpacity>
-				</View>
-
-				<Text style={{ color: '#4898D3', fontSize: 11 }}>Une bonne annonce commence par une bonne photo.</Text>
+			</View>
+			
+			<Text style={{ color: '#4898D3', fontSize: 11 }}>Une bonne annonce commence par une bonne photo.</Text>
+			</View>
+			}
+				
 
 				<View style={{ flex: 1, marginTop: 20 }}>
 					<TextInput
@@ -239,6 +288,7 @@ export default function AddProduct({ route, navigation }) {
 							<Picker.Item label="Temara" value="Temara" />
 							<Picker.Item label="Casablanca" value="Casablanca" />
 							<Picker.Item label="El Jadida" value="El Jadida" />
+							<Picker.Item label="Agadir" value="Agadir" />
 							<Picker.Item label="Merakech" value="Merakech" />
 						</Picker>
 					</View>
@@ -252,6 +302,7 @@ export default function AddProduct({ route, navigation }) {
 						keyboardType="numeric"
 						style={{ marginTop: 10 }}
 					/>
+
 					{etatVisible ? (
 						<View>
 							<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
@@ -272,7 +323,7 @@ export default function AddProduct({ route, navigation }) {
 
 					{Telephone ? (
 						<View>
-							<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque de Télephone Portable</Text>
+							<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque</Text>
 							<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}>
 								<Picker
 									selectedValue={phoneMarque}
@@ -287,6 +338,7 @@ export default function AddProduct({ route, navigation }) {
 									<Picker.Item label="HUAWEI" value="HUAWEI" />
 									<Picker.Item label="SONY" value="SONY" />
 									<Picker.Item label="NOKIA" value="NOKIA" />
+									<Picker.Item label="Autre" value="Autre" />
 								</Picker>
 							</View>
 						</View>
@@ -365,7 +417,9 @@ export default function AddProduct({ route, navigation }) {
 									onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
 								>
 									<Picker.Item label="Diesel " value="Diesel" />
-									<Picker.Item label="Essence" value="Essence" />
+									<Picker.Item label="Essence" value="Essence" />	
+									<Picker.Item label="Hybrid" value="Hybrid" />
+									<Picker.Item label="Electrique" value="Electrique" />
 								</Picker>
 							</View>
 
@@ -403,6 +457,7 @@ export default function AddProduct({ route, navigation }) {
 
 							<Text style={{ color: '#4898D3', marginTop: 5 }}>Équipements</Text>
 							<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
+
 								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
 									<Text style={{ width: '50%', marginLeft: 5 }}>Jantes Aluminium</Text>
 									<Switch
@@ -445,9 +500,34 @@ export default function AddProduct({ route, navigation }) {
 										value={vitres}
 									/>
 								</View>
+
+								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
+									<Text style={{ width: '50%', marginStart: 5 }}>Radar De Recul</Text>
+									<Switch
+										trackColor={{ false: '#767577', true: '#4898D3' }}
+										thumbColor={radar ? '#4898D3' : '#fff'}
+										ios_backgroundColor="#3e3e3e"
+										onValueChange={toggleSwitchRadar}
+										value={radar}
+									/>
+								</View>
+
+								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
+									<Text style={{ width: '50%', marginStart: 5 }}>ABS</Text>
+									<Switch
+										trackColor={{ false: '#767577', true: '#4898D3' }}
+										thumbColor={abs ? '#4898D3' : '#fff'}
+										ios_backgroundColor="#3e3e3e"
+										onValueChange={toggleSwitchAbs}
+										value={abs}
+									/>
+								</View>
+
+
 							</View>
 						</View>
 					) : null}
+
 					{services ? (
 						<View>
 							<Text style={{ color: '#4898D3', marginTop: 5 }}>Type de service</Text>
@@ -474,6 +554,7 @@ export default function AddProduct({ route, navigation }) {
 							</View>
 						</View>
 					) : null}
+
 					{Location ? (
 						<View>
 							<TextInput
@@ -525,6 +606,7 @@ export default function AddProduct({ route, navigation }) {
 							color="#4898D3"
 						/>
 					</View>
+					
 					{chips ? (
 						<View>
 							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>

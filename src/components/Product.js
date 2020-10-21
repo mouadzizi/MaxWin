@@ -77,7 +77,7 @@ export default function Product(props) {
             size={15}
             color='#4898D3'
             />
-            <Text style={GlobalStyle.cardChip}> Laivraison possible</Text>
+            <Text style={GlobalStyle.cardChip}> Livraison possible</Text>
             </View>
             : null}
             

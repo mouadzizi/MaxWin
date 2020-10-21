@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { FAB} from 'react-native-paper';
 import { ImageBrowser } from 'expo-image-picker-multiple';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function ImagesBrowser({ navigation }) {
-	const [ images, setImages ] = useState([]);
-	const [ imagesUrls, setImagesUrls ] = useState([]);
 
 	const renderSelectedComponent = (number) => (
 		<View style={styles.countBadge}>
@@ -45,7 +44,6 @@ export default function ImagesBrowser({ navigation }) {
 	};
 	return (
 		<View style={[ styles.flex, styles.container ]}>
-			<Button title="Upload" onPress={() => navigation.goBack()} />
 			<ImageBrowser
 				max={4}
 				onChange={(count, onSubmit) => updateHandler(count, onSubmit)}
@@ -53,6 +51,12 @@ export default function ImagesBrowser({ navigation }) {
 				renderSelectedComponent={(n) => renderSelectedComponent(n)}
 				emptyStayComponent={emptyStayComponent}
 				noCameraPermissionComponent={noCameraPermissionComponent}
+			/>
+			<FAB
+				style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, backgroundColor: '#4898D3' }}
+				label='Upload'
+				color="#fff"
+				onPress={() => navigation.goBack()} 
 			/>
 		</View>
 	);
