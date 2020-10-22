@@ -85,17 +85,7 @@ export default function Profil() {
 
 				<Divider />
 
-				<View style={{ flex: 1, justifyContent: 'center', marginTop: 15, marginBottom: 15 }}>
-					<TextInput
-						theme={{ colors: { primary: '#fff', background: 'rgba(255,255,225,0)' } }}
-						mode="flat"
-						multiline
-						value={about}
-						onChangeText={(e) => setAbout(e)}
-						editable={edit}
-						placeholder={about ? null : 'Ajouter une introduction'}
-					/>
-				</View>
+				
 
 				<Divider />
 
@@ -144,6 +134,19 @@ export default function Profil() {
 						value={email}
 						editable={false}
 						style={{ height: 25, width: '95%' }}
+					/>
+				</View>
+
+				<View style={{ flex: 1, marginTop: 15, marginBottom: 5 }}>
+					<Text style={{ fontWeight: 'bold', color: '#4898D3' }}>Au propos de vous</Text>
+					<TextInput
+						theme={{ colors: { primary: '#fff', background: 'rgba(255,255,225,0)' } }}
+						mode="flat"
+						multiline
+						value={about}
+						onChangeText={(e) => setAbout(e)}
+						editable={edit}
+						placeholder={about ? null : 'Ajouter une introduction'}
 					/>
 				</View>
 			</ScrollView>

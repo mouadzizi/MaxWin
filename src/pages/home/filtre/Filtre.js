@@ -21,6 +21,9 @@ export default function Filtre() {
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
+	
+	const [ anneeMax, setAnneeMax ] = useState('');
+	const [ anneeMin, setAnneeMin ] = useState('');
 
 	{
 		/* filter variables Location */
@@ -46,28 +49,51 @@ export default function Filtre() {
 		setModalVisible(false);
 		switch (true) {
 
-			case (item === 'Voiture' || item === 'Location de Voiture' || item === 'Véhicules professionnels') :
+			case (item === 'Voiture' || item === 'Location de Voiture') :
 				setVoiture(true)
+				setPhone(false)
+				setLocation(false)
+				setService(false)
+				setEtatVisibility(true)
 				break;
 			
 			case (item === 'Téléphones' || item === 'Tablettes') :
 				setPhone(true)
+				setVoiture(false)
+				setLocation(false)
+				setService(false)
+				setEtatVisibility(true)
 				break;
 
-			case (item === 'Appartements' || item === 'Maisons & Villas' || item === 'Location courte durée (vacances)' || item === 'Location long durée') :
+			case (item === 'Appartements' || item === 'Maisons & Villas' || item === 'Location courte durée (vacances)' || item === 'Location long durée' || item == 'Commerces & Bureaux') :
 				setLocation(true)
-				break;
-		
-			case (item === 'Services et travaux professionnels') :
-				setService(true)
+				setPhone(false)
+				setVoiture(false)
+				setService(false)
 				setEtatVisibility(false)
 				break;
+		
+			case (item === 'Services et travaux professionnels' || item === 'Formations & autres') :
+				setService(true)
+				setLocation(false)
+				setPhone(false)
+				setVoiture(false)
+				setEtatVisibility(false)
+				break;
+			case (item === 'Matériels professionnels') :
+					setService(true)
+					setLocation(false)
+					setPhone(false)
+					setVoiture(false)
+					setEtatVisibility(true)
+					break;
 
 			default:
 				setService(false);
 				setLocation(false);
 				setPhone(false);
 				setVoiture(false);
+				setEtatVisibility(true)
 				break;
 		}
 	};
@@ -162,7 +188,7 @@ export default function Filtre() {
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
 										<Picker.Item label="Neuf" value="neuf" />
-										<Picker.Item label="Ancien" value="tn" />
+										<Picker.Item label="Ancien" value="Ancien" />
 									</Picker>
 								</View>
 							</View>
@@ -212,15 +238,28 @@ export default function Filtre() {
 									</Picker>
 								</View>
 
-								<TextInput
-									onChangeText={setFabrication}
-									label="Année de fabrication"
-									mode="outlined"
-									placeholder="exemple: 2005"
-									keyboardType="numeric"
-									theme={textTheme}
-									style={{ marginTop: 10 }}
-								/>
+							<Text style={{ color: '#4898D3', marginTop: 5 }}>Année de fabrication</Text>
+							<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+							<TextInput
+								label="Année MIN"
+								mode="outlined"
+								placeholder="1996"
+								theme={textTheme}
+								onChangeText={setPriceMin}
+								keyboardType="numeric"
+								style={{ width: '45%' }}
+							/>
+
+							<TextInput
+								label="Année MAX"
+								mode="outlined"
+								placeholder="2020"
+								theme={textTheme}
+								onChangeText={setPriceMax}
+								keyboardType="numeric"
+								style={{ width: '45%' }}
+							/>
+						</View>
 
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Carburant</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
@@ -232,6 +271,8 @@ export default function Filtre() {
 									>
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
+										<Picker.Item label="Hybrid" value="Hybrid" />
+										<Picker.Item label="Electrique" value="Electrique" />
 									</Picker>
 								</View>
 

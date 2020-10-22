@@ -7,7 +7,8 @@ import {
 	TouchableOpacity,
 	Text,
 	Picker,
-	Switch
+	Switch,
+	Image
 } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
@@ -230,7 +231,7 @@ export default function AddProduct({ route, navigation }) {
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 
 			{imageViisible ?
-			<View style={{ flexDirection: 'row' }}> 
+			<View style={{ flexDirection: 'row', flex: 1 }}> 
 			<View style={{flex: 1}}>
 				<Text>Image 1</Text>
 			</View>

@@ -21,7 +21,7 @@ export default function ProductEdit(props) {
 
           <View style={{flex: 3}}>
             <Text style={{fontSize: 19, fontWeight: 'bold'}}>Product title</Text>
-            <Text style={{color: '#4898D3', fontSize: 18}}>50 MAD</Text>
+            <Text style={{color: '#F16E44', fontSize: 18}}>50 MAD</Text>
           </View>
 
           <View style={{flex: 1}}>

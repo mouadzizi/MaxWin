@@ -8,7 +8,20 @@ export default function Settings({navigation}) {
         <SafeAreaView style={{ flex: 1}} >
         <ScrollView showsVerticalScrollIndicator={false}>
 
-
+        <View
+        style={{flex:1, backgroundColor: '#fff', marginTop: 10 }}>
+ 
+        <List.Item
+            onPress={()=> navigation.navigate('Profil')}
+            title="Mon profil"
+            style={{padding: 10}}
+            left={props =><FontAwesome 
+                name='user-circle-o'
+                color='#4898D3'
+                size={40}
+            />}/>
+        </View>
+        
         <View
         style={{flex:1, backgroundColor: '#fff', marginTop: 10 }}>
  
@@ -23,19 +36,7 @@ export default function Settings({navigation}) {
             />}/>
         </View>
 
-        <View
-        style={{flex:1, backgroundColor: '#fff', marginTop: 10 }}>
- 
-        <List.Item
-            onPress={()=> navigation.navigate('Profil')}
-            title="Mon profil"
-            style={{padding: 10}}
-            left={props =><FontAwesome 
-                name='user-circle-o'
-                color='#4898D3'
-                size={40}
-            />}/>
-        </View>
+       
 
         <View
         style={{flex:1, backgroundColor: '#fff', marginTop: 10 }}>
