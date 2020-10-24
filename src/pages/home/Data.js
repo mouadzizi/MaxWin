@@ -5,7 +5,12 @@ import { List } from 'react-native-paper';
 export const DATA = [
 	{
 		title: 'VEHICULES',
-		data: [ 'Voiture', 'Location de Voiture', 'Motos & vélos', 'Véhicules professionnels', 'Autre' ]
+		data: [ 
+			'Voiture', 
+			'Location de Voiture', 
+			'Motos & vélos', 
+			'Véhicules professionnels' 
+		]
 	},
 
 	{
@@ -19,7 +24,6 @@ export const DATA = [
 			'Appareils photo',
 			'Accessoires informatique',
 			'Accessoires H-TECH',
-			'Autre'
 		]
 	},
 
@@ -32,12 +36,11 @@ export const DATA = [
 			'Commerces & Bureaux',
 			'Location courte durée (vacances)',
 			'Location long durée',
-			'Autre'
 		]
 	},
 	{
 		title: 'MAISON & DECO',
-		data: [ 'Electroménagers', 'Meubles et déco', 'Autres' ]
+		data: [ 'Electroménagers', 'Meubles et déco']
 	},
 
 	{
@@ -48,13 +51,16 @@ export const DATA = [
 			'Vêtements bébés & enfants',
 			'Montres, Bijoux & accessoires',
 			'Produits de bien être',
-			'Autre'
 		]
 	},
 
 	{
 		title: 'MATERIELS & SERVICES',
-		data: [ 'Matériels professionnels', 'Services et travaux professionnels', 'Formations & autres' ]
+		data: [ 
+			'Matériels professionnels', 
+			'Services et travaux professionnels', 
+			'Formations & autres' 
+		]
 	}
 ];
 export const ItemHeader = ({ title, icon }) => (

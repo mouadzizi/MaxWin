@@ -83,10 +83,11 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     usernameProfil:{
-      fontWeight: '300',
+      color: '#4898D3',
       fontSize: 17,
       marginBottom: 10,
       textAlign: 'center',
+      fontWeight: 'bold',
     },
 
     numberPosts:{

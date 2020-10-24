@@ -3,6 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Text, ScrollView, SafeAreaView, View, TouchableOpacity } from 'react-native';
 import { Avatar, Divider, FAB, TextInput, ProgressBar } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
+import {MaterialCommunityIcons, FontAwesome} from 'react-native-vector-icons'
 import { auth, db } from '../../API/firebase';
 
 export default function Profil() {
@@ -14,6 +15,10 @@ export default function Profil() {
 	const [ name, setName ] = useState(' ');
 	const [ loading, setLoading ] = useState(false);
 
+	
+	const [ isPro, setIsPro] = useState(true);
+
+	
 	var userRef = null;
 
 	useFocusEffect(
@@ -26,7 +31,6 @@ export default function Profil() {
 				userRef
 					.get()
 					.then((doc) => {
-						console.log('loading.....');
 						loadInfo(doc.data());
 						setLoading(false);
 					})
@@ -68,19 +72,48 @@ export default function Profil() {
 		setPhone(doc.phone);
 		setName(doc.name);
 		setEmail(doc.email);
+		setIsPro(doc.accountType);
 	};
 
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}>
+		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 10 }}>
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<ProgressBar color="#4898D3" indeterminate={true} visible={loading} />
+
 				<View
-					style={{ flex: 1, justifyContent: 'center', alignSelf: 'center', marginTop: 15, marginBottom: 15 }}
+				style={{ flex: 1, flexDirection: 'row'}}>
+
+				<View
+					style={{ flex: 1, justifyContent: 'center', alignSelf: 'center', marginTop: 15, marginBottom: 15, alignItems: 'center' }}
 				>
-					<Text style={GlobalStyle.usernameProfil}>{auth.currentUser.displayName}</Text>
 					<TouchableOpacity>
 						<Avatar.Image size={110} source={{ uri: auth.currentUser.photoURL }} />
 					</TouchableOpacity>
+				</View>
+				
+				<View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center', marginTop: 15, marginBottom: 15 }}>
+
+			
+						<Text style={GlobalStyle.usernameProfil}>{auth.currentUser.displayName}</Text>
+					
+					{isPro ? 
+					
+					<View style={{flexDirection: 'row', alignSelf: 'center'}}>
+					<MaterialCommunityIcons name="store" size={25} color='#F16E44'/>
+					<Text style={{ fontWeight: 'bold', color: '#F16E44',textAlign: 'center', marginLeft: 5 }}>Professionel</Text>
+					</View>
+
+					
+					: 
+					<View
+					style={{flexDirection: 'row', alignSelf: 'center'}}>
+					<FontAwesome name="user-o" color='#F16E44' size={20} />
+					<Text style={{ fontWeight: 'bold', color: '#F16E44',textAlign: 'center', marginLeft: 5 }}>Particulier</Text>
+					</View>}
+					
+
+				</View>
+
 				</View>
 
 				<Divider />
@@ -88,67 +121,74 @@ export default function Profil() {
 				
 
 				<Divider />
-
-				<View style={{ flex: 1, alignContent: 'space-around', marginTop: 15, marginBottom: 5 }}>
-					<Text style={{ fontWeight: 'bold', color: '#4898D3' }}>Téléphone</Text>
+						
+				<View style={{ flex: 1, marginTop: 15, marginBottom: 15, marginStart: 15}}>
+		
 					<TextInput
-						theme={{ colors: { primary: '#fff', background: 'rgba(255,255,225,0)' } }}
-						mode="flat"
-						value={phone}
-						onChangeText={(e) => setPhone(e)}
-						editable={edit}
-						style={{ height: 25, width: '95%' }}
-					/>
-				</View>
-
-				<View style={{ flex: 1, marginTop: 15, marginBottom: 5 }}>
-					<Text style={{ fontWeight: 'bold', color: '#4898D3' }}>Nom et prénom</Text>
-					<TextInput
-						theme={{ colors: { primary: '#fff', background: 'rgba(255,255,225,0)' } }}
-						mode="flat"
+                        theme={textTheme}
+						mode="outlined"
 						value={name}
+						label="Nom d'utilisateur"
 						onChangeText={(e) => setName(e)}
 						editable={edit}
-						style={{ height: 25, width: '95%' }}
+						style={{ height: 50, width: '95%' }}	
+						left={ <TextInput.Icon name="gender-male-female" color='#4898D3'/> }
 					/>
-				</View>
-
-				<View style={{ flex: 1, alignContent: 'space-around', marginTop: 15, marginBottom: 5 }}>
-					<Text style={{ fontWeight: 'bold', color: '#4898D3' }}>Location</Text>
+				<Divider style={{marginVertical: 10}}/>
 					<TextInput
-						theme={{ colors: { primary: '#fff', background: 'rgba(255,255,225,0)' } }}
-						mode="flat"
+                        theme={textTheme}
+						mode="outlined"
+						value={phone}
+						label='Téléphone'
+						onChangeText={(e) => setPhone(e)}
+						editable={edit}
+						style={{ height: 50, width: '95%' }}
+						left={<TextInput.Icon name='cellphone' color='#4898D3'/>}
+					/>
+					
+				<Divider style={{marginVertical: 10}}/>
+					<TextInput
+                        theme={textTheme}
+						mode="outlined"
 						value={location}
+						label="Adresse"
 						onChangeText={(e) => setLocation(e)}
 						editable={edit}
-						style={{ height: 25, width: '95%' }}
+						style={{ height: 50, width: '95%' }}
+						left={ <TextInput.Icon name="city-variant" color='#4898D3'/> }
 					/>
-				</View>
-
-				<View style={{ flex: 1, marginTop: 15, marginBottom: 5 }}>
-					<Text style={{ fontWeight: 'bold', color: '#4898D3' }}>E-mail</Text>
+				
+				<Divider style={{marginVertical: 10}}/>
 
 					<TextInput
-						theme={{ colors: { primary: '#fff', background: 'rgba(255,255,225,0)' } }}
-						mode="flat"
+                        theme={textTheme}
+						mode="outlined"
 						value={email}
-						editable={false}
-						style={{ height: 25, width: '95%' }}
-					/>
-				</View>
+						label="Email"
+						onChangeText={(e) => setEmail(e)}
+						editable={edit}
+						style={{ height: 50, width: '95%' }}
+						left={ <TextInput.Icon name="email-check-outline" color='#4898D3'/> }
+						/>
+				
+				<Divider style={{marginVertical: 10}}/>
 
-				<View style={{ flex: 1, marginTop: 15, marginBottom: 5 }}>
-					<Text style={{ fontWeight: 'bold', color: '#4898D3' }}>Au propos de vous</Text>
 					<TextInput
-						theme={{ colors: { primary: '#fff', background: 'rgba(255,255,225,0)' } }}
-						mode="flat"
-						multiline
+                        theme={textTheme}
+						mode="outlined"
+						label="Desription"
 						value={about}
+						multiline={true}
+						maxLength={150}
 						onChangeText={(e) => setAbout(e)}
 						editable={edit}
-						placeholder={about ? null : 'Ajouter une introduction'}
+						style={{ width: '95%' }}
 					/>
 				</View>
+
+
+
+
 			</ScrollView>
 
 			<FAB

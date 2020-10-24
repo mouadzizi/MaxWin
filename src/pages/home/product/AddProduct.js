@@ -18,57 +18,48 @@ import { auth, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function AddProduct({ route, navigation }) {
-	{
-		/*Variables for inputs for standar product*/
-	}
+
+	//Variables for inputs for standar product
 	const [ title, setTitle ] = useState('');
 	const [ city, setCity ] = useState('');
 	const [ price, setPrice ] = useState('');
 	const [ description, setDescription ] = useState('');
 
-	{
-		/*Variables for inputs for Voiture*/
-	}
+	//Variables for inputs for Voiture
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
 	const [ kilometrage, setKilometrage ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
-	{
-		/*Variables for inputs for Location*/
-	}
+
+	const [ equipment, setEquipment] = useState('');
+
+	//Variables for inputs for Location
 	const [ piece, setPiece ] = useState('');
 	const [ superficie, setSuperficie ] = useState('');
-	{
-		/*Variables for inputs for Services*/
-	}
+	
+	//Variables for inputs for Services
 	const [ servicetype, setServiceType ] = useState('');
-	{
-		/*Variables for inputs for Phone*/
-	}
+
+	//Variables for inputs for Phone
 	const [ phoneMarque, setPhoneMarque ] = useState(false);
 
-	{
-		/*Visibility for State*/
-	}
+	//Visibility for State
 	const [ etat, setEtat ] = useState('');
 
-	{
-		/*Variables for chips*/
-	}
+	//Variables for chips
 	const [ phone, setPhone ] = useState(false);
 	const [ laivraison, setLaivraison ] = useState(false);
 	const [ paiement, setPaiement ] = useState(false);
-	{
-		/*components Visibility*/
-	}
+
+	//components Visibility
 	const [ chips, setChips ] = useState(true);
 	const [ etatVisible, setEtatVisible ] = useState(true);
+	const [ superficieleVisible, setSuperficieleVisible ] = useState(false);
 	const [ imageViisible, setImageViible ] = useState(false);
 	
 	//Category Visibility
-	
 	const [ voiture, setVoiture ] = useState(false);
 	const [ Location, setLocation ] = useState(false);
 	const [ services, setServices ] = useState(false);
@@ -77,7 +68,6 @@ export default function AddProduct({ route, navigation }) {
 
 	
 	// Switchs
-	
 	const [ jantesAluminium, setJantesAluminium ] = useState(false);
 	const toggleSwitchJanets = () => setJantesAluminium((previousState) => !previousState);
 
@@ -90,16 +80,13 @@ export default function AddProduct({ route, navigation }) {
 	const [ abs, setAbs ] = useState(false);
 	const toggleSwitchAbs = () => setAbs((previousState) => !previousState);
 
-	
 	const [ radar, setRadar ] = useState(false);
 	const toggleSwitchRadar = () => setRadar((previousState) => !previousState);
 
-	
 	const [ climatisation, setClimatisation ] = useState(false);
 	const toggleSwitchClimatisation = () => setClimatisation((previousState) => !previousState);
 
 	//Get pictures once the screen focused
-	
 	const [ images, setImages ] = useState([]);
 	const [ imagesUrls, setUrls ] = useState([]);
 
@@ -141,14 +128,27 @@ export default function AddProduct({ route, navigation }) {
 				(parent.item == 'Appartements' ||
 					parent.item == 'Maisons & Villas' ||
 					parent.item == 'Location courte durée (vacances)' ||
-					parent.item == 'Commerces & Bureaux' ||
 					parent.item == 'Location long durée'):
 				setChips(false);
 				setEtatVisible(false);
 				setLocation(true);
 				navigation.setOptions({ title: 'Ajouter votre Immobilier' });
 				break;
+			
+			case parent.title == 'IMMOBILIER' && (parent.item == 'Commerces & Bureaux') :
+					setChips(false);
+					setEtatVisible(false);
+					setSuperficieleVisible(true);
+					navigation.setOptions({ title: 'Ajouter votre Bureaux' });
+					break;
 
+			case parent.title == 'IMMOBILIER' && (parent.item == 'Terrains') :
+					setChips(false);
+					setEtatVisible(false);
+					setSuperficieleVisible(true);
+					navigation.setOptions({ title: 'Ajouter votre Terrain' });
+					break;
+				
 			case parent.title == 'IMMOBILIER':
 				setChips(false);
 				setEtatVisible(false);
@@ -185,25 +185,28 @@ export default function AddProduct({ route, navigation }) {
 			title,
 			city,
 			price,
-			etat,
 			description,
+			
+			etat,
+			
 			marqueVoiture,
 			kilometrage,
 			carburant,
 			fabrication,
 			puissance,
 			transtaction,
+			equipment: {abs, airbags, janettes},
 			piece,
 			superficie,
+
 			servicetype,
+
 			phoneMarque,
+
 			phone,
 			laivraison,
 			paiement,
-			voiture,
-			Location,
-			services,
-			Telephone,
+
 			uuid: auth.currentUser.uid
 		};
 		uploadPics(images).then((imagesUrls) => {
@@ -231,7 +234,7 @@ export default function AddProduct({ route, navigation }) {
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 
 			{imageViisible ?
-			<View style={{ flexDirection: 'row', flex: 1 }}> 
+			<View style={{ flexDirection: 'row', flex: 1, height:'50' }}> 
 			<View style={{flex: 1}}>
 				<Text>Image 1</Text>
 			</View>
@@ -268,6 +271,8 @@ export default function AddProduct({ route, navigation }) {
 						label="Titre de votre Produit"
 						mode="outlined"
 						theme={textTheme}
+						numberOfLines={1}
+						maxLength={25}
 						onChangeText={setTitle}
 					/>
 					<Text style={{ color: '#4898D3', fontSize: 11 }}>
@@ -280,17 +285,38 @@ export default function AddProduct({ route, navigation }) {
 							style={{ height: 50, width: '100%' }}
 							onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 						>
-							<Picker.Item label="Touts les villes" value="ma" />
+
+							<Picker.Item label="Touts les villes" value="touts les ville" />
+							<Picker.Item label="Agadir" value="Agadir" />
+							<Picker.Item label="Asilah" value="Asilah" />
+							<Picker.Item label="Asfi" value="Asfi" />
+							<Picker.Item label="Azrou" value="Arzou" />
+							<Picker.Item label="Beni mellal" value="Beni mellal" />
+							<Picker.Item label="Berkane" value="Berkane" />
+							<Picker.Item label="Casablanca" value="Casablanca" />
+							<Picker.Item label="Dakhla" value="Dakhla" />
+							<Picker.Item label="El hociema" value="El hociema" />
+							<Picker.Item label="El jedida" value="El jedida" />
+							<Picker.Item label="Errachidia" value="Errachidia" />
+							<Picker.Item label="Fes" value="Fes" />
+							<Picker.Item label="Ifrane" value="Ifrane" />
+							<Picker.Item label="Kheribga" value="Kheribga" />
+							<Picker.Item label="Kser lekebir" value="Kser lekebir" />
+							<Picker.Item label="Khenifra" value="Khenifra" />
+							<Picker.Item label="Kenitra" value="Kenitra" />
+							<Picker.Item label="Larache" value="Larache" />
+							<Picker.Item label="Meknes" value="Meknes" />
+							<Picker.Item label="Merakech" value="Merakech" />
+							<Picker.Item label="Mohamadia" value="Mohamadia" />
+							<Picker.Item label="Nador" value="Nador" />
+							<Picker.Item label="Ouejda" value="Ouejda" />
+							<Picker.Item label="Rabat" value="Rabat" />
+							<Picker.Item label="Rissani" value="Rissani" />
+							<Picker.Item label="Sale" value="Sale" />
+							<Picker.Item label="Settat" value="Settat" />
 							<Picker.Item label="Tanger" value="Tanger" />
 							<Picker.Item label="Tétouan" value="Tétouan" />
-							<Picker.Item label="Ouejda" value="Ouejda" />
-							<Picker.Item label="Berkane" value="Berkane" />
-							<Picker.Item label="Rabat" value="Rabat" />
 							<Picker.Item label="Temara" value="Temara" />
-							<Picker.Item label="Casablanca" value="Casablanca" />
-							<Picker.Item label="El Jadida" value="El Jadida" />
-							<Picker.Item label="Agadir" value="Agadir" />
-							<Picker.Item label="Merakech" value="Merakech" />
 						</Picker>
 					</View>
 
@@ -306,15 +332,17 @@ export default function AddProduct({ route, navigation }) {
 
 					{etatVisible ? (
 						<View>
-							<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
+							<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat de produit</Text>
 
 							<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
 								<Picker
 									selectedValue={etat}
-									prompt="Etat"
+									prompt="Etat de produit"
 									style={{ height: 50, width: '100%' }}
 									onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 								>
+									
+									<Picker.Item label="Neuf/Ancien" value="Touts" />
 									<Picker.Item label="Neuf" value="neuf" />
 									<Picker.Item label="Ancien" value="ancien" />
 								</Picker>
@@ -355,7 +383,7 @@ export default function AddProduct({ route, navigation }) {
 									style={{ height: 50, width: '100%' }}
 									onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 								>
-									<Picker.Item label="choisissez votre marque " value="rien" />
+									<Picker.Item label="touts le marques" value="tt" />
 									<Picker.Item label="AUDI" value="AUDI" />
 									<Picker.Item label="BMW" value="BMW" />
 									<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -393,7 +421,7 @@ export default function AddProduct({ route, navigation }) {
 								onChangeText={setKilometrage}
 								label="Kilometrage"
 								mode="outlined"
-								placeholder="12.000 Km"
+								placeholder="120.000 Km"
 								keyboardType="numeric"
 								theme={textTheme}
 								style={{ marginTop: 10 }}
@@ -403,7 +431,7 @@ export default function AddProduct({ route, navigation }) {
 								onChangeText={setFabrication}
 								label="Année de fabrication"
 								mode="outlined"
-								placeholder="exemple: 2005"
+								placeholder="exemple: 2002"
 								keyboardType="numeric"
 								theme={textTheme}
 								style={{ marginTop: 10 }}
@@ -443,7 +471,7 @@ export default function AddProduct({ route, navigation }) {
 								</Picker>
 							</View>
 
-							<Text style={{ color: '#4898D3', marginTop: 5 }}>Transaction</Text>
+							<Text style={{ color: '#4898D3', marginTop: 5 }}>Boite de vitesses</Text>
 							<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 								<Picker
 									mode="dropdown"
@@ -554,14 +582,27 @@ export default function AddProduct({ route, navigation }) {
 								</Picker>
 							</View>
 						</View>
-					) : null}
+					) 
+					: null}
+					
+					{superficieleVisible ? 
+						<TextInput
+								label="Superficie"
+								mode="outlined"
+								placeholder="150 (m²)"
+								theme={textTheme}
+								keyboardType="numeric"
+								style={{ marginTop: 10 }}
+								onChangeText={setSuperficie}
+							/>
+					: null}
 
 					{Location ? (
 						<View>
 							<TextInput
 								label="Superficie"
 								mode="outlined"
-								placeholder="(m²)"
+								placeholder="150 (m²)"
 								theme={textTheme}
 								keyboardType="numeric"
 								style={{ marginTop: 10 }}
@@ -578,20 +619,21 @@ export default function AddProduct({ route, navigation }) {
 								>
 									<Picker.Item label="1" value="1" />
 									<Picker.Item label="2-3" value="2" />
-									<Picker.Item label="3-4" value="3" />
-									<Picker.Item label="5 et plus" value="5" />
+									<Picker.Item label="4-5" value="3" />
+									<Picker.Item label="plus que 5" value="4" />
 								</Picker>
 							</View>
 						</View>
-					) : null}
+					) 
+					: null}
 
 					<TextInput
 						label="Description"
 						mode="outlined"
 						theme={textTheme}
-						numberOfLines={4}
-						maxLength={266}
-						placeholder="description"
+						numberOfLines={3}
+						maxLength={145}
+						placeholder="Merci de mettre une petite description de votre produit."
 						style={{ marginTop: 10 }}
 						onChangeText={setDescription}
 						multiline={true}
@@ -634,7 +676,8 @@ export default function AddProduct({ route, navigation }) {
 								/>
 							</View>
 						</View>
-					) : null}
+					) 
+					: null}
 
 					<TouchableOpacity
 						onPress={() => upload()}

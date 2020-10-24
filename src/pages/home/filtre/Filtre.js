@@ -7,7 +7,7 @@ import FilterCategory from '../filtre/FilterCat';
 
 export default function Filtre() {
 	
-	const [ titreModal, setTittreModal ] = useState('Choisisez votre category');
+	const [ titreModal, setTittreModal ] = useState('Choisisez votre catégorie');
 	const [ etat, setEtat ] = useState('');
 
 	{/* filter variables Standard */}
@@ -65,7 +65,7 @@ export default function Filtre() {
 				setEtatVisibility(true)
 				break;
 
-			case (item === 'Appartements' || item === 'Maisons & Villas' || item === 'Location courte durée (vacances)' || item === 'Location long durée' || item == 'Commerces & Bureaux') :
+			case (item === 'Appartements' || item === 'Maisons & Villas' || item === 'Terrains' || item === 'Location courte durée (vacances)' || item === 'Location long durée' || item == 'Commerces & Bureaux') :
 				setLocation(true)
 				setPhone(false)
 				setVoiture(false)
@@ -140,17 +140,39 @@ export default function Filtre() {
 								style={{ height: 50, width: '100%' }}
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
-								<Picker.Item label="Touts les villes" value="ma" />
-								<Picker.Item label="Tanger" value="Tanger" />
-								<Picker.Item label="Tétouan" value="Tétouan" />
-								<Picker.Item label="Ouejda" value="Ouejda" />
-								<Picker.Item label="Berkane" value="Berkane" />
-								<Picker.Item label="Rabat" value="Rabat" />
-								<Picker.Item label="Temara" value="Temara" />
-								<Picker.Item label="Casablanca" value="Casablanca" />
-								<Picker.Item label="El Jadida" value="El Jadida" />
-								<Picker.Item label="Merakech" value="Merakech" />
-							</Picker>
+
+<Picker.Item label="Touts les villes" value="toutslesville" />
+							<Picker.Item label="Agadir" value="Agadir" />
+							<Picker.Item label="Asilah" value="Asilah" />
+							<Picker.Item label="Asfi" value="Asfi" />
+							<Picker.Item label="Azrou" value="Arzou" />
+							<Picker.Item label="Beni mellal" value="Beni mellal" />
+							<Picker.Item label="Berkane" value="Berkane" />
+							<Picker.Item label="Casablanca" value="Casablanca" />
+							<Picker.Item label="Dakhla" value="Dakhla" />
+							<Picker.Item label="El hociema" value="El hociema" />
+							<Picker.Item label="El jedida" value="El jedida" />
+							<Picker.Item label="Errachidia" value="Errachidia" />
+							<Picker.Item label="Fes" value="Fes" />
+							<Picker.Item label="Ifrane" value="Ifrane" />
+							<Picker.Item label="Kheribga" value="Kheribga" />
+							<Picker.Item label="Kser lekebir" value="Kser lekebir" />
+							<Picker.Item label="Khenifra" value="Khenifra" />
+							<Picker.Item label="Kenitra" value="Kenitra" />
+							<Picker.Item label="Larache" value="Larache" />
+							<Picker.Item label="Meknes" value="Meknes" />
+							<Picker.Item label="Merakech" value="Merakech" />
+							<Picker.Item label="Mohamadia" value="Mohamadia" />
+							<Picker.Item label="Nador" value="Nador" />
+							<Picker.Item label="Ouejda" value="Ouejda" />
+							<Picker.Item label="Rabat" value="Rabat" />
+							<Picker.Item label="Rissani" value="Rissani" />
+							<Picker.Item label="Sale" value="Sale" />
+							<Picker.Item label="Settat" value="Settat" />
+							<Picker.Item label="Tanger" value="Tanger" />
+							<Picker.Item label="Tétouan" value="Tétouan" />
+							<Picker.Item label="Temara" value="Temara" />
+						</Picker>
 						</View>
 
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Prix</Text>
@@ -179,14 +201,15 @@ export default function Filtre() {
 
 						{etatViisbility ? (
 							<View>
-								<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
+								<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat de produit</Text>
 								<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
 									<Picker
 										selectedValue={etat}
-										prompt="Etat"
+										prompt="Etat de produit"
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
-									>
+									>	
+										<Picker.Item label="Neuf/Ancien" value="neuf/ancien" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Ancien" value="Ancien" />
 									</Picker>
@@ -204,7 +227,7 @@ export default function Filtre() {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="choisissez votre marque " value="rien" />
+										<Picker.Item label="touts le marques" value="tt" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -295,7 +318,7 @@ export default function Filtre() {
 									</Picker>
 								</View>
 
-								<Text style={{ color: '#4898D3', marginTop: 5 }}>Transaction</Text>
+								<Text style={{ color: '#4898D3', marginTop: 5 }}>Boite de vitesses</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 									<Picker
 										mode="dropdown"
@@ -337,10 +360,13 @@ export default function Filtre() {
 										<Picker.Item label="Choissisez votre marque" value="rien" />
 										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
 										<Picker.Item label="IPHONE" value="IPHONE" />
+										<Picker.Item label="Xiaomi" value="Xiaomi" />
 										<Picker.Item label="OPPO" value="OPPO" />
 										<Picker.Item label="HUAWEI" value="HUAWEI" />
 										<Picker.Item label="SONY" value="SONY" />
 										<Picker.Item label="NOKIA" value="NOKIA" />
+										<Picker.Item label="Asus" value="Asus" />
+										<Picker.Item label="Autre" value="Autre" />
 									</Picker>
 								</View>
 							</View>
