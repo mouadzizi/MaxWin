@@ -232,7 +232,7 @@ export default function SignIn({ navigation }) {
             placeholder='votre-mail@mail.com'
             returnKeyType='next'
             theme={textTheme}
-            
+						right={ <TextInput.Icon name="email-check-outline" color='#4898D3'/> }
             onChangeText={email => setEmail(email)} />
 
           <TextInput
@@ -245,7 +245,7 @@ export default function SignIn({ navigation }) {
             secureTextEntry={showPass}
             style={{ marginTop: 20 }}
             onChangeText={pass => setPassword(pass)}
-            right={<TextInput.Icon name={showPass? 'eye-off':'eye'}  onPress={()=>setShowPass(!showPass)} size={30} />} />
+            right={<TextInput.Icon name={showPass? 'eye-off':'eye'} color='#4898D3'  onPress={()=>setShowPass(!showPass)} size={30} />} />
 
           <TouchableOpacity
             onPress={() => alert('comming up on the next virsion')}>

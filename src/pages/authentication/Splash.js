@@ -60,7 +60,7 @@ export default function Splash({ navigation }) {
         {/* Swiper number 1 */}
         <View style={GlobalStyle.swiperContainer}>
 
-          <Text style={GlobalStyle.splashHeadTitle}> MaxWin Pro </Text>
+          <Text style={GlobalStyle.splashHeadTitle}> Maxwin Pro </Text>
 
           <Image
             source={require("../../../assets/logo.jpg")}
@@ -116,7 +116,7 @@ export default function Splash({ navigation }) {
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"} />
 
-          <Text style={GlobalStyle.splashText}> Sur la marketplace Maxwin vous trouverez tout ce que vous cherchez.</Text>
+          <Text style={GlobalStyle.splashText}> Sur la platforme Maxwin vous trouverez tout ce que vous cherchez.</Text>
 
         </View>
 

@@ -14,7 +14,7 @@ export default function SignUp({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
     const [confPassword, setConfPassword] = useState("");
-    const [owner, setOwner] = useState("")
+    const [owner, setOwner] = useState(true)
 
 
 
@@ -78,8 +78,8 @@ export default function SignUp({ navigation }) {
     }
 
     const { width, height } = Dimensions.get('window');
-    const height_image = height * 0.3;
-    const width_image = width * 0.6;
+    const height_image = height * 0.23;
+    const width_image = width * 0.5;
 
     return (
 
@@ -94,17 +94,18 @@ export default function SignUp({ navigation }) {
                     />
                 </View>
 
-                <View style={{ flex: 4 }}>
+                <View style={{ flex: 5 }}>
 
                     <Text
                         style={{ color: 'red', alignSelf: 'center', marginBottom: 8 }}>{errorMessage}</Text>
 
                     <TextInput
-                        label='Nom d utilisateur'
+                        label="Nom d'utilisateur"
                         mode='outlined'
                         placeholder='Votre surnom'
                         theme={textTheme}
                         onChangeText={name => setUserName(name)}
+						right={ <TextInput.Icon name="face" color='#4898D3'/> }
                     />
 
                     <TextInput
@@ -115,6 +116,8 @@ export default function SignUp({ navigation }) {
                         theme={textTheme}
                         style={{ marginTop: 10 }}
                         onChangeText={email => setEmail(email)}
+                        
+						right={ <TextInput.Icon name="email" color='#4898D3'/> }
                     />
 
                     <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}>
@@ -123,8 +126,8 @@ export default function SignUp({ navigation }) {
                             style={{ height: 50, width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setOwner(itemValue)}>
 
-                            <Picker.Item label="Particulier" value="Particulier" />
-                            <Picker.Item label="Professionel" value="Professionel" />
+                            <Picker.Item label="Particulier" value={false} />
+                            <Picker.Item label="Professionel" value={true} />
                         </Picker>
                     </View>
 
@@ -135,6 +138,7 @@ export default function SignUp({ navigation }) {
                         theme={textTheme}
                         style={{ marginTop: 10 }}
                         onChangeText={password => setPassword(password)}
+						right={ <TextInput.Icon name="lock" color='#4898D3'/> }
                     />
 
                     <TextInput
@@ -146,6 +150,7 @@ export default function SignUp({ navigation }) {
                         theme={textTheme}
                         style={{ marginTop: 10 }}
                         onChangeText={text => setConfPassword(text)}
+						right={ <TextInput.Icon name="lock" color='#4898D3'/> }
                     />
 
                     <Button
@@ -157,11 +162,11 @@ export default function SignUp({ navigation }) {
                         color='#4898D3'
                         disabled={(!email || !password || !confPassword) || loading}
                         dark={true}>
-                        Creat an Account
+                        Creé votre compte
                     </Button>
 
                     <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }} >
-                        <Text>AVous avez déjà un compte?</Text>
+                        <Text>Vous avez déjà un compte?</Text>
                         <TouchableOpacity
                             onPress={() => navigation.replace('SignIn')}>
                             <Text style={{ color: '#4898D3', fontWeight: 'bold' }}>   Se Connecter</Text>
