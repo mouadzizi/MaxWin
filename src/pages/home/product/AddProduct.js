@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import {
-	View,
-	SafeAreaView,
-	ScrollView,
-	TouchableOpacity,
-	Text,
-	Picker,
-	Switch,
-	Image
-} from 'react-native';
+import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker, Switch, Image } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons } from 'react-native-vector-icons';
 import { addProduct } from './APIFunctions';
-import { auth, st } from '../../../API/firebase';
+import { auth, db, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function AddProduct({ route, navigation }) {
@@ -66,18 +57,17 @@ export default function AddProduct({ route, navigation }) {
 	const [ chips, setChips ] = useState(true);
 	const [ etatVisible, setEtatVisible ] = useState(true);
 	const [ imageViisible, setImageViible ] = useState(false);
-	
+
 	//Category Visibility
-	
+
 	const [ voiture, setVoiture ] = useState(false);
 	const [ Location, setLocation ] = useState(false);
 	const [ services, setServices ] = useState(false);
 	const [ Telephone, setTelephone ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
 
-	
 	// Switchs
-	
+
 	const [ jantesAluminium, setJantesAluminium ] = useState(false);
 	const toggleSwitchJanets = () => setJantesAluminium((previousState) => !previousState);
 
@@ -90,18 +80,16 @@ export default function AddProduct({ route, navigation }) {
 	const [ abs, setAbs ] = useState(false);
 	const toggleSwitchAbs = () => setAbs((previousState) => !previousState);
 
-	
 	const [ radar, setRadar ] = useState(false);
 	const toggleSwitchRadar = () => setRadar((previousState) => !previousState);
 
-	
 	const [ climatisation, setClimatisation ] = useState(false);
 	const toggleSwitchClimatisation = () => setClimatisation((previousState) => !previousState);
 
 	//Get pictures once the screen focused
-	
+
 	const [ images, setImages ] = useState([]);
-	const [ imagesUrls, setUrls ] = useState([]);
+	const [ user, setUser ] = useState(null);
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -109,19 +97,26 @@ export default function AddProduct({ route, navigation }) {
 				let imgs = JSON.parse(obj);
 				setImages(imgs);
 			});
+			getUser().then((u) => {
+				setUser(u);
+			});
 		}, [])
 	);
 
 	const getPhotos = async () => {
 		return await AsyncStorage.getItem('images');
 	};
-
+	const getUser = async () => {
+		let aUser = null;
+		await db.collection('users').doc(auth.currentUser.uid).get().then((snap) => {
+			aUser = snap.data();
+		});
+		return aUser;
+	};
 	useEffect(() => {
 		const { parent } = route.params;
 		switch (true) {
-
-			case parent.title == 'VEHICULES' &&
-				(parent.item == 'Voiture' || parent.item == 'Location de Voiture'):
+			case parent.title == 'VEHICULES' && (parent.item == 'Voiture' || parent.item == 'Location de Voiture'):
 				setChips(false);
 				setVoiture(true);
 				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
@@ -155,19 +150,19 @@ export default function AddProduct({ route, navigation }) {
 				navigation.setOptions({ title: 'Ajouter Immobilier' });
 				break;
 
-			case parent.item == 'Matériels professionnels': 
-			setServices(true);
-			navigation.setOptions({ title: 'Matériels professionnels' });
-			break;
+			case parent.item == 'Matériels professionnels':
+				setServices(true);
+				navigation.setOptions({ title: 'Matériels professionnels' });
+				break;
 
-			case parent.item == 'Services et travaux professionnels' :
+			case parent.item == 'Services et travaux professionnels':
 				setChips(false);
 				setEtatVisible(false);
 				setServices(true);
 				navigation.setOptions({ title: 'Services et travaux' });
 				break;
 
-			case parent.item == 'Formations & autres' :
+			case parent.item == 'Formations & autres':
 				setChips(false);
 				setEtatVisible(false);
 				navigation.setOptions({ title: 'Formations & autres' });
@@ -200,11 +195,13 @@ export default function AddProduct({ route, navigation }) {
 			phone,
 			laivraison,
 			paiement,
-			voiture,
-			Location,
-			services,
 			Telephone,
-			uuid: auth.currentUser.uid
+			category: route.params.parent.item,
+			user: {
+				uid: user.uid,
+				accountType: user.accountType,
+				owner: user.name
+			}
 		};
 		uploadPics(images).then((imagesUrls) => {
 			addProduct(item, imagesUrls).then(() => setLoading(false));
@@ -229,39 +226,37 @@ export default function AddProduct({ route, navigation }) {
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
+				{imageViisible ? (
+					<View style={{ flexDirection: 'row', flex: 1 }}>
+						<View style={{ flex: 1 }}>
+							<Text>Image 1</Text>
+						</View>
 
-			{imageViisible ?
-			<View style={{ flexDirection: 'row', flex: 1 }}> 
-			<View style={{flex: 1}}>
-				<Text>Image 1</Text>
-			</View>
+						<View style={{ flex: 1 }}>
+							<Text>Image 2</Text>
+						</View>
 
-			<View style={{flex: 1}}>
-				<Text>Image 2</Text>
-			</View>
+						<View style={{ flex: 1 }}>
+							<Text>Image 3</Text>
+						</View>
 
-			<View style={{flex: 1}}>
-				<Text>Image 3</Text>
-			</View>
+						<View style={{ flex: 1 }}>
+							<Text>Image 4</Text>
+						</View>
+					</View>
+				) : (
+					<View>
+						<View style={{ flexDirection: 'row' }}>
+							<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
+								<MaterialIcons name="add-a-photo" color="#444" size={100} />
+							</TouchableOpacity>
+						</View>
 
-			<View style={{flex: 1}}>
-				<Text>Image 4</Text>
-			</View>
-
-
-			</View> 
-			:
-			<View>
-			<View style={{ flexDirection: 'row' }}>
-					<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
-						<MaterialIcons name="add-a-photo" color="#444" size={100} />
-					</TouchableOpacity>
-			</View>
-			
-			<Text style={{ color: '#4898D3', fontSize: 11 }}>Une bonne annonce commence par une bonne photo.</Text>
-			</View>
-			}
-				
+						<Text style={{ color: '#4898D3', fontSize: 11 }}>
+							Une bonne annonce commence par une bonne photo.
+						</Text>
+					</View>
+				)}
 
 				<View style={{ flex: 1, marginTop: 20 }}>
 					<TextInput
@@ -418,7 +413,7 @@ export default function AddProduct({ route, navigation }) {
 									onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
 								>
 									<Picker.Item label="Diesel " value="Diesel" />
-									<Picker.Item label="Essence" value="Essence" />	
+									<Picker.Item label="Essence" value="Essence" />
 									<Picker.Item label="Hybrid" value="Hybrid" />
 									<Picker.Item label="Electrique" value="Electrique" />
 								</Picker>
@@ -458,7 +453,6 @@ export default function AddProduct({ route, navigation }) {
 
 							<Text style={{ color: '#4898D3', marginTop: 5 }}>Équipements</Text>
 							<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
-
 								<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
 									<Text style={{ width: '50%', marginLeft: 5 }}>Jantes Aluminium</Text>
 									<Switch
@@ -523,8 +517,6 @@ export default function AddProduct({ route, navigation }) {
 										value={abs}
 									/>
 								</View>
-
-
 							</View>
 						</View>
 					) : null}
@@ -607,7 +599,7 @@ export default function AddProduct({ route, navigation }) {
 							color="#4898D3"
 						/>
 					</View>
-					
+
 					{chips ? (
 						<View>
 							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
