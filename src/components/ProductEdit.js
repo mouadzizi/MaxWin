@@ -5,7 +5,7 @@ import {GlobalStyle} from '../style/GlobalStyle';
 
 export default function ProductEdit(props) {
 
-  const image2 = require('../../assets/produit02.jpg')
+  const logo = require('../../assets/logo.jpg')
 
     return (
 
@@ -13,7 +13,7 @@ export default function ProductEdit(props) {
         <View style={{height: 100, width: '100%', flexDirection: 'row', borderWidth: 1, borderColor: '#c2c2c2'}}>
           <View style={{flex: 2}}>
             <Image
-              source={image2}
+              source={logo}
               resizeMode="contain"
               style={GlobalStyle.cardImg}
             />

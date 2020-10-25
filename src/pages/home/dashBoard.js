@@ -19,15 +19,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
 
 export default function DashBoard({ navigation }) {
-	const image1 = require('../../../assets/produit8.png');
-	const image2 = require('../../../assets/prod2.jpg');
-	const image3 = require('../../../assets/produit3.png');
-	const image4 = require('../../../assets/produit5.jpg');
-	const image5 = require('../../../assets/produit02.jpg');
-	const image6 = require('../../../assets/produit03.jpg');
+
 
 	const [ ready, setReady ] = useState(false);
 	const [ posts, setPosts ] = useState([]);
+
 	useFocusEffect(
 		React.useCallback(() => {
 			InteractionManager.runAfterInteractions(async () => {
@@ -35,7 +31,6 @@ export default function DashBoard({ navigation }) {
 					setPosts(p);
 					setReady(true);
 				});
-				console.log(ready);
 			});
 			return () => setReady(false);
 		}, [])
@@ -143,7 +138,7 @@ export default function DashBoard({ navigation }) {
 								price={item.price}
 								location={item.city}
 								img={item.urls[0]}
-								particulier={true}
+								particulier={item.user.accountType}
 								p1={item.laivraison}
 								p2={item.paiement}
 								click={() => navigation.navigate('ProductDetails', { id: item.key })}

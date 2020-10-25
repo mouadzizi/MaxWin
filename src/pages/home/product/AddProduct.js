@@ -9,57 +9,45 @@ import { auth, db, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function AddProduct({ route, navigation }) {
-	{
-		/*Variables for inputs for standar product*/
-	}
+	
+	//Variables for inputs for standar product
 	const [ title, setTitle ] = useState('');
 	const [ city, setCity ] = useState('');
 	const [ price, setPrice ] = useState('');
 	const [ description, setDescription ] = useState('');
 
-	{
-		/*Variables for inputs for Voiture*/
-	}
+	//Variables for inputs for Voiture
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
 	const [ kilometrage, setKilometrage ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
-	{
-		/*Variables for inputs for Location*/
-	}
+
+	//Variables for inputs for Location
 	const [ piece, setPiece ] = useState('');
 	const [ superficie, setSuperficie ] = useState('');
-	{
-		/*Variables for inputs for Services*/
-	}
+
+	//Variables for inputs for Services
 	const [ servicetype, setServiceType ] = useState('');
-	{
-		/*Variables for inputs for Phone*/
-	}
+	
+	//Variables for inputs for Phone
 	const [ phoneMarque, setPhoneMarque ] = useState(false);
 
-	{
-		/*Visibility for State*/
-	}
+	//Visibility for State
 	const [ etat, setEtat ] = useState('');
 
-	{
-		/*Variables for chips*/
-	}
+	//Variables for chips
 	const [ phone, setPhone ] = useState(false);
 	const [ laivraison, setLaivraison ] = useState(false);
 	const [ paiement, setPaiement ] = useState(false);
-	{
-		/*components Visibility*/
-	}
+	
+	//components Visibility
 	const [ chips, setChips ] = useState(true);
 	const [ etatVisible, setEtatVisible ] = useState(true);
 	const [ imageViisible, setImageViible ] = useState(false);
 
 	//Category Visibility
-
 	const [ voiture, setVoiture ] = useState(false);
 	const [ Location, setLocation ] = useState(false);
 	const [ services, setServices ] = useState(false);
@@ -67,7 +55,6 @@ export default function AddProduct({ route, navigation }) {
 	const [ loading, setLoading ] = useState(false);
 
 	// Switchs
-
 	const [ jantesAluminium, setJantesAluminium ] = useState(false);
 	const toggleSwitchJanets = () => setJantesAluminium((previousState) => !previousState);
 
@@ -207,6 +194,7 @@ export default function AddProduct({ route, navigation }) {
 			addProduct(item, imagesUrls).then(() => setLoading(false));
 		});
 	};
+
 
 	const uploadPics = async (pics) => {
 		let urls = [];
