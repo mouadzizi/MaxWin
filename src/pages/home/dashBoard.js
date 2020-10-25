@@ -138,7 +138,7 @@ export default function DashBoard({ navigation }) {
 								price={item.price}
 								location={item.city}
 								img={item.urls[0]}
-								particulier={true}
+								particulier={item.user.accountType}
 								p1={item.laivraison}
 								p2={item.paiement}
 								click={() => navigation.navigate('ProductDetails', { id: item.key })}
