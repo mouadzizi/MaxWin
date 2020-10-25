@@ -138,6 +138,7 @@ export default function Profil() {
 					<TextInput
                         theme={textTheme}
 						mode="outlined"
+						keyboardType='numeric'
 						value={phone}
 						label='Téléphone'
 						onChangeText={(e) => setPhone(e)}
@@ -176,7 +177,7 @@ export default function Profil() {
 					<TextInput
                         theme={textTheme}
 						mode="outlined"
-						label="Desription"
+						label="A propo"
 						value={about}
 						multiline={true}
 						maxLength={150}

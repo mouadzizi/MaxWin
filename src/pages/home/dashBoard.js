@@ -19,15 +19,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
 
 export default function DashBoard({ navigation }) {
-	const image1 = require('../../../assets/produit8.png');
-	const image2 = require('../../../assets/prod2.jpg');
-	const image3 = require('../../../assets/produit3.png');
-	const image4 = require('../../../assets/produit5.jpg');
-	const image5 = require('../../../assets/produit02.jpg');
-	const image6 = require('../../../assets/produit03.jpg');
+
 
 	const [ ready, setReady ] = useState(false);
 	const [ posts, setPosts ] = useState([]);
+
 	useFocusEffect(
 		React.useCallback(() => {
 			InteractionManager.runAfterInteractions(async () => {
@@ -35,7 +31,6 @@ export default function DashBoard({ navigation }) {
 					setPosts(p);
 					setReady(true);
 				});
-				console.log(ready);
 			});
 			return () => setReady(false);
 		}, [])
@@ -151,27 +146,6 @@ export default function DashBoard({ navigation }) {
 						)}
 					/>
 				) : (
-					// <View>
-					// 	<Product
-					// 		click={action}
-					// 		name="Appartement 60m"
-					// 		price={3500}
-					// 		owner="Mohammed"
-					// 		location="Tanger"
-					// 		img={image5}
-					// 		particulier={true}
-					// 	/>
-					// 	<Product
-					// 		click={() => navigation.navigate('ProductDetails')}
-					// 		name="Pc Dell i5 5éme generation"
-					// 		price={3000}
-					// 		owner="TechPic"
-					// 		location="Tétouan"
-					// 		img={image6}
-					// 		particulier={false}
-					// 		p1={true}
-					// 		p2={true}
-
 					<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
 				)}
 			</ScrollView>
