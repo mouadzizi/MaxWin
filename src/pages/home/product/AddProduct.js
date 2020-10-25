@@ -196,7 +196,7 @@ export default function AddProduct({ route, navigation }) {
 			laivraison,
 			paiement,
 			Telephone,
-			category: route.params,
+			category: route.params.parent,
 			user: {
 				uid: user.uid,
 				accountType: user.accountType,

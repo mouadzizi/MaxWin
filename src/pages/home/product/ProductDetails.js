@@ -33,10 +33,11 @@ export default function ProductDetails({ navigation, route }) {
 					<View style={GlobalStyle.sliderContainer}>
 						<Swiper autoplay height={200} activeDotColor="#FF6347">
 							{post ? (
-								post.urls.map((img) => {
+								post.urls.map((img, index) => {
 									return (
 										<View style={GlobalStyle.slide}>
 											<Image
+												key={index}
 												source={{ uri: img }}
 												resizeMode="contain"
 												style={GlobalStyle.sliderImage}

@@ -151,27 +151,6 @@ export default function DashBoard({ navigation }) {
 						)}
 					/>
 				) : (
-					// <View>
-					// 	<Product
-					// 		click={action}
-					// 		name="Appartement 60m"
-					// 		price={3500}
-					// 		owner="Mohammed"
-					// 		location="Tanger"
-					// 		img={image5}
-					// 		particulier={true}
-					// 	/>
-					// 	<Product
-					// 		click={() => navigation.navigate('ProductDetails')}
-					// 		name="Pc Dell i5 5éme generation"
-					// 		price={3000}
-					// 		owner="TechPic"
-					// 		location="Tétouan"
-					// 		img={image6}
-					// 		particulier={false}
-					// 		p1={true}
-					// 		p2={true}
-
 					<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
 				)}
 			</ScrollView>
