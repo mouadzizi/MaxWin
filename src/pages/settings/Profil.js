@@ -1,6 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { Text, ScrollView, SafeAreaView, View, TouchableOpacity, InteractionManager, Modal } from 'react-native';
+import {
+	Text,
+	ScrollView,
+	SafeAreaView,
+	View,
+	TouchableOpacity,
+	InteractionManager,
+	ActivityIndicator
+} from 'react-native';
 import { Avatar, Divider, FAB, TextInput, ProgressBar } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
@@ -21,7 +29,6 @@ export default function Profil() {
 
 	useFocusEffect(
 		useCallback(() => {
-			console.log('screen focused');
 			InteractionManager.runAfterInteractions(async () => {
 				var userRef = await db.collection('users').doc(auth.currentUser.uid).get();
 				setLoading(true);
@@ -29,18 +36,16 @@ export default function Profil() {
 					await loadInfo(userRef.data()).then(() => {
 						setLoading(false);
 						setCanRender(true);
-						console.log(userRef.data());
 					});
 				}
-				console.log('Interaction end');
 			});
 		}, [])
 	);
 
 	const updateProfile = async () => {
 		setEdit(!edit);
-		setLoading(true);
 		if (edit) {
+			setLoading(true);
 			await db
 				.collection('users')
 				.doc(auth.currentUser.uid)
@@ -148,7 +153,7 @@ export default function Profil() {
 							left={
 								<TextInput.Icon
 									style={{ marginTop: '50%', marginRight: '50%' }}
-									name="gender-male-female"
+									name="account-badge-horizontal"
 									color="#4898D3"
 									size={25}
 								/>
@@ -224,14 +229,13 @@ export default function Profil() {
 							editable={edit}
 							style={{ width: '95%' }}
 						/>
-						<Text>{aboutMe}</Text>
 					</View>
 				</ScrollView>
 			) : (
-				<ProgressBar color="#4898D3" indeterminate={true} visible={true || loading} />
+				<ProgressBar color="#4898D3" indeterminate={true} visible={true} />
 			)}
-
 			<FAB
+				loading={loading}
 				style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, backgroundColor: '#4898D3' }}
 				label={edit ? 'enregistrer' : 'modifier'}
 				color="#fff"
