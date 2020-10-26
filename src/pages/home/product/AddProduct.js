@@ -215,22 +215,15 @@ export default function AddProduct({ route, navigation }) {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				{imageViisible ? (
-					<View style={{ flexDirection: 'row', flex: 1 }}>
-						<View style={{ flex: 1 }}>
-							<Text>Image 1</Text>
+					<View style={{ flexDirection: 'row', width: '90%'}}>
+
+						<View style={{ width: '20%', height: 50 }}>
+							<Image 
+								source={require	('../../../../assets/logo.png')}
+								resizeMode='stretch'
+							/>
 						</View>
 
-						<View style={{ flex: 1 }}>
-							<Text>Image 2</Text>
-						</View>
-
-						<View style={{ flex: 1 }}>
-							<Text>Image 3</Text>
-						</View>
-
-						<View style={{ flex: 1 }}>
-							<Text>Image 4</Text>
-						</View>
 					</View>
 				) : (
 					<View>
@@ -263,17 +256,37 @@ export default function AddProduct({ route, navigation }) {
 							style={{ height: 50, width: '100%' }}
 							onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 						>
-							<Picker.Item label="Touts les villes" value="ma" />
+							<Picker.Item label="Touts les villes" value="Touts les villes" />
+							<Picker.Item label="Agadir" value="Agadir" />
+							<Picker.Item label="Asilah" value="Asilah" />
+							<Picker.Item label="Asfi" value="Asfi" />
+							<Picker.Item label="Azrou" value="Arzou" />
+							<Picker.Item label="Beni mellal" value="Beni mellal" />
+							<Picker.Item label="Berkane" value="Berkane" />
+							<Picker.Item label="Casablanca" value="Casablanca" />
+							<Picker.Item label="Dakhla" value="Dakhla" />
+							<Picker.Item label="El hociema" value="El hociema" />
+							<Picker.Item label="El jedida" value="El jedida" />
+							<Picker.Item label="Errachidia" value="Errachidia" />
+							<Picker.Item label="Fes" value="Fes" />
+							<Picker.Item label="Ifrane" value="Ifrane" />
+							<Picker.Item label="Kheribga" value="Kheribga" />
+							<Picker.Item label="Kser lekebir" value="Kser lekebir" />
+							<Picker.Item label="Khenifra" value="Khenifra" />
+							<Picker.Item label="Kenitra" value="Kenitra" />
+							<Picker.Item label="Larache" value="Larache" />
+							<Picker.Item label="Meknes" value="Meknes" />
+							<Picker.Item label="Merakech" value="Merakech" />
+							<Picker.Item label="Mohamadia" value="Mohamadia" />
+							<Picker.Item label="Nador" value="Nador" />
+							<Picker.Item label="Ouejda" value="Ouejda" />
+							<Picker.Item label="Rabat" value="Rabat" />
+							<Picker.Item label="Rissani" value="Rissani" />
+							<Picker.Item label="Sale" value="Sale" />
+							<Picker.Item label="Settat" value="Settat" />
 							<Picker.Item label="Tanger" value="Tanger" />
 							<Picker.Item label="Tétouan" value="Tétouan" />
-							<Picker.Item label="Ouejda" value="Ouejda" />
-							<Picker.Item label="Berkane" value="Berkane" />
-							<Picker.Item label="Rabat" value="Rabat" />
 							<Picker.Item label="Temara" value="Temara" />
-							<Picker.Item label="Casablanca" value="Casablanca" />
-							<Picker.Item label="El Jadida" value="El Jadida" />
-							<Picker.Item label="Agadir" value="Agadir" />
-							<Picker.Item label="Merakech" value="Merakech" />
 						</Picker>
 					</View>
 

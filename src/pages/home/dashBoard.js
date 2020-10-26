@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 
 import {
 	View,
-	ScrollView,
 	Text,
 	StatusBar,
-	SafeAreaView,
 	TouchableOpacity,
 	InteractionManager,
 	FlatList
@@ -57,12 +55,10 @@ export default function DashBoard({ navigation }) {
 		return postsA;
 	};
 	return (
-		<SafeAreaView>
+		<View>
 			<StatusBar backgroundColor={colors.primary} />
 
-			<ScrollView showsVerticalScrollIndicator={false}>
-				<View style={{ flex: 1, backgroundColor: colors.primary }}>
-					<View style={{ flexDirection: 'row' }}>
+					<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
 						<Ionicons
 							onPress={() => navigation.openDrawer()}
 							name="md-menu"
@@ -78,7 +74,6 @@ export default function DashBoard({ navigation }) {
 							style={{ width: '83%', margin: 8 }}
 						/>
 					</View>
-				</View>
 
 				{/* Filtre product & Add product */}
 				<View style={{ flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2 }}>
@@ -138,7 +133,7 @@ export default function DashBoard({ navigation }) {
 								price={item.price}
 								location={item.city}
 								img={item.urls[0]}
-								particulier={item.user.accountType}
+								particulier={!(item.user.accountType)}
 								p1={item.laivraison}
 								p2={item.paiement}
 								click={() => navigation.navigate('ProductDetails', { id: item.key })}
@@ -148,7 +143,7 @@ export default function DashBoard({ navigation }) {
 				) : (
 					<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
 				)}
-			</ScrollView>
-		</SafeAreaView>
+			
+		</View>
 	);
 }

@@ -141,7 +141,7 @@ export default function Filtre() {
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 
-<Picker.Item label="Touts les villes" value="toutslesville" />
+							<Picker.Item label="Touts les villes" value="toutslesville" />
 							<Picker.Item label="Agadir" value="Agadir" />
 							<Picker.Item label="Asilah" value="Asilah" />
 							<Picker.Item label="Asfi" value="Asfi" />
