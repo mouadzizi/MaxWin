@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker, Switch, Image } from 'react-native';
+import { View, SafeAreaView, ScrollView, TouchableOpacity, Text, Picker, Switch, Image, Dimensions } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons } from 'react-native-vector-icons';
@@ -73,6 +73,12 @@ export default function AddProduct({ route, navigation }) {
 	const [ climatisation, setClimatisation ] = useState(false);
 	const toggleSwitchClimatisation = () => setClimatisation((previousState) => !previousState);
 
+	//Dimensions
+	const { width, height } = Dimensions.get('window');
+	
+	const height_image = height * 0.115;
+	const width_image = width * 0.2;
+
 	//Get pictures once the screen focused
 
 	const [ images, setImages ] = useState([]);
@@ -92,6 +98,7 @@ export default function AddProduct({ route, navigation }) {
 
 	const getPhotos = async () => {
 		return await AsyncStorage.getItem('images');
+		
 	};
 	const getUser = async () => {
 		let aUser = null;
@@ -208,6 +215,7 @@ export default function AddProduct({ route, navigation }) {
 				});
 			});
 		}
+		
 		return urls;
 	};
 
@@ -215,13 +223,47 @@ export default function AddProduct({ route, navigation }) {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				{imageViisible ? (
-					<View style={{ flexDirection: 'row', width: '90%'}}>
 
-						<View style={{ width: '20%', height: 50 }}>
-							<Image 
-								source={require	('../../../../assets/logo.png')}
-								resizeMode='stretch'
-							/>
+					<View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between'}}>
+
+						<View 
+						style={{width: '23%', borderWidth: 1, borderColor: '#444'}}>
+						<Image 
+							source={require('../../../../assets/logo.jpg')}
+            				style={{ height: height_image, width: width_image, }}
+							resizeMode={"stretch"}
+						/>
+							
+						</View>
+
+						<View 
+						style={{width: '23%', borderWidth: 1, borderColor: '#444'}}>
+						<Image 
+							source={require('../../../../assets/slide1.jpg')}
+            				style={{ height: height_image, width: width_image, }}
+							resizeMode={"stretch"}
+						/>
+							
+						</View>
+
+						<View 
+						style={{width: '23%', borderWidth: 1, borderColor: '#444'}}>
+						<Image 
+							source={require('../../../../assets/logo.jpg')}
+            				style={{ height: height_image, width: width_image, }}
+							resizeMode={"stretch"}
+						/>
+							
+						</View>
+
+						<View 
+						style={{width: '23%', borderWidth: 1, borderColor: '#444'}}>
+						<Image 
+							source={require('../../../../assets/logo.jpg')}
+            				style={{ height: height_image, width: width_image, }}
+							resizeMode={"stretch"}
+						/>
+							
 						</View>
 
 					</View>

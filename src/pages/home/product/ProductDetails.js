@@ -3,7 +3,7 @@ import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionMana
 import { ProgressBar } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
-import { Entypo } from 'react-native-vector-icons';
+import { Entypo, MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { db, auth } from '../../../API/firebase';
 
@@ -14,7 +14,6 @@ export default function ProductDetails({ navigation, route }) {
 	useFocusEffect(
 		React.useCallback(() => {
 			const { id } = route.params;
-			console.log('screen begin');
 			InteractionManager.runAfterInteractions(async () => {
 				await db.collection('posts').doc(id).get().then((p) => {
 					setPost(p.data());
@@ -39,7 +38,7 @@ export default function ProductDetails({ navigation, route }) {
 											<Image
 												key={index}
 												source={{ uri: img }}
-												resizeMode="contain"
+												resizeMode="stretch"
 												style={GlobalStyle.sliderImage}
 											/>
 										</View>
@@ -54,10 +53,12 @@ export default function ProductDetails({ navigation, route }) {
 
 						<View style={{ flexDirection: 'row', marginTop: 10 }}>
 							<View style={{ flexDirection: 'row', width: '50%' }}>
-								<Entypo name="user" color="#4898D3" size={20} style={{ marginRight: 5 }} />
+								<Entypo 
+								name="user" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
 								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
 									{' '}
-									{post.user.owner}{' '}
+									{post.user.owner}
 								</Text>
 							</View>
 
@@ -70,8 +71,57 @@ export default function ProductDetails({ navigation, route }) {
 								{post.price} DH
 							</Text>
 						</View>
+
+						<View style={{ flexDirection: 'row', width: '50%', marginTop: 10 }}>
+								<Entypo 
+								name="location" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+									{' '}
+									{post.city}
+								</Text>
+						</View>
+						
+						
 					</View>
 
+					{ (post.laivraison || post.paiement  )
+
+					? 
+					<View> 
+					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Services</Text>
+
+					<View style={GlobalStyle.infoContainer}>
+
+					{post.laivraison ? 
+					
+
+						<View style={{ flexDirection: 'row', marginTop: 5 }}>
+								<MaterialCommunityIcons 
+								name="truck-fast" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+								Livraison possible
+								</Text>
+						</View>
+
+					: null}
+					
+					{post.paiement ? 
+						<View style={{ flexDirection: 'row', marginTop: 5}}>
+								<FontAwesome 
+								name="money" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+								Paiement à la livraison
+								</Text>
+							</View>	
+					: null }
+						
+						
+					</View>
+					</View>
+					: null }
 					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Contact</Text>
 
 					<View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1 }}>
@@ -112,27 +162,46 @@ export default function ProductDetails({ navigation, route }) {
 						<Text style={{ fontFamily: 'sans-serif' }}>{post.description}</Text>
 					</View>
 
-					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques</Text>
 
-					<View style={GlobalStyle.infoContainer}>
-						<View style={{ flex: 1, flexDirection: 'row' }}>
-							<View style={{ flex: 1 }}>
-								<Text style={{ fontWeight: 'bold', marginTop: 4 }}>Etat</Text>
-								<Text style={{ fontWeight: 'bold', marginTop: 4 }}>Etat</Text>
-								<Text style={{ fontWeight: 'bold', marginTop: 4 }}>Etat</Text>
-								<Text style={{ fontWeight: 'bold', marginTop: 4 }}>Etat</Text>
-								<Text style={{ fontWeight: 'bold', marginTop: 4 }}>Etat</Text>
-							</View>
+				{/* Voiture Section */}
+				
+				<View>
+				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Vehicule</Text>
 
-							<View style={{ flex: 1 }}>
-								<Text style={{ marginTop: 4 }}>Neuf</Text>
-								<Text style={{ marginTop: 4 }}>Neuf</Text>
-								<Text style={{ marginTop: 4 }}>Neuf</Text>
-								<Text style={{ marginTop: 4 }}>Neuf</Text>
-								<Text style={{ marginTop: 4 }}>Neuf</Text>
-							</View>
-						</View>
-					</View>
+				<View
+				style={GlobalStyle.infoContainer}>
+				<Text>Marque</Text>
+				
+				<Text>Marque</Text>
+				
+				<Text>Carburant</Text>
+				
+				<Text>Kilometrage</Text>
+				
+				<Text>Année fabrication</Text>
+				
+				<Text>Puissance Fiscale</Text>
+				
+				<Text>Transaction</Text>
+
+				<Text>Equipment</Text>
+
+				</View>
+				</View>
+
+				{/* IMMOBILIER Section */}
+				<View>
+				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Immobilier</Text>
+
+				<View
+				style={GlobalStyle.infoContainer}>
+				<Text>Superficiel</Text>
+				
+				<Text>Nombre de piece</Text>
+
+				</View>
+				</View>
+
 				</View>
 			) : (
 				<ProgressBar color="#4898D3" indeterminate={true} visible={true} style={{ height: 10 }} />
