@@ -38,7 +38,7 @@ export default function ProductDetails({ navigation, route }) {
 											<Image
 												key={index}
 												source={{ uri: img }}
-												resizeMode="stretch"
+												resizeMode="contain"
 												style={GlobalStyle.sliderImage}
 											/>
 										</View>
@@ -166,25 +166,87 @@ export default function ProductDetails({ navigation, route }) {
 				{/* Voiture Section */}
 				
 				<View>
-				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Vehicule</Text>
+				<Text style={{ color: '#4898D3', marginLeft: 20}}>Caractéristiques Vehicule</Text>
 
 				<View
 				style={GlobalStyle.infoContainer}>
-				<Text>Marque</Text>
 				
-				<Text>Marque</Text>
+				<View
+				style={{flexDirection: 'row'}}>
 				
-				<Text>Carburant</Text>
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="car-hatchback" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Marque :</Text>
+				</View>
 				
-				<Text>Kilometrage</Text>
-				
-				<Text>Année fabrication</Text>
-				
-				<Text>Puissance Fiscale</Text>
-				
-				<Text>Transaction</Text>
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.marqueVoiture}</Text>
+				</View>
 
-				<Text>Equipment</Text>
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="car-turbocharger" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Carburant :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.carburant}</Text>
+				</View>
+
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="map-marker-distance" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Kilometrage :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.kilometrage}</Text>
+				</View>
+
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="card-bulleted-outline" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Année fabrication :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.fabrication}</Text>
+				</View>
+
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="card-bulleted-outline" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Puissance Fiscale :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.fabrication}</Text>
+				</View>
+
+
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="card-bulleted-outline" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Transaction :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.fabrication}</Text>
+				</View>
+
+				
+				
+
 
 				</View>
 				</View>
