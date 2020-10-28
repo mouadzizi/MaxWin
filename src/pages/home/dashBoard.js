@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-	View,
-	Text,
-	StatusBar,
-	TouchableOpacity,
-	InteractionManager,
-	FlatList
-} from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, InteractionManager, FlatList } from 'react-native';
 
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
@@ -17,8 +10,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
 
 export default function DashBoard({ navigation }) {
-
-
 	const [ ready, setReady ] = useState(false);
 	const [ posts, setPosts ] = useState([]);
 
@@ -30,7 +21,6 @@ export default function DashBoard({ navigation }) {
 					setReady(true);
 				});
 			});
-			return () => setReady(false);
 		}, [])
 	);
 
@@ -58,92 +48,87 @@ export default function DashBoard({ navigation }) {
 		<View>
 			<StatusBar backgroundColor={colors.primary} />
 
-					<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
-						<Ionicons
-							onPress={() => navigation.openDrawer()}
-							name="md-menu"
-							size={40}
-							color="#fff"
-							style={{ alignSelf: 'center', margin: 5, marginLeft: 10 }}
+			<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
+				<Ionicons
+					onPress={() => navigation.openDrawer()}
+					name="md-menu"
+					size={40}
+					color="#fff"
+					style={{ alignSelf: 'center', margin: 5, marginLeft: 10 }}
+				/>
+
+				<Searchbar
+					placeholder="Rechercher"
+					onChangeText={onChangeSearch}
+					value={searchQuery}
+					style={{ width: '83%', margin: 8 }}
+				/>
+			</View>
+
+			{/* Filtre product & Add product */}
+			<View style={{ flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2 }}>
+				<TouchableOpacity
+					delayPressIn={0}
+					onPress={() => {
+						navigation.navigate('AddProductCat');
+					}}
+					style={{
+						flexDirection: 'row',
+						width: '50%',
+						backgroundColor: colors.second,
+						justifyContent: 'center'
+					}}
+				>
+					<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />
+
+					<Text style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}>
+						Ajouter Produit
+					</Text>
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					delayPressIn={0}
+					onPress={() => {
+						navigation.navigate('Filtre');
+					}}
+					style={{
+						flexDirection: 'row',
+						width: '50%',
+						backgroundColor: colors.primary,
+						justifyContent: 'center',
+						borderWidth: 1.5,
+						borderColor: '#F16E44',
+						elevation: 3
+					}}
+				>
+					<Ionicons name="ios-options" size={35} color="#fff" style={{ alignSelf: 'center' }} />
+					<Text style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}>
+						Filtre
+					</Text>
+				</TouchableOpacity>
+			</View>
+
+			{/* Products Lists */}
+			{ready ? (
+				<FlatList
+					data={posts}
+					renderItem={({ item }) => (
+						<Product
+							name={item.title}
+							owner={item.user.owner}
+							price={item.price}
+							location={item.city}
+							img={item.urls[0]}
+							particulier={!item.user.accountType}
+							p1={item.laivraison}
+							p2={item.paiement}
+							click={() => navigation.navigate('ProductDetails', { id: item.key })}
 						/>
-
-						<Searchbar
-							placeholder="Rechercher"
-							onChangeText={onChangeSearch}
-							value={searchQuery}
-							style={{ width: '83%', margin: 8 }}
-						/>
-					</View>
-
-				{/* Filtre product & Add product */}
-				<View style={{ flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2 }}>
-					<TouchableOpacity
-						delayPressIn={0}
-						onPress={() => {
-							navigation.navigate('AddProductCat');
-						}}
-						style={{
-							flexDirection: 'row',
-							width: '50%',
-							backgroundColor: colors.second,
-							justifyContent: 'center'
-						}}
-					>
-						<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />
-
-						<Text
-							style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}
-						>
-							Ajouter Produit
-						</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						delayPressIn={0}
-						onPress={() => {
-							navigation.navigate('Filtre');
-						}}
-						style={{
-							flexDirection: 'row',
-							width: '50%',
-							backgroundColor: colors.primary,
-							justifyContent: 'center',
-							borderWidth: 1.5,
-							borderColor: '#F16E44',
-							elevation: 3
-						}}
-					>
-						<Ionicons name="ios-options" size={35} color="#fff" style={{ alignSelf: 'center' }} />
-						<Text
-							style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}
-						>
-							Filtre
-						</Text>
-					</TouchableOpacity>
-				</View>
-
-				{/* Products Lists */}
-				{ready ? (
-					<FlatList
-						data={posts}
-						renderItem={({ item }) => (
-							<Product
-								name={item.title}
-								owner={item.user.owner}
-								price={item.price}
-								location={item.city}
-								img={item.urls[0]}
-								particulier={!(item.user.accountType)}
-								p1={item.laivraison}
-								p2={item.paiement}
-								click={() => navigation.navigate('ProductDetails', { id: item.key })}
-							/>
-						)}
-					/>
-				) : (
-					<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
-				)}
-			
+					)}
+				/>
+			) : (
+				<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
+			)}
 		</View>
 	);
 }

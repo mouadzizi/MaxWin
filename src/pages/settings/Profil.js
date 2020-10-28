@@ -1,13 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import {
-	Text,
-	ScrollView,
-	SafeAreaView,
-	View,
-	TouchableOpacity,
-	InteractionManager
-} from 'react-native';
+import { Text, ScrollView, SafeAreaView, View, TouchableOpacity, InteractionManager } from 'react-native';
 import { Avatar, Divider, FAB, TextInput, ProgressBar } from 'react-native-paper';
 
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
@@ -44,22 +37,24 @@ export default function Profil() {
 
 	const updateProfile = async () => {
 		setEdit(!edit);
+		setLoading(true);
 		if (edit) {
-			setLoading(true);
-			await db
-				.collection('users')
-				.doc(auth.currentUser.uid)
-				.update({
-					aboutMe,
-					name,
-					phone,
-					location
-				})
-				.then(() => {
-					setEdit(!edit);
-					setLoading(false);
-				})
-				.catch((e) => console.log(e.message));
+			name || phone || aboutMe || location
+				? await db
+						.collection('users')
+						.doc(auth.currentUser.uid)
+						.update({
+							aboutMe,
+							name,
+							phone,
+							location
+						})
+						.then(() => {
+							setEdit(!edit);
+							setLoading(false);
+						})
+						.catch((e) => console.log(e.message))
+				: setLoading(false);
 		}
 	};
 
@@ -166,7 +161,7 @@ export default function Profil() {
 							mode="outlined"
 							value={phone}
 							label="Téléphone"
-							keyboardType='numeric'
+							keyboardType="numeric"
 							placeholder="(+212)6 123 456 78"
 							maxLength={12}
 							multiline={false}
@@ -211,7 +206,7 @@ export default function Profil() {
 							mode="outlined"
 							value={user.email}
 							label="Email"
-							keyboardType='email-address'
+							keyboardType="email-address"
 							editable={false}
 							style={{ height: 50, width: '95%' }}
 							left={
@@ -230,13 +225,13 @@ export default function Profil() {
 							theme={textTheme}
 							mode="outlined"
 							label="À propos"
-							placeholder='des informations sur vous et / ou votre entreprise'
+							placeholder="des informations sur vous et / ou votre entreprise"
 							value={aboutMe}
 							multiline={true}
 							maxLength={120}
 							onChangeText={(e) => setAboutMe(e)}
 							editable={edit}
-							style={{ width: '95%'}}
+							style={{ width: '95%' }}
 						/>
 					</View>
 				</ScrollView>
