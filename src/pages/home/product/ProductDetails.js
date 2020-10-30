@@ -34,7 +34,7 @@ export default function ProductDetails({ navigation, route }) {
 							{post ? (
 								post.urls.map((img, index) => {
 									return (
-										<View style={GlobalStyle.slide}>
+										<View key={index} style={GlobalStyle.slide}>
 											<Image
 												key={index}
 												source={{ uri: img }}

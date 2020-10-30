@@ -110,22 +110,24 @@ export default function DashBoard({ navigation }) {
 
 			{/* Products Lists */}
 			{ready ? (
-				<FlatList
-					data={posts}
-					renderItem={({ item }) => (
-						<Product
-							name={item.title}
-							owner={item.user.owner}
-							price={item.price}
-							location={item.city}
-							img={item.urls[0]}
-							particulier={!item.user.accountType}
-							p1={item.laivraison}
-							p2={item.paiement}
-							click={() => navigation.navigate('ProductDetails', { id: item.key })}
-						/>
-					)}
-				/>
+				<View style={{ marginBottom: 70 }}>
+					<FlatList
+						data={posts}
+						renderItem={({ item }) => (
+							<Product
+								name={item.title}
+								owner={item.user.owner}
+								price={item.price}
+								location={item.city}
+								img={item.urls[0]}
+								particulier={!item.user.accountType}
+								p1={item.laivraison}
+								p2={item.paiement}
+								click={() => navigation.navigate('ProductDetails', { id: item.key })}
+							/>
+						)}
+					/>
+				</View>
 			) : (
 				<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
 			)}

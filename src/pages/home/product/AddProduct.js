@@ -10,7 +10,8 @@ import {
 	Switch,
 	Image,
 	Dimensions,
-	InteractionManager
+	InteractionManager,
+	ActivityIndicator
 } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
@@ -101,15 +102,17 @@ export default function AddProduct({ route, navigation }) {
 				await getPhotos().then((obj) => {
 					let imgs = JSON.parse(obj);
 					setImages(imgs);
-					console.log(imgs);
-					AsyncStorage.clear();
-					imgs ? setImageViible(true) : null;
 				});
 				await getUser().then((u) => {
 					setUser(u);
 					setCanRender(true);
 				});
 			});
+			return () => {
+				console.log('exite');
+				AsyncStorage.clear();
+				setImages([]);
+			};
 		}, [])
 	);
 
@@ -213,9 +216,16 @@ export default function AddProduct({ route, navigation }) {
 				owner: user.name
 			}
 		};
-		uploadPics(images).then((imagesUrls) => {
-			addProduct(item, imagesUrls).then(() => setLoading(false));
-		});
+		if (images.length === 0) {
+			alert('enter at least one images');
+		} else {
+			uploadPics(images).then((imagesUrls) => {
+				addProduct(item, imagesUrls).then(() => {
+					setLoading(false);
+					navigation.navigate('Dasboard');
+				});
+			});
+		}
 	};
 
 	const uploadPics = async (pics) => {
@@ -238,13 +248,12 @@ export default function AddProduct({ route, navigation }) {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			{canRender ? (
 				<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
-					{imageViisible ? (
+					{images ? (
 						<View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
 							{images.map((img, index) => {
 								return (
 									<View key={index} style={{ width: '23%', borderWidth: 1, borderColor: '#444' }}>
 										<Image
-											key={index}
 											source={{ uri: img.uri }}
 											style={{ height: height_image, width: width_image }}
 											resizeMode={'stretch'}
@@ -680,8 +689,9 @@ export default function AddProduct({ route, navigation }) {
 						<TouchableOpacity
 							onPress={() => upload()}
 							delayPressIn={10}
-							style={[ GlobalStyle.btn, { marginBottom: 30 } ]}
+							style={[ GlobalStyle.btn, { marginBottom: 30, flexDirection: 'row' } ]}
 						>
+							<ActivityIndicator color="white" size="large" animating={loading} />
 							<Text style={GlobalStyle.signInText}>Valider l’annonce</Text>
 						</TouchableOpacity>
 					</View>
