@@ -6,6 +6,7 @@ import {
 	ScrollView,
 	TouchableOpacity,
 	Text,
+	TouchableHighlight,
 	Picker,
 	Switch,
 	Image,
@@ -248,37 +249,26 @@ export default function AddProduct({ route, navigation }) {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			{canRender ? (
 				<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
+<<<<<<< Updated upstream
 					{images ? (
 						<View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
+=======
+					{imageViisible ? (
+						<View style={{ flexDirection: 'row', flex: 1}}>
+>>>>>>> Stashed changes
 							{images.map((img, index) => {
 								return (
-									<View key={index} style={{ width: '23%', borderWidth: 1, borderColor: '#444' }}>
+									<View key={index} style={{ width: '23%', borderWidth: 1, borderColor: '#444', marginRight: 8 }}>
+									<TouchableHighlight onPress={() => navigation.navigate('image')}>
 										<Image
 											source={{ uri: img.uri }}
 											style={{ height: height_image, width: width_image }}
 											resizeMode={'stretch'}
 										/>
+									</TouchableHighlight>
 									</View>
 								);
 							})}
-							<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
-								<MaterialIcons name="add-a-photo" color="#444" size={100} />
-							</TouchableOpacity>
-							{/* <View style={{ width: '23%', borderWidth: 1, borderColor: '#444' }}>
-							<Image
-								source={require('../../../../assets/logo.jpg')}
-								style={{ height: height_image, width: width_image }}
-								resizeMode={'stretch'}
-							/>
-						</View>
-
-						<View style={{ width: '23%', borderWidth: 1, borderColor: '#444' }}>
-							<Image
-								source={require('../../../../assets/logo.jpg')}
-								style={{ height: height_image, width: width_image }}
-								resizeMode={'stretch'}
-							/>
-						</View> */}
 						</View>
 					) : (
 						<View>

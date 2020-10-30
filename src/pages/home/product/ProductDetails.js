@@ -53,7 +53,9 @@ export default function ProductDetails({ navigation, route }) {
 
 						<View style={{ flexDirection: 'row', marginTop: 10 }}>
 							<View style={{ flexDirection: 'row', width: '50%' }}>
-								<Entypo name="user" color="#4898D3" size={20} style={{ marginRight: 5 }} />
+								<Entypo 
+								name="user" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
 								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
 									{' '}
 									{post.user.owner}
@@ -71,46 +73,55 @@ export default function ProductDetails({ navigation, route }) {
 						</View>
 
 						<View style={{ flexDirection: 'row', width: '50%', marginTop: 10 }}>
-							<Entypo name="location" color="#4898D3" size={20} style={{ marginRight: 5 }} />
-							<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> {post.city}</Text>
+								<Entypo 
+								name="location" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+									{' '}
+									{post.city}
+								</Text>
 						</View>
+						
+						
 					</View>
 
-					{post.laivraison || post.paiement ? (
-						<View>
-							<Text style={{ color: '#4898D3', marginLeft: 20 }}>Services</Text>
+					{ (post.laivraison || post.paiement  )
 
-							<View style={GlobalStyle.infoContainer}>
-								{post.laivraison ? (
-									<View style={{ flexDirection: 'row', marginTop: 5 }}>
-										<MaterialCommunityIcons
-											name="truck-fast"
-											color="#4898D3"
-											size={20}
-											style={{ marginRight: 5 }}
-										/>
-										<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
-											Livraison possible
-										</Text>
-									</View>
-								) : null}
+					? 
+					<View> 
+					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Services</Text>
 
-								{post.paiement ? (
-									<View style={{ flexDirection: 'row', marginTop: 5 }}>
-										<FontAwesome
-											name="money"
-											color="#4898D3"
-											size={20}
-											style={{ marginRight: 5 }}
-										/>
-										<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
-											Paiement à la livraison
-										</Text>
-									</View>
-								) : null}
-							</View>
+					<View style={GlobalStyle.infoContainer}>
+
+					{post.laivraison ? 
+					
+
+						<View style={{ flexDirection: 'row', marginTop: 5 }}>
+								<MaterialCommunityIcons 
+								name="truck-fast" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+								Livraison possible
+								</Text>
 						</View>
-					) : null}
+
+					: null}
+					
+					{post.paiement ? 
+						<View style={{ flexDirection: 'row', marginTop: 5}}>
+								<FontAwesome 
+								name="money" color="#4898D3" size={20} style={{ marginRight: 5 }} 
+								/>
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+								Paiement à la livraison
+								</Text>
+							</View>	
+					: null }
+						
+						
+					</View>
+					</View>
+					: null }
 					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Contact</Text>
 
 					<View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1 }}>
@@ -151,132 +162,108 @@ export default function ProductDetails({ navigation, route }) {
 						<Text style={{ fontFamily: 'sans-serif' }}>{post.description}</Text>
 					</View>
 
-					{/* Voiture Section */}
 
-					{/* <View>
-						<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Vehicule</Text>
+				{/* 
+				
+				<View>
+				<Text style={{ color: '#4898D3', marginLeft: 20}}>Caractéristiques Vehicule</Text>
 
-						<View style={GlobalStyle.infoContainer}>
-							<View style={{ flexDirection: 'row' }}>
-								<View style={{ width: '50%', flexDirection: 'row' }}>
-									<MaterialCommunityIcons
-										name="car-hatchback"
-										color="#FF6347"
-										size={20}
-										style={{ marginRight: 5 }}
-									/>
-									<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>
-										Marque :
-									</Text>
-								</View>
+				<View
+				style={GlobalStyle.infoContainer}>
+				
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="car-hatchback" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Marque :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.marqueVoiture}</Text>
+				</View>
 
-								<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>
-									{post.marqueVoiture}
-								</Text>
-							</View>
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="car-turbocharger" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Carburant :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.carburant}</Text>
+				</View>
 
-							<View style={{ flexDirection: 'row' }}>
-								<View style={{ width: '50%', flexDirection: 'row' }}>
-									<MaterialCommunityIcons
-										name="car-turbocharger"
-										color="#FF6347"
-										size={20}
-										style={{ marginRight: 5 }}
-									/>
-									<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>
-										Carburant :
-									</Text>
-								</View>
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="map-marker-distance" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Kilometrage :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.kilometrage}</Text>
+				</View>
 
-								<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>
-									{post.carburant}
-								</Text>
-							</View>
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="card-account-details" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Année fabrication :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.fabrication}</Text>
+				</View>
 
-							<View style={{ flexDirection: 'row' }}>
-								<View style={{ width: '50%', flexDirection: 'row' }}>
-									<MaterialCommunityIcons
-										name="map-marker-distance"
-										color="#FF6347"
-										size={20}
-										style={{ marginRight: 5 }}
-									/>
-									<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>
-										Kilometrage :
-									</Text>
-								</View>
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="card-bulleted-outline" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Puissance Fiscale :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.fabrication}</Text>
+				</View>
 
-								<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>
-									{post.kilometrage}
-								</Text>
-							</View>
 
-							<View style={{ flexDirection: 'row' }}>
-								<View style={{ width: '50%', flexDirection: 'row' }}>
-									<MaterialCommunityIcons
-										name="card-bulleted-outline"
-										color="#FF6347"
-										size={20}
-										style={{ marginRight: 5 }}
-									/>
-									<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>
-										Année fabrication :
-									</Text>
-								</View>
+				<View
+				style={{flexDirection: 'row'}}>
+				
+				<View style={{width: '50%', flexDirection: 'row'}}> 
+				<MaterialCommunityIcons 
+				name="car-shift-pattern" color="#FF6347" size={20} style={{ marginRight: 5 }} />
+				<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>Transaction :</Text>
+				</View>
+				
+				<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>{post.fabrication}</Text>
+				</View>
 
-								<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>
-									{post.fabrication}
-								</Text>
-							</View>
+				
+				
 
-							<View style={{ flexDirection: 'row' }}>
-								<View style={{ width: '50%', flexDirection: 'row' }}>
-									<MaterialCommunityIcons
-										name="card-bulleted-outline"
-										color="#FF6347"
-										size={20}
-										style={{ marginRight: 5 }}
-									/>
-									<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>
-										Puissance Fiscale :
-									</Text>
-								</View>
 
-								<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>
-									{post.fabrication}
-								</Text>
-							</View>
+				</View>
+				</View>
 
-							<View style={{ flexDirection: 'row' }}>
-								<View style={{ width: '50%', flexDirection: 'row' }}>
-									<MaterialCommunityIcons
-										name="card-bulleted-outline"
-										color="#FF6347"
-										size={20}
-										style={{ marginRight: 5 }}
-									/>
-									<Text style={{ color: '#FF6347', fontSize: 15, fontFamily: 'serif' }}>
-										Transaction :
-									</Text>
-								</View>
+				{/* IMMOBILIER Section */}
+				<View>
+				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Immobilier</Text>
 
-								<Text style={{ color: '#4898D3', fontSize: 15, fontFamily: 'serif' }}>
-									{post.fabrication}
-								</Text>
-							</View>
-						</View>
-					</View> */}
+				<View
+				style={GlobalStyle.infoContainer}>
+				<Text>Superficiel</Text>
+				
+				<Text>Nombre de piece</Text>
 
-					{/* IMMOBILIER Section */}
-					{/* <View>
-						<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Immobilier</Text>
+				</View>
+				</View>
 
-						<View style={GlobalStyle.infoContainer}>
-							<Text>Superficiel</Text>
-
-							<Text>Nombre de piece</Text>
-						</View>
-					</View> */}
 				</View>
 			) : (
 				<ProgressBar color="#4898D3" indeterminate={true} visible={true} style={{ height: 10 }} />

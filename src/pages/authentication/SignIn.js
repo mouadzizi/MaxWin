@@ -228,7 +228,6 @@ export default function SignIn({ navigation }) {
             label='E-mail'
             mode='outlined'
             returnKeyType='next'
-            keyboardType='email-address'
             placeholder='votre-mail@mail.com'
             returnKeyType='next'
             theme={textTheme}
