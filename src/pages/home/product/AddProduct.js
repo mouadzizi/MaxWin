@@ -249,13 +249,8 @@ export default function AddProduct({ route, navigation }) {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			{canRender ? (
 				<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
-<<<<<<< Updated upstream
 					{images ? (
 						<View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
-=======
-					{imageViisible ? (
-						<View style={{ flexDirection: 'row', flex: 1}}>
->>>>>>> Stashed changes
 							{images.map((img, index) => {
 								return (
 									<View key={index} style={{ width: '23%', borderWidth: 1, borderColor: '#444', marginRight: 8 }}>
@@ -320,6 +315,7 @@ export default function AddProduct({ route, navigation }) {
 								<Picker.Item label="Khenifra" value="Khenifra" />
 								<Picker.Item label="Kenitra" value="Kenitra" />
 								<Picker.Item label="Larache" value="Larache" />
+								<Picker.Item label="Laâyoune" value="Laâyoune" />
 								<Picker.Item label="Meknes" value="Meknes" />
 								<Picker.Item label="Merakech" value="Merakech" />
 								<Picker.Item label="Mohamadia" value="Mohamadia" />

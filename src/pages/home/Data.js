@@ -46,11 +46,12 @@ export const DATA = [
 	{
 		title: 'HABILLEMENT ET BIEN ETRE',
 		data: [
-			'Vêtements Hommes',
+			'Vêtements hommes',
+			'Montres hommes',
 			'Vêtements femmes',
+			'Montres, Bijoux & accessoires femmes',
+			'maquillage et bien être',
 			'Vêtements bébés & enfants',
-			'Montres, Bijoux & accessoires',
-			'Produits de bien être',
 		]
 	},
 
