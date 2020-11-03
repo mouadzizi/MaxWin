@@ -14,7 +14,13 @@ export default function AddProductCat({ navigation, route }) {
 				return <MaterialCommunityIcons name="desktop-mac-dashboard" size={27} color="#fff" />;
 			case 'IMMOBILIER':
 				return <FontAwesome5 name="building" size={23} color="#fff" />;
-			case 'HABILLEMENT ET BIEN ETRE':
+			case 'Espace Homme':
+				return <Ionicons name="ios-shirt" size={32} color="#fff" />;
+					
+			case 'Espace Femme':
+				return <Ionicons name="ios-shirt" size={32} color="#fff" />;
+				
+			case 'Espace Enfant':
 				return <Ionicons name="ios-shirt" size={32} color="#fff" />;
 			case 'MAISON & DECO':
 				return <MaterialCommunityIcons name="lamp" size={27} color="#fff" />;

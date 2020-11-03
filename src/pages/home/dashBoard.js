@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { View, Text, StatusBar, TouchableOpacity, InteractionManager, FlatList } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
 
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
@@ -23,6 +23,11 @@ export default function DashBoard({ navigation }) {
 			});
 		}, [])
 	);
+
+	//Dimensions
+	const { width, height } = Dimensions.get('window');
+
+	const height_screen = height * 0.782;
 
 	//SearchBar Const
 
@@ -107,10 +112,12 @@ export default function DashBoard({ navigation }) {
 					</Text>
 				</TouchableOpacity>
 			</View>
+			
+			<View>
 
 			{/* Products Lists */}
 			{ready ? (
-				<View style={{ marginBottom: 70 }}>
+				<View style={{ height: height_screen }}>
 					<FlatList
 						data={posts}
 						renderItem={({ item }) => (
@@ -123,6 +130,8 @@ export default function DashBoard({ navigation }) {
 								particulier={!item.user.accountType}
 								p1={item.laivraison}
 								p2={item.paiement}
+								p3={item.negociable}
+								p4={item.bonCondition}
 								click={() => navigation.navigate('ProductDetails', { id: item.key })}
 							/>
 						)}
@@ -131,6 +140,8 @@ export default function DashBoard({ navigation }) {
 			) : (
 				<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
 			)}
+			
+			</View>
 		</View>
 	);
 }

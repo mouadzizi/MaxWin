@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
-import { MaterialIcons } from 'react-native-vector-icons';
+import { MaterialIcons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { addProduct } from './APIFunctions';
 import { auth, db, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -24,17 +24,17 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default function AddProduct({ route, navigation }) {
 	//Variables for inputs for standar product
 	const [ title, setTitle ] = useState('');
-	const [ city, setCity ] = useState('');
+	const [ city, setCity ] = useState('Touts les villes');
 	const [ price, setPrice ] = useState('');
 	const [ description, setDescription ] = useState('');
 
 	//Variables for inputs for Voiture
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
-	const [ kilometrage, setKilometrage ] = useState('');
-	const [ carburant, setCarburant ] = useState('');
+	const [ kilometrage, setKilometrage ] = useState('0');
+	const [ carburant, setCarburant ] = useState('Diesel');
 	const [ fabrication, setFabrication ] = useState('');
-	const [ puissance, setPuissance ] = useState('');
-	const [ transtaction, setTransaction ] = useState('');
+	const [ puissance, setPuissance ] = useState('4CH');
+	const [ transtaction, setTransaction ] = useState('Manuelle');
 
 	//Variables for inputs for Location
 	const [ piece, setPiece ] = useState('');
@@ -53,11 +53,14 @@ export default function AddProduct({ route, navigation }) {
 	const [ phone, setPhone ] = useState(false);
 	const [ laivraison, setLaivraison ] = useState(false);
 	const [ paiement, setPaiement ] = useState(false);
+	const [negociable, setNegociable] = useState(false);
+	const [bonCondition, setBonCondition] = useState(false);
+	
+	const [ voitureChips, setVoitureChips ] = useState(false);
 
 	//components Visibility
 	const [ chips, setChips ] = useState(true);
 	const [ etatVisible, setEtatVisible ] = useState(true);
-	const [ imageViisible, setImageViible ] = useState(false);
 
 	//Category Visibility
 	const [ voiture, setVoiture ] = useState(false);
@@ -131,13 +134,13 @@ export default function AddProduct({ route, navigation }) {
 		const { parent } = route.params;
 		switch (true) {
 			case parent.title == 'VEHICULES' && (parent.item == 'Voiture' || parent.item == 'Location de Voiture'):
-				setChips(false);
+				setVoitureChips(true);
 				setVoiture(true);
+				setChips(false);
 				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
 				break;
 
 			case parent.title == 'VEHICULES':
-				setChips(false);
 				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
 				break;
 
@@ -209,6 +212,8 @@ export default function AddProduct({ route, navigation }) {
 			phone,
 			laivraison,
 			paiement,
+			negociable,
+			bonCondition,
 			Telephone,
 			category: route.params.parent,
 			user: {
@@ -250,39 +255,56 @@ export default function AddProduct({ route, navigation }) {
 			{canRender ? (
 				<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 					{images ? (
-						<View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
+						<View style={{ flexDirection: 'row', flex: 1 }}>
 							{images.map((img, index) => {
 								return (
-									<View key={index} style={{ width: '23%', borderWidth: 1, borderColor: '#444', marginRight: 8 }}>
-									<TouchableHighlight onPress={() => navigation.navigate('image')}>
+									<View key={index} style={{ width: '23%', marginRight: 8}}>
+									<TouchableHighlight 
+									onPress={() => navigation.navigate('image')}
+									style={{ borderWidth: 1, borderColor: '#444'}}>
 										<Image
 											source={{ uri: img.uri }}
 											style={{ height: height_image, width: width_image }}
 											resizeMode={'stretch'}
 										/>
 									</TouchableHighlight>
+									
+									<MaterialCommunityIcons
+										name='camera-plus-outline'
+										color='#444'
+										size={30}
+										style={{ position: 'absolute', bottom: 2, right: 5 }}
+										/>
 									</View>
 								);
 							})}
 						</View>
 					) : (
 						<View>
+							
 							<View style={{ flexDirection: 'row' }}>
 								<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
 									<MaterialIcons name="add-a-photo" color="#444" size={100} />
 								</TouchableOpacity>
 							</View>
-
+							
+							<Text style={{ color: 'red', fontSize: 11}}>Obligatoir *</Text>
 							<Text style={{ color: '#4898D3', fontSize: 11 }}>
 								Une bonne annonce commence par une bonne photo.
 							</Text>
 						</View>
 					)}
 
+					
+
 					<View style={{ flex: 1, marginTop: 20 }}>
+
+					<Text style={{ color: 'red', fontSize: 11}}>Obligatoir *</Text>
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
+							maxLength={20}
+							multiline={false}
 							theme={textTheme}
 							onChangeText={setTitle}
 						/>
@@ -290,7 +312,9 @@ export default function AddProduct({ route, navigation }) {
 							Merci d’entrer le Nom exacte de votre article
 						</Text>
 
-						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 10 }}>
+						
+					<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
+						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4}}>
 							<Picker
 								selectedValue={city}
 								style={{ height: 50, width: '100%' }}
@@ -315,6 +339,7 @@ export default function AddProduct({ route, navigation }) {
 								<Picker.Item label="Khenifra" value="Khenifra" />
 								<Picker.Item label="Kenitra" value="Kenitra" />
 								<Picker.Item label="Larache" value="Larache" />
+								<Picker.Item label="Laâyoune" value="Laâyoune" />
 								<Picker.Item label="Meknes" value="Meknes" />
 								<Picker.Item label="Merakech" value="Merakech" />
 								<Picker.Item label="Mohamadia" value="Mohamadia" />
@@ -330,14 +355,17 @@ export default function AddProduct({ route, navigation }) {
 							</Picker>
 						</View>
 
+						
+					<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
 						<TextInput
 							label="Prix"
 							mode="outlined"
+							maxLength={12}
+							multiline={false}
 							placeholder="DHS"
 							theme={textTheme}
 							onChangeText={setPrice}
 							keyboardType="numeric"
-							style={{ marginTop: 10 }}
 						/>
 
 						{etatVisible ? (
@@ -350,7 +378,8 @@ export default function AddProduct({ route, navigation }) {
 										prompt="Etat"
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
-									>
+									>	
+										<Picker.Item label="Neuf/Ancien" value="neuf/ancien" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Ancien" value="ancien" />
 									</Picker>
@@ -361,8 +390,10 @@ export default function AddProduct({ route, navigation }) {
 						{Telephone ? (
 							<View>
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque</Text>
+								
+								<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
 								<View
-									style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}
+									style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4 }}
 								>
 									<Picker
 										selectedValue={phoneMarque}
@@ -371,12 +402,13 @@ export default function AddProduct({ route, navigation }) {
 										onValueChange={(itemValue, itemIndex) => setPhoneMarque(itemValue)}
 									>
 										<Picker.Item label="Choissisez votre marque" value="rien" />
-										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
-										<Picker.Item label="IPHONE" value="IPHONE" />
+										<Picker.Item label="Samsung " value="Samsung " />
+										<Picker.Item label="Iphone" value="Iphone" />
+										<Picker.Item label="Xiaomi" value="Xiaomi" />
 										<Picker.Item label="OPPO" value="OPPO" />
-										<Picker.Item label="HUAWEI" value="HUAWEI" />
-										<Picker.Item label="SONY" value="SONY" />
-										<Picker.Item label="NOKIA" value="NOKIA" />
+										<Picker.Item label="Huawei" value="Huawei" />
+										<Picker.Item label="Sony" value="Sony" />
+										<Picker.Item label="Nokia" value="Nokia" />
 										<Picker.Item label="Autre" value="Autre" />
 									</Picker>
 								</View>
@@ -385,8 +417,11 @@ export default function AddProduct({ route, navigation }) {
 
 						{voiture ? (
 							<View>
+							
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque</Text>
-								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
+								
+								<Text style={{ color: 'red', fontSize: 11, marginTop: 5}}>Obligatoir *</Text>
+								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4}}>
 									<Picker
 										selectedValue={marqueVoiture}
 										prompt="Marque"
@@ -427,20 +462,23 @@ export default function AddProduct({ route, navigation }) {
 									</Picker>
 								</View>
 
+								
+								<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
 								<TextInput
 									onChangeText={setKilometrage}
 									label="Kilometrage"
 									mode="outlined"
+									maxLength={7}
 									placeholder="12.000 Km"
 									keyboardType="numeric"
 									theme={textTheme}
-									style={{ marginTop: 10 }}
 								/>
 
 								<TextInput
 									onChangeText={setFabrication}
 									label="Année de fabrication"
 									mode="outlined"
+									maxLength={4}
 									placeholder="exemple: 2005"
 									keyboardType="numeric"
 									theme={textTheme}
@@ -481,7 +519,8 @@ export default function AddProduct({ route, navigation }) {
 									</Picker>
 								</View>
 
-								<Text style={{ color: '#4898D3', marginTop: 5 }}>Transaction</Text>
+								<Text style={{ color: '#4898D3', marginTop: 5 }}>Boîte de vitesses</Text>
+								
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 									<Picker
 										mode="dropdown"
@@ -489,7 +528,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTransaction(itemValue)}
 									>
-										<Picker.Item label="Mannuel " value="Mannuel" />
+										<Picker.Item label="Manuelle" value="Manuelle" />
 										<Picker.Item label="Automatique" value="Automatique" />
 									</Picker>
 								</View>
@@ -664,6 +703,34 @@ export default function AddProduct({ route, navigation }) {
 										status={paiement ? 'checked' : 'unchecked'}
 										onPress={() => {
 											setPaiement(!paiement);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+							</View>
+						) : null}
+
+						{voitureChips ? (
+							<View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>Voiture en bon condition</Text>
+
+									<Checkbox
+										status={bonCondition ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setBonCondition(!bonCondition);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>Prix negociable</Text>
+
+									<Checkbox
+										status={negociable ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setNegociable(!negociable);
 										}}
 										color="#4898D3"
 									/>
