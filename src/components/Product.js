@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { GlobalStyle } from '../style/GlobalStyle';
-import { FontAwesome, Entypo, MaterialCommunityIcons } from 'react-native-vector-icons';
+import { FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons } from 'react-native-vector-icons';
 
 export default function Product(props) {
 	const [ chip1, setChip1 ] = useState(props.p1);
 	const [ chip2, setChip2 ] = useState(props.p2);
+	
+	const [ chip3, setChip3 ] = useState(props.p3);
+	const [ chip4, setChip4 ] = useState(props.p4);
+
 	const [ state, setState ] = useState(props.particulier);
 	return (
 		<View>
 			<TouchableOpacity delayPressIn={0} onPress={props.click}>
 				<View
 					style={
-						chip1 && chip2 ? (
+						(chip1 && chip2) || (chip3 && chip4) ? (
 							{ flexDirection: 'row', backgroundColor: '#fff', height: 130 }
-						) : (!chip1 && chip2) || (!chip2 && chip1) ? (
+						) : ( (!chip1 && chip2) || (!chip2 && chip1) ) || (!chip3 && chip4) || (!chip4 && chip3)? (
 							{ flexDirection: 'row', backgroundColor: '#fff', height: 110 }
 						) : (
 							{ flexDirection: 'row', backgroundColor: '#fff', height: 100 }
@@ -63,6 +67,20 @@ export default function Product(props) {
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
 								<FontAwesome name="money" size={15} color="#4898D3" />
 								<Text style={GlobalStyle.cardChip}> Paiement à la livraison</Text>
+							</View>
+						) : null}
+
+						{chip3 ? (
+							<View style={{ flexDirection: 'row', marginTop: 2 }}>
+								<MaterialIcons name="money-off" size={15} color="#4898D3" />
+								<Text style={GlobalStyle.cardChip}> Prix negociable</Text>
+							</View>
+						) : null}
+
+						{chip4 ? (
+							<View style={{ flexDirection: 'row', marginTop: 2 }}>
+								<Entypo name="new" size={15} color="#4898D3" />
+								<Text style={GlobalStyle.cardChip}> Grade A 'Bon Condition' </Text>
 							</View>
 						) : null}
 					</View>

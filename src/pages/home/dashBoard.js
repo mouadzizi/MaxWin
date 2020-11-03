@@ -130,6 +130,8 @@ export default function DashBoard({ navigation }) {
 								particulier={!item.user.accountType}
 								p1={item.laivraison}
 								p2={item.paiement}
+								p3={item.negociable}
+								p4={item.bonCondition}
 								click={() => navigation.navigate('ProductDetails', { id: item.key })}
 							/>
 						)}

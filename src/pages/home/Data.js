@@ -44,14 +44,30 @@ export const DATA = [
 	},
 
 	{
-		title: 'HABILLEMENT ET BIEN ETRE',
+		title: 'Espace Homme',
 		data: [
 			'Vêtements hommes',
-			'Montres hommes',
+			'Chaussures hommes',
+			'Montres et accessoires hommes',
+			'produits de bien être homme',
+		]
+	},
+
+	{
+		title: 'Espace Femme',
+		data: [
 			'Vêtements femmes',
-			'Montres, Bijoux & accessoires femmes',
-			'maquillage et bien être',
+			'Chaussures femmes',
+			'Montres, Bijoux et accessoires femmes',
+			'Maquillage et produits de bien être',
+		]
+	},
+
+	{
+		title: 'Espace Enfant',
+		data: [
 			'Vêtements bébés & enfants',
+			'Equipments bébés & enfants',
 		]
 	},
 
