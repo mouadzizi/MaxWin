@@ -9,8 +9,9 @@
       "image": "./assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#fff"
-
-      
+    },
+    "androidStatusBar": {
+      "translucent": false
     },
     "updates": {
       "fallbackToCacheTimeout": 0

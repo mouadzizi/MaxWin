@@ -142,6 +142,7 @@ export default function AddProduct({ route, navigation }) {
 
 			case parent.title == 'VEHICULES':
 				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
+				setChips(false);
 				break;
 
 			case parent.title == 'INFORMATIQUE ET MULTIMEDIA' &&
@@ -303,7 +304,7 @@ export default function AddProduct({ route, navigation }) {
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
-							maxLength={20}
+							maxLength={25}
 							multiline={false}
 							theme={textTheme}
 							onChangeText={setTitle}
@@ -313,11 +314,11 @@ export default function AddProduct({ route, navigation }) {
 						</Text>
 
 						
-					<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
+					<Text style={{ color: 'red', fontSize: 11, marginTop: 10, marginBottom: 5}}>Obligatoir *</Text>
 						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4}}>
 							<Picker
 								selectedValue={city}
-								style={{ height: 50, width: '100%' }}
+								style={{ height: 50, width: '100%'}}
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 								<Picker.Item label="Touts les villes" value="Touts les villes" />
@@ -360,7 +361,7 @@ export default function AddProduct({ route, navigation }) {
 						<TextInput
 							label="Prix"
 							mode="outlined"
-							maxLength={12}
+							maxLength={7}
 							multiline={false}
 							placeholder="DHS"
 							theme={textTheme}

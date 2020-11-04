@@ -44,7 +44,7 @@ export const DATA = [
 	},
 
 	{
-		title: 'Espace Homme',
+		title: 'Vêtements et Accessoires Homme',
 		data: [
 			'Vêtements hommes',
 			'Chaussures hommes',
@@ -54,7 +54,7 @@ export const DATA = [
 	},
 
 	{
-		title: 'Espace Femme',
+		title: 'Vêtements et Accessoires Femme',
 		data: [
 			'Vêtements femmes',
 			'Chaussures femmes',

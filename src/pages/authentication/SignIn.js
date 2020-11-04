@@ -227,9 +227,7 @@ export default function SignIn({ navigation }) {
           <TextInput
             label='E-mail'
             mode='outlined'
-            returnKeyType='next'
             placeholder='votre-mail@mail.com'
-            returnKeyType='next'
             theme={textTheme}
 						right={ <TextInput.Icon name="email-check-outline" color='#4898D3'/> }
             onChangeText={email => setEmail(email)} />
