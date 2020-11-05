@@ -10,33 +10,31 @@ export default function Filtre() {
 	const [ titreModal, setTittreModal ] = useState('Choisisez votre catégorie');
 	const [ etat, setEtat ] = useState('');
 
-	{/* filter variables Standard */}
+	//filter variables Standard 
 	const [ city, setCity ] = useState('');
 	const [ priceMax, setPriceMax ] = useState('');
 	const [ priceMin, setPriceMin ] = useState('');
 
-	{ /* filter variables Voiture */}
+	//filter variables Voiture
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
 	const [ carburant, setCarburant ] = useState('');
-	const [ fabrication, setFabrication ] = useState('');
 	const [ puissance, setPuissance ] = useState('');
 	const [ transtaction, setTransaction ] = useState('');
 	
 	const [ anneeMax, setAnneeMax ] = useState('');
 	const [ anneeMin, setAnneeMin ] = useState('');
 
-	{
-		/* filter variables Location */
-	}
-	const [ Superficie, setSuperficie ] = useState('');
+	// filter variables Location 
+	const [ SuperficieMin, setSuperficieMin ] = useState('');
+	const [ SuperficieMax, setSuperficieMax ] = useState('');
 
-	{ /* filter variables phone */ }
+	//filter variables phone
 	const [ marquePhone, setMarquePhone ] = useState('');
 
-	{ /* filter variables phone */ }
+	//filter variables phone
 	const [ typeService, setTypeService ] = useState('');
 
-	{ /* Visibility */ }
+	//Visibility
 	const [ modalVisible, setModalVisible ] = useState(false);
 	const [ voiture, setVoiture ] = useState(false);
 	const [ location, setLocation ] = useState(false);
@@ -268,7 +266,7 @@ export default function Filtre() {
 								mode="outlined"
 								placeholder="1996"
 								theme={textTheme}
-								onChangeText={setPriceMin}
+								onChangeText={setAnneeMin}
 								keyboardType="numeric"
 								style={{ width: '45%' }}
 							/>
@@ -278,7 +276,7 @@ export default function Filtre() {
 								mode="outlined"
 								placeholder="2020"
 								theme={textTheme}
-								onChangeText={setPriceMax}
+								onChangeText={setAnneeMax}
 								keyboardType="numeric"
 								style={{ width: '45%' }}
 							/>
@@ -334,15 +332,33 @@ export default function Filtre() {
 						) : null}
 
 						{location ? (
+
+	
+							<View>
+							<Text style={{ color: '#4898D3', marginTop: 5 }}>Superficie</Text>
+							<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 							<TextInput
-								label="Superficie"
+								label="Superficie Min"
 								mode="outlined"
 								placeholder="(m²)"
 								theme={textTheme}
 								keyboardType="numeric"
-								style={{ marginTop: 10 }}
-								onChangeText={setSuperficie}
+								style={{ width: '45%'}}
+								onChangeText={setSuperficieMin}
 							/>
+
+							<TextInput
+								label="Superficie Max"
+								mode="outlined"
+								placeholder="(m²)"
+								theme={textTheme}
+								keyboardType="numeric"
+								style={{ width: '45%' }}
+								onChangeText={setSuperficieMax}
+							/>
+							</View>
+
+							</View>
 						) : null}
 
 						{phone ? (
