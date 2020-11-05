@@ -72,14 +72,14 @@ export default function Product(props) {
 
 						{chip3 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
-								<MaterialIcons name="money-off" size={15} color="#4898D3" />
+								<MaterialCommunityIcons name="brightness-percent" size={15} color="#4898D3" />
 								<Text style={GlobalStyle.cardChip}> Prix negociable</Text>
 							</View>
 						) : null}
 
 						{chip4 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
-								<Entypo name="new" size={15} color="#4898D3" />
+								<Entypo name="thumbs-up" size={15} color="#4898D3" />
 								<Text style={GlobalStyle.cardChip}> Grade A 'Bon Condition' </Text>
 							</View>
 						) : null}

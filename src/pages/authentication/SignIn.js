@@ -16,7 +16,7 @@ export default function SignIn({ navigation }) {
   const [loading, setLoading] = useState(false)
   const [gLoading, setGLoading] = useState(false)
   const [fbLoading, setFBLoading] = useState(false)
-  const [showPass,setShowPass]=useState(false)
+  const [showPass,setShowPass]=useState(true)
 
   const { width, height } = Dimensions.get('window');
   const height_image = height * 0.3;
@@ -226,6 +226,7 @@ export default function SignIn({ navigation }) {
         <View style={{ flex: 4, marginTop: 5 }}>
           <TextInput
             label='E-mail'
+            autoCapitalize="none"
             mode='outlined'
             placeholder='votre-mail@mail.com'
             theme={textTheme}
@@ -235,7 +236,8 @@ export default function SignIn({ navigation }) {
           <TextInput
             label='mot de passe'
             mode='outlined'
-            placeholder='Enter votre mot de passe'
+            placeholder="Enter votre mot de passe"
+            autoCapitalize="none"
             returnKeyType='go'
             onSubmitEditing={() => SignIn()}
             theme={textTheme}

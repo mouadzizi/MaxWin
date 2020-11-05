@@ -164,11 +164,19 @@ export default function ProductDetails({ navigation, route }) {
 
 
 				<View>
-				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Immobilier</Text>
+				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Produit</Text>
 
 				<View
 				style={GlobalStyle.infoContainer}>
-				<Text>Superficiel</Text>
+				<Text>Voiture</Text>
+				<Text>marque de Voiture : {post.marqueVoiture}</Text>
+				<Text>kilometrage : {post.kilometrage}</Text>
+				<Text>année de fabrication : {post.fabrication}</Text>
+				<Text>Imobilier</Text>
+				<Text>superficie immobilier: {post.superficie} m^2</Text>
+				<Text>Nombre de Piece : {post.piece}</Text>
+				<Text>Telephone</Text>
+				<Text>Marque de Telephone : {post.phoneMarque}</Text>
 				
 				<Text>Nombre de piece</Text>
 

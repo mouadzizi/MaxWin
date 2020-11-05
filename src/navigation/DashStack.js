@@ -138,6 +138,7 @@ export default function DashStack() {
 					}
 				}}
 			/>
+
 		</Stack.Navigator>
 	);
 }

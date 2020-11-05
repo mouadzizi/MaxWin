@@ -1,12 +1,26 @@
 import * as React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView,View, Text, SafeAreaView} from 'react-native';
+import {MaterialCommunityIcons} from 'react-native-vector-icons'
 
-export default function Privacy()
+export default function Privacy({navigation})
 {
     return(
         <SafeAreaView>
-            <ScrollView>
+        <ScrollView>
+        
+        <View
+        style={{width: '100%', backgroundColor: '#4898D3', height: 50, flexDirection: 'row'}}>
+        <MaterialCommunityIcons
+        name='keyboard-backspace'
+        size={35}
+        color='white'
+        style={{top: 5, left: 5}}
+        onPress={()=>{navigation.navigate('DashStack')}}
+        />
+        <Text
+        style={{textAlign: 'center', fontWeight: 'bold', color: '#fff', textAlignVertical: 'center', marginLeft: 25}}>Conditions Générales</Text>
+        </View>
+
                 <Text
                 style={{fontSize: 20, textAlign: 'center', color: 'red', fontWeight: 'bold', marginBottom: 20}}>Conditions Générales d’Utilisation</Text>
                 
@@ -15,7 +29,7 @@ export default function Privacy()
                 <Text
                  style={{fontSize: 15, textAlign: 'justify', marginHorizontal: 10, marginVertical: 20}}>En visitant vous déclarez accepter les présentes Conditions Générales dans leurs intégralités. Si ce n'est pas le cas, nous vous informons que vous n'êtes pas autorisé à utiliser nos services.</Text>
                 <Text
-                style={{fontSize: 15, textAlign: 'justify', marginHorizontal: 10, marginVertical: 20}}>Les fonctionnalités du site et /ou l’application Maxwin sont strictement réservés aux personnes majeurs. Nos services ne sont pas disponibles pour les mineurs de moins de 18 ans. Les mineurs ne peuvent utiliser nos services que sous la surveillance d’un tuteur légal ou de leurs parents. Si vous ne remplissez pas ces conditions, vous ne pouvez en aucun cas utiliser nos services. De même pour les personnes dont le compte a été suspendu temporairement ou définitivement. Enfin, votre compte sur le site et /ou l’application Maxwin ne peut pas être cédé à des tiers, sous aucune forme.
+                style={{fontSize: 15, textAlign: 'justify', marginHorizontal: 10, marginVertical: 20}}>Les fonctionnalités du l’application /site web Maxwin sont strictement réservés aux personnes majeurs. Nos services ne sont pas disponibles pour les mineurs de moins de 18 ans. Les mineurs ne peuvent utiliser nos services que sous la surveillance d’un tuteur légal ou de leurs parents. Si vous ne remplissez pas ces conditions, vous ne pouvez en aucun cas utiliser nos services. De même pour les personnes dont le compte a été suspendu temporairement ou définitivement. Enfin, votre compte sur le site et /ou l’application Maxwin ne peut pas être cédé à des tiers, sous aucune forme.
                 La consultation du site et / ou l’application Maxwin ne nécessite pas d'être inscrit en tant que membre. En revanche, pour pouvoir contacter un annonceur, publier, gérer ou éditer une Annonce, il est indispensable de s'être enregistré en qualité de membre, d'avoir choisi un login et un mot de passe. Vous aurez également dû confirmer votre inscription par l'intermédiaire d'un courrier électronique envoyé à l'adresse email que vous avez transmis en tant que login lors de votre demande d'inscription. En tant que membre, vous êtes tenu responsable de toutes les opérations réalisées avec votre login et votre mot de passe. Vous êtes tenu de prendre toutes les mesures nécessaires pour protéger vos données et vous ne pouvez pas le révéler à des tiers, ni autoriser une tierce personne à l'utiliser directement ou indirectement.</Text>
             
                 <Text
