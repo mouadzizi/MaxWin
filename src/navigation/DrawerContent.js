@@ -87,7 +87,6 @@ export default function DrawerContent(props){
 
                 <View style={{marginLeft:15,marginTop: 15,flexDirection: 'column'}}>
                     <Title style={styles.title}> {user.name} </Title>
-                    <Caption style={styles.caption}>{user.accountType}</Caption>
                 </View>
             </View>
 
@@ -95,16 +94,41 @@ export default function DrawerContent(props){
             <Drawer.Section style={styles.drawerSection}>
             
             <DrawerItem
-            icon={({color, size}) =>(
+            icon={({size}) =>(
                 <Icon
                     name="home-outline"
-                    color={color}
+                    color='black'
                     size={size}
                 />
             )}
             label="Accueil"
             onPress={()=>{props.navigation.navigate('DashStack')}}
             />
+
+        <DrawerItem
+            icon={({size}) =>(
+                <Icon
+                    name="lock-outline"
+                    color='black'
+                    size={size}
+                />
+            )}
+            
+            onPress={()=>{props.navigation.navigate('Privacy')}}
+            label="Conditions générales"
+        />
+
+        <DrawerItem
+            icon={({size}) =>(
+                <Icon
+                    name="mail"
+                    color='black'
+                    size={size}
+                />
+            )}
+            
+            label="Contactez-nous"
+        />
 
         </Drawer.Section>
         </View>
@@ -113,6 +137,7 @@ export default function DrawerContent(props){
 
 
         <Drawer.Section style={styles.bottomDrawerSection}>
+    
 
         <DrawerItem
             icon={({color, size}) =>(

@@ -16,7 +16,7 @@ export default function SignIn({ navigation }) {
   const [loading, setLoading] = useState(false)
   const [gLoading, setGLoading] = useState(false)
   const [fbLoading, setFBLoading] = useState(false)
-  const [showPass,setShowPass]=useState(false)
+  const [showPass,setShowPass]=useState(true)
 
   const { width, height } = Dimensions.get('window');
   const height_image = height * 0.3;
@@ -226,10 +226,9 @@ export default function SignIn({ navigation }) {
         <View style={{ flex: 4, marginTop: 5 }}>
           <TextInput
             label='E-mail'
+            autoCapitalize="none"
             mode='outlined'
-            returnKeyType='next'
             placeholder='votre-mail@mail.com'
-            returnKeyType='next'
             theme={textTheme}
 						right={ <TextInput.Icon name="email-check-outline" color='#4898D3'/> }
             onChangeText={email => setEmail(email)} />
@@ -237,7 +236,8 @@ export default function SignIn({ navigation }) {
           <TextInput
             label='mot de passe'
             mode='outlined'
-            placeholder='Enter votre mot de passe'
+            placeholder="Enter votre mot de passe"
+            autoCapitalize="none"
             returnKeyType='go'
             onSubmitEditing={() => SignIn()}
             theme={textTheme}

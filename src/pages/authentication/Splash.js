@@ -64,7 +64,7 @@ export default function Splash({ navigation }) {
 						resizeMode={'stretch'}
 					/>
 
-					<Text style={GlobalStyle.splashText}> Vendez et achetez facilement sur Maxwin </Text>
+					<Text style={GlobalStyle.splashText}> Vendez ou achetez gratuitement et facilement sur Maxwin </Text>
 				</View>
 
 				{/* Swiper number 2 */}

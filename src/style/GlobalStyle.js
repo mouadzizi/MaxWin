@@ -189,7 +189,7 @@ export const GlobalStyle = StyleSheet.create({
     
 
     sliderContainer: {
-      height: 200,
+      height: '40%',
       width: '90%',
       marginTop: 10,
       justifyContent: 'center',
@@ -211,12 +211,14 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     infoContainer:{
-      width: '100%',
-      margin: 10,
+      width: '95%',
+      borderRadius: 10,
+      paddingLeft: 20,
+      paddingBottom: 5,
+      paddingTop: 5,
       alignSelf: 'center',
       backgroundColor: '#fff',
-      paddingLeft: 30,
-      paddingBottom: 15,
+      marginTop: 10,
     },
     modalView: {
     width: '92%',

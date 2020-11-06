@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { Text, ScrollView, SafeAreaView, View, TouchableOpacity, InteractionManager } from 'react-native';
+import { Text, ScrollView, SafeAreaView, View, TouchableOpacity, InteractionManager, Alert } from 'react-native';
 import { Avatar, Divider, FAB, TextInput, ProgressBar } from 'react-native-paper';
 
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
@@ -73,7 +73,9 @@ export default function Profil() {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 10 }}>
 			{canRender ? (
 				<ScrollView showsVerticalScrollIndicator={false}>
+
 					<View style={{ flex: 1, flexDirection: 'row' }}>
+
 						<View
 							style={{
 								flex: 1,
@@ -83,10 +85,20 @@ export default function Profil() {
 								marginBottom: 15,
 								alignItems: 'center'
 							}}
-						>
-							<TouchableOpacity>
+						>	
+						<View> 
+							<TouchableOpacity
+							onPress={()=>{Alert.alert('comming soon')}}>
 								<Avatar.Image size={110} source={{ uri: auth.currentUser.photoURL }} />
 							</TouchableOpacity>
+							<MaterialCommunityIcons
+								name='camera-plus-outline'
+								color='#fff'
+								size={20}
+								style={{ position: 'absolute', bottom: 15, right: 20 }}
+								/>
+							</View>
+							
 						</View>
 
 						<View
@@ -129,7 +141,9 @@ export default function Profil() {
 									</Text>
 								</View>
 							)}
+							
 						</View>
+						 
 					</View>
 
 					<Divider />
@@ -221,18 +235,10 @@ export default function Profil() {
 
 						<Divider style={{ marginVertical: 10 }} />
 
-						<TextInput
-							theme={textTheme}
-							mode="outlined"
-							label="À propos"
-							placeholder="des informations sur vous et / ou votre entreprise"
-							value={aboutMe}
-							multiline={true}
-							maxLength={120}
-							onChangeText={(e) => setAboutMe(e)}
-							editable={edit}
-							style={{ width: '95%' }}
-						/>
+						<Text
+						style={{fontSize: 12, color: '#c2c2c2', textAlign: 'center'}}>user ID : {auth.currentUser.uid}</Text>
+
+	
 					</View>
 				</ScrollView>
 			) : (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager } from 'react-native';
-import { ProgressBar } from 'react-native-paper';
+import { Divider, ProgressBar } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
 import { Entypo, MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
@@ -27,10 +27,11 @@ export default function ProductDetails({ navigation, route }) {
 
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
+
 			{canRender ? (
 				<View>
 					<View style={GlobalStyle.sliderContainer}>
-						<Swiper autoplay height={200} activeDotColor="#FF6347">
+						<Swiper autoplay height={100} activeDotColor="#FF6347">
 							{post ? (
 								post.urls.map((img, index) => {
 									return (
@@ -49,52 +50,68 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 
 					<View style={GlobalStyle.infoContainer}>
-						<Text style={GlobalStyle.h1}>{post.title}</Text>
+						<Text style={{fontSize: 19, fontFamily: 'Roboto'}}>{post.title}</Text>
 
-						<View style={{ flexDirection: 'row', marginTop: 10 }}>
-							<View style={{ flexDirection: 'row', width: '50%' }}>
-								<Entypo 
-								name="user" color="#4898D3" size={20} style={{ marginRight: 5 }} 
-								/>
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
-									{' '}
-									{post.user.owner}
-								</Text>
-							</View>
-
-							<Text
+						<Text
 								style={[
 									GlobalStyle.cardPrice,
-									{ fontSize: 18, width: '50%', fontWeight: '700', fontFamily: 'Roboto' }
+									{ fontSize: 17, fontWeight: 'bold', fontFamily: 'Roboto', marginTop: 10 }
 								]}
 							>
-								{post.price} DH
+								{post.price} DHS
 							</Text>
-						</View>
 
-						<View style={{ flexDirection: 'row', width: '50%', marginTop: 10 }}>
-								<Entypo 
-								name="location" color="#4898D3" size={20} style={{ marginRight: 5 }} 
-								/>
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
-									{' '}
-									{post.city}
-								</Text>
-						</View>
-						
+							
+
 						
 					</View>
 
+					
+					<View style={{ flexDirection: 'row', marginTop: 10, flex: 1, paddingLeft: 20, paddingRight: 20, alignSelf: 'center' }}>
+
+						<TouchableOpacity
+							delayPressIn={0}
+							onPress={() => console.log(post.urls)}
+							style={{
+								backgroundColor: '#4898D3',
+								borderRadius: 15,
+								height: 60,
+								width: '47%',
+								marginRight : 20,
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+							<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Discuter</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							delayPressIn={0}
+							onPress={() => Alert.alert('+212.6 .26.617 611')}
+							style={{
+								borderColor: '#FF6347',
+								borderWidth : 1.5,
+								height: 60,
+								borderRadius: 15,
+								width: '47%',
+								marginLeft : 20,
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+							<Text style={{ color: '#FF6347', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
+						</TouchableOpacity>
+					</View>
 					{ (post.laivraison || post.paiement  )
 
 					? 
 					<View> 
-					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Services</Text>
+					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 20, marginTop: 10 }}>Services</Text>
 
 					<View style={GlobalStyle.infoContainer}>
 
 					{post.laivraison ? 
-					
+
 
 						<View style={{ flexDirection: 'row', marginTop: 5 }}>
 								<MaterialCommunityIcons 
@@ -106,7 +123,7 @@ export default function ProductDetails({ navigation, route }) {
 						</View>
 
 					: null}
-					
+
 					{post.paiement ? 
 						<View style={{ flexDirection: 'row', marginTop: 5}}>
 								<FontAwesome 
@@ -122,63 +139,64 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 					</View>
 					: null }
-					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Contact</Text>
 
-					<View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1 }}>
-						<TouchableOpacity
-							delayPressIn={0}
-							onPress={() => console.log(post.urls)}
-							style={{
-								backgroundColor: '#4898D3',
-								flex: 1,
-								height: 75,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-							<Entypo name="chat" color="#fff" size={40} />
-							<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Discuter</Text>
-						</TouchableOpacity>
+					{ (post.negociable || post.bonCondition  )
 
-						<TouchableOpacity
-							delayPressIn={0}
-							onPress={() => Alert.alert('+212.6 .26.617 611')}
-							style={{
-								backgroundColor: '#FF6347',
-								flex: 1,
-								height: 75,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-							<Entypo name="phone" color="#fff" size={40} />
-							<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
-						</TouchableOpacity>
+					? 
+					<View> 
+					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Services</Text>
+
+					<View style={GlobalStyle.infoContainer}>
+
+					{post.bonCondition ? 
+
+
+						<View style={{ flexDirection: 'row', marginTop: 5 }}>		
+								<Entypo name="thumbs-up" size={25} color="#4898D3" />
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Très Bon Condition
+								</Text>
+						</View>
+
+					: null}
+					{post.negociable ? 
+						<View style={{ flexDirection: 'row', marginTop: 5}}>
+						<MaterialCommunityIcons name="brightness-percent" size={25} color="#4898D3" />
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Prix negociable
+								</Text>
+							</View>	
+					: null }
+						
+						
 					</View>
+					</View>
+					: null }
 
-					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Description</Text>
+					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Description</Text>
 
 					<View style={GlobalStyle.infoContainer}>
 						<Text style={{ fontFamily: 'sans-serif' }}>{post.description}</Text>
 					</View>
 
 
-				<View>
-				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Immobilier</Text>
-
 				<View
-				style={GlobalStyle.infoContainer}>
-				<Text>Superficiel</Text>
+				style={{backgroundColor: '#fff', padding: 20, marginTop: 10}}>
+				<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Details</Text>
 				
-				<Text>Nombre de piece</Text>
-
+				<View
+				style={{flexDirection: 'row'}}>
+				<Text
+				style={{fontSize: 15}}>Marque de Voiture</Text>
 				</View>
+
+			
+
 				</View>
 
 				</View>
 			) : (
 				<ProgressBar color="#4898D3" indeterminate={true} visible={true} style={{ height: 10 }} />
 			)}
+
 		</ScrollView>
 	);
 }

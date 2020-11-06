@@ -142,6 +142,7 @@ export default function AddProduct({ route, navigation }) {
 
 			case parent.title == 'VEHICULES':
 				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
+				setChips(false);
 				break;
 
 			case parent.title == 'INFORMATIQUE ET MULTIMEDIA' &&
@@ -300,27 +301,28 @@ export default function AddProduct({ route, navigation }) {
 					<View style={{ flex: 1, marginTop: 20 }}>
 
 					<Text style={{ color: 'red', fontSize: 11}}>Obligatoir *</Text>
+					<Text style={{ color: '#4898D3', fontSize: 11 }}>
+							Merci d’entrer le Nom exacte de votre article
+						</Text>
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
-							maxLength={20}
+							maxLength={25}
 							multiline={false}
 							theme={textTheme}
 							onChangeText={setTitle}
 						/>
-						<Text style={{ color: '#4898D3', fontSize: 11 }}>
-							Merci d’entrer le Nom exacte de votre article
-						</Text>
+						
 
 						
-					<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
+					<Text style={{ color: 'red', fontSize: 11, marginTop: 10, marginBottom: 5}}>Obligatoir *</Text>
 						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4}}>
 							<Picker
 								selectedValue={city}
-								style={{ height: 50, width: '100%' }}
+								style={{ height: 50, width: '100%'}}
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
-								<Picker.Item label="Touts les villes" value="Touts les villes" />
+								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
 								<Picker.Item label="Agadir" value="Agadir" />
 								<Picker.Item label="Asilah" value="Asilah" />
 								<Picker.Item label="Asfi" value="Asfi" />
@@ -360,7 +362,7 @@ export default function AddProduct({ route, navigation }) {
 						<TextInput
 							label="Prix"
 							mode="outlined"
-							maxLength={12}
+							maxLength={7}
 							multiline={false}
 							placeholder="DHS"
 							theme={textTheme}
@@ -391,7 +393,6 @@ export default function AddProduct({ route, navigation }) {
 							<View>
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque</Text>
 								
-								<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
 								<View
 									style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4 }}
 								>
@@ -418,9 +419,8 @@ export default function AddProduct({ route, navigation }) {
 						{voiture ? (
 							<View>
 							
-								<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque</Text>
+								<Text style={{ color: '#4898D3', marginTop: 10 }}>Marque</Text>
 								
-								<Text style={{ color: 'red', fontSize: 11, marginTop: 5}}>Obligatoir *</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4}}>
 									<Picker
 										selectedValue={marqueVoiture}
@@ -428,7 +428,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="choisissez votre marque " value="rien" />
+										<Picker.Item label="Choisissez votre marque " value="rien" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -463,7 +463,6 @@ export default function AddProduct({ route, navigation }) {
 								</View>
 
 								
-								<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
 								<TextInput
 									onChangeText={setKilometrage}
 									label="Kilometrage"
@@ -472,6 +471,7 @@ export default function AddProduct({ route, navigation }) {
 									placeholder="12.000 Km"
 									keyboardType="numeric"
 									theme={textTheme}
+									style={{ marginTop: 10 }}
 								/>
 
 								<TextInput
@@ -651,14 +651,15 @@ export default function AddProduct({ route, navigation }) {
 										onValueChange={(itemValue, itemIndex) => setPiece(itemValue)}
 									>
 										<Picker.Item label="1" value="1" />
-										<Picker.Item label="2-3" value="2" />
-										<Picker.Item label="3-4" value="3" />
-										<Picker.Item label="5 et plus" value="5" />
+										<Picker.Item label="2" value="2" />
+										<Picker.Item label="3" value="3" />
+										<Picker.Item label="4 et plus" value="5" />
 									</Picker>
 								</View>
 							</View>
 						) : null}
-
+						
+						<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
 						<TextInput
 							label="Description"
 							mode="outlined"
@@ -666,7 +667,6 @@ export default function AddProduct({ route, navigation }) {
 							numberOfLines={4}
 							maxLength={266}
 							placeholder="description"
-							style={{ marginTop: 10 }}
 							onChangeText={setDescription}
 							multiline={true}
 						/>

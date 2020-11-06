@@ -6,24 +6,10 @@ export const DATA = [
 	{
 		title: 'VEHICULES',
 		data: [ 
-			'Voiture', 
+			'Voitures', 
 			'Location de Voiture', 
 			'Motos & vélos', 
 			'Véhicules professionnels' 
-		]
-	},
-
-	{
-		title: 'INFORMATIQUE ET MULTIMEDIA',
-		data: [
-			'Téléphones',
-			'Tablettes',
-			'Ordinateurs',
-			'Jeux vidéo & Consoles',
-			'Télévisions',
-			'Appareils photo',
-			'Accessoires informatique',
-			'Accessoires H-TECH',
 		]
 	},
 
@@ -38,33 +24,48 @@ export const DATA = [
 			'Location long durée',
 		]
 	},
+
 	{
 		title: 'MAISON & DECO',
 		data: [ 'Electroménagers', 'Meubles et déco']
 	},
 
 	{
-		title: 'Espace Homme',
+		title: 'INFORMATIQUE ET ELECTRONIQUE',
 		data: [
-			'Vêtements hommes',
-			'Chaussures hommes',
-			'Montres et accessoires hommes',
-			'produits de bien être homme',
+			'Téléphones',
+			'Tablettes',
+			'Ordinateurs',
+			'Jeux vidéo & Consoles',
+			'Télévisions',
+			'Appareils photo',
+			'Accessoires informatique',
+			'Accessoires H-TECH',
 		]
 	},
 
 	{
-		title: 'Espace Femme',
+		title: 'ESPACE HOMMES',
 		data: [
-			'Vêtements femmes',
-			'Chaussures femmes',
-			'Montres, Bijoux et accessoires femmes',
+			'Vêtements',
+			'Chaussures',
+			'Montres et accessoires',
+			'Produits de bien être',
+		]
+	},
+
+	{
+		title: 'ESPACE FEMMES',
+		data: [
+			'Vêtements',
+			'Chaussures',
+			'Montres, Bijoux et accessoires',
 			'Maquillage et produits de bien être',
 		]
 	},
 
 	{
-		title: 'Espace Enfant',
+		title: 'ESPACE BEBES ET ENFANTS',
 		data: [
 			'Vêtements bébés & enfants',
 			'Equipments bébés & enfants',
@@ -72,7 +73,7 @@ export const DATA = [
 	},
 
 	{
-		title: 'MATERIELS & SERVICES',
+		title: 'MATERIELS ET SERVICES',
 		data: [ 
 			'Matériels professionnels', 
 			'Services et travaux professionnels', 

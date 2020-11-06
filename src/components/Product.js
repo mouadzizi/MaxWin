@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { GlobalStyle } from '../style/GlobalStyle';
-import { FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons } from 'react-native-vector-icons';
+import { FontAwesome, Entypo, MaterialCommunityIcons, Feather, FontAwesome5 } from 'react-native-vector-icons';
 
 export default function Product(props) {
 	const [ chip1, setChip1 ] = useState(props.p1);
@@ -26,7 +26,7 @@ export default function Product(props) {
 					}
 				>
 					<View style={GlobalStyle.cardImgWrapper}>
-						<Image source={{ uri: props.img }} resizeMode="contain" style={GlobalStyle.cardImg} />
+						<Image source={{ uri: props.img }} resizeMode="stretch" style={GlobalStyle.cardImg} />
 					</View>
 
 					{/* Info of the card */}
@@ -72,15 +72,15 @@ export default function Product(props) {
 
 						{chip3 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
-								<MaterialIcons name="money-off" size={15} color="#4898D3" />
-								<Text style={GlobalStyle.cardChip}> Prix negociable</Text>
+								<MaterialCommunityIcons name="label-percent" size={15} color="#4898D3" />
+								<Text style={GlobalStyle.cardChip}> Prix négociable </Text>
 							</View>
 						) : null}
 
 						{chip4 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
-								<Entypo name="new" size={15} color="#4898D3" />
-								<Text style={GlobalStyle.cardChip}> Grade A 'Bon Condition' </Text>
+								<Feather name="thumbs-up" size={15} color="#4898D3" />
+								<Text style={GlobalStyle.cardChip}> En bonne état </Text>
 							</View>
 						) : null}
 					</View>
