@@ -7,7 +7,7 @@ import FilterCategory from '../filtre/FilterCat';
 
 export default function Filtre() {
 	
-	const [ titreModal, setTittreModal ] = useState('Choisisez votre catégorie');
+	const [ titreModal, setTittreModal ] = useState('Choisissez votre catégorie');
 	const [ etat, setEtat ] = useState('');
 
 	//filter variables Standard 
@@ -100,12 +100,12 @@ export default function Filtre() {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				<TouchableOpacity
-					style={{ borderWidth: 1.5, borderRadius: 5, height: 45, borderColor: '#4898D3'  }}
+					style={{ borderWidth: 1.5, borderRadius: 5, height: 45, borderColor: '#F16E44'  }}
 					onPress={() => {
 						setModalVisible(true);
 					}}
 				>
-					<Text style={{ alignSelf: 'center', textAlign: 'center', marginTop: 10, color: '#4898D3', fontSize: 18}}>
+					<Text style={{ alignSelf: 'center', textAlign: 'center', marginTop: 10, color: '#F16E44', fontSize: 18}}>
 						{titreModal}
 					</Text>
 				</TouchableOpacity>
@@ -139,7 +139,7 @@ export default function Filtre() {
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 
-							<Picker.Item label="Touts les villes" value="toutslesville" />
+							<Picker.Item label="Toutes les villes" value="Toutes les villes" />
 							<Picker.Item label="Agadir" value="Agadir" />
 							<Picker.Item label="Asilah" value="Asilah" />
 							<Picker.Item label="Asfi" value="Asfi" />

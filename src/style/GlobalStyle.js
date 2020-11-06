@@ -211,7 +211,8 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     infoContainer:{
-      width: '100%',
+      width: '95%',
+      borderRadius: 10,
       paddingLeft: 20,
       paddingBottom: 5,
       paddingTop: 5,

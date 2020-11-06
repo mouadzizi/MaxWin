@@ -14,7 +14,24 @@ export const DATA = [
 	},
 
 	{
-		title: 'INFORMATIQUE ET MULTIMEDIA',
+		title: 'IMMOBILIER',
+		data: [
+			'Appartements',
+			'Maisons & Villas',
+			'Terrains',
+			'Commerces & Bureaux',
+			'Location courte durée (vacances)',
+			'Location long durée',
+		]
+	},
+
+	{
+		title: 'MAISON & DECO',
+		data: [ 'Electroménagers', 'Meubles et déco']
+	},
+
+	{
+		title: 'INFORMATIQUE ET ELECTRONIQUE',
 		data: [
 			'Téléphones',
 			'Tablettes',
@@ -28,23 +45,7 @@ export const DATA = [
 	},
 
 	{
-		title: 'IMMOBILIER',
-		data: [
-			'Appartements',
-			'Maisons & Villas',
-			'Terrains',
-			'Commerces & Bureaux',
-			'Location courte durée (vacances)',
-			'Location long durée',
-		]
-	},
-	{
-		title: 'MAISON & DECO',
-		data: [ 'Electroménagers', 'Meubles et déco']
-	},
-
-	{
-		title: 'Vêtements et Accessoires Homme',
+		title: 'ESPACE HOMMES',
 		data: [
 			'Vêtements hommes',
 			'Chaussures hommes',
@@ -54,7 +55,7 @@ export const DATA = [
 	},
 
 	{
-		title: 'Vêtements et Accessoires Femme',
+		title: 'ESPACE FEMMES',
 		data: [
 			'Vêtements femmes',
 			'Chaussures femmes',
@@ -64,7 +65,7 @@ export const DATA = [
 	},
 
 	{
-		title: 'Espace Enfant',
+		title: 'ESPACE BEBES ET ENFANTS',
 		data: [
 			'Vêtements bébés & enfants',
 			'Equipments bébés & enfants',
@@ -72,7 +73,7 @@ export const DATA = [
 	},
 
 	{
-		title: 'MATERIELS & SERVICES',
+		title: 'MATERIELS ET SERVICES',
 		data: [ 
 			'Matériels professionnels', 
 			'Services et travaux professionnels', 
