@@ -54,7 +54,7 @@ export default function ImagesBrowser({ navigation }) {
 			/>
 			<FAB
 				style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, backgroundColor: '#4898D3' }}
-				label='Télécharger'
+				label='Téléchargez'
 				color="#fff"
 				onPress={() => navigation.goBack()} 
 			/>

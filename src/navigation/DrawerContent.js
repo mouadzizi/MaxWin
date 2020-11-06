@@ -115,7 +115,7 @@ export default function DrawerContent(props){
             )}
             
             onPress={()=>{props.navigation.navigate('Privacy')}}
-            label="Conditions generales"
+            label="Conditions générales"
         />
 
         <DrawerItem
@@ -127,7 +127,7 @@ export default function DrawerContent(props){
                 />
             )}
             
-            label="Contacter nous"
+            label="Contactez-nous"
         />
 
         </Drawer.Section>

@@ -15,11 +15,11 @@ export default function AddProductCat({ navigation, route }) {
 			case 'IMMOBILIER':
 				return <FontAwesome5 name="building" size={23} color="#fff" />;
 
-			case 'Vêtements et Accessoires Homme':
+			case 'ESPACE HOMMES':
 				return <Ionicons name="md-man" size={30} color="#fff" />;
-			case 'Vêtements et Accessoires Femme':
+			case 'ESPACE FEMMES':
 				return <Ionicons name="md-woman" size={30} color="#fff" />;
-			case 'Espace Enfant':
+			case 'ESPACE BEBES ET ENFANTS':
 				return <MaterialCommunityIcons name="baby-carriage" size={30} color="#fff" />;
 
 			case 'MAISON & DECO':

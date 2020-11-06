@@ -6,7 +6,7 @@ export const DATA = [
 	{
 		title: 'VEHICULES',
 		data: [ 
-			'Voiture', 
+			'Voitures', 
 			'Location de Voiture', 
 			'Motos & vélos', 
 			'Véhicules professionnels' 
@@ -47,19 +47,19 @@ export const DATA = [
 	{
 		title: 'ESPACE HOMMES',
 		data: [
-			'Vêtements hommes',
-			'Chaussures hommes',
-			'Montres et accessoires hommes',
-			'produits de bien être homme',
+			'Vêtements',
+			'Chaussures',
+			'Montres et accessoires',
+			'Produits de bien être',
 		]
 	},
 
 	{
 		title: 'ESPACE FEMMES',
 		data: [
-			'Vêtements femmes',
-			'Chaussures femmes',
-			'Montres, Bijoux et accessoires femmes',
+			'Vêtements',
+			'Chaussures',
+			'Montres, Bijoux et accessoires',
 			'Maquillage et produits de bien être',
 		]
 	},

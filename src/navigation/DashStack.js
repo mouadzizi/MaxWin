@@ -50,7 +50,7 @@ export default function DashStack() {
 				name="AddProductCat"
 				component={AddProductCat}
 				options={{
-					title: 'choisissez votre catégorie',
+					title: 'Choisissez votre catégorie',
 					headerTitleAlign: 'center',
 					headerStyle: {
 						backgroundColor: '#4898D3'
