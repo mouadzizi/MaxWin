@@ -26,7 +26,7 @@ export default function Product(props) {
 					}
 				>
 					<View style={GlobalStyle.cardImgWrapper}>
-						<Image source={{ uri: props.img }} resizeMode="contain" style={GlobalStyle.cardImg} />
+						<Image source={{ uri: props.img }} resizeMode="stretch" style={GlobalStyle.cardImg} />
 					</View>
 
 					{/* Info of the card */}
@@ -73,14 +73,14 @@ export default function Product(props) {
 						{chip3 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
 								<MaterialCommunityIcons name="brightness-percent" size={15} color="#4898D3" />
-								<Text style={GlobalStyle.cardChip}> Prix negociable</Text>
+								<Text style={GlobalStyle.cardChip}> Prix negociable </Text>
 							</View>
 						) : null}
 
 						{chip4 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
 								<Entypo name="thumbs-up" size={15} color="#4898D3" />
-								<Text style={GlobalStyle.cardChip}> Grade A 'Bon Condition' </Text>
+								<Text style={GlobalStyle.cardChip}> Tres Bon Condition </Text>
 							</View>
 						) : null}
 					</View>

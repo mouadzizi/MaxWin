@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager } from 'react-native';
-import { ProgressBar } from 'react-native-paper';
+import { Divider, ProgressBar } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
 import { Entypo, MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
@@ -30,7 +30,7 @@ export default function ProductDetails({ navigation, route }) {
 			{canRender ? (
 				<View>
 					<View style={GlobalStyle.sliderContainer}>
-						<Swiper autoplay height={200} activeDotColor="#FF6347">
+						<Swiper autoplay height={100} activeDotColor="#FF6347">
 							{post ? (
 								post.urls.map((img, index) => {
 									return (
@@ -51,7 +51,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View style={GlobalStyle.infoContainer}>
 						<Text style={GlobalStyle.h1}>{post.title}</Text>
 
-						<View style={{ flexDirection: 'row', marginTop: 10 }}>
+						<View style={{ flexDirection: 'row'}}>
 							<View style={{ flexDirection: 'row', width: '50%' }}>
 								<Entypo 
 								name="user" color="#4898D3" size={20} style={{ marginRight: 5 }} 
@@ -72,16 +72,6 @@ export default function ProductDetails({ navigation, route }) {
 							</Text>
 						</View>
 
-						<View style={{ flexDirection: 'row', width: '50%', marginTop: 10 }}>
-								<Entypo 
-								name="location" color="#4898D3" size={20} style={{ marginRight: 5 }} 
-								/>
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
-									{' '}
-									{post.city}
-								</Text>
-						</View>
-						
 						
 					</View>
 
@@ -89,7 +79,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					? 
 					<View> 
-					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Services</Text>
+					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Services</Text>
 
 					<View style={GlobalStyle.infoContainer}>
 
@@ -122,7 +112,40 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 					</View>
 					: null }
-					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Contact</Text>
+
+					{ (post.negociable || post.bonCondition  )
+
+					? 
+					<View> 
+					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Services</Text>
+
+					<View style={GlobalStyle.infoContainer}>
+
+					{post.bonCondition ? 
+
+
+						<View style={{ flexDirection: 'row', marginTop: 5 }}>		
+								<Entypo name="thumbs-up" size={25} color="#4898D3" />
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Très Bon Condition
+								</Text>
+						</View>
+
+					: null}
+
+					{post.negociable ? 
+						<View style={{ flexDirection: 'row', marginTop: 5}}>
+						<MaterialCommunityIcons name="brightness-percent" size={25} color="#4898D3" />
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Prix negociable
+								</Text>
+							</View>	
+					: null }
+						
+						
+					</View>
+					</View>
+					: null }
+
+					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Contact</Text>
 
 					<View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1 }}>
 						<TouchableOpacity
@@ -155,21 +178,25 @@ export default function ProductDetails({ navigation, route }) {
 							<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
 						</TouchableOpacity>
 					</View>
-
-					<Text style={{ color: '#4898D3', marginLeft: 20 }}>Description</Text>
+					
+					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Description</Text>
 
 					<View style={GlobalStyle.infoContainer}>
 						<Text style={{ fontFamily: 'sans-serif' }}>{post.description}</Text>
 					</View>
 
 
-				<View>
-				<Text style={{ color: '#4898D3', marginLeft: 20 }}>Caractéristiques Produit</Text>
-
 				<View
-				style={GlobalStyle.infoContainer}>
-				<Text>Voiture</Text>
-				<Text>marque de Voiture : {post.marqueVoiture}</Text>
+				style={{backgroundColor: '#fff', padding: 20, marginTop: 10}}>
+				<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Details</Text>
+				
+				<View
+				style={{flexDirection: 'row'}}>
+				<Text
+				style={{fontSize: 15}}>Marque de Voiture</Text>
+				</View>
+
+				{/*<Text>marque de Voiture : {post.marqueVoiture}</Text>
 				<Text>kilometrage : {post.kilometrage}</Text>
 				<Text>année de fabrication : {post.fabrication}</Text>
 				<Text>Imobilier</Text>
@@ -178,9 +205,8 @@ export default function ProductDetails({ navigation, route }) {
 				<Text>Telephone</Text>
 				<Text>Marque de Telephone : {post.phoneMarque}</Text>
 				
-				<Text>Nombre de piece</Text>
+				<Text>Nombre de piece</Text>*/}
 
-				</View>
 				</View>
 
 				</View>
