@@ -46,6 +46,7 @@ export default function Items({ navigation }) {
 	};
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}>
+
 			{ready ? (
 				<FlatList
 					data={items}
@@ -67,6 +68,7 @@ export default function Items({ navigation }) {
 					refreshing={refresh}
 				/>
 			) : null}
+
 		</SafeAreaView>
 	);
 }

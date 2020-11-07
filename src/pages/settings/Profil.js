@@ -71,6 +71,7 @@ export default function Profil() {
 
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 10 }}>
+		
 			{canRender ? (
 				<ScrollView showsVerticalScrollIndicator={false}>
 
@@ -245,7 +246,6 @@ export default function Profil() {
 				<ProgressBar color="#4898D3" indeterminate={true} visible={true} />
 			)}
 			<FAB
-				loading={loading}
 				style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, backgroundColor: '#4898D3' }}
 				label={edit ? 'enregistrer' : 'modifier'}
 				color="#fff"

@@ -9,28 +9,7 @@ import { db } from '../../../API/firebase';
 
 export default function ProductDetails({ navigation, route }) {
 
-	const ShareExample = () => {
-		
-		const onShare = async () => {
-		  try {
-			const result = await Share.share({
-			  message:
-				'React Native | A framework for building native apps using React',
-			});
-			if (result.action === Share.sharedAction) {
-			  if (result.activityType) {
-				// shared with activity type of result.activityType
-			  } else {
-				// shared
-			  }
-			} else if (result.action === Share.dismissedAction) {
-			  // dismissed
-			}
-		  } catch (error) {
-			alert(error.message);
-		  }
-		};
-	};
+
 
 	const [ canRender, setRender ] = React.useState();
 	const [ post, setPost ] = React.useState('');
@@ -38,7 +17,6 @@ export default function ProductDetails({ navigation, route }) {
 	const _SlideHeight = Dimensions.get('window').height * 0.40;
 	const _SlideWidth = Dimensions.get('window').width * 0.95;
 
-	const [test, settest] = useState(true)
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -135,7 +113,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 					
-					<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Services</Text>
+					<Text style={{ color: '#FF6347',fontSize: 23}}>Services Disponibles</Text>
 					<Divider/>
 
 					{post.laivraison ? 
@@ -175,7 +153,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 					
-					<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Services</Text>
+					<Text style={{ color: '#FF6347',fontSize: 23}}>Services Disponibles</Text>
 					<Divider/>
 
 					{post.bonCondition ? 
@@ -204,14 +182,14 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 					
-					<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Description</Text>
+					<Text style={{ color: '#FF6347',fontSize: 23}}>Description</Text>
 					<Divider/>
-						<Text style={{ fontFamily: 'sans-serif', textAlign: 'justify', marginRight: 10 }}>{post.description}</Text>
+						<Text style={{ fontFamily: 'sans-serif', textAlign: 'justify', marginRight: 10, fontSize: 17 }}>{post.description}</Text>
 					</View>
 
 
 				<View style={GlobalStyle.infoContainer}>
-				<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Details</Text>
+				<Text style={{ color: '#FF6347',fontSize: 23}}>Details</Text>
 
 				
 				{post.city ? 
@@ -416,7 +394,7 @@ export default function ProductDetails({ navigation, route }) {
 				</View>
 
 				<View style={{ marginTop: 50 }}>
-				<Button onPress={onShare} title="Share" />
+				<Button  title="Share" />
 				</View>
 
 				</ScrollView>

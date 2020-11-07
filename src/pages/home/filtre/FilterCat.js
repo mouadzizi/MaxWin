@@ -9,21 +9,21 @@ export default function FilterCat({ event }) {
 		switch (title) {
 			case 'VEHICULES':
 				return <FontAwesome5 name="car" size={27} color="#fff" />;
-			case 'INFORMATIQUE ET MULTIMEDIA':
+			case 'INFORMATIQUE ET ELECTRONIQUE':
 				return <MaterialCommunityIcons name="desktop-mac-dashboard" size={27} color="#fff" />;
 			case 'IMMOBILIER':
 				return <FontAwesome5 name="building" size={23} color="#fff" />;
 
-			case 'Vêtements et Accessoires Homme':
+			case 'ESPACE HOMMES':
 				return <Ionicons name="md-man" size={30} color="#fff" />;
-			case 'Vêtements et Accessoires Femme':
+			case 'ESPACE FEMMES':
 				return <Ionicons name="md-woman" size={30} color="#fff" />;
-			case 'Espace Enfant':
+			case 'ESPACE BEBES ET ENFANTS':
 				return <MaterialCommunityIcons name="baby-carriage" size={30} color="#fff" />;
 
 			case 'MAISON & DECO':
 				return <MaterialCommunityIcons name="lamp" size={27} color="#fff" />;
-			case 'MATERIELS & SERVICES':
+			case 'MATERIELS ET SERVICES':
 				return <FontAwesome5 name="hammer" size={22} color="#fff" />;
 		}
 	};
