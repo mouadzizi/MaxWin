@@ -72,7 +72,7 @@ export default function Product(props) {
 
 						{chip3 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
-								<MaterialCommunityIcons name="label-percent" size={15} color="#4898D3" />
+								<MaterialCommunityIcons name="brightness-percent" size={15} color="#4898D3" />
 								<Text style={GlobalStyle.cardChip}> Prix négociable </Text>
 							</View>
 						) : null}

@@ -189,7 +189,7 @@ export const GlobalStyle = StyleSheet.create({
     
 
     sliderContainer: {
-      height: '40%',
+      height: 300,
       width: '90%',
       marginTop: 10,
       justifyContent: 'center',

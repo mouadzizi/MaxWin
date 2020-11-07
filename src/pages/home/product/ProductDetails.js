@@ -1,15 +1,44 @@
-import React from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager } from 'react-native';
-import { Divider, ProgressBar } from 'react-native-paper';
+import React, {useState} from 'react';
+import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, Share, Button } from 'react-native';
+import { ProgressBar, Divider } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
 import { Entypo, MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-import { db, auth } from '../../../API/firebase';
+import { db } from '../../../API/firebase';
 
 export default function ProductDetails({ navigation, route }) {
+
+	const ShareExample = () => {
+		
+		const onShare = async () => {
+		  try {
+			const result = await Share.share({
+			  message:
+				'React Native | A framework for building native apps using React',
+			});
+			if (result.action === Share.sharedAction) {
+			  if (result.activityType) {
+				// shared with activity type of result.activityType
+			  } else {
+				// shared
+			  }
+			} else if (result.action === Share.dismissedAction) {
+			  // dismissed
+			}
+		  } catch (error) {
+			alert(error.message);
+		  }
+		};
+	};
+
 	const [ canRender, setRender ] = React.useState();
 	const [ post, setPost ] = React.useState('');
+
+	const _SlideHeight = Dimensions.get('window').height * 0.40;
+	const _SlideWidth = Dimensions.get('window').width * 0.95;
+
+	const [test, settest] = useState(true)
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -25,45 +54,42 @@ export default function ProductDetails({ navigation, route }) {
 		}, [])
 	);
 
-	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
+	
 
-			{canRender ? (
-				<View>
-					<View style={GlobalStyle.sliderContainer}>
-						<Swiper autoplay height={100} activeDotColor="#FF6347">
-							{post ? (
-								post.urls.map((img, index) => {
-									return (
-										<View key={index} style={GlobalStyle.slide}>
-											<Image
-												key={index}
-												source={{ uri: img }}
-												resizeMode="contain"
-												style={GlobalStyle.sliderImage}
-											/>
-										</View>
-									);
-								})
-							) : null}
-						</Swiper>
-					</View>
+	return (
+		
+		<View style={{flex: 1}}>
+
+			{canRender ? 
+				
+			<ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
+					
+						<View style={{width: _SlideWidth, marginTop: 10, justifyContent: 'center', alignSelf: 'center', borderRadius: 8, height: _SlideHeight}}>
+							<Swiper autoplay activeDotColor="#FF6347">
+
+								{post ? (
+									post.urls.map((img, index) => {
+										return (
+											<View key={index} style={GlobalStyle.slide}>
+												<Image
+													key={index}
+													source={{ uri: img }}
+													resizeMode="contain"
+													style={GlobalStyle.sliderImage}
+												/>
+											</View>
+
+										);
+									})
+								) : null}
+							</Swiper>
+						</View>
 
 					<View style={GlobalStyle.infoContainer}>
-						<Text style={{fontSize: 19, fontFamily: 'Roboto'}}>{post.title}</Text>
-
-						<Text
-								style={[
-									GlobalStyle.cardPrice,
-									{ fontSize: 17, fontWeight: 'bold', fontFamily: 'Roboto', marginTop: 10 }
-								]}
-							>
-								{post.price} DHS
-							</Text>
-
-							
-
-						
+						<Text style={{fontSize: 22, fontFamily: 'Roboto', fontWeight: 'bold'}}>{post.title}</Text>
+						<Text style={{color: '#FF6347', fontSize: 25, fontFamily: 'serif', marginTop: 10 }}>
+						{post.price} DHS
+						</Text>
 					</View>
 
 					
@@ -82,7 +108,7 @@ export default function ProductDetails({ navigation, route }) {
 								alignItems: 'center'
 							}}
 						>
-							<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Discuter</Text>
+						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Discuter</Text>
 						</TouchableOpacity>
 
 						<TouchableOpacity
@@ -99,16 +125,18 @@ export default function ProductDetails({ navigation, route }) {
 								alignItems: 'center'
 							}}
 						>
-							<Text style={{ color: '#FF6347', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
+						<Text style={{ color: '#FF6347', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
 						</TouchableOpacity>
 					</View>
-					{ (post.laivraison || post.paiement  )
 
-					? 
+					{ (post.laivraison || post.paiement  ) ?
+
 					<View> 
-					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 20, marginTop: 10 }}>Services</Text>
 
 					<View style={GlobalStyle.infoContainer}>
+					
+					<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Services</Text>
+					<Divider/>
 
 					{post.laivraison ? 
 
@@ -144,9 +172,11 @@ export default function ProductDetails({ navigation, route }) {
 
 					? 
 					<View> 
-					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Services</Text>
 
 					<View style={GlobalStyle.infoContainer}>
+					
+					<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Services</Text>
+					<Divider/>
 
 					{post.bonCondition ? 
 
@@ -171,32 +201,231 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 					: null }
 
-					<Text style={{ color: '#4898D3', marginLeft: 20, fontSize: 22, marginTop: 10 }}>Description</Text>
 
 					<View style={GlobalStyle.infoContainer}>
-						<Text style={{ fontFamily: 'sans-serif' }}>{post.description}</Text>
+					
+					<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Description</Text>
+					<Divider/>
+						<Text style={{ fontFamily: 'sans-serif', textAlign: 'justify', marginRight: 10 }}>{post.description}</Text>
 					</View>
 
 
-				<View
-				style={{backgroundColor: '#fff', padding: 20, marginTop: 10}}>
+				<View style={GlobalStyle.infoContainer}>
 				<Text style={{ color: '#4898D3',fontSize: 22, fontWeight: 'bold'}}>Details</Text>
+
 				
-				<View
-				style={{flexDirection: 'row'}}>
-				<Text
-				style={{fontSize: 15}}>Marque de Voiture</Text>
-				</View>
-
+				{post.city ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Ville</Text>
 			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.city}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
 
+				{post.etat ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Etat de Produit</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.etat}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{/*Voiture Section*/}
+
+				{post.marqueVoiture ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Marque de Voiture</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.marqueVoiture}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.carburant ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Carburant</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.carburant}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.fabrication ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Année de Fabrication</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.fabrication}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.kilometrage ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Kilometrage</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.kilometrage} Km</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.transtaction ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Boîte de vitesses</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.transtaction}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.puissance ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Puissance Fiscale</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.puissance}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{/*Phone Section*/}
+
+				{post.phoneMarque ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Marque de Télephone</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.phoneMarque}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{/*Immobilier Section*/}
+
+				{post.superficie ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Superficie</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.superficie}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.piece ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Nombre de piece</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.piece}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{/*Service Section*/}
+
+				{post.servicetype ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Type de service</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.servicetype}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
 				</View>
 
+				<View style={{ marginTop: 50 }}>
+				<Button onPress={onShare} title="Share" />
 				</View>
-			) : (
-				<ProgressBar color="#4898D3" indeterminate={true} visible={true} style={{ height: 10 }} />
-			)}
 
-		</ScrollView>
+				</ScrollView>
+			
+			:
+
+					<ProgressBar color="#4898D3" indeterminate={true} visible={true} style={{ height: 10 }} />
+			}
+			</View>
+
 	);
 }
