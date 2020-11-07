@@ -3,7 +3,7 @@ import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionMana
 import { ProgressBar, Divider } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
-import { Entypo, MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
+import { Entypo, MaterialCommunityIcons, FontAwesome, Feather } from 'react-native-vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../../API/firebase';
 
@@ -156,24 +156,24 @@ export default function ProductDetails({ navigation, route }) {
 					<Text style={{ color: '#FF6347',fontSize: 23}}>Services Disponibles</Text>
 					<Divider/>
 
+					
+					{post.negociable ? 
+						<View style={{ flexDirection: 'row', marginTop: 5}}>
+								<Feather name="thumbs-up" size={15} color="#4898D3" />
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Prix négociable </Text>
+							</View>	
+					: null }
+					
 					{post.bonCondition ? 
 
 
 						<View style={{ flexDirection: 'row', marginTop: 5 }}>		
 								<Entypo name="thumbs-up" size={25} color="#4898D3" />
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Très Bon Condition
+								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> En bonne état
 								</Text>
 						</View>
 
 					: null}
-					{post.negociable ? 
-						<View style={{ flexDirection: 'row', marginTop: 5}}>
-						<MaterialCommunityIcons name="brightness-percent" size={25} color="#4898D3" />
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Prix negociable
-								</Text>
-							</View>	
-					: null }
-						
 						
 					</View>
 					</View>
@@ -182,14 +182,14 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 					
-					<Text style={{ color: '#FF6347',fontSize: 23}}>Description</Text>
+					<Text style={{ color: '#4898D3',fontSize: 20}}>Description</Text>
 					<Divider/>
 						<Text style={{ fontFamily: 'sans-serif', textAlign: 'justify', marginRight: 10, fontSize: 17 }}>{post.description}</Text>
 					</View>
 
 
 				<View style={GlobalStyle.infoContainer}>
-				<Text style={{ color: '#FF6347',fontSize: 23}}>Details</Text>
+				<Text style={{ color: '#4898D3',fontSize: 20}}>Details</Text>
 
 				
 				{post.city ? 

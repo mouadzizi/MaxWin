@@ -725,7 +725,7 @@ export default function AddProduct({ route, navigation }) {
 						{voitureChips ? (
 							<View>
 								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Voiture en bon condition</Text>
+									<Text style={{ marginTop: 7, width: '60%' }}>En bonne état</Text>
 
 									<Checkbox
 										status={bonCondition ? 'checked' : 'unchecked'}
@@ -737,7 +737,7 @@ export default function AddProduct({ route, navigation }) {
 								</View>
 
 								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Prix negociable</Text>
+									<Text style={{ marginTop: 7, width: '60%' }}>Prix négociable</Text>
 
 									<Checkbox
 										status={negociable ? 'checked' : 'unchecked'}
