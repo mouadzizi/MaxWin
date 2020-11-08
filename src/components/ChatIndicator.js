@@ -7,19 +7,18 @@ export default function ChatIndicator(props) {
         <View
         style={{width: '90%', height: 75}}>
         <TouchableOpacity
+        delayPressIn={0}
         style={{padding: 20, flexDirection: 'row'}}
         onPress={props.click}>
-             <Avatar.Image size={50} source={require('../../assets/logo.jpg')} />
+             <Avatar.Image size={50} source={{uri:props.sellerAvatar}} />
              <View
              style={{margin: 5}}>
-                
              <Text
-             style={{fontSize: 17, fontFamily: 'sans-serif'}}>MaxWin</Text>
-             <Text
-             style={{fontSize: 12, color: '#444'}}>This is a mesage exemple</Text>
+             style={{fontSize: 17, fontFamily: 'sans-serif'}}>{ props.sellerName }</Text>
+             <Text style={{fontSize: 12, color: '#444'}}>{props.lastMessage}</Text>
+             <Text style={{fontSize: 12 }}> {props.time} </Text>
              </View>
         </TouchableOpacity>
-        <Divider />
-        </View>
+            </View>
     )
 }
