@@ -10,7 +10,7 @@ export default function AddProductCat({ navigation, route }) {
 		switch (title) {
 			case 'VEHICULES':
 				return <FontAwesome5 name="car" size={27} color="#fff" />;
-			case 'INFORMATIQUE ET MULTIMEDIA':
+			case 'INFORMATIQUE ET ELECTRONIQUE':
 				return <MaterialCommunityIcons name="desktop-mac-dashboard" size={27} color="#fff" />;
 			case 'IMMOBILIER':
 				return <FontAwesome5 name="building" size={23} color="#fff" />;
@@ -24,7 +24,7 @@ export default function AddProductCat({ navigation, route }) {
 
 			case 'MAISON & DECO':
 				return <MaterialCommunityIcons name="lamp" size={27} color="#fff" />;
-			case 'MATERIELS & SERVICES':
+			case 'MATERIELS ET SERVICES':
 				return <FontAwesome5 name="hammer" size={22} color="#fff" />;
 		}
 	};

@@ -47,7 +47,7 @@ export default function Filtre() {
 		setModalVisible(false);
 		switch (true) {
 
-			case (item === 'Voiture' || item === 'Location de Voiture') :
+			case (item === 'Voitures' || item === 'Location de Voiture') :
 				setVoiture(true)
 				setPhone(false)
 				setLocation(false)
@@ -121,7 +121,7 @@ export default function Filtre() {
 							style={{ alignSelf: 'flex-end', marginRight: 25 }}
 							onPress={() => setModalVisible(!modalVisible)}
 						>
-							<AntDesign name="closesquare" color="red" size={30} />
+							<AntDesign name="closesquare" color="#F16E44" size={30} />
 						</TouchableOpacity>
 
 						<View style={GlobalStyle.modalView}>

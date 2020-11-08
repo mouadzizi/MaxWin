@@ -8,7 +8,7 @@ export default function ProductEdit({ item, callback }) {
 
 	return (
 		<View>
-			<View style={{ height: 100, width: '100%', flexDirection: 'row', borderWidth: 1, borderColor: '#c2c2c2' }}>
+			<View style={{ height: 100, width: '100%', flexDirection: 'row', borderWidth: 1.5 , borderColor: '#F16E44', marginBottom: 20 }}>
 				<View style={{ flex: 2 }}>
 					<Image source={{ uri: item.pics[0] }} resizeMode="contain" style={GlobalStyle.cardImg} />
 				</View>

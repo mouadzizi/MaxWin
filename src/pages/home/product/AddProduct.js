@@ -30,11 +30,14 @@ export default function AddProduct({ route, navigation }) {
 
 	//Variables for inputs for Voiture
 	const [ marqueVoiture, setMarqueVoiture ] = useState('');
-	const [ kilometrage, setKilometrage ] = useState('0');
-	const [ carburant, setCarburant ] = useState('Diesel');
+	const [ kilometrage, setKilometrage ] = useState('');
+	const [ carburant, setCarburant ] = useState('');
 	const [ fabrication, setFabrication ] = useState('');
-	const [ puissance, setPuissance ] = useState('4CH');
-	const [ transtaction, setTransaction ] = useState('Manuelle');
+	const [ puissance, setPuissance ] = useState('');
+	const [ transtaction, setTransaction ] = useState('');
+
+	
+	const [ voitureChips, setVoitureChips ] = useState(false);
 
 	//Variables for inputs for Location
 	const [ piece, setPiece ] = useState('');
@@ -55,8 +58,18 @@ export default function AddProduct({ route, navigation }) {
 	const [ paiement, setPaiement ] = useState(false);
 	const [negociable, setNegociable] = useState(false);
 	const [bonCondition, setBonCondition] = useState(false);
+
 	
-	const [ voitureChips, setVoitureChips ] = useState(false);
+	//Variables for equipment Voiture
+	const [ jantes, setJanets ] = useState(false);
+	const [ airbags, setAirbags ] = useState(false);
+	const [ clima, setClima ] = useState(false);
+	const [ abs, setAbs ] = useState(false);
+	const [ vitre, setVitre ] = useState(false);
+	const [ radar, setRadar ] = useState(false);
+	const [ gps, setGps ] = useState(false);
+
+	
 
 	//components Visibility
 	const [ chips, setChips ] = useState(true);
@@ -69,25 +82,8 @@ export default function AddProduct({ route, navigation }) {
 	const [ Telephone, setTelephone ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
 
-	// Switchs
-	const [ jantesAluminium, setJantesAluminium ] = useState(false);
-	const toggleSwitchJanets = () => setJantesAluminium((previousState) => !previousState);
 
-	const [ Airbags, setAirbags ] = useState(false);
-	const toggleSwitchAirBags = () => setAirbags((previousState) => !previousState);
-
-	const [ vitres, setVitres ] = useState(false);
-	const toggleSwitchVitres = () => setVitres((previousState) => !previousState);
-
-	const [ abs, setAbs ] = useState(false);
-	const toggleSwitchAbs = () => setAbs((previousState) => !previousState);
-
-	const [ radar, setRadar ] = useState(false);
-	const toggleSwitchRadar = () => setRadar((previousState) => !previousState);
-
-	const [ climatisation, setClimatisation ] = useState(false);
 	const [ canRender, setCanRender ] = useState(false);
-	const toggleSwitchClimatisation = () => setClimatisation((previousState) => !previousState);
 
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
@@ -133,7 +129,7 @@ export default function AddProduct({ route, navigation }) {
 	useEffect(() => {
 		const { parent } = route.params;
 		switch (true) {
-			case parent.title == 'VEHICULES' && (parent.item == 'Voiture' || parent.item == 'Location de Voiture'):
+			case parent.title == 'VEHICULES' && (parent.item == 'Voitures' || parent.item == 'Location de Voiture'):
 				setVoitureChips(true);
 				setVoiture(true);
 				setChips(false);
@@ -145,7 +141,7 @@ export default function AddProduct({ route, navigation }) {
 				setChips(false);
 				break;
 
-			case parent.title == 'INFORMATIQUE ET MULTIMEDIA' &&
+			case parent.title == 'INFORMATIQUE ET ELECTRONIQUE' &&
 				(parent.item == 'Téléphones' || parent.item == 'Tablettes'):
 				setTelephone(true);
 				break;
@@ -535,70 +531,82 @@ export default function AddProduct({ route, navigation }) {
 
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Équipements</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
-									<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
-										<Text style={{ width: '50%', marginLeft: 5 }}>Jantes Aluminium</Text>
-										<Switch
-											trackColor={{ false: '#767577', true: '#4898D3' }}
-											thumbColor={jantesAluminium ? '#4898D3' : '#fff'}
-											onValueChange={toggleSwitchJanets}
-											value={jantesAluminium}
-										/>
-									</View>
+									
 
-									<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
-										<Text style={{ width: '50%', marginStart: 5 }}>Airbags</Text>
-										<Switch
-											trackColor={{ false: '#767577', true: '#4898D3' }}
-											thumbColor={Airbags ? '#4898D3' : '#fff'}
-											ios_backgroundColor="#3e3e3e"
-											onValueChange={toggleSwitchAirBags}
-											value={Airbags}
-										/>
-									</View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>Jantes Aluminium</Text>
+									<Checkbox
+										status={jantes ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setJanets(!jantes);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>Airbags</Text>
+									<Checkbox
+										status={airbags ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setAirbags(!airbags);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>Climatisation</Text>
+									<Checkbox
+										status={clima ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setClima(!clima);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>Vitres Électriques</Text>
+									<Checkbox
+										status={vitre ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setVitre(!vitre);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>Radar De Recul</Text>
+									<Checkbox
+										status={radar ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setRadar(!radar);
+										}}
+										color="#4898D3"
+									/>
+								</View>
 
-									<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
-										<Text style={{ width: '50%', marginStart: 5 }}>Climatisation</Text>
-										<Switch
-											trackColor={{ false: '#767577', true: '#4898D3' }}
-											thumbColor={climatisation ? '#4898D3' : '#fff'}
-											ios_backgroundColor="#3e3e3e"
-											onValueChange={toggleSwitchClimatisation}
-											value={climatisation}
-										/>
-									</View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>GPS</Text>
+									<Checkbox
+										status={gps ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setGps(!gps);
+										}}
+										color="#4898D3"
+									/>
+								</View>
 
-									<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
-										<Text style={{ width: '50%', marginStart: 5 }}>Vitres Électriques</Text>
-										<Switch
-											trackColor={{ false: '#767577', true: '#4898D3' }}
-											thumbColor={vitres ? '#4898D3' : '#fff'}
-											ios_backgroundColor="#3e3e3e"
-											onValueChange={toggleSwitchVitres}
-											value={vitres}
-										/>
-									</View>
-
-									<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
-										<Text style={{ width: '50%', marginStart: 5 }}>Radar De Recul</Text>
-										<Switch
-											trackColor={{ false: '#767577', true: '#4898D3' }}
-											thumbColor={radar ? '#4898D3' : '#fff'}
-											ios_backgroundColor="#3e3e3e"
-											onValueChange={toggleSwitchRadar}
-											value={radar}
-										/>
-									</View>
-
-									<View style={{ flexDirection: 'row', height: 25, marginTop: 5 }}>
-										<Text style={{ width: '50%', marginStart: 5 }}>ABS</Text>
-										<Switch
-											trackColor={{ false: '#767577', true: '#4898D3' }}
-											thumbColor={abs ? '#4898D3' : '#fff'}
-											ios_backgroundColor="#3e3e3e"
-											onValueChange={toggleSwitchAbs}
-											value={abs}
-										/>
-									</View>
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+									<Text style={{ marginTop: 7, width: '60%' }}>ABS</Text>
+									<Checkbox
+										status={abs ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setAbs(!abs);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+									
+									
 								</View>
 							</View>
 						) : null}
@@ -671,6 +679,10 @@ export default function AddProduct({ route, navigation }) {
 							multiline={true}
 						/>
 
+					
+					<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>	
+					<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
+
 						<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 							<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
 							<Checkbox
@@ -713,7 +725,7 @@ export default function AddProduct({ route, navigation }) {
 						{voitureChips ? (
 							<View>
 								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Voiture en bon condition</Text>
+									<Text style={{ marginTop: 7, width: '60%' }}>En bonne état</Text>
 
 									<Checkbox
 										status={bonCondition ? 'checked' : 'unchecked'}
@@ -725,7 +737,7 @@ export default function AddProduct({ route, navigation }) {
 								</View>
 
 								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Prix negociable</Text>
+									<Text style={{ marginTop: 7, width: '60%' }}>Prix négociable</Text>
 
 									<Checkbox
 										status={negociable ? 'checked' : 'unchecked'}
@@ -737,6 +749,8 @@ export default function AddProduct({ route, navigation }) {
 								</View>
 							</View>
 						) : null}
+
+						</View>
 
 						<TouchableOpacity
 							onPress={() => upload()}
