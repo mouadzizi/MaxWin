@@ -2,10 +2,10 @@ import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { Text, ScrollView, SafeAreaView, View, TouchableOpacity, InteractionManager, Alert } from 'react-native';
 import { Avatar, Divider, FAB, TextInput, ProgressBar } from 'react-native-paper';
-
+import * as ImagePicker from 'expo-image-picker';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
-import { auth, db } from '../../API/firebase';
+import { auth, db,st } from '../../API/firebase';
 
 export default function Profil() {
 	const [ edit, setEdit ] = useState(false);
@@ -19,11 +19,14 @@ export default function Profil() {
 	const [ phone, setPhone ] = useState('');
 	const [ aboutMe, setAboutMe ] = useState('');
 	const [ location, setLocation ] = useState('');
+	const [ image, setImage ] = useState('');
+
+	const {currentUser}= auth
 
 	useFocusEffect(
 		useCallback(() => {
 			InteractionManager.runAfterInteractions(async () => {
-				var userRef = await db.collection('users').doc(auth.currentUser.uid).get();
+				var userRef = await db.collection('users').doc(currentUser.uid).get();
 				setLoading(true);
 				if (!edit) {
 					await loadInfo(userRef.data()).then(() => {
@@ -42,7 +45,7 @@ export default function Profil() {
 			name || phone || aboutMe || location
 				? await db
 						.collection('users')
-						.doc(auth.currentUser.uid)
+						.doc(currentUser.uid)
 						.update({
 							aboutMe,
 							name,
@@ -69,6 +72,36 @@ export default function Profil() {
 		});
 	};
 
+	async function updateProfileImage(uri) {
+		setLoading(true)
+		const response = await fetch(uri);
+		const blob = await response.blob();
+		 await st.ref().child('users/'+currentUser.uid+'/images/profile').put(blob).then(snap=>{
+				snap.ref.getDownloadURL().then(async(link)=>{
+					await currentUser.updateProfile({
+						photoURL:link
+					})
+					setLoading(false)
+				})
+		})
+	}
+
+	async function openImagePicker() {
+		let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ImagePicker.MediaTypeOptions.Images,
+			allowsEditing: true,
+			aspect: [1, 1],
+			quality: .3,
+			
+		  });
+	  
+		  console.log(result);
+	  
+		  if (!result.cancelled) {
+			setImage(result.uri);
+		  }
+		  updateProfileImage(result.uri)
+	}
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 10 }}>
 		
@@ -89,8 +122,9 @@ export default function Profil() {
 						>	
 						<View> 
 							<TouchableOpacity
-							onPress={()=>{Alert.alert('comming soon')}}>
-								<Avatar.Image size={110} source={{ uri: auth.currentUser.photoURL }} />
+							delayPressIn={0}
+							onPress={()=> openImagePicker() }>
+								<Avatar.Image size={110} source={{ uri: image? image:currentUser.photoURL}} />
 							</TouchableOpacity>
 							<MaterialCommunityIcons
 								name='camera-plus-outline'
@@ -237,7 +271,7 @@ export default function Profil() {
 						<Divider style={{ marginVertical: 10 }} />
 
 						<Text
-						style={{fontSize: 12, color: '#c2c2c2', textAlign: 'center'}}>user ID : {auth.currentUser.uid}</Text>
+						style={{fontSize: 12, color: '#c2c2c2', textAlign: 'center'}}>user ID : {currentUser.uid}</Text>
 
 	
 					</View>

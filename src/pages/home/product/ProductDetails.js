@@ -28,7 +28,7 @@ export default function ProductDetails({ navigation, route }) {
 				});
 			});
 
-			return () => setRender(false);
+			return () => {}
 		}, [])
 	);
 
@@ -75,7 +75,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => console.log(post.urls)}
+							onPress={() => navigation.navigate('Messages',{ seller:post.user }) }
 							style={{
 								backgroundColor: '#4898D3',
 								borderRadius: 15,
