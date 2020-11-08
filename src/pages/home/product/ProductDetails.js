@@ -113,7 +113,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 					
-					<Text style={{ color: '#FF6347',fontSize: 23}}>Services Disponibles</Text>
+					<Text style={{ color: '#4898D3',fontSize: 20}}>Services Disponibles</Text>
 					<Divider/>
 
 					{post.laivraison ? 
@@ -153,13 +153,13 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 					
-					<Text style={{ color: '#FF6347',fontSize: 23}}>Services Disponibles</Text>
+					<Text style={{ color: '#4898D3',fontSize: 20}}>Services Disponibles</Text>
 					<Divider/>
 
 					
 					{post.negociable ? 
 						<View style={{ flexDirection: 'row', marginTop: 5}}>
-								<Feather name="thumbs-up" size={15} color="#4898D3" />
+						<MaterialCommunityIcons name="brightness-percent" size={25} color="#4898D3" />
 								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Prix négociable </Text>
 							</View>	
 					: null }
@@ -168,7 +168,7 @@ export default function ProductDetails({ navigation, route }) {
 
 
 						<View style={{ flexDirection: 'row', marginTop: 5 }}>		
-								<Entypo name="thumbs-up" size={25} color="#4898D3" />
+								<Feather name="thumbs-up" size={25} color="#4898D3" />
 								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> En bonne état
 								</Text>
 						</View>
@@ -190,7 +190,22 @@ export default function ProductDetails({ navigation, route }) {
 
 				<View style={GlobalStyle.infoContainer}>
 				<Text style={{ color: '#4898D3',fontSize: 20}}>Details</Text>
-
+				
+				{post.city ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+					<Text
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Categorie</Text>
+			
+					<Text
+					style={{fontSize: 17, color: '#767676', width: '40%'}}>{post.category.item}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
 				
 				{post.city ? 
 				<View>
@@ -393,9 +408,58 @@ export default function ProductDetails({ navigation, route }) {
 				}
 				</View>
 
-				<View style={{ marginTop: 50 }}>
-				<Button  title="Share" />
-				</View>
+
+				<View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1, paddingLeft: 20, paddingRight: 20, alignSelf: 'center' }}>
+
+						<TouchableOpacity
+							delayPressIn={0}
+							onPress={() => console.log(post.urls)}
+							style={{
+								backgroundColor: '#FF6347',
+								borderRadius: 15,
+								height: 60,
+								width: '33%',
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Discuter</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							delayPressIn={0}
+							onPress={() => Alert.alert('+212.6 .26.617 611')}
+							style={{
+								borderColor: '#4898D3',
+								borderWidth : 1.5,
+								height: 60,
+								borderRadius: 15,
+								width: '33%',
+								marginLeft : 10,
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+						<Text style={{ color: '#4898D3', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							delayPressIn={0}
+							onPress={() => Alert.alert('Partagée')}
+							style={{
+								backgroundColor: '#4898D3',
+								height: 60,
+								borderRadius: 15,
+								width: '33%',
+								marginLeft : 10,
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+						
+						<Feather name="share-2" size={25} color="#fff" />
+						</TouchableOpacity>
+					</View>
 
 				</ScrollView>
 			

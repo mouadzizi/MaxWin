@@ -377,9 +377,9 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>	
-										<Picker.Item label="Neuf/Ancien" value="neuf/ancien" />
+										<Picker.Item label="Neuf/Utilisé" value="Neuf/Utilisé" />
 										<Picker.Item label="Neuf" value="neuf" />
-										<Picker.Item label="Ancien" value="ancien" />
+										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
 								</View>
 							</View>
