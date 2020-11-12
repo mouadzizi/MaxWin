@@ -155,6 +155,7 @@ export default function AddProduct({ route, navigation }) {
 				setChips(false);
 				setEtatVisible(false);
 				setLocation(true);
+				setVoitureChips(true);
 				navigation.setOptions({ title: 'Ajouter votre Immobilier' });
 				break;
 

@@ -1,20 +1,22 @@
 import React from 'react';
-import { Text, SafeAreaView, Alert, TouchableOpacity, InteractionManager, FlatList } from 'react-native';
+import { Text, SafeAreaView, View, InteractionManager, FlatList, Dimensions, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { auth, db } from '../../API/firebase';
 import ProduitEdit from '../../components/ProductEdit';
+
 export default function Items({ navigation }) {
 	const [ items, setItems ] = React.useState([]);
 	const [ refresh, setRefresh ] = React.useState(false);
 	const [ ready, setReady ] = React.useState(false);
+
 	useFocusEffect(
 		React.useCallback(() => {
 			InteractionManager.runAfterInteractions(async () => {
-				console.log('animation end');
 				await fetchItems().then(() => setReady(true));
 			});
 		}, [])
 	);
+
 	const fetchItems = async () => {
 		var posts = [];
 		setRefresh(true);
@@ -44,6 +46,11 @@ export default function Items({ navigation }) {
 			console.log(id);
 		});
 	};
+	
+	const { width, height } = Dimensions.get('window');
+	const height_image = height * 0.6;
+	const width_image = width;
+
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}>
 
@@ -62,7 +69,14 @@ export default function Items({ navigation }) {
 						);
 					}}
 					ListEmptyComponent={() => (
-						<Text style={{ textAlign: 'center', fontSize: 30 }}> NO ITEM FOUND </Text>
+						<View>
+							<Image
+							source={require('../../../assets/no-item.jpg')}
+							style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
+							resizeMode={'stretch'}/>
+						<Text
+						style={{textAlign: 'center', color: '#4898D3', fontSize: 30, fontFamily: 'serif'}}>Actuellement ,votre Boutique est vide.</Text>
+						</View>
 					)}
 					onRefresh={fetchItems}
 					refreshing={refresh}

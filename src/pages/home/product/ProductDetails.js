@@ -64,7 +64,7 @@ export default function ProductDetails({ navigation, route }) {
 						</View>
 
 					<View style={GlobalStyle.infoContainer}>
-						<Text style={{fontSize: 22, fontFamily: 'Roboto', fontWeight: 'bold'}}>{post.title}</Text>
+						<Text style={{fontSize: 25, fontFamily: 'serif'}}>{post.title}</Text>
 						<Text style={{color: '#FF6347', fontSize: 25, fontFamily: 'serif', marginTop: 10 }}>
 						{post.price} DHS
 						</Text>
@@ -91,7 +91,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => Alert.alert('+212.6 .26.617 611')}
+							onPress={() => Alert.alert("Information", "Nous vous informons que l'annonceur préfère le contact par Chat Merci de votre compréhension.")}
 							style={{
 								borderColor: '#FF6347',
 								borderWidth : 1.5,
@@ -428,7 +428,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => Alert.alert('+212.6 .26.617 611')}
+							onPress={() => Alert.alert("Information", "Nous vous informons que l'annonceur préfère le contact par Chat Merci de votre compréhension.")}
 							style={{
 								borderColor: '#4898D3',
 								borderWidth : 1.5,
