@@ -241,6 +241,16 @@ export const GlobalStyle = StyleSheet.create({
       padding: 15,
       marginBottom: 100,
     },
+    Grid:{
+      alignItems: 'center',
+      margin: 10
+    },
+    item:{
+      backgroundColor: 'grey',
+      margin: 5,
+      width: 90,
+      color: 'white'
+    },
   });
 
   export const textTheme ={

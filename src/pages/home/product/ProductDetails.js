@@ -3,13 +3,11 @@ import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionMana
 import { ProgressBar, Divider } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
-import { Entypo, MaterialCommunityIcons, FontAwesome, Feather } from 'react-native-vector-icons';
+import { MaterialCommunityIcons, FontAwesome, Feather } from 'react-native-vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../../API/firebase';
 
 export default function ProductDetails({ navigation, route }) {
-
-
 
 	const [ canRender, setRender ] = React.useState();
 	const [ post, setPost ] = React.useState('');
@@ -408,6 +406,146 @@ export default function ProductDetails({ navigation, route }) {
 				}
 				</View>
 
+				<View style={GlobalStyle.infoContainer}>
+				<Text style={{ color: '#4898D3',fontSize: 20}}>Équipement</Text>
+
+				{post.carSpecefications.jantes ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<MaterialCommunityIcons
+					name="pinwheel-outline"
+					size={35}
+					color='#4898D3'
+					/>
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Jantes aluminium</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.carSpecefications.gps ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<MaterialCommunityIcons
+					name="google-maps"
+					size={35}
+					color='#4898D3'
+					/>
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Système de navigation</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.carSpecefications.abs ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<MaterialCommunityIcons
+					name="car-brake-abs"
+					size={35}
+					color='#4898D3'
+					/>
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>ABS</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.carSpecefications.radar ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<MaterialCommunityIcons
+					name="car-connected"
+					size={35}
+					color='#4898D3'
+					/>
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Radar de recul</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.carSpecefications.vitre ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<MaterialCommunityIcons
+					name="car-connected"
+					size={35}
+					color='#4898D3'
+					/>
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Vitre électriques</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.carSpecefications.airbags ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<MaterialCommunityIcons
+					name="car-connected"
+					size={35}
+					color='#4898D3'
+					/>
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 75, alignSelf: 'center'}}>Airbags</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.transtaction ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<MaterialCommunityIcons
+					name="car-shift-pattern"
+					size={35}
+					color='#4898D3'
+					/>
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 75, alignSelf: 'center'}}>Transaction : {post.transtaction}</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+
+				</View>
+
+				
 
 				<View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1, paddingLeft: 20, paddingRight: 20, alignSelf: 'center' }}>
 

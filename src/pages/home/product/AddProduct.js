@@ -8,12 +8,12 @@ import {
 	Text,
 	TouchableHighlight,
 	Picker,
-	Switch,
 	Image,
 	Dimensions,
 	InteractionManager,
 	ActivityIndicator
 } from 'react-native';
+
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons, MaterialCommunityIcons } from 'react-native-vector-icons';
@@ -22,6 +22,7 @@ import { auth, db, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function AddProduct({ route, navigation }) {
+
 	//Variables for inputs for standar product
 	const [ title, setTitle ] = useState('');
 	const [ city, setCity ] = useState('Touts les villes');
@@ -69,8 +70,6 @@ export default function AddProduct({ route, navigation }) {
 	const [ radar, setRadar ] = useState(false);
 	const [ gps, setGps ] = useState(false);
 
-	
-
 	//components Visibility
 	const [ chips, setChips ] = useState(true);
 	const [ etatVisible, setEtatVisible ] = useState(true);
@@ -81,7 +80,6 @@ export default function AddProduct({ route, navigation }) {
 	const [ services, setServices ] = useState(false);
 	const [ Telephone, setTelephone ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
-
 
 	const [ canRender, setCanRender ] = useState(false);
 
@@ -213,6 +211,15 @@ export default function AddProduct({ route, navigation }) {
 			negociable,
 			bonCondition,
 			Telephone,
+			carSpecefications:{
+				gps,
+				radar,
+				vitre,
+				abs,
+				clima,
+				airbags,
+				jantes
+			},
 			category: route.params.parent,
 			user: {
 				uid: user.uid,
@@ -220,8 +227,9 @@ export default function AddProduct({ route, navigation }) {
 				owner: user.name
 			}
 		};
+		
 		if (images.length === 0) {
-			alert('enter at least one images');
+			Alert.alert('enter at least one images');
 		} else {
 			uploadPics(images).then((imagesUrls) => {
 				addProduct(item, imagesUrls).then(() => {
