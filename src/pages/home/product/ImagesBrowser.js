@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { FAB} from 'react-native-paper';
 import { ImageBrowser } from 'expo-image-picker-multiple';
 import AsyncStorage from '@react-native-community/async-storage';
+import  * as ImageManipulator from 'expo-image-manipulator';
 
 export default function ImagesBrowser({ navigation }) {
 
@@ -24,12 +25,16 @@ export default function ImagesBrowser({ navigation }) {
 			.then(async (photos) => {
 				const cPhotos = [];
 				for (let photo of photos) {
+				const pPhoto = await _processImageAsync(photo.localUri)
 					cPhotos.push({
 						name: photo.filename,
-						uri: photo.uri,
-						type: 'image/jpg'
-					});
+						uri: pPhoto.uri,
+						type: 'image/jpg',
+						 width:pPhoto.width,
+						 height:pPhoto.height,
+					}); 
 				}
+					console.log(cPhotos);
 				savePhotos(cPhotos);
 			})
 			.catch((e) => console.log(e));
@@ -42,6 +47,16 @@ export default function ImagesBrowser({ navigation }) {
 			alert(e.message);
 		}
 	};
+
+	const _processImageAsync= async (uri)=> {
+		const file = await ImageManipulator.manipulateAsync(
+			uri,
+		  [{resize: { width: 500,height:500}}],
+		  { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG }
+		)
+		console.log(file);
+		return file;
+	  }
 	return (
 		<View style={[ styles.flex, styles.container ]}>
 			<ImageBrowser
