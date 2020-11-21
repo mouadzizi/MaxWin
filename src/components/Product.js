@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { GlobalStyle } from '../style/GlobalStyle';
 import { FontAwesome, Entypo, MaterialCommunityIcons, Feather, FontAwesome5 } from 'react-native-vector-icons';
+import PriceTag from '../icons/priceTag';
 
 export default function Product(props) {
 	const [ chip1, setChip1 ] = useState(props.p1);
@@ -72,7 +73,7 @@ export default function Product(props) {
 
 						{chip3 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
-								<MaterialCommunityIcons name="brightness-percent" size={15} color="#4898D3" />
+								<PriceTag height='15' width='15'/>
 								<Text style={GlobalStyle.cardChip}> Prix négociable </Text>
 							</View>
 						) : null}
