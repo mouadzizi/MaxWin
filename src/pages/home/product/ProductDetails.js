@@ -1,11 +1,18 @@
 import React, {useState} from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, Share, Button } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions} from 'react-native';
 import { ProgressBar, Divider } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
 import { MaterialCommunityIcons, FontAwesome, Feather } from 'react-native-vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../../API/firebase';
+
+import Wheels from '../../../icons/jantes';
+import NavigationSystem from '../../../icons/navigationSystem';
+import RadarRedcule from '../../../icons/radarRedcule';
+import VitreElectrique from '../../../icons/vitreElectrique';
+import AirbagsIcon from '../../../icons/Airbags';
+import PriceTag from '../../../icons/priceTag';
 
 export default function ProductDetails({ navigation, route }) {
 
@@ -14,7 +21,6 @@ export default function ProductDetails({ navigation, route }) {
 
 	const _SlideHeight = Dimensions.get('window').height * 0.40;
 	const _SlideWidth = Dimensions.get('window').width * 0.95;
-
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -157,7 +163,7 @@ export default function ProductDetails({ navigation, route }) {
 					
 					{post.negociable ? 
 						<View style={{ flexDirection: 'row', marginTop: 5}}>
-						<MaterialCommunityIcons name="brightness-percent" size={25} color="#4898D3" />
+						<PriceTag height='25' width='25'/>
 								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Prix négociable </Text>
 							</View>	
 					: null }
@@ -405,7 +411,9 @@ export default function ProductDetails({ navigation, route }) {
 				:null
 				}
 				</View>
-
+				
+				{(post.carSpecefications.gps || post.carSpecefications.abs || post.carSpecefications.jantes || post.carSpecefications.radar || post.carSpecefications.vitre || post.carSpecefications.airbags || post.transtaction)
+				?
 				<View style={GlobalStyle.infoContainer}>
 				<Text style={{ color: '#4898D3',fontSize: 20}}>Équipement</Text>
 
@@ -415,11 +423,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
 
-					<MaterialCommunityIcons
-					name="pinwheel-outline"
-					size={35}
-					color='#4898D3'
-					/>
+					<Wheels />
 					<Text
 					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Jantes aluminium</Text>
 					</View>
@@ -434,11 +438,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
 
-					<MaterialCommunityIcons
-					name="google-maps"
-					size={35}
-					color='#4898D3'
-					/>
+					<NavigationSystem />
 					<Text
 					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Système de navigation</Text>
 					</View>
@@ -472,11 +472,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
 
-					<MaterialCommunityIcons
-					name="car-connected"
-					size={35}
-					color='#4898D3'
-					/>
+					<RadarRedcule />
 					<Text
 					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Radar de recul</Text>
 					</View>
@@ -491,11 +487,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
 
-					<MaterialCommunityIcons
-					name="car-connected"
-					size={35}
-					color='#4898D3'
-					/>
+					<VitreElectrique />
 					<Text
 					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Vitre électriques</Text>
 					</View>
@@ -510,11 +502,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
 
-					<MaterialCommunityIcons
-					name="car-connected"
-					size={35}
-					color='#4898D3'
-					/>
+					<AirbagsIcon />
 					<Text
 					style={{fontSize: 17, color: '#767676', marginStart: 75, alignSelf: 'center'}}>Airbags</Text>
 					</View>
@@ -535,7 +523,7 @@ export default function ProductDetails({ navigation, route }) {
 					color='#4898D3'
 					/>
 					<Text
-					style={{fontSize: 17, color: '#767676', marginStart: 75, alignSelf: 'center'}}>Transaction : {post.transtaction}</Text>
+					style={{fontSize: 17, color: '#767676', marginStart: 75, alignSelf: 'center'}}>Transaction est {post.transtaction}</Text>
 					</View>
 				
 				</View>
@@ -544,6 +532,8 @@ export default function ProductDetails({ navigation, route }) {
 
 
 				</View>
+				
+				: null}
 
 				
 
@@ -583,7 +573,6 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => Alert.alert('Partagée')}
 							style={{
 								backgroundColor: '#4898D3',
 								height: 60,

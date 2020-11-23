@@ -14,8 +14,8 @@ import {
 	ActivityIndicator
 } from 'react-native';
 
-import { TextInput, Checkbox } from 'react-native-paper';
-import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
+import { TextInput, Checkbox, Button } from 'react-native-paper';
+import { textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import * as Animated from 'react-native-animatable'
 import { addProduct } from './APIFunctions';
@@ -24,6 +24,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export default function AddProduct({ route, navigation }) {
 
+	
 	//Variables for inputs for standar product
 	const [title, setTitle] = useState('');
 	const [city, setCity] = useState('Touts les villes');
@@ -38,8 +39,7 @@ export default function AddProduct({ route, navigation }) {
 	const [puissance, setPuissance] = useState('');
 	const [transtaction, setTransaction] = useState('');
 
-
-	const [voitureChips, setVoitureChips] = useState(false);
+	const [ voitureChips, setVoitureChips ] = useState(false);
 
 	//Variables for inputs for Location
 	const [piece, setPiece] = useState('');
@@ -55,11 +55,11 @@ export default function AddProduct({ route, navigation }) {
 	const [etat, setEtat] = useState('');
 
 	//Variables for chips
-	const [phone, setPhone] = useState(false);
-	const [laivraison, setLaivraison] = useState(false);
-	const [paiement, setPaiement] = useState(false);
-	const [negociable, setNegociable] = useState(false);
-	const [bonCondition, setBonCondition] = useState(false);
+	const [ phone, setPhone ] = useState(false);
+	const [ laivraison, setLaivraison ] = useState(false);
+	const [ paiement, setPaiement ] = useState(false);
+	const [ negociable, setNegociable ] = useState(false);
+	const [ bonCondition, setBonCondition ] = useState(false);
 
 
 	//Variables for equipment Voiture
@@ -76,19 +76,18 @@ export default function AddProduct({ route, navigation }) {
 	const [etatVisible, setEtatVisible] = useState(true);
 
 	//Category Visibility
-	const [voiture, setVoiture] = useState(false);
-	const [Location, setLocation] = useState(false);
-	const [services, setServices] = useState(false);
-	const [Telephone, setTelephone] = useState(false);
-	const [loading, setLoading] = useState(false);
-
-	const [canRender, setCanRender] = useState(false);
-
+	const [ voiture, setVoiture ] = useState(false);
+	const [ Location, setLocation ] = useState(false);
+	const [ services, setServices ] = useState(false);
+	const [ Telephone, setTelephone ] = useState(false);
+	//Condition Rendering
+	const [ canRender, setCanRender ] = useState(false);
+	const [ loading, setLoading ] = useState(false);
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
 
-	const height_image = height * 0.115;
-	const width_image = width * 0.2;
+	const height_image = height * 0.15;
+	const width_image = width * 0.21;
 
 	//Get pictures once the screen focused
 
@@ -132,17 +131,19 @@ export default function AddProduct({ route, navigation }) {
 				setVoitureChips(true);
 				setVoiture(true);
 				setChips(false);
-				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
+				navigation.setOptions({ title: 'Vehicule' });
 				break;
 
 			case parent.title == 'VEHICULES':
-				navigation.setOptions({ title: 'Ajouter votre Vehicule' });
+				navigation.setOptions({ title: 'Vehicule' });
 				setChips(false);
 				break;
 
 			case parent.title == 'INFORMATIQUE ET ELECTRONIQUE' &&
 				(parent.item == 'Téléphones' || parent.item == 'Tablettes'):
 				setTelephone(true);
+				
+				navigation.setOptions({ title: 'Electronique' });
 				break;
 
 			case parent.title == 'IMMOBILIER' &&
@@ -155,13 +156,13 @@ export default function AddProduct({ route, navigation }) {
 				setEtatVisible(false);
 				setLocation(true);
 				setVoitureChips(true);
-				navigation.setOptions({ title: 'Ajouter votre Immobilier' });
+				navigation.setOptions({ title: 'Immobilier' });
 				break;
 
 			case parent.title == 'IMMOBILIER':
 				setChips(false);
 				setEtatVisible(false);
-				navigation.setOptions({ title: 'Ajouter Immobilier' });
+				navigation.setOptions({ title: 'Immobilier' });
 				break;
 
 			case parent.item == 'Matériels professionnels':
@@ -331,10 +332,7 @@ export default function AddProduct({ route, navigation }) {
 
 					<View style={{ flex: 1, marginTop: 20 }}>
 
-						<Text style={{ color: 'red', fontSize: 11 }}>Obligatoir *</Text>
-						<Text style={{ color: '#4898D3', fontSize: 11 }}>
-							Merci d’entrer le Nom exacte de votre article
-						</Text>
+					<Text style={{ color: 'red', fontSize: 11}}>Obligatoir *</Text>
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
@@ -343,6 +341,10 @@ export default function AddProduct({ route, navigation }) {
 							theme={textTheme}
 							onChangeText={setTitle}
 						/>
+						<Text style={{ color: '#4898D3', fontSize: 11 }}>
+							Merci d’entrer le Nom exacte de votre article
+						</Text>
+						
 
 
 
@@ -459,7 +461,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="Choisissez votre marque " value="rien" />
+										<Picker.Item label="Choisissez votre marque " value="" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -786,15 +788,18 @@ export default function AddProduct({ route, navigation }) {
 							) : null}
 
 						</View>
-
-						<TouchableOpacity
+						
+						<Button
+							mode='contained'
+							uppercase={false}
 							onPress={() => upload()}
-							delayPressIn={10}
-							style={[GlobalStyle.btn, { marginBottom: 30, flexDirection: 'row' }]}
-						>
-							<ActivityIndicator color="white" size="large" animating={loading} />
-							<Text style={GlobalStyle.signInText}>Valider l’annonce</Text>
-						</TouchableOpacity>
+            				style={{ alignSelf: 'center', marginVertical: 20,  width: '100%', height: 40, borderRadius: 15, marginBottom: 30 }}
+							disabled={(!title || !city || !price ||! description)}
+							color='#4898D3'
+							loading={loading}
+							dark={true}>
+							Valider l’annonce
+						</Button>
 					</View>
 				</ScrollView>
 			) : null}
