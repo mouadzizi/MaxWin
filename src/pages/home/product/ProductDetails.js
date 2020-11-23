@@ -75,41 +75,6 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 
 					
-					<View style={{ flexDirection: 'row', marginTop: 10, flex: 1, paddingLeft: 20, paddingRight: 20, alignSelf: 'center' }}>
-
-						<TouchableOpacity
-							delayPressIn={0}
-							onPress={() => navigation.navigate('Messages',{ seller:post.user }) }
-							style={{
-								backgroundColor: '#4898D3',
-								borderRadius: 15,
-								height: 60,
-								width: '47%',
-								marginRight : 20,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Discuter</Text>
-						</TouchableOpacity>
-
-						<TouchableOpacity
-							delayPressIn={0}
-							onPress={() => Alert.alert("Information", "Nous vous informons que l'annonceur préfère le contact par Chat Merci de votre compréhension.")}
-							style={{
-								borderColor: '#FF6347',
-								borderWidth : 1.5,
-								height: 60,
-								borderRadius: 15,
-								width: '47%',
-								marginLeft : 20,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-						<Text style={{ color: '#FF6347', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
-						</TouchableOpacity>
-					</View>
 
 					{ (post.laivraison || post.paiement  ) ?
 
@@ -182,7 +147,26 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 					</View>
 					: null }
-
+					
+					<View style={{paddingHorizontal: 20}}>
+					<TouchableOpacity
+							delayPressIn={0}
+							style={{
+								backgroundColor: '#4898D3',
+								height: 40,
+								borderRadius: 15,
+								marginBottom: 5,
+								marginTop: 15,
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+						<View style={{flexDirection: 'row'}}>
+						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Partagé</Text>
+						<Feather name="share-2" size={25} color="#fff" />
+						</View>
+						</TouchableOpacity>
+					</View>
 
 					<View style={GlobalStyle.infoContainer}>
 					
@@ -537,7 +521,7 @@ export default function ProductDetails({ navigation, route }) {
 
 				
 
-				<View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10, flex: 1, paddingLeft: 20, paddingRight: 20, alignSelf: 'center' }}>
+				<View style={{padding: 20, marginVertical: 5}}>
 
 						<TouchableOpacity
 							delayPressIn={0}
@@ -545,8 +529,8 @@ export default function ProductDetails({ navigation, route }) {
 							style={{
 								backgroundColor: '#FF6347',
 								borderRadius: 15,
-								height: 60,
-								width: '33%',
+								height: 40,
+								marginBottom: 5,
 								justifyContent: 'center',
 								alignItems: 'center'
 							}}
@@ -560,10 +544,9 @@ export default function ProductDetails({ navigation, route }) {
 							style={{
 								borderColor: '#4898D3',
 								borderWidth : 1.5,
-								height: 60,
+								height: 40,
 								borderRadius: 15,
-								width: '33%',
-								marginLeft : 10,
+								marginBottom: 5,
 								justifyContent: 'center',
 								alignItems: 'center'
 							}}
@@ -571,21 +554,7 @@ export default function ProductDetails({ navigation, route }) {
 						<Text style={{ color: '#4898D3', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
 						</TouchableOpacity>
 
-						<TouchableOpacity
-							delayPressIn={0}
-							style={{
-								backgroundColor: '#4898D3',
-								height: 60,
-								borderRadius: 15,
-								width: '33%',
-								marginLeft : 10,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-						
-						<Feather name="share-2" size={25} color="#fff" />
-						</TouchableOpacity>
+
 					</View>
 
 				</ScrollView>

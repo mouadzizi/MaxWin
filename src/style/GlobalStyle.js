@@ -118,7 +118,7 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     cardImgWrapper: {
-      flex: 1,
+      flex: 6,
       borderColor: '#ccc',
       borderWidth: 0.5,
       borderRightWidth: 0,
@@ -136,7 +136,7 @@ export const GlobalStyle = StyleSheet.create({
     },
     
     cardInfo: {
-      flex: 2,
+      flex: 8,
       padding: 10,
       borderColor: '#ccc',
       borderWidth: 0.5,
@@ -145,12 +145,13 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     cardTitle: {
-      fontSize: 14,
-      fontFamily: 'serif',
+      fontSize: 17,
+      fontFamily: 'Roboto',
     },
 
     cardPrice: {
       fontSize: 16,
+      fontWeight: '700',
       color: '#F16E44'
     },
 
@@ -160,14 +161,14 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     cardOwner: {
-      color: '#B9B9BB',
+      color: '#767676',
       fontSize: 12,
       alignSelf: 'center',
       marginLeft: 4
     },
 
     cardLocation: {
-      color: '#B9B9BB',
+      color: '#767676',
       fontSize: 12, 
       alignSelf: 'center', 
       marginLeft: 2,
@@ -178,13 +179,9 @@ export const GlobalStyle = StyleSheet.create({
       fontSize: 12,
       alignSelf: 'center', 
       marginLeft: 2,
-      fontWeight: 'bold'
-    },
-
-    LaivrasionTTMaroc: {
-      backgroundColor:'#F16E44',
-      fontSize: 12, 
-      alignSelf: 'flex-end',
+      fontFamily: 'sans-serif' ,
+      fontWeight: 'bold',
+      marginBottom: 5,
     },
     
 

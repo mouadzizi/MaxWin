@@ -18,11 +18,11 @@ export default function Product(props) {
 				<View
 					style={
 						(chip1 && chip2) || (chip3 && chip4) ? (
-							{ flexDirection: 'row', backgroundColor: '#fff', height: 130 }
+							{ flexDirection: 'row', backgroundColor: '#fff', height: 150 }
 						) : ( (!chip1 && chip2) || (!chip2 && chip1) ) || (!chip3 && chip4) || (!chip4 && chip3)? (
-							{ flexDirection: 'row', backgroundColor: '#fff', height: 110 }
+							{ flexDirection: 'row', backgroundColor: '#fff', height: 130 }
 						) : (
-							{ flexDirection: 'row', backgroundColor: '#fff', height: 100 }
+							{ flexDirection: 'row', backgroundColor: '#fff', height: 120 }
 						)
 					}
 				>
@@ -40,22 +40,23 @@ export default function Product(props) {
 
 						{/* Product owner */}
 						{state ? (
-							<View style={{ flexDirection: 'row' }}>
-								<Entypo name="user" color="#B9B9BB" />
+							<View style={{ flexDirection: 'row', marginTop: 3 }}>
+								<Entypo name="user" size={15} color="#767676" />
 								<Text style={GlobalStyle.cardOwner}>{props.owner}</Text>
 							</View>
 						) : (
-							<View style={{ flexDirection: 'row' }}>
-								<Entypo name="shop" color="#B9B9BB" />
+							<View style={{ flexDirection: 'row', marginTop: 3  }}>
+								<Entypo name="shop" size={15} color="#767676" />
 								<Text style={GlobalStyle.cardOwner}>{props.owner}</Text>
 							</View>
 						)}
 
 						{/* Location */}
-						<View style={{ flexDirection: 'row', marginTop: 2 }}>
-							<Entypo name="location" size={15} color="#B9B9BB" />
+						<View style={{ flexDirection: 'row', marginTop: 4, marginBottom :2 }}>
+							<Entypo name="location" size={15} color="#767676" />
 							<Text style={GlobalStyle.cardLocation}>{props.location}</Text>
 						</View>
+
 
 						{chip1 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
@@ -84,6 +85,7 @@ export default function Product(props) {
 								<Text style={GlobalStyle.cardChip}> En bonne état </Text>
 							</View>
 						) : null}
+
 					</View>
 				</View>
 			</TouchableOpacity>
