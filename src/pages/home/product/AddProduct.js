@@ -6,9 +6,9 @@ import {
 	ScrollView,
 	TouchableOpacity,
 	Text,
-	TouchableHighlight,
 	Picker,
 	Image,
+	FlatList,
 	Dimensions,
 	InteractionManager,
 	ActivityIndicator
@@ -17,6 +17,7 @@ import {
 import { TextInput, Checkbox } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { MaterialIcons, MaterialCommunityIcons } from 'react-native-vector-icons';
+import * as Animated from 'react-native-animatable'
 import { addProduct } from './APIFunctions';
 import { auth, db, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -24,64 +25,64 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default function AddProduct({ route, navigation }) {
 
 	//Variables for inputs for standar product
-	const [ title, setTitle ] = useState('');
-	const [ city, setCity ] = useState('Touts les villes');
-	const [ price, setPrice ] = useState('');
-	const [ description, setDescription ] = useState('');
+	const [title, setTitle] = useState('');
+	const [city, setCity] = useState('Touts les villes');
+	const [price, setPrice] = useState('');
+	const [description, setDescription] = useState('');
 
 	//Variables for inputs for Voiture
-	const [ marqueVoiture, setMarqueVoiture ] = useState('');
-	const [ kilometrage, setKilometrage ] = useState('');
-	const [ carburant, setCarburant ] = useState('');
-	const [ fabrication, setFabrication ] = useState('');
-	const [ puissance, setPuissance ] = useState('');
-	const [ transtaction, setTransaction ] = useState('');
+	const [marqueVoiture, setMarqueVoiture] = useState('');
+	const [kilometrage, setKilometrage] = useState('');
+	const [carburant, setCarburant] = useState('');
+	const [fabrication, setFabrication] = useState('');
+	const [puissance, setPuissance] = useState('');
+	const [transtaction, setTransaction] = useState('');
 
-	
-	const [ voitureChips, setVoitureChips ] = useState(false);
+
+	const [voitureChips, setVoitureChips] = useState(false);
 
 	//Variables for inputs for Location
-	const [ piece, setPiece ] = useState('');
-	const [ superficie, setSuperficie ] = useState('');
+	const [piece, setPiece] = useState('');
+	const [superficie, setSuperficie] = useState('');
 
 	//Variables for inputs for Services
-	const [ servicetype, setServiceType ] = useState('');
+	const [servicetype, setServiceType] = useState('');
 
 	//Variables for inputs for Phone
-	const [ phoneMarque, setPhoneMarque ] = useState(false);
+	const [phoneMarque, setPhoneMarque] = useState(false);
 
 	//Visibility for State
-	const [ etat, setEtat ] = useState('');
+	const [etat, setEtat] = useState('');
 
 	//Variables for chips
-	const [ phone, setPhone ] = useState(false);
-	const [ laivraison, setLaivraison ] = useState(false);
-	const [ paiement, setPaiement ] = useState(false);
+	const [phone, setPhone] = useState(false);
+	const [laivraison, setLaivraison] = useState(false);
+	const [paiement, setPaiement] = useState(false);
 	const [negociable, setNegociable] = useState(false);
 	const [bonCondition, setBonCondition] = useState(false);
 
-	
+
 	//Variables for equipment Voiture
-	const [ jantes, setJanets ] = useState(false);
-	const [ airbags, setAirbags ] = useState(false);
-	const [ clima, setClima ] = useState(false);
-	const [ abs, setAbs ] = useState(false);
-	const [ vitre, setVitre ] = useState(false);
-	const [ radar, setRadar ] = useState(false);
-	const [ gps, setGps ] = useState(false);
+	const [jantes, setJanets] = useState(false);
+	const [airbags, setAirbags] = useState(false);
+	const [clima, setClima] = useState(false);
+	const [abs, setAbs] = useState(false);
+	const [vitre, setVitre] = useState(false);
+	const [radar, setRadar] = useState(false);
+	const [gps, setGps] = useState(false);
 
 	//components Visibility
-	const [ chips, setChips ] = useState(true);
-	const [ etatVisible, setEtatVisible ] = useState(true);
+	const [chips, setChips] = useState(true);
+	const [etatVisible, setEtatVisible] = useState(true);
 
 	//Category Visibility
-	const [ voiture, setVoiture ] = useState(false);
-	const [ Location, setLocation ] = useState(false);
-	const [ services, setServices ] = useState(false);
-	const [ Telephone, setTelephone ] = useState(false);
-	const [ loading, setLoading ] = useState(false);
+	const [voiture, setVoiture] = useState(false);
+	const [Location, setLocation] = useState(false);
+	const [services, setServices] = useState(false);
+	const [Telephone, setTelephone] = useState(false);
+	const [loading, setLoading] = useState(false);
 
-	const [ canRender, setCanRender ] = useState(false);
+	const [canRender, setCanRender] = useState(false);
 
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
@@ -91,8 +92,8 @@ export default function AddProduct({ route, navigation }) {
 
 	//Get pictures once the screen focused
 
-	const [ images, setImages ] = useState([]);
-	const [ user, setUser ] = useState(null);
+	const [images, setImages] = useState([]);
+	const [user, setUser] = useState(null);
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -184,7 +185,7 @@ export default function AddProduct({ route, navigation }) {
 			default:
 				break;
 		}
-		return () => {};
+		return () => { };
 	}, []);
 
 	const upload = () => {
@@ -211,7 +212,7 @@ export default function AddProduct({ route, navigation }) {
 			negociable,
 			bonCondition,
 			Telephone,
-			carSpecefications:{
+			carSpecefications: {
 				gps,
 				radar,
 				vitre,
@@ -227,7 +228,7 @@ export default function AddProduct({ route, navigation }) {
 				owner: user.name
 			}
 		};
-		
+
 		if (images.length === 0) {
 			Alert.alert('enter at least one images');
 		} else {
@@ -261,52 +262,77 @@ export default function AddProduct({ route, navigation }) {
 			{canRender ? (
 				<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 					{images ? (
-						<View style={{ flexDirection: 'row', flex: 1 }}>
-							{images.map((img, index) => {
-								return (
-									<View key={index} style={{ width: '23%', marginRight: 8}}>
-									<TouchableHighlight 
-									onPress={() => navigation.navigate('image')}
-									style={{ borderWidth: 1, borderColor: '#444'}}>
-										<Image
-											source={{ uri: img.uri }}
-											style={{ height: height_image, width: width_image }}
-											resizeMode={'stretch'}
+						<View >
+							<FlatList
+								showsHorizontalScrollIndicator
+								horizontal
+								style={{
+									padding: 3,
+									flexGrow: 0,
+									borderBottomWidth: 1
+								}}
+								data={images}
+								keyExtractor={(item) => item.index}
+								renderItem={({ item, index }) =>
+									<Animated.View  animation='bounceIn' duration={1000} style={{ flex: 1, margin: 10 }}>
+										<TouchableOpacity  activeOpacity={.6} delayPressIn={1} onPress={() => navigation.navigate('image')} >
+											<Image
+
+												source={{ uri: item.uri }}
+												style={{
+													width: 200, height: 250, borderRadius: 16,
+												}}
+												resizeMode={'stretch'}
+											/>
+										</TouchableOpacity>
+
+										<View style={{
+											alignItems: 'center', letterSpacing: 3,
+											justifyContent: 'center',
+											position: 'absolute', right: 4,
+											borderRadius: 50,
+											backgroundColor: '#2980b9',
+											width: 30,
+											height: 30,
+											opacity: .8,
+										}} >
+
+											<Text style={{ fontSize: 20, color: '#fff', marginLeft: 3 }}
+											> {index + 1}  </Text>
+
+										</View>
+										<MaterialCommunityIcons
+											name='camera-plus-outline'
+											color='#ecf0f1'
+											size={30}
+											style={{ position: 'absolute', bottom: 2, right: 5 }}
 										/>
-									</TouchableHighlight>
-									
-									<MaterialCommunityIcons
-										name='camera-plus-outline'
-										color='#444'
-										size={30}
-										style={{ position: 'absolute', bottom: 2, right: 5 }}
-										/>
-									</View>
-								);
-							})}
+									</Animated.View >}
+
+							/>
 						</View>
 					) : (
-						<View>
-							
-							<View style={{ flexDirection: 'row' }}>
-								<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
-									<MaterialIcons name="add-a-photo" color="#444" size={100} />
-								</TouchableOpacity>
-							</View>
-							
-							<Text style={{ color: 'red', fontSize: 11}}>Obligatoir *</Text>
-							<Text style={{ color: '#4898D3', fontSize: 11 }}>
-								Une bonne annonce commence par une bonne photo.
-							</Text>
-						</View>
-					)}
+							<View>
 
-					
+								<View style={{ flexDirection: 'row' }}>
+									<TouchableOpacity onPress={() => navigation.navigate('image')} delayPressIn={0}>
+										<MaterialIcons name="add-a-photo" color="#444" size={100} />
+									</TouchableOpacity>
+								</View>
+
+								<Text style={{ color: 'red', fontSize: 11 }}>Obligatoir *</Text>
+								<Text style={{ color: '#4898D3', fontSize: 11 }}>
+									Une bonne annonce commence par une bonne photo.
+							</Text>
+							</View>
+						)}
+
+
 
 					<View style={{ flex: 1, marginTop: 20 }}>
 
-					<Text style={{ color: 'red', fontSize: 11}}>Obligatoir *</Text>
-					<Text style={{ color: '#4898D3', fontSize: 11 }}>
+						<Text style={{ color: 'red', fontSize: 11 }}>Obligatoir *</Text>
+						<Text style={{ color: '#4898D3', fontSize: 11 }}>
 							Merci d’entrer le Nom exacte de votre article
 						</Text>
 						<TextInput
@@ -317,14 +343,14 @@ export default function AddProduct({ route, navigation }) {
 							theme={textTheme}
 							onChangeText={setTitle}
 						/>
-						
 
-						
-					<Text style={{ color: 'red', fontSize: 11, marginTop: 10, marginBottom: 5}}>Obligatoir *</Text>
-						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4}}>
+
+
+						<Text style={{ color: 'red', fontSize: 11, marginTop: 10, marginBottom: 5 }}>Obligatoir *</Text>
+						<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4 }}>
 							<Picker
 								selectedValue={city}
-								style={{ height: 50, width: '100%'}}
+								style={{ height: 50, width: '100%' }}
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
@@ -362,8 +388,8 @@ export default function AddProduct({ route, navigation }) {
 							</Picker>
 						</View>
 
-						
-					<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
+
+						<Text style={{ color: 'red', fontSize: 11, marginTop: 10 }}>Obligatoir *</Text>
 						<TextInput
 							label="Prix"
 							mode="outlined"
@@ -385,7 +411,7 @@ export default function AddProduct({ route, navigation }) {
 										prompt="Etat"
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
-									>	
+									>
 										<Picker.Item label="Neuf/Utilisé" value="Neuf/Utilisé" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
@@ -397,7 +423,7 @@ export default function AddProduct({ route, navigation }) {
 						{Telephone ? (
 							<View>
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Marque</Text>
-								
+
 								<View
 									style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4 }}
 								>
@@ -423,10 +449,10 @@ export default function AddProduct({ route, navigation }) {
 
 						{voiture ? (
 							<View>
-							
+
 								<Text style={{ color: '#4898D3', marginTop: 10 }}>Marque</Text>
-								
-								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4}}>
+
+								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4 }}>
 									<Picker
 										selectedValue={marqueVoiture}
 										prompt="Marque"
@@ -467,7 +493,7 @@ export default function AddProduct({ route, navigation }) {
 									</Picker>
 								</View>
 
-								
+
 								<TextInput
 									onChangeText={setKilometrage}
 									label="Kilometrage"
@@ -525,7 +551,7 @@ export default function AddProduct({ route, navigation }) {
 								</View>
 
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Boîte de vitesses</Text>
-								
+
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 									<Picker
 										mode="dropdown"
@@ -540,82 +566,82 @@ export default function AddProduct({ route, navigation }) {
 
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Équipements</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
-									
 
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Jantes Aluminium</Text>
-									<Checkbox
-										status={jantes ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setJanets(!jantes);
-										}}
-										color="#4898D3"
-									/>
-								</View>
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Airbags</Text>
-									<Checkbox
-										status={airbags ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setAirbags(!airbags);
-										}}
-										color="#4898D3"
-									/>
-								</View>
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Climatisation</Text>
-									<Checkbox
-										status={clima ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setClima(!clima);
-										}}
-										color="#4898D3"
-									/>
-								</View>
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Vitres Électriques</Text>
-									<Checkbox
-										status={vitre ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setVitre(!vitre);
-										}}
-										color="#4898D3"
-									/>
-								</View>
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Radar De Recul</Text>
-									<Checkbox
-										status={radar ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setRadar(!radar);
-										}}
-										color="#4898D3"
-									/>
-								</View>
 
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>GPS</Text>
-									<Checkbox
-										status={gps ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setGps(!gps);
-										}}
-										color="#4898D3"
-									/>
-								</View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Jantes Aluminium</Text>
+										<Checkbox
+											status={jantes ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setJanets(!jantes);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Airbags</Text>
+										<Checkbox
+											status={airbags ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setAirbags(!airbags);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Climatisation</Text>
+										<Checkbox
+											status={clima ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setClima(!clima);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Vitres Électriques</Text>
+										<Checkbox
+											status={vitre ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setVitre(!vitre);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Radar De Recul</Text>
+										<Checkbox
+											status={radar ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setRadar(!radar);
+											}}
+											color="#4898D3"
+										/>
+									</View>
 
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>ABS</Text>
-									<Checkbox
-										status={abs ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setAbs(!abs);
-										}}
-										color="#4898D3"
-									/>
-								</View>
-									
-									
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>GPS</Text>
+										<Checkbox
+											status={gps ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setGps(!gps);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>ABS</Text>
+										<Checkbox
+											status={abs ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setAbs(!abs);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+
+
 								</View>
 							</View>
 						) : null}
@@ -675,8 +701,8 @@ export default function AddProduct({ route, navigation }) {
 								</View>
 							</View>
 						) : null}
-						
-						<Text style={{ color: 'red', fontSize: 11, marginTop: 10}}>Obligatoir *</Text>
+
+						<Text style={{ color: 'red', fontSize: 11, marginTop: 10 }}>Obligatoir *</Text>
 						<TextInput
 							label="Description"
 							mode="outlined"
@@ -688,83 +714,83 @@ export default function AddProduct({ route, navigation }) {
 							multiline={true}
 						/>
 
-					
-					<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>	
-					<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 
-						<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-							<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
-							<Checkbox
-								status={phone ? 'checked' : 'unchecked'}
-								onPress={() => {
-									setPhone(!phone);
-								}}
-								color="#4898D3"
-							/>
-						</View>
+						<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>
+						<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 
-						{chips ? (
-							<View>
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Livraison Possible</Text>
-
-									<Checkbox
-										status={laivraison ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setLaivraison(!laivraison);
-										}}
-										color="#4898D3"
-									/>
-								</View>
-
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Paiement à la livraison</Text>
-
-									<Checkbox
-										status={paiement ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setPaiement(!paiement);
-										}}
-										color="#4898D3"
-									/>
-								</View>
+							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+								<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
+								<Checkbox
+									status={phone ? 'checked' : 'unchecked'}
+									onPress={() => {
+										setPhone(!phone);
+									}}
+									color="#4898D3"
+								/>
 							</View>
-						) : null}
 
-						{voitureChips ? (
-							<View>
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>En bonne état</Text>
+							{chips ? (
+								<View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Livraison Possible</Text>
 
-									<Checkbox
-										status={bonCondition ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setBonCondition(!bonCondition);
-										}}
-										color="#4898D3"
-									/>
+										<Checkbox
+											status={laivraison ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setLaivraison(!laivraison);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Paiement à la livraison</Text>
+
+										<Checkbox
+											status={paiement ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setPaiement(!paiement);
+											}}
+											color="#4898D3"
+										/>
+									</View>
 								</View>
+							) : null}
 
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-									<Text style={{ marginTop: 7, width: '60%' }}>Prix négociable</Text>
+							{voitureChips ? (
+								<View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>En bonne état</Text>
 
-									<Checkbox
-										status={negociable ? 'checked' : 'unchecked'}
-										onPress={() => {
-											setNegociable(!negociable);
-										}}
-										color="#4898D3"
-									/>
+										<Checkbox
+											status={bonCondition ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setBonCondition(!bonCondition);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Prix négociable</Text>
+
+										<Checkbox
+											status={negociable ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setNegociable(!negociable);
+											}}
+											color="#4898D3"
+										/>
+									</View>
 								</View>
-							</View>
-						) : null}
+							) : null}
 
 						</View>
 
 						<TouchableOpacity
 							onPress={() => upload()}
 							delayPressIn={10}
-							style={[ GlobalStyle.btn, { marginBottom: 30, flexDirection: 'row' } ]}
+							style={[GlobalStyle.btn, { marginBottom: 30, flexDirection: 'row' }]}
 						>
 							<ActivityIndicator color="white" size="large" animating={loading} />
 							<Text style={GlobalStyle.signInText}>Valider l’annonce</Text>

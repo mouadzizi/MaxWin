@@ -34,7 +34,6 @@ export default function ImagesBrowser({ navigation }) {
 						 height:pPhoto.height,
 					}); 
 				}
-					console.log(cPhotos);
 				savePhotos(cPhotos);
 			})
 			.catch((e) => console.log(e));
@@ -51,7 +50,7 @@ export default function ImagesBrowser({ navigation }) {
 	const _processImageAsync= async (uri)=> {
 		const file = await ImageManipulator.manipulateAsync(
 			uri,
-		  [{resize: { width: 500,height:500}}],
+		  [],
 		  { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG }
 		)
 		console.log(file);
