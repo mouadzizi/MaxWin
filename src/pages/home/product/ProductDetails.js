@@ -27,6 +27,7 @@ import RadarRedcule from '../../../icons/radarRedcule';
 import VitreElectrique from '../../../icons/vitreElectrique';
 import AirbagsIcon from '../../../icons/Airbags';
 import PriceTag from '../../../icons/priceTag';
+import Clima from '../../../icons/clima';
 
 export default function ProductDetails({ navigation, route }) {
 
@@ -86,7 +87,7 @@ export default function ProductDetails({ navigation, route }) {
 						</View>
 
 					<View style={GlobalStyle.infoContainer}>
-						<Text style={{fontSize: 25, fontFamily: 'serif'}}>{post.title}</Text>
+						<Text style={{fontSize: 25, fontFamily: 'Roboto'}}>{post.title}</Text>
 						<Divider />
 						<Text style={{color: '#FF6347', fontSize: 23, fontFamily: 'serif', marginTop: 3}}>
 						{post.price} DHS
@@ -166,26 +167,6 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 					</View>
 					: null }
-					
-					<View style={{paddingHorizontal: 20}}>
-					<TouchableOpacity
-							delayPressIn={0}
-							style={{
-								backgroundColor: '#4898D3',
-								height: 40,
-								borderRadius: 15,
-								marginBottom: 5,
-								marginTop: 15,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-						<View style={{flexDirection: 'row'}}>
-						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Partagé</Text>
-						<Feather name="share-2" size={25} color="#fff" />
-						</View>
-						</TouchableOpacity>
-					</View>
 
 					<View style={GlobalStyle.infoContainer}>
 					<Text style={{ color: '#4898D3',fontSize: 20}}>Description</Text>
@@ -195,7 +176,7 @@ export default function ProductDetails({ navigation, route }) {
 
 
 				<View style={GlobalStyle.infoContainer}>
-				<Text style={{ color: '#4898D3',fontSize: 20}}>Details</Text>
+				<Text style={{ color: '#4898D3',fontSize: 20}}>Détails</Text>
 				
 				{post.city ? 
 				<View>
@@ -203,7 +184,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
 					<Text
-					style={{fontSize: 17, color: '#000', width: '60%'}}>Categorie</Text>
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Catégorie</Text>
 			
 					<Text
 					style={{fontSize: 17, color: '#767676', width: '40%'}}>{post.category.item}</Text>
@@ -414,7 +395,7 @@ export default function ProductDetails({ navigation, route }) {
 				}
 				</View>
 				
-				{(post.carSpecefications.gps || post.carSpecefications.abs || post.carSpecefications.jantes || post.carSpecefications.radar || post.carSpecefications.vitre || post.carSpecefications.airbags || post.transtaction)
+				{(post.carSpecefications.gps || post.carSpecefications.abs || post.carSpecefications.jantes || post.carSpecefications.radar || post.carSpecefications.vitre || post.carSpecefications.airbags || post.transtaction || post.carSpecefications.clima)
 				?
 				<View style={GlobalStyle.infoContainer}>
 				<Text style={{ color: '#4898D3',fontSize: 20}}>Équipement</Text>
@@ -434,6 +415,21 @@ export default function ProductDetails({ navigation, route }) {
 				:null
 				}
 
+				{post.carSpecefications.clima ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<Clima />
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Climatisation</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
 				{post.carSpecefications.gps ? 
 				<View>
 				<Divider/>
@@ -442,7 +438,7 @@ export default function ProductDetails({ navigation, route }) {
 					<NavigationSystem 
 					/>
 					<Text
-					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Système de navigation</Text>
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>GPS</Text>
 					</View>
 				
 				</View>
@@ -546,6 +542,8 @@ export default function ProductDetails({ navigation, route }) {
 							onPress={() => console.log(post.urls)}
 							style={{
 								backgroundColor: '#FF6347',
+								borderColor: '#4898D3',
+								borderWidth : 1.5,
 								borderRadius: 15,
 								height: 40,
 								marginBottom: 5,
@@ -553,23 +551,50 @@ export default function ProductDetails({ navigation, route }) {
 								alignItems: 'center'
 							}}
 						>
-						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif' }}>Discuter</Text>
+						<View style={{flexDirection: 'row'}}>
+						<Feather name="message-square" size={25} color="#fff" />
+						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif', marginStart: 10 }}>Envoyer un message</Text>
+						</View>
 						</TouchableOpacity>
 
 						<TouchableOpacity
 							delayPressIn={0}
 							onPress={() => Alert.alert("Information", "Nous vous informons que l'annonceur préfère le contact par Chat Merci de votre compréhension.")}
 							style={{
-								borderColor: '#4898D3',
+								backgroundColor: '#4898D3',
+								borderColor: '#FF6347',
 								borderWidth : 1.5,
 								height: 40,
 								borderRadius: 15,
 								marginBottom: 5,
+								marginTop: 5,
 								justifyContent: 'center',
 								alignItems: 'center'
 							}}
 						>
-						<Text style={{ color: '#4898D3', fontSize: 18, fontFamily: 'serif' }}>Appeler</Text>
+						<View style={{flexDirection: 'row'}}>
+						<Feather name="smartphone" size={25} color="#fff" />
+						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif', marginStart: 5 }}>Numéro  de téléphone</Text>
+						</View>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							delayPressIn={0}
+							style={{
+								borderWidth: 1.5,
+								borderColor: '#4898D3',
+								height: 40,
+								borderRadius: 15,
+								marginBottom: 5,
+								marginTop: 5,
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+						<View style={{flexDirection: 'row'}}>
+						<Feather name="share-2" size={25} color="#4898D3" />
+						<Text style={{ color: '#4898D3', fontSize: 18, fontFamily: 'serif', marginStart: 15 }}>Partager</Text>
+						</View>
 						</TouchableOpacity>
 
 

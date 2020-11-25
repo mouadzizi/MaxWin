@@ -61,7 +61,7 @@ export default function Chats({ navigation }) {
                 ListEmptyComponent={() => (
 						<View>
 							<Image
-							source={require('../../../assets/slide2.jpg')}
+							source={require('../../../assets/slide3.jpg')}
 							style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
 							resizeMode={'stretch'}/>
 						<Text

@@ -78,8 +78,10 @@ export default function AddProduct({ route, navigation }) {
 	//Category Visibility
 	const [ voiture, setVoiture ] = useState(false);
 	const [ Location, setLocation ] = useState(false);
+	const [ terrain, setTerrain ] = useState(false);
 	const [ services, setServices ] = useState(false);
 	const [ Telephone, setTelephone ] = useState(false);
+	
 	//Condition Rendering
 	const [ canRender, setCanRender ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
@@ -147,11 +149,14 @@ export default function AddProduct({ route, navigation }) {
 				break;
 
 			case parent.title == 'IMMOBILIER' &&
-				(parent.item == 'Appartements' ||
-					parent.item == 'Maisons & Villas' ||
-					parent.item == 'Location courte durée (vacances)' ||
-					parent.item == 'Commerces & Bureaux' ||
-					parent.item == 'Location long durée'):
+				(parent.item == 'Terrains'):
+				setChips(false);
+				setEtatVisible(false);
+				setTerrain(true);
+				navigation.setOptions({ title: 'Terrains' });
+				break;
+
+			case parent.title == 'IMMOBILIER':
 				setChips(false);
 				setEtatVisible(false);
 				setLocation(true);
@@ -159,14 +164,8 @@ export default function AddProduct({ route, navigation }) {
 				navigation.setOptions({ title: 'Immobilier' });
 				break;
 
-			case parent.title == 'IMMOBILIER':
-				setChips(false);
-				setEtatVisible(false);
-				navigation.setOptions({ title: 'Immobilier' });
-				break;
 
 			case parent.item == 'Matériels professionnels':
-				setServices(true);
 				navigation.setOptions({ title: 'Matériels professionnels' });
 				break;
 
@@ -308,7 +307,8 @@ export default function AddProduct({ route, navigation }) {
 											size={30}
 											style={{ position: 'absolute', bottom: 2, right: 5 }}
 										/>
-									</Animated.View >}
+									</Animated.View>
+								}
 
 							/>
 						</View>
@@ -414,7 +414,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Neuf/Utilisé" value="Neuf/Utilisé" />
+										<Picker.Item label="Choisissez" value="Choisissez" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
@@ -541,6 +541,8 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
 									>
+									
+										<Picker.Item label="Choisissez" value="Choisissez" />
 										<Picker.Item label="4CH" value="4ch" />
 										<Picker.Item label="5CH" value="5ch" />
 										<Picker.Item label="6CH" value="6ch" />
@@ -548,6 +550,8 @@ export default function AddProduct({ route, navigation }) {
 										<Picker.Item label="8CH" value="8ch" />
 										<Picker.Item label="9CH" value="9ch" />
 										<Picker.Item label="10CH" value="10ch" />
+										<Picker.Item label="11CH" value="11CH" />
+										<Picker.Item label="12CH" value="12CH" />
 										<Picker.Item label="Plus que 10CH" value="+10ch" />
 									</Picker>
 								</View>
@@ -561,6 +565,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTransaction(itemValue)}
 									>
+										<Picker.Item label="Choisissez" value="Choisissez" />
 										<Picker.Item label="Manuelle" value="Manuelle" />
 										<Picker.Item label="Automatique" value="Automatique" />
 									</Picker>
@@ -658,6 +663,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setServiceType(itemValue)}
 									>
+										<Picker.Item label="Choisissez" value="Choisissez" />
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
@@ -672,6 +678,20 @@ export default function AddProduct({ route, navigation }) {
 										<Picker.Item label="AUTRES" value="AUTRES" />
 									</Picker>
 								</View>
+							</View>
+						) : null}
+						
+						{terrain ? (
+							<View>
+								<TextInput
+									label="Superficie"
+									mode="outlined"
+									placeholder="(m²)"
+									theme={textTheme}
+									keyboardType="numeric"
+									style={{ marginTop: 10 }}
+									onChangeText={setSuperficie}
+								/>
 							</View>
 						) : null}
 
