@@ -6,8 +6,8 @@ const Wheels = () => {
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 64 64"
-      width={35}
-      height={35}
+      width={25}
+      height={25}
       stroke='#4898D3'
       fill='#4898D3'
     >

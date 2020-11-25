@@ -1,5 +1,19 @@
-import React, {useState} from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions} from 'react-native';
+import React, {useState, useRef, useNativeDriver} from 'react';
+import { 
+	View, 
+	Image, 
+	Text, 
+	ScrollView, 
+	TouchableOpacity, 
+	Alert, 
+	InteractionManager, 
+	Dimensions, 
+	Animated,
+	Platform,
+	StatusBar,
+	RefreshControl
+ } from 'react-native';
+
 import { ProgressBar, Divider } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
@@ -19,8 +33,10 @@ export default function ProductDetails({ navigation, route }) {
 	const [ canRender, setRender ] = React.useState();
 	const [ post, setPost ] = React.useState('');
 
-	const _SlideHeight = Dimensions.get('window').height * 0.40;
+	const _SlideHeight = Dimensions.get('window').height * 0.42;
 	const _SlideWidth = Dimensions.get('window').width * 0.95;
+
+
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -36,7 +52,6 @@ export default function ProductDetails({ navigation, route }) {
 		}, [])
 	);
 
-	
 
 	return (
 		
@@ -44,7 +59,10 @@ export default function ProductDetails({ navigation, route }) {
 
 			{canRender ? 
 				
-			<ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
+			<Animated.ScrollView 
+			scrollEventThrottle={1}
+			showsVerticalScrollIndicator={false}
+			style={{flex: 1}}>
 					
 						<View style={{width: _SlideWidth, marginTop: 10, justifyContent: 'center', alignSelf: 'center', borderRadius: 8, height: _SlideHeight}}>
 							<Swiper autoplay activeDotColor="#FF6347">
@@ -56,7 +74,7 @@ export default function ProductDetails({ navigation, route }) {
 												<Image
 													key={index}
 													source={{ uri: img }}
-													resizeMode="contain"
+													resizeMode="cover"
 													style={GlobalStyle.sliderImage}
 												/>
 											</View>
@@ -69,7 +87,8 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 						<Text style={{fontSize: 25, fontFamily: 'serif'}}>{post.title}</Text>
-						<Text style={{color: '#FF6347', fontSize: 25, fontFamily: 'serif', marginTop: 10 }}>
+						<Divider />
+						<Text style={{color: '#FF6347', fontSize: 23, fontFamily: 'serif', marginTop: 3}}>
 						{post.price} DHS
 						</Text>
 					</View>
@@ -169,7 +188,6 @@ export default function ProductDetails({ navigation, route }) {
 					</View>
 
 					<View style={GlobalStyle.infoContainer}>
-					
 					<Text style={{ color: '#4898D3',fontSize: 20}}>Description</Text>
 					<Divider/>
 						<Text style={{ fontFamily: 'sans-serif', textAlign: 'justify', marginRight: 10, fontSize: 17 }}>{post.description}</Text>
@@ -421,8 +439,8 @@ export default function ProductDetails({ navigation, route }) {
 				<Divider/>
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
-
-					<NavigationSystem />
+					<NavigationSystem 
+					/>
 					<Text
 					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Système de navigation</Text>
 					</View>
@@ -439,7 +457,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					<MaterialCommunityIcons
 					name="car-brake-abs"
-					size={35}
+					size={25}
 					color='#4898D3'
 					/>
 					<Text
@@ -488,7 +506,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					<AirbagsIcon />
 					<Text
-					style={{fontSize: 17, color: '#767676', marginStart: 75, alignSelf: 'center'}}>Airbags</Text>
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Airbags</Text>
 					</View>
 				
 				</View>
@@ -503,11 +521,11 @@ export default function ProductDetails({ navigation, route }) {
 
 					<MaterialCommunityIcons
 					name="car-shift-pattern"
-					size={35}
+					size={25}
 					color='#4898D3'
 					/>
 					<Text
-					style={{fontSize: 17, color: '#767676', marginStart: 75, alignSelf: 'center'}}>Transaction est {post.transtaction}</Text>
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Transaction est {post.transtaction}</Text>
 					</View>
 				
 				</View>
@@ -557,7 +575,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					</View>
 
-				</ScrollView>
+				</Animated.ScrollView>
 			
 			:
 

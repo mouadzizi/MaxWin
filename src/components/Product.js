@@ -20,14 +20,14 @@ export default function Product(props) {
 						(chip1 && chip2) || (chip3 && chip4) ? (
 							{ flexDirection: 'row', backgroundColor: '#fff', height: 150 }
 						) : ( (!chip1 && chip2) || (!chip2 && chip1) ) || (!chip3 && chip4) || (!chip4 && chip3)? (
-							{ flexDirection: 'row', backgroundColor: '#fff', height: 130 }
+							{ flexDirection: 'row', backgroundColor: '#fff', height: 125 }
 						) : (
-							{ flexDirection: 'row', backgroundColor: '#fff', height: 120 }
+							{ flexDirection: 'row', backgroundColor: '#fff', height: 125 }
 						)
 					}
 				>
 					<View style={GlobalStyle.cardImgWrapper}>
-						<Image source={{ uri: props.img }} resizeMode="stretch" style={GlobalStyle.cardImg} />
+						<Image source={{ uri: props.img }} resizeMode="cover" style={GlobalStyle.cardImg} />
 					</View>
 
 					{/* Info of the card */}

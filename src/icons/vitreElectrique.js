@@ -4,9 +4,9 @@ import Svg, {Path, G} from 'react-native-svg';
 const VitreElectrique = () => {
   return (
     <Svg
-    height="35"
+    height="25"
     viewBox="0 -24 496 496"
-    width="35"
+    width="25"
     xmlns="http://www.w3.org/2000/svg"
     stroke='#fff'
     fill='#4898D3'
