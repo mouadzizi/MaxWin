@@ -10,8 +10,7 @@ import {
 	Image,
 	FlatList,
 	Dimensions,
-	InteractionManager,
-	ActivityIndicator
+	InteractionManager
 } from 'react-native';
 
 import { TextInput, Checkbox, Button } from 'react-native-paper';
@@ -38,31 +37,13 @@ export default function AddProduct({ route, navigation }) {
 	const [fabrication, setFabrication] = useState('');
 	const [puissance, setPuissance] = useState('');
 	const [transtaction, setTransaction] = useState('');
-
+	//TOBE ADD
+	const [dedouan, setDedouan] = useState('');
+	const [garantierVoiture, setGarantierVoiture] = useState('');
+	const [modeleVoiture, setModeleVoiture] = useState('');
+	//ADITIONAL INFO
 	const [ voitureChips, setVoitureChips ] = useState(false);
-
-	//Variables for inputs for Location
-	const [piece, setPiece] = useState('');
-	const [superficie, setSuperficie] = useState('');
-
-	//Variables for inputs for Services
-	const [servicetype, setServiceType] = useState('');
-
-	//Variables for inputs for Phone
-	const [phoneMarque, setPhoneMarque] = useState(false);
-
-	//Visibility for State
-	const [etat, setEtat] = useState('');
-
-	//Variables for chips
-	const [ phone, setPhone ] = useState(false);
-	const [ laivraison, setLaivraison ] = useState(false);
-	const [ paiement, setPaiement ] = useState(false);
-	const [ negociable, setNegociable ] = useState(false);
-	const [ bonCondition, setBonCondition ] = useState(false);
-
-
-	//Variables for equipment Voiture
+	//Variables for equipments
 	const [jantes, setJanets] = useState(false);
 	const [airbags, setAirbags] = useState(false);
 	const [clima, setClima] = useState(false);
@@ -70,6 +51,50 @@ export default function AddProduct({ route, navigation }) {
 	const [vitre, setVitre] = useState(false);
 	const [radar, setRadar] = useState(false);
 	const [gps, setGps] = useState(false);
+	const [premierMain, setPremierMain] = useState(false);
+	const [salon, setSalon] = useState(false);
+	//TOBE ADD as equipments
+	const [toitOuvrant, setToitOuvrant] = useState(false);
+	const [cameraRecule, setCameraRecule] = useState(false);
+	const [ordinateur, setOrdinateur] = useState(false);
+	const [alarmeVoiture, setAlarmeVoiture] = useState(false);
+
+
+	//Variables for inputs for Location
+	const [piece, setPiece] = useState('');
+	const [superficie, setSuperficie] = useState('');
+	//TOBE ADD as equipments
+	const [ascensseur, setAscensseur] = useState(false);
+	const [balcon, setBalcon] = useState(false);
+	const [terrase, setTerrase] = useState(false);
+	const [meuble, setMeuble] = useState(false);
+
+	//Variables for inputs for Services
+	const [servicetype, setServiceType] = useState('');
+
+
+	//Variables for inputs for Phone
+	const [phoneMarque, setPhoneMarque] = useState('');
+	//Variables for inputs for PC
+	const [laptopMarque, setLaptopMarque] = useState('');
+	//TOBE ADD for PC, Tabllete & phone
+	const [ram, setRam] = useState('');
+	const [rom, setRom] = useState('');
+	const [batterie, setBatterie] = useState('');
+	const [processeur, setProcesseur] = useState('');
+	const [cameraphone, setCameraPhone] = useState('');
+	const [ecrant, setEcrant] = useState('');
+	const [graphique, setGraphique] = useState('');
+
+	//Visibility for State
+	const [etat, setEtat] = useState('');
+
+	//Variables chips fro aditional services
+	const [ phone, setPhone ] = useState(false);
+	const [ laivraison, setLaivraison ] = useState(false);
+	const [ paiement, setPaiement ] = useState(false);
+	const [ negociable, setNegociable ] = useState(false);
+	const [ bonCondition, setBonCondition ] = useState(false);
 
 	//components Visibility
 	const [chips, setChips] = useState(true);
@@ -78,8 +103,10 @@ export default function AddProduct({ route, navigation }) {
 	//Category Visibility
 	const [ voiture, setVoiture ] = useState(false);
 	const [ Location, setLocation ] = useState(false);
+	const [ terrain, setTerrain ] = useState(false);
 	const [ services, setServices ] = useState(false);
 	const [ Telephone, setTelephone ] = useState(false);
+	
 	//Condition Rendering
 	const [ canRender, setCanRender ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
@@ -147,11 +174,14 @@ export default function AddProduct({ route, navigation }) {
 				break;
 
 			case parent.title == 'IMMOBILIER' &&
-				(parent.item == 'Appartements' ||
-					parent.item == 'Maisons & Villas' ||
-					parent.item == 'Location courte durée (vacances)' ||
-					parent.item == 'Commerces & Bureaux' ||
-					parent.item == 'Location long durée'):
+				(parent.item == 'Terrains'):
+				setChips(false);
+				setEtatVisible(false);
+				setTerrain(true);
+				navigation.setOptions({ title: 'Terrains' });
+				break;
+
+			case parent.title == 'IMMOBILIER':
 				setChips(false);
 				setEtatVisible(false);
 				setLocation(true);
@@ -159,14 +189,8 @@ export default function AddProduct({ route, navigation }) {
 				navigation.setOptions({ title: 'Immobilier' });
 				break;
 
-			case parent.title == 'IMMOBILIER':
-				setChips(false);
-				setEtatVisible(false);
-				navigation.setOptions({ title: 'Immobilier' });
-				break;
 
 			case parent.item == 'Matériels professionnels':
-				setServices(true);
 				navigation.setOptions({ title: 'Matériels professionnels' });
 				break;
 
@@ -192,27 +216,22 @@ export default function AddProduct({ route, navigation }) {
 	const upload = () => {
 		setLoading(true);
 		var item = {
+			//ALL Product
 			title,
 			city,
 			price,
 			etat,
 			description,
+			//Car Product
+			dedouan,
+			garantierVoiture,
 			marqueVoiture,
+			modeleVoiture,
 			kilometrage,
 			carburant,
 			fabrication,
 			puissance,
 			transtaction,
-			piece,
-			superficie,
-			servicetype,
-			phoneMarque,
-			phone,
-			laivraison,
-			paiement,
-			negociable,
-			bonCondition,
-			Telephone,
 			carSpecefications: {
 				gps,
 				radar,
@@ -220,8 +239,47 @@ export default function AddProduct({ route, navigation }) {
 				abs,
 				clima,
 				airbags,
-				jantes
+				jantes,
+				salon,
+				premierMain,
+				toitOuvrant,
+				cameraRecule,
+				ordinateur,
+				alarmeVoiture
 			},
+			//Phone Product
+			phoneMarque,
+			//laptop Product
+			laptopMarque,
+			mediaSpecefications: {
+				ram,
+				rom,
+				processeur,
+				cameraphone,
+				batterie,
+				ecrant,
+				graphique
+			},
+
+			//Immobilier Product
+			piece,
+			superficie,
+			ImmobilierSpecefications: {
+				ascensseur,
+				balcon,
+				terrase,
+				meuble
+			},
+			//Service Product
+			servicetype,
+
+			//Chips for services
+			phone,
+			laivraison,
+			paiement,
+			negociable,
+			bonCondition,
+			Telephone,
 			category: route.params.parent,
 			user: {
 				uid: user.uid,
@@ -308,7 +366,8 @@ export default function AddProduct({ route, navigation }) {
 											size={30}
 											style={{ position: 'absolute', bottom: 2, right: 5 }}
 										/>
-									</Animated.View >}
+									</Animated.View>
+								}
 
 							/>
 						</View>
@@ -541,6 +600,8 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
 									>
+									
+										<Picker.Item label="Choisissez" value="Choisissez" />
 										<Picker.Item label="4CH" value="4ch" />
 										<Picker.Item label="5CH" value="5ch" />
 										<Picker.Item label="6CH" value="6ch" />
@@ -548,6 +609,8 @@ export default function AddProduct({ route, navigation }) {
 										<Picker.Item label="8CH" value="8ch" />
 										<Picker.Item label="9CH" value="9ch" />
 										<Picker.Item label="10CH" value="10ch" />
+										<Picker.Item label="11CH" value="11CH" />
+										<Picker.Item label="12CH" value="12CH" />
 										<Picker.Item label="Plus que 10CH" value="+10ch" />
 									</Picker>
 								</View>
@@ -561,6 +624,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTransaction(itemValue)}
 									>
+										<Picker.Item label="Choisissez" value="Choisissez" />
 										<Picker.Item label="Manuelle" value="Manuelle" />
 										<Picker.Item label="Automatique" value="Automatique" />
 									</Picker>
@@ -570,6 +634,26 @@ export default function AddProduct({ route, navigation }) {
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 
 
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Première main</Text>
+										<Checkbox
+											status={premierMain ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setPremierMain(!premierMain);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Salon en cuir</Text>
+										<Checkbox
+											status={salon ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setSalon(!salon);
+											}}
+											color="#4898D3"
+										/>
+									</View>
 									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 										<Text style={{ marginTop: 7, width: '60%' }}>Jantes Aluminium</Text>
 										<Checkbox
@@ -659,7 +743,8 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setServiceType(itemValue)}
 									>
-										<Picker.Item  label="Alarme & sécurité" value="Alarme & sécurité" />
+										<Picker.Item label="Choisissez" value="Choisissez" />
+										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
 										<Picker.Item label="Informatique " value="informatique" />
@@ -673,6 +758,20 @@ export default function AddProduct({ route, navigation }) {
 										<Picker.Item label="AUTRES" value="AUTRES" />
 									</Picker>
 								</View>
+							</View>
+						) : null}
+						
+						{terrain ? (
+							<View>
+								<TextInput
+									label="Superficie"
+									mode="outlined"
+									placeholder="(m²)"
+									theme={textTheme}
+									keyboardType="numeric"
+									style={{ marginTop: 10 }}
+									onChangeText={setSuperficie}
+								/>
 							</View>
 						) : null}
 

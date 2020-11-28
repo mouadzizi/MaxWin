@@ -4,9 +4,9 @@ import Svg, {Path} from 'react-native-svg';
 const RadarRedcule = () => {
   return (
     <Svg
-        height={35}
+        height={25}
         viewBox="0 0 60 58"
-        width={35}
+        width={25}
         xmlns="http://www.w3.org/2000/svg"
         stroke='#4898D3'
         fill='#4898D3'
