@@ -414,7 +414,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Neuf/Utilisé" value="Neuf/Utilisé" />
+										<Picker.Item label="Neuf/Utilisé" value="" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
@@ -653,12 +653,13 @@ export default function AddProduct({ route, navigation }) {
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Type de service</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 									<Picker
+									
 										selectedValue={servicetype}
 										prompt="Type de service"
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setServiceType(itemValue)}
 									>
-										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
+										<Picker.Item  label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
 										<Picker.Item label="Informatique " value="informatique" />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BackHandler, Alert } from 'react-native';
+import Resluts from './src/Results'
 
 import AuthenticationStack from './src/navigation/AuthenticationStack';
 
@@ -10,5 +11,8 @@ export default function App() {
 		};
 	}, []);
 
-	return <AuthenticationStack />;
+	return (
+	<AuthenticationStack />
+	//<Resluts/>
+	);
 }

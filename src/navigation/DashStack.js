@@ -17,6 +17,7 @@ import AddProductCat from '../pages/home/product/AddProductCat';
 }
 import Filtre from '../pages/home/filtre/Filtre';
 import FilterCat from '../pages/home/filtre/FilterCat';
+import Results from '../Results';
 {
 	/* pages */
 }
@@ -124,10 +125,24 @@ export default function DashStack() {
 					}
 				}}
 			/>
-			<Stack.Screen name="image" 
-			component={Img} 
-			options={{
+			<Stack.Screen name="image"
+				component={Img}
+				options={{
 					title: 'Images',
+					headerTitleAlign: 'center',
+					headerStyle: {
+						backgroundColor: '#4898D3'
+					},
+					headerTintColor: '#fff',
+					headerTitleStyle: {
+						fontWeight: '500'
+					}
+				}}
+			/>
+			<Stack.Screen name="results"
+				component={Results}
+				options={{
+					title: 'Filtre',
 					headerTitleAlign: 'center',
 					headerStyle: {
 						backgroundColor: '#4898D3'

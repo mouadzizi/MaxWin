@@ -5,57 +5,86 @@ import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
 
-export default function Filtre() {
-	
-	const [ titreModal, setTittreModal ] = useState('Choisissez votre catégorie');
-	const [ etat, setEtat ] = useState('');
+export default function Filtre({navigation}) {
+
+	const [titreModal, setTittreModal] = useState('Choisissez votre catégorie');
+	const [etat, setEtat] = useState('');
 
 	//filter variables Standard 
-	const [ city, setCity ] = useState('');
-	const [ priceMax, setPriceMax ] = useState('');
-	const [ priceMin, setPriceMin ] = useState('');
+	const [city, setCity] = useState('');
+	const [priceMax, setPriceMax] = useState('');
+	const [priceMin, setPriceMin] = useState('');
 
 	//filter variables Voiture
-	const [ marqueVoiture, setMarqueVoiture ] = useState('');
-	const [ carburant, setCarburant ] = useState('');
-	const [ puissance, setPuissance ] = useState('');
-	const [ transtaction, setTransaction ] = useState('');
-	
-	const [ anneeMax, setAnneeMax ] = useState('');
-	const [ anneeMin, setAnneeMin ] = useState('');
+	const [marqueVoiture, setMarqueVoiture] = useState('');
+	const [carburant, setCarburant] = useState('');
+	const [puissance, setPuissance] = useState('');
+	const [transtaction, setTransaction] = useState('');
+
+	const [anneeMax, setAnneeMax] = useState('');
+	const [anneeMin, setAnneeMin] = useState('');
 
 	// filter variables Location 
-	const [ SuperficieMin, setSuperficieMin ] = useState('');
-	const [ SuperficieMax, setSuperficieMax ] = useState('');
+	const [SuperficieMin, setSuperficieMin] = useState('');
+	const [SuperficieMax, setSuperficieMax] = useState('');
 
 	//filter variables phone
-	const [ marquePhone, setMarquePhone ] = useState('');
+	const [marquePhone, setMarquePhone] = useState('');
 
 	//filter variables phone
-	const [ typeService, setTypeService ] = useState('');
+	const [typeService, setTypeService] = useState('');
 
 	//Visibility
-	const [ modalVisible, setModalVisible ] = useState(false);
-	const [ voiture, setVoiture ] = useState(false);
-	const [ location, setLocation ] = useState(false);
-	const [ service, setService ] = useState(false);
-	const [ phone, setPhone ] = useState(false);
-	const [ etatViisbility, setEtatVisibility ] = useState(true);
+	const [modalVisible, setModalVisible] = useState(false);
+	const [voiture, setVoiture] = useState(false);
+	const [location, setLocation] = useState(false);
+	const [service, setService] = useState(false);
+	const [phone, setPhone] = useState(false);
+	const [etatViisbility, setEtatVisibility] = useState(true);
+
+	const [selectedCategory, setSelectedCategory] = useState('');
+
+
+	const goToFilter = () => {
+		if (!selectedCategory){
+			alert('selectionner une categorie')
+			return;
+		}
+		var filterOptions = {
+			selectedCategory,
+			anneeMax,
+			anneeMin,
+			etat,
+			city,
+			priceMin,
+			priceMax,
+			marqueVoiture,
+			carburant,
+			puissance,
+			transtaction,
+			SuperficieMin,
+			SuperficieMax,
+			marquePhone,
+			typeService,
+		}
+		navigation.navigate('results',{filterOptions})
+	}
 
 	const choiseAction = (item) => {
+		setSelectedCategory(item)
 		setTittreModal(item)
 		setModalVisible(false);
 		switch (true) {
 
-			case (item === 'Voitures' || item === 'Location de Voiture') :
+			case (item === 'Voitures' || item === 'Location de Voiture'):
 				setVoiture(true)
 				setPhone(false)
 				setLocation(false)
 				setService(false)
 				setEtatVisibility(true)
 				break;
-			
-			case (item === 'Téléphones' || item === 'Tablettes') :
+
+			case (item === 'Téléphones' || item === 'Tablettes'):
 				setPhone(true)
 				setVoiture(false)
 				setLocation(false)
@@ -63,28 +92,28 @@ export default function Filtre() {
 				setEtatVisibility(true)
 				break;
 
-			case (item === 'Appartements' || item === 'Maisons & Villas' || item === 'Terrains' || item === 'Location courte durée (vacances)' || item === 'Location long durée' || item == 'Commerces & Bureaux') :
+			case (item === 'Appartements' || item === 'Maisons & Villas' || item === 'Terrains' || item === 'Location courte durée (vacances)' || item === 'Location long durée' || item == 'Commerces & Bureaux'):
 				setLocation(true)
 				setPhone(false)
 				setVoiture(false)
 				setService(false)
 				setEtatVisibility(false)
 				break;
-		
-			case (item === 'Services et travaux professionnels' || item === 'Formations & autres') :
+
+			case (item === 'Services et travaux professionnels' || item === 'Formations & autres'):
 				setService(true)
 				setLocation(false)
 				setPhone(false)
 				setVoiture(false)
 				setEtatVisibility(false)
 				break;
-			case (item === 'Matériels professionnels') :
-					setService(true)
-					setLocation(false)
-					setPhone(false)
-					setVoiture(false)
-					setEtatVisibility(true)
-					break;
+			case (item === 'Matériels professionnels'):
+				setService(true)
+				setLocation(false)
+				setPhone(false)
+				setVoiture(false)
+				setEtatVisibility(true)
+				break;
 
 			default:
 				setService(false);
@@ -100,12 +129,12 @@ export default function Filtre() {
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
 				<TouchableOpacity
-					style={{ borderWidth: 1.5, borderRadius: 5, height: 45, borderColor: '#F16E44'  }}
+					style={{ borderWidth: 1.5, borderRadius: 5, height: 45, borderColor: '#F16E44' }}
 					onPress={() => {
 						setModalVisible(true);
 					}}
 				>
-					<Text style={{ alignSelf: 'center', textAlign: 'center', marginTop: 10, color: '#F16E44', fontSize: 18}}>
+					<Text style={{ alignSelf: 'center', textAlign: 'center', marginTop: 10, color: '#F16E44', fontSize: 18 }}>
 						{titreModal}
 					</Text>
 				</TouchableOpacity>
@@ -114,7 +143,7 @@ export default function Filtre() {
 					animationType="slide"
 					transparent={true}
 					visible={modalVisible}
-					onRequestClose={() => {setModalVisible(!modalVisible);}}
+					onRequestClose={() => { setModalVisible(!modalVisible); }}
 				>
 					<View style={GlobalStyle.modalContainer}>
 						<TouchableOpacity
@@ -139,38 +168,38 @@ export default function Filtre() {
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 
-							<Picker.Item label="Toutes les villes" value="Toutes les villes" />
-							<Picker.Item label="Agadir" value="Agadir" />
-							<Picker.Item label="Asilah" value="Asilah" />
-							<Picker.Item label="Asfi" value="Asfi" />
-							<Picker.Item label="Azrou" value="Arzou" />
-							<Picker.Item label="Beni mellal" value="Beni mellal" />
-							<Picker.Item label="Berkane" value="Berkane" />
-							<Picker.Item label="Casablanca" value="Casablanca" />
-							<Picker.Item label="Dakhla" value="Dakhla" />
-							<Picker.Item label="El hociema" value="El hociema" />
-							<Picker.Item label="El jedida" value="El jedida" />
-							<Picker.Item label="Errachidia" value="Errachidia" />
-							<Picker.Item label="Fes" value="Fes" />
-							<Picker.Item label="Ifrane" value="Ifrane" />
-							<Picker.Item label="Kheribga" value="Kheribga" />
-							<Picker.Item label="Kser lekebir" value="Kser lekebir" />
-							<Picker.Item label="Khenifra" value="Khenifra" />
-							<Picker.Item label="Kenitra" value="Kenitra" />
-							<Picker.Item label="Larache" value="Larache" />
-							<Picker.Item label="Meknes" value="Meknes" />
-							<Picker.Item label="Merakech" value="Merakech" />
-							<Picker.Item label="Mohamadia" value="Mohamadia" />
-							<Picker.Item label="Nador" value="Nador" />
-							<Picker.Item label="Ouejda" value="Ouejda" />
-							<Picker.Item label="Rabat" value="Rabat" />
-							<Picker.Item label="Rissani" value="Rissani" />
-							<Picker.Item label="Sale" value="Sale" />
-							<Picker.Item label="Settat" value="Settat" />
-							<Picker.Item label="Tanger" value="Tanger" />
-							<Picker.Item label="Tétouan" value="Tétouan" />
-							<Picker.Item label="Temara" value="Temara" />
-						</Picker>
+								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
+								<Picker.Item label="Agadir" value="Agadir" />
+								<Picker.Item label="Asilah" value="Asilah" />
+								<Picker.Item label="Asfi" value="Asfi" />
+								<Picker.Item label="Azrou" value="Arzou" />
+								<Picker.Item label="Beni mellal" value="Beni mellal" />
+								<Picker.Item label="Berkane" value="Berkane" />
+								<Picker.Item label="Casablanca" value="Casablanca" />
+								<Picker.Item label="Dakhla" value="Dakhla" />
+								<Picker.Item label="El hociema" value="El hociema" />
+								<Picker.Item label="El jedida" value="El jedida" />
+								<Picker.Item label="Errachidia" value="Errachidia" />
+								<Picker.Item label="Fes" value="Fes" />
+								<Picker.Item label="Ifrane" value="Ifrane" />
+								<Picker.Item label="Kheribga" value="Kheribga" />
+								<Picker.Item label="Kser lekebir" value="Kser lekebir" />
+								<Picker.Item label="Khenifra" value="Khenifra" />
+								<Picker.Item label="Kenitra" value="Kenitra" />
+								<Picker.Item label="Larache" value="Larache" />
+								<Picker.Item label="Meknes" value="Meknes" />
+								<Picker.Item label="Merakech" value="Merakech" />
+								<Picker.Item label="Mohamadia" value="Mohamadia" />
+								<Picker.Item label="Nador" value="Nador" />
+								<Picker.Item label="Ouejda" value="Ouejda" />
+								<Picker.Item label="Rabat" value="Rabat" />
+								<Picker.Item label="Rissani" value="Rissani" />
+								<Picker.Item label="Sale" value="Sale" />
+								<Picker.Item label="Settat" value="Settat" />
+								<Picker.Item label="Tanger" value="Tanger" />
+								<Picker.Item label="Tétouan" value="Tétouan" />
+								<Picker.Item label="Temara" value="Temara" />
+							</Picker>
 						</View>
 
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Prix</Text>
@@ -206,7 +235,7 @@ export default function Filtre() {
 										prompt="Etat de produit"
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
-									>	
+									>
 										<Picker.Item label="Neuf/Utilisé" value="neuf/Utilisé" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
@@ -259,28 +288,28 @@ export default function Filtre() {
 									</Picker>
 								</View>
 
-							<Text style={{ color: '#4898D3', marginTop: 5 }}>Année de fabrication</Text>
-							<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-							<TextInput
-								label="Année MIN"
-								mode="outlined"
-								placeholder="1996"
-								theme={textTheme}
-								onChangeText={setAnneeMin}
-								keyboardType="numeric"
-								style={{ width: '45%' }}
-							/>
+								<Text style={{ color: '#4898D3', marginTop: 5 }}>Année de fabrication</Text>
+								<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+									<TextInput
+										label="Année MIN"
+										mode="outlined"
+										placeholder="1996"
+										theme={textTheme}
+										onChangeText={setAnneeMin}
+										keyboardType="numeric"
+										style={{ width: '45%' }}
+									/>
 
-							<TextInput
-								label="Année MAX"
-								mode="outlined"
-								placeholder="2020"
-								theme={textTheme}
-								onChangeText={setAnneeMax}
-								keyboardType="numeric"
-								style={{ width: '45%' }}
-							/>
-						</View>
+									<TextInput
+										label="Année MAX"
+										mode="outlined"
+										placeholder="2020"
+										theme={textTheme}
+										onChangeText={setAnneeMax}
+										keyboardType="numeric"
+										style={{ width: '45%' }}
+									/>
+								</View>
 
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Carburant</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
@@ -333,30 +362,30 @@ export default function Filtre() {
 
 						{location ? (
 
-	
-							<View>
-							<Text style={{ color: '#4898D3', marginTop: 5 }}>Superficie</Text>
-							<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-							<TextInput
-								label="Superficie Min"
-								mode="outlined"
-								placeholder="(m²)"
-								theme={textTheme}
-								keyboardType="numeric"
-								style={{ width: '45%'}}
-								onChangeText={setSuperficieMin}
-							/>
 
-							<TextInput
-								label="Superficie Max"
-								mode="outlined"
-								placeholder="(m²)"
-								theme={textTheme}
-								keyboardType="numeric"
-								style={{ width: '45%' }}
-								onChangeText={setSuperficieMax}
-							/>
-							</View>
+							<View>
+								<Text style={{ color: '#4898D3', marginTop: 5 }}>Superficie</Text>
+								<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+									<TextInput
+										label="Superficie Min"
+										mode="outlined"
+										placeholder="(m²)"
+										theme={textTheme}
+										keyboardType="numeric"
+										style={{ width: '45%' }}
+										onChangeText={setSuperficieMin}
+									/>
+
+									<TextInput
+										label="Superficie Max"
+										mode="outlined"
+										placeholder="(m²)"
+										theme={textTheme}
+										keyboardType="numeric"
+										style={{ width: '45%' }}
+										onChangeText={setSuperficieMax}
+									/>
+								</View>
 
 							</View>
 						) : null}
@@ -415,7 +444,7 @@ export default function Filtre() {
 							</View>
 						) : null}
 
-						<TouchableOpacity style={[ GlobalStyle.btn, { marginBottom: 30 } ]}>
+						<TouchableOpacity delayPressIn={0} onPress={()=>goToFilter()} style={[GlobalStyle.btn, { marginBottom: 30 }]}>
 							<Text style={GlobalStyle.signInText}>Valider</Text>
 						</TouchableOpacity>
 					</View>
