@@ -10,8 +10,7 @@ import {
 	Image,
 	FlatList,
 	Dimensions,
-	InteractionManager,
-	ActivityIndicator
+	InteractionManager
 } from 'react-native';
 
 import { TextInput, Checkbox, Button } from 'react-native-paper';
@@ -38,31 +37,13 @@ export default function AddProduct({ route, navigation }) {
 	const [fabrication, setFabrication] = useState('');
 	const [puissance, setPuissance] = useState('');
 	const [transtaction, setTransaction] = useState('');
-
+	//TOBE ADD
+	const [dedouan, setDedouan] = useState('');
+	const [garantierVoiture, setGarantierVoiture] = useState('');
+	const [modeleVoiture, setModeleVoiture] = useState('');
+	//ADITIONAL INFO
 	const [ voitureChips, setVoitureChips ] = useState(false);
-
-	//Variables for inputs for Location
-	const [piece, setPiece] = useState('');
-	const [superficie, setSuperficie] = useState('');
-
-	//Variables for inputs for Services
-	const [servicetype, setServiceType] = useState('');
-
-	//Variables for inputs for Phone
-	const [phoneMarque, setPhoneMarque] = useState(false);
-
-	//Visibility for State
-	const [etat, setEtat] = useState('');
-
-	//Variables for chips
-	const [ phone, setPhone ] = useState(false);
-	const [ laivraison, setLaivraison ] = useState(false);
-	const [ paiement, setPaiement ] = useState(false);
-	const [ negociable, setNegociable ] = useState(false);
-	const [ bonCondition, setBonCondition ] = useState(false);
-
-
-	//Variables for equipment Voiture
+	//Variables for equipments
 	const [jantes, setJanets] = useState(false);
 	const [airbags, setAirbags] = useState(false);
 	const [clima, setClima] = useState(false);
@@ -70,6 +51,50 @@ export default function AddProduct({ route, navigation }) {
 	const [vitre, setVitre] = useState(false);
 	const [radar, setRadar] = useState(false);
 	const [gps, setGps] = useState(false);
+	const [premierMain, setPremierMain] = useState(false);
+	const [salon, setSalon] = useState(false);
+	//TOBE ADD as equipments
+	const [toitOuvrant, setToitOuvrant] = useState(false);
+	const [cameraRecule, setCameraRecule] = useState(false);
+	const [ordinateur, setOrdinateur] = useState(false);
+	const [alarmeVoiture, setAlarmeVoiture] = useState(false);
+
+
+	//Variables for inputs for Location
+	const [piece, setPiece] = useState('');
+	const [superficie, setSuperficie] = useState('');
+	//TOBE ADD as equipments
+	const [ascensseur, setAscensseur] = useState(false);
+	const [balcon, setBalcon] = useState(false);
+	const [terrase, setTerrase] = useState(false);
+	const [meuble, setMeuble] = useState(false);
+
+	//Variables for inputs for Services
+	const [servicetype, setServiceType] = useState('');
+
+
+	//Variables for inputs for Phone
+	const [phoneMarque, setPhoneMarque] = useState('');
+	//Variables for inputs for PC
+	const [laptopMarque, setLaptopMarque] = useState('');
+	//TOBE ADD for PC, Tabllete & phone
+	const [ram, setRam] = useState('');
+	const [rom, setRom] = useState('');
+	const [batterie, setBatterie] = useState('');
+	const [processeur, setProcesseur] = useState('');
+	const [cameraphone, setCameraPhone] = useState('');
+	const [ecrant, setEcrant] = useState('');
+	const [graphique, setGraphique] = useState('');
+
+	//Visibility for State
+	const [etat, setEtat] = useState('');
+
+	//Variables chips fro aditional services
+	const [ phone, setPhone ] = useState(false);
+	const [ laivraison, setLaivraison ] = useState(false);
+	const [ paiement, setPaiement ] = useState(false);
+	const [ negociable, setNegociable ] = useState(false);
+	const [ bonCondition, setBonCondition ] = useState(false);
 
 	//components Visibility
 	const [chips, setChips] = useState(true);
@@ -191,27 +216,22 @@ export default function AddProduct({ route, navigation }) {
 	const upload = () => {
 		setLoading(true);
 		var item = {
+			//ALL Product
 			title,
 			city,
 			price,
 			etat,
 			description,
+			//Car Product
+			dedouan,
+			garantierVoiture,
 			marqueVoiture,
+			modeleVoiture,
 			kilometrage,
 			carburant,
 			fabrication,
 			puissance,
 			transtaction,
-			piece,
-			superficie,
-			servicetype,
-			phoneMarque,
-			phone,
-			laivraison,
-			paiement,
-			negociable,
-			bonCondition,
-			Telephone,
 			carSpecefications: {
 				gps,
 				radar,
@@ -219,8 +239,47 @@ export default function AddProduct({ route, navigation }) {
 				abs,
 				clima,
 				airbags,
-				jantes
+				jantes,
+				salon,
+				premierMain,
+				toitOuvrant,
+				cameraRecule,
+				ordinateur,
+				alarmeVoiture
 			},
+			//Phone Product
+			phoneMarque,
+			//laptop Product
+			laptopMarque,
+			mediaSpecefications: {
+				ram,
+				rom,
+				processeur,
+				cameraphone,
+				batterie,
+				ecrant,
+				graphique
+			},
+
+			//Immobilier Product
+			piece,
+			superficie,
+			ImmobilierSpecefications: {
+				ascensseur,
+				balcon,
+				terrase,
+				meuble
+			},
+			//Service Product
+			servicetype,
+
+			//Chips for services
+			phone,
+			laivraison,
+			paiement,
+			negociable,
+			bonCondition,
+			Telephone,
 			category: route.params.parent,
 			user: {
 				uid: user.uid,
@@ -575,6 +634,26 @@ export default function AddProduct({ route, navigation }) {
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 
 
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Première main</Text>
+										<Checkbox
+											status={premierMain ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setPremierMain(!premierMain);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>Salon en cuir</Text>
+										<Checkbox
+											status={salon ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setSalon(!salon);
+											}}
+											color="#4898D3"
+										/>
+									</View>
 									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 										<Text style={{ marginTop: 7, width: '60%' }}>Jantes Aluminium</Text>
 										<Checkbox

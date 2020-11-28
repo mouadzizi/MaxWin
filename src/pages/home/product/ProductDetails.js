@@ -8,10 +8,7 @@ import {
 	Alert, 
 	InteractionManager, 
 	Dimensions, 
-	Animated,
-	Platform,
-	StatusBar,
-	RefreshControl
+	Animated
  } from 'react-native';
 
 import { ProgressBar, Divider } from 'react-native-paper';
@@ -28,6 +25,8 @@ import VitreElectrique from '../../../icons/vitreElectrique';
 import AirbagsIcon from '../../../icons/Airbags';
 import PriceTag from '../../../icons/priceTag';
 import Clima from '../../../icons/clima';
+import Seat from '../../../icons/seat';
+import Driver from '../../../icons/driver';
 
 export default function ProductDetails({ navigation, route }) {
 
@@ -60,8 +59,7 @@ export default function ProductDetails({ navigation, route }) {
 
 			{canRender ? 
 				
-			<Animated.ScrollView 
-			scrollEventThrottle={1}
+			<ScrollView 
 			showsVerticalScrollIndicator={false}
 			style={{flex: 1}}>
 					
@@ -112,7 +110,7 @@ export default function ProductDetails({ navigation, route }) {
 								<MaterialCommunityIcons 
 								name="truck-fast" color="#4898D3" size={20} style={{ marginRight: 5 }} 
 								/>
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+								<Text style={{ color: '#767676', fontSize: 17, fontFamily: 'serif' }}>
 								Livraison possible
 								</Text>
 						</View>
@@ -124,7 +122,7 @@ export default function ProductDetails({ navigation, route }) {
 								<FontAwesome 
 								name="money" color="#4898D3" size={20} style={{ marginRight: 5 }} 
 								/>
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}>
+								<Text style={{ color: '#767676', fontSize: 17, fontFamily: 'serif' }}>
 								Paiement à la livraison
 								</Text>
 							</View>	
@@ -149,7 +147,7 @@ export default function ProductDetails({ navigation, route }) {
 					{post.negociable ? 
 						<View style={{ flexDirection: 'row', marginTop: 5}}>
 						<PriceTag height='25' width='25'/>
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> Prix négociable </Text>
+								<Text style={{ color: '#767676', fontSize: 17, fontFamily: 'serif' }}> Prix négociable </Text>
 							</View>	
 					: null }
 					
@@ -158,7 +156,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<View style={{ flexDirection: 'row', marginTop: 5 }}>		
 								<Feather name="thumbs-up" size={25} color="#4898D3" />
-								<Text style={{ color: '#4898D3', fontSize: 17, fontFamily: 'serif' }}> En bonne état
+								<Text style={{ color: '#767676', fontSize: 17, fontFamily: 'serif' }}> En bonne état
 								</Text>
 						</View>
 
@@ -395,10 +393,40 @@ export default function ProductDetails({ navigation, route }) {
 				}
 				</View>
 				
-				{(post.carSpecefications.gps || post.carSpecefications.abs || post.carSpecefications.jantes || post.carSpecefications.radar || post.carSpecefications.vitre || post.carSpecefications.airbags || post.transtaction || post.carSpecefications.clima)
+				{(post.carSpecefications.premierMain || post.carSpecefications.salon || post.carSpecefications.gps || post.carSpecefications.abs || post.carSpecefications.jantes || post.carSpecefications.radar || post.carSpecefications.vitre || post.carSpecefications.airbags || post.transtaction || post.carSpecefications.clima)
 				?
 				<View style={GlobalStyle.infoContainer}>
 				<Text style={{ color: '#4898D3',fontSize: 20}}>Équipement</Text>
+
+				{post.carSpecefications.premierMain ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<Driver />
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Première main</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
+				{post.carSpecefications.salon ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<Seat />
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Salon en cuir</Text>
+					</View>
+				
+				</View>
+				:null
+				}
 
 				{post.carSpecefications.jantes ? 
 				<View>
@@ -487,7 +515,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					<VitreElectrique />
 					<Text
-					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Vitre électriques</Text>
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Vitres électriques</Text>
 					</View>
 				
 				</View>
@@ -537,32 +565,13 @@ export default function ProductDetails({ navigation, route }) {
 
 				<View style={{padding: 20, marginVertical: 5}}>
 
-						<TouchableOpacity
-							delayPressIn={0}
-							onPress={() => console.log(post.urls)}
-							style={{
-								backgroundColor: '#FF6347',
-								borderColor: '#4898D3',
-								borderWidth : 1.5,
-								borderRadius: 15,
-								height: 40,
-								marginBottom: 5,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-						<View style={{flexDirection: 'row'}}>
-						<Feather name="message-square" size={25} color="#fff" />
-						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif', marginStart: 10 }}>Envoyer un message</Text>
-						</View>
-						</TouchableOpacity>
+
 
 						<TouchableOpacity
 							delayPressIn={0}
 							onPress={() => Alert.alert("Information", "Nous vous informons que l'annonceur préfère le contact par Chat Merci de votre compréhension.")}
 							style={{
 								backgroundColor: '#4898D3',
-								borderColor: '#FF6347',
 								borderWidth : 1.5,
 								height: 40,
 								borderRadius: 15,
@@ -580,8 +589,28 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
+							onPress={() => console.log(post.urls)}
+							style={{
+								backgroundColor: '#FF6347',
+								borderWidth : 1.5,
+								borderRadius: 15,
+								height: 40,
+								marginBottom: 5,
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
+						<View style={{flexDirection: 'row'}}>
+						<Feather name="message-square" size={25} color="#fff" />
+						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif', marginStart: 10 }}>Envoyer un message</Text>
+						</View>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							delayPressIn={0}
 							style={{
 								borderWidth: 1.5,
+								backgroundColor: '#fff',
 								borderColor: '#4898D3',
 								height: 40,
 								borderRadius: 15,
@@ -600,7 +629,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					</View>
 
-				</Animated.ScrollView>
+				</ScrollView>
 			
 			:
 
