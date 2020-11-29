@@ -127,6 +127,7 @@ export default function DrawerContent(props){
                 />
             )}
             
+            onPress={()=>{props.navigation.navigate('Contact')}}
             label="Contactez-nous"
         />
 

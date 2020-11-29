@@ -42,6 +42,8 @@ export default function Settings({navigation}) {
         style={{flex:1, backgroundColor: '#fff', marginTop: 10 }}>
  
         <List.Item
+        
+        onPress={()=> navigation.navigate('Notifications')}
             title="Notifications"
             style={{padding: 10}}
             left={props =><Ionicons 
