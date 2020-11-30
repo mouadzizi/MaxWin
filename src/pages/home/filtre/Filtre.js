@@ -5,15 +5,15 @@ import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
 
-export default function Filtre({navigation}) {
+export default function Filtre({ navigation }) {
 
 	const [titreModal, setTittreModal] = useState('Choisissez votre catégorie');
 	const [etat, setEtat] = useState('');
 
 	//filter variables Standard 
 	const [city, setCity] = useState('');
-	const [priceMax, setPriceMax] = useState('');
-	const [priceMin, setPriceMin] = useState('');
+	const [priceMax, setPriceMax] = useState(0);
+	const [priceMin, setPriceMin] = useState(0);
 
 	//filter variables Voiture
 	const [marqueVoiture, setMarqueVoiture] = useState('');
@@ -43,21 +43,23 @@ export default function Filtre({navigation}) {
 	const [etatViisbility, setEtatVisibility] = useState(true);
 
 	const [selectedCategory, setSelectedCategory] = useState('');
+	const [superCategory, setSuperCategory] = useState('');
 
 
 	const goToFilter = () => {
-		if (!selectedCategory){
+		if (!selectedCategory) {
 			alert('selectionner une categorie')
 			return;
 		}
 		var filterOptions = {
 			selectedCategory,
+			superCategory,
 			anneeMax,
 			anneeMin,
 			etat,
 			city,
-			priceMin,
-			priceMax,
+			priceMin: priceMin ? priceMin : 0,
+			priceMax: priceMax ? priceMax : Infinity,
 			marqueVoiture,
 			carburant,
 			puissance,
@@ -67,11 +69,12 @@ export default function Filtre({navigation}) {
 			marquePhone,
 			typeService,
 		}
-		navigation.navigate('results',{filterOptions})
+		navigation.navigate('results', { filterOptions })
 	}
 
-	const choiseAction = (item) => {
+	const choiseAction = (item,title) => {
 		setSelectedCategory(item)
+		setSuperCategory(title)
 		setTittreModal(item)
 		setModalVisible(false);
 		switch (true) {
@@ -210,7 +213,7 @@ export default function Filtre({navigation}) {
 								mode="outlined"
 								placeholder="DHS"
 								theme={textTheme}
-								onChangeText={setPriceMin}
+								onChangeText={(e) => setPriceMin(parseFloat(e))}
 								keyboardType="numeric"
 								style={{ width: '45%' }}
 							/>
@@ -220,7 +223,7 @@ export default function Filtre({navigation}) {
 								mode="outlined"
 								placeholder="DHS"
 								theme={textTheme}
-								onChangeText={setPriceMax}
+								onChangeText={(e) => setPriceMax(parseFloat(e))}
 								keyboardType="numeric"
 								style={{ width: '45%' }}
 							/>
@@ -319,6 +322,7 @@ export default function Filtre({navigation}) {
 										prompt="Carburant"
 										onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
 									>
+										<Picker.Item label="tous " value="*" />
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
 										<Picker.Item label="Hybrid" value="Hybrid" />
@@ -353,6 +357,7 @@ export default function Filtre({navigation}) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTransaction(itemValue)}
 									>
+										<Picker.Item label="tout " value="*" />
 										<Picker.Item label="Mannuel " value="Mannuel" />
 										<Picker.Item label="Automatique" value="Automatique" />
 									</Picker>
@@ -402,7 +407,7 @@ export default function Filtre({navigation}) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarquePhone(itemValue)}
 									>
-										<Picker.Item label="Choissisez votre marque" value="rien" />
+										<Picker.Item label="Choissisez votre marque" value="*" />
 										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
 										<Picker.Item label="IPHONE" value="IPHONE" />
 										<Picker.Item label="Xiaomi" value="Xiaomi" />
@@ -427,6 +432,7 @@ export default function Filtre({navigation}) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTypeService(itemValue)}
 									>
+										<Picker.Item label="tous" value="*" />
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
@@ -444,7 +450,7 @@ export default function Filtre({navigation}) {
 							</View>
 						) : null}
 
-						<TouchableOpacity delayPressIn={0} onPress={()=>goToFilter()} style={[GlobalStyle.btn, { marginBottom: 30 }]}>
+						<TouchableOpacity delayPressIn={0} onPress={() => goToFilter()} style={[GlobalStyle.btn, { marginBottom: 30 }]}>
 							<Text style={GlobalStyle.signInText}>Valider</Text>
 						</TouchableOpacity>
 					</View>

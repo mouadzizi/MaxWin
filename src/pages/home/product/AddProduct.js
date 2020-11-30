@@ -280,6 +280,7 @@ export default function AddProduct({ route, navigation }) {
 			negociable,
 			bonCondition,
 			Telephone,
+			addDate:new Date(),
 			category: route.params.parent,
 			user: {
 				uid: user.uid,
@@ -288,8 +289,9 @@ export default function AddProduct({ route, navigation }) {
 			}
 		};
 
-		if (images.length === 0) {
+		if (images.length == 0) {
 			Alert.alert('enter at least one images');
+			return;
 		} else {
 			uploadPics(images).then((imagesUrls) => {
 				addProduct(item, imagesUrls).then(() => {
@@ -333,15 +335,14 @@ export default function AddProduct({ route, navigation }) {
 								data={images}
 								keyExtractor={(item) => item.index}
 								renderItem={({ item, index }) =>
-									<Animated.View  animation='bounceIn' duration={1000} style={{ flex: 1, margin: 10 }}>
+									<Animated.View key={index} animation='bounceIn' duration={1000} style={{ flex: 1, margin: 10 }}>
 										<TouchableOpacity  activeOpacity={.6} delayPressIn={1} onPress={() => navigation.navigate('image')} >
 											<Image
-
 												source={{ uri: item.uri }}
 												style={{
 													width: 200, height: 250, borderRadius: 16,
 												}}
-												resizeMode={'stretch'}
+												resizeMode={'cover'}
 											/>
 										</TouchableOpacity>
 
@@ -458,7 +459,7 @@ export default function AddProduct({ route, navigation }) {
 							multiline={false}
 							placeholder="DHS"
 							theme={textTheme}
-							onChangeText={setPrice}
+							onChangeText={(e)=>setPrice(parseFloat(e))}
 							keyboardType="numeric"
 						/>
 

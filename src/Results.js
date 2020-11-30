@@ -1,40 +1,224 @@
 import React from 'react'
-import { StyleSheet, Text, View,TextInput,FlatList,Button } from 'react-native';
-import {db} from './API/firebase'
+import { StyleSheet, Text, View, TextInput, FlatList, Button } from 'react-native';
+import { db } from './API/firebase';
+import Product from './components/Product'
 
 
 
-export default function Results({route}) {
-    const [aResults,setResults]= React.useState([]);
+export default function Results({ route, navigation }) {
+    const [aResults, setResults] = React.useState([]);
 
-    const {selectedCategory}=route.params.filterOptions 
+    const { filterOptions } = route.params
     React.useEffect(() => {
-        filter(selectedCategory)
-        return () => {  }
+        const { selectedCategory, superCategory } = filterOptions
+        console.log(filterOptions);
+        switch (superCategory) {
+            case 'VEHICULES':
+                veheculesFilter(selectedCategory);
+                break;
+            case 'MAISON & DECO':
+                maison_decoFilter(selectedCategory)
+                break;
+            case 'INFORMATIQUE ET ELECTRONIQUE':
+                techFilter(selectedCategory)
+                break;
+            case 'ESPACE HOMMES':
+                maison_decoFilter(selectedCategory)
+                break;
+            case 'ESPACE FEMMES':
+                maison_decoFilter(selectedCategory)
+                break;
+            case 'ESPACE BEBES ET ENFANTS':
+                maison_decoFilter(selectedCategory)
+                break;
+            case 'MATERIELS ET SERVICES':
+                servicesFilter(selectedCategory)
+                break;
+            case 'IMMOBILIER':
+                immobilierFilter(selectedCategory)
+                break;
+        }
+        return () => { }
     }, [])
 
-    const filter = async (category)=>{
-        const res = await db.collection('posts')
-        .where('category.item','==',category).get()
-        res.docs.forEach(e=>{
-            console.log('=====================\n',e.data().title);
+    const veheculesFilter = async (category) => {
+        const { city, etat, marqueVoiture, carburant, transtaction } = filterOptions
+        const items = []
+        var postsRef = db.collection('posts').where('category.item', '==', category);
+        //filter by city
+        if (city != 'Toutes les villes') {
+            postsRef = postsRef.where('city', '==', city)
+        }
+        //filter by condition
+        if (etat != 'neuf/Utilisé') {
+            postsRef = postsRef.where('etat', '==', etat)
+        }
+        //filter by brand 
+        if (marqueVoiture != 'tt') {
+            postsRef = postsRef.where('marqueVoiture', '==', marqueVoiture)
+        }
+        //filter by fuel
+        if (carburant != '*') {
+            postsRef = postsRef.where('carburant', '==', filterOptions.carburant)
+        }
+
+        //filter by Transaction 
+        if (transtaction != '*') {
+            postsRef = postsRef.where('transtaction', '==', filterOptions.transtaction)
+
+        }
+        //fiter by price
+        const results = postsRef.where('price', '>=', filterOptions.priceMin)
+            .where('price', '<=', filterOptions.priceMax).get();
+
+
+        (await results).docs.forEach(doc => {
+            console.log(doc.data().title);
+            items.push({
+                ...doc.data(),
+                key: doc.id,
+            })
         })
-    } 
+        setResults(items)
+
+    }
+    const immobilierFilter = async (category) => {
+        const { city, priceMax, priceMin, superficieMax, superficieMin } = filterOptions;
+        const items = []
+        var postsRef = db.collection('posts').where('category.item', '==', category);
+        //filter by city
+        if (city != 'Toutes les villes') {
+            postsRef = postsRef.where('city', '==', city)
+        }
+
+        //filter by area
+        //postsRef = postsRef.where('superficieMin', '>=', superficieMin).where('superficieMax', '<=', superficieMax)
+
+
+        //fiter by price
+        const results = postsRef.where('price', '>=', priceMin)
+            .where('price', '<=', priceMax).get();
+        console.log((await results).size);
+        (await results).docs.forEach(doc => {
+            console.log(doc.data().title);
+            items.push({
+                ...doc.data(),
+                key: doc.id,
+            })
+        })
+        setResults(items)
+    }
+    const maison_decoFilter = async (category) => {
+        const { city, priceMax, priceMin, etat } = filterOptions;
+        const items = []
+        var postsRef = db.collection('posts').where('category.item', '==', category);
+        //filter by city
+        if (city != 'Toutes les villes') {
+            postsRef = postsRef.where('city', '==', city)
+        }
+
+        //filter by condition
+        if (etat != 'neuf/Utilisé') {
+            postsRef = postsRef.where('etat', '==', etat)
+        }
+
+        //fiter by price
+        const results = postsRef.where('price', '>=', priceMin)
+            .where('price', '<=', priceMax).get();
+        (await results).docs.forEach(doc => {
+            console.log(doc.data().title);
+            items.push({
+                ...doc.data(),
+                key: doc.id,
+            })
+        })
+        setResults(items)
+    }
+    const techFilter = async (category) => {
+        const { city, priceMax, priceMin, marquePhone } = filterOptions;
+        const items = []
+        var postsRef = db.collection('posts').where('category.item', '==', category);
+        //filter by city
+        if (city != 'Toutes les villes') {
+            postsRef = postsRef.where('city', '==', city)
+        }
+
+        //filter by brand
+        if (marquePhone != '*') {
+            postsRef = postsRef.where('marquePhone', '==', marquePhone)
+        }
+
+        //fiter by price
+        const results = postsRef.where('price', '>=', priceMin)
+            .where('price', '<=', priceMax).get();
+
+        console.log((await results).size);
+        (await results).docs.forEach(doc => {
+            console.log(doc.data().title);
+            items.push({
+                ...doc.data(),
+                key: doc.id,
+            })
+        })
+        setResults(items)
+    }
+    const servicesFilter = async (category) => {
+        const { city, priceMax, priceMin, etat, typeService } = filterOptions;
+        const items = []
+        var postsRef = db.collection('posts').where('category.item', '==', category);
+        //filter by city
+        if (city != 'Toutes les villes') {
+            postsRef = postsRef.where('city', '==', city)
+        }
+
+        //filter by condition
+        if (etat != 'neuf/Utilisé') {
+            postsRef = postsRef.where('etat', '==', etat)
+        }
+        //filter by type
+        if (typeService != '*') {
+            postsRef = postsRef.where('etat', '==', etat)
+        }
+        //fiter by price
+        const results = postsRef.where('price', '>=', priceMin)
+            .where('price', '<=', priceMax).get();
+        (await results).docs.forEach(doc => {
+            console.log(doc.data().title);
+            items.push({
+                ...doc.data(),
+                key: doc.id,
+            })
+        })
+        setResults(items)
+    }
     return (
         <View style={styles.conatiner} >
             <FlatList
-            data={aResults}
-
+                data={aResults}
+                renderItem={({ item }) => (
+                    <Product
+                        name={item.title}
+                        owner={item.user.owner}
+                        price={item.price}
+                        location={item.city}
+                        img={item.urls[0]}
+                        particulier={!item.user.accountType}
+                        p1={item.laivraison}
+                        p2={item.paiement}
+                        p3={item.negociable}
+                        p4={item.bonCondition}
+                        click={() => navigation.navigate('ProductDetails', { id: item.key })}
+                    />
+                )}
             />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    conatiner:{
-        flex:1,
-        backgroundColor:'#bdc3c7',
-        alignItems:'center',
+    conatiner: {
+        flex: 1,
+        backgroundColor: '#bdc3c7',
     }
 
 })
