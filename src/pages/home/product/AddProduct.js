@@ -52,7 +52,9 @@ export default function AddProduct({ route, navigation }) {
 	const [radar, setRadar] = useState(false);
 	const [gps, setGps] = useState(false);
 	const [premierMain, setPremierMain] = useState(false);
+	const [centraliser, setCentraliser] = useState(false);
 	const [salon, setSalon] = useState(false);
+	
 	//TOBE ADD as equipments
 	const [toitOuvrant, setToitOuvrant] = useState(false);
 	const [cameraRecule, setCameraRecule] = useState(false);
@@ -242,6 +244,7 @@ export default function AddProduct({ route, navigation }) {
 				jantes,
 				salon,
 				premierMain,
+				centraliser,
 				toitOuvrant,
 				cameraRecule,
 				ordinateur,
@@ -695,6 +698,18 @@ export default function AddProduct({ route, navigation }) {
 											color="#4898D3"
 										/>
 									</View>
+
+									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+										<Text style={{ marginTop: 7, width: '60%' }}>centralisé</Text>
+										<Checkbox
+											status={centraliser ? 'checked' : 'unchecked'}
+											onPress={() => {
+												setCentraliser(!centraliser);
+											}}
+											color="#4898D3"
+										/>
+									</View>
+
 									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 										<Text style={{ marginTop: 7, width: '60%' }}>Radar De Recul</Text>
 										<Checkbox

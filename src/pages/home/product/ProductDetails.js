@@ -7,8 +7,7 @@ import {
 	TouchableOpacity, 
 	Alert, 
 	InteractionManager, 
-	Dimensions, 
-	Animated
+	Dimensions
  } from 'react-native';
 
 import { ProgressBar, Divider } from 'react-native-paper';
@@ -27,6 +26,7 @@ import PriceTag from '../../../icons/priceTag';
 import Clima from '../../../icons/clima';
 import Seat from '../../../icons/seat';
 import Driver from '../../../icons/driver';
+import KeyCar from '../../../icons/KeyCar';
 
 export default function ProductDetails({ navigation, route }) {
 
@@ -393,7 +393,7 @@ export default function ProductDetails({ navigation, route }) {
 				}
 				</View>
 				
-				{(post.carSpecefications.premierMain || post.carSpecefications.salon || post.carSpecefications.gps || post.carSpecefications.abs || post.carSpecefications.jantes || post.carSpecefications.radar || post.carSpecefications.vitre || post.carSpecefications.airbags || post.transtaction || post.carSpecefications.clima)
+				{(post.carSpecefications.premierMain || post.carSpecefications.centraliser || post.carSpecefications.salon || post.carSpecefications.gps || post.carSpecefications.abs || post.carSpecefications.jantes || post.carSpecefications.radar || post.carSpecefications.vitre || post.carSpecefications.airbags || post.transtaction || post.carSpecefications.clima)
 				?
 				<View style={GlobalStyle.infoContainer}>
 				<Text style={{ color: '#4898D3',fontSize: 20}}>Équipement</Text>
@@ -507,6 +507,21 @@ export default function ProductDetails({ navigation, route }) {
 				:null
 				}
 
+				{post.carSpecefications.centraliser ? 
+				<View>
+				<Divider/>
+					<View
+					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
+
+					<KeyCar />
+					<Text
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Centralisé</Text>
+					</View>
+				
+				</View>
+				:null
+				}
+
 				{post.carSpecefications.vitre ? 
 				<View>
 				<Divider/>
@@ -572,7 +587,6 @@ export default function ProductDetails({ navigation, route }) {
 							onPress={() => Alert.alert("Information", "Nous vous informons que l'annonceur préfère le contact par Chat Merci de votre compréhension.")}
 							style={{
 								backgroundColor: '#4898D3',
-								borderWidth : 1.5,
 								height: 40,
 								borderRadius: 15,
 								marginBottom: 5,
@@ -592,7 +606,6 @@ export default function ProductDetails({ navigation, route }) {
 							onPress={() => console.log(post.urls)}
 							style={{
 								backgroundColor: '#FF6347',
-								borderWidth : 1.5,
 								borderRadius: 15,
 								height: 40,
 								marginBottom: 5,
@@ -609,7 +622,6 @@ export default function ProductDetails({ navigation, route }) {
 						<TouchableOpacity
 							delayPressIn={0}
 							style={{
-								borderWidth: 1.5,
 								backgroundColor: '#fff',
 								borderColor: '#4898D3',
 								height: 40,

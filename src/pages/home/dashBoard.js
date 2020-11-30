@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import { View, Text, StatusBar, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
-
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
