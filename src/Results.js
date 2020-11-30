@@ -177,7 +177,7 @@ export default function Results({ route, navigation }) {
         }
         //filter by type
         if (typeService != '*') {
-            postsRef = postsRef.where('etat', '==', etat)
+            postsRef = postsRef.where('typeService', '==', typeService)
         }
         //fiter by price
         const results = postsRef.where('price', '>=', priceMin)
