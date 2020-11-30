@@ -54,9 +54,10 @@ export default function Splash({ navigation }) {
 				dot={<View style={GlobalStyle.dot} />}
 				activeDot={<View style={GlobalStyle.dotActive} />}
 			>
+			
+
 				{/* Swiper number 1 */}
 				<View style={GlobalStyle.swiperContainer}>
-					<Text style={GlobalStyle.splashHeadTitle}> Maxwin Pro </Text>
 
 					<Image
 						source={require('../../../assets/logo.jpg')}
@@ -70,7 +71,6 @@ export default function Splash({ navigation }) {
 				{/* Swiper number 2 */}
 
 				<View style={GlobalStyle.swiperContainer}>
-					<Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 
 					<Image
 						source={require('../../../assets/slide1.jpg')}
@@ -87,7 +87,6 @@ export default function Splash({ navigation }) {
 				{/* Swiper number 3 */}
 
 				<View style={GlobalStyle.swiperContainer}>
-					<Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 
 					<Image
 						source={require('../../../assets/slide3.jpg')}
@@ -103,7 +102,6 @@ export default function Splash({ navigation }) {
 				{/* Swiper number 4 */}
 
 				<View style={GlobalStyle.swiperContainer}>
-					<Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 
 					<Image
 						source={require('../../../assets/slide2.jpg')}
@@ -121,8 +119,10 @@ export default function Splash({ navigation }) {
 	}
 	return (
 		<SafeAreaView style={GlobalStyle.container}>
-			<View style={{ flex: 6 }}>
+			<View style={{ flex: 5 }}>
 				<ActivityIndicator animating={loading} size="large" />
+				
+			<Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 				<SwiperIntro />
 			</View>
 

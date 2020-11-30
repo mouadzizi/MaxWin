@@ -192,7 +192,6 @@ export default function Results({ route, navigation }) {
         setResults(items)
     }
     return (
-        <View style={styles.conatiner} >
             <FlatList
                 data={aResults}
                 renderItem={({ item }) => (
@@ -211,7 +210,6 @@ export default function Results({ route, navigation }) {
                     />
                 )}
             />
-        </View>
     )
 }
 

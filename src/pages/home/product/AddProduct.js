@@ -166,6 +166,7 @@ export default function AddProduct({ route, navigation }) {
 			case parent.title == 'VEHICULES':
 				navigation.setOptions({ title: 'Vehicule' });
 				setChips(false);
+				setVoitureChips(true);
 				break;
 
 			case parent.title == 'INFORMATIQUE ET ELECTRONIQUE' &&
