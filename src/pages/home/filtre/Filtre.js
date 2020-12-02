@@ -11,7 +11,7 @@ export default function Filtre({ navigation }) {
 	const [etat, setEtat] = useState('neuf/Utilisé');
 
 	//filter variables Standard 
-	const [city, setCity] = useState('Toutes les villes');
+	const [city, setCity] = useState('Touts les villes');
 	const [priceMax, setPriceMax] = useState(0);
 	const [priceMin, setPriceMin] = useState(0);
 
