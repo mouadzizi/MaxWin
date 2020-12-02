@@ -17,7 +17,7 @@ export default function Filtre({ navigation }) {
 
 	//filter variables Voiture
 	const [marqueVoiture, setMarqueVoiture] = useState('');
-	const [carburant, setCarburant] = useState('');
+	const [carburant, setCarburant] = useState('*');
 	const [puissance, setPuissance] = useState('');
 	const [transtaction, setTransaction] = useState('');
 
@@ -29,10 +29,10 @@ export default function Filtre({ navigation }) {
 	const [SuperficieMax, setSuperficieMax] = useState('');
 
 	//filter variables phone
-	const [marquePhone, setMarquePhone] = useState('');
+	const [marquePhone, setMarquePhone] = useState('*');
 
 	//filter variables phone
-	const [typeService, setTypeService] = useState('');
+	const [typeService, setTypeService] = useState('*');
 
 	//Visibility
 	const [modalVisible, setModalVisible] = useState(false);
