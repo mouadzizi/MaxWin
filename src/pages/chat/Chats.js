@@ -8,6 +8,7 @@ export default function Chats({ navigation }) {
 
     const chatRef = db.collectionGroup('chats')
     const { uid } = auth.currentUser
+    const _unsub =null;
 
     
 	const { width, height } = Dimensions.get('window');
@@ -15,12 +16,11 @@ export default function Chats({ navigation }) {
 	const width_image = width;
 
     React.useEffect(() => {
-        console.log('chats here2');
         chatRef.get().then(snap => {
             snap.forEach(d => {
                 if (d.id.match(uid)) {
                     setConversation([])
-                    d.ref.collection('messages')
+                   _unsub= d.ref.collection('messages')
                         .orderBy('createdAt', 'desc')
                         .limit(1).onSnapshot(querySnap => {
                             const dbConverstaions = querySnap.docChanges()
@@ -43,6 +43,7 @@ export default function Chats({ navigation }) {
             })
         })
     
+        return ()=> _unsub()
     }, [])
 
     const appendConversations = React.useCallback((messages) => {

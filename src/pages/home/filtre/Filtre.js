@@ -8,18 +8,18 @@ import FilterCategory from '../filtre/FilterCat';
 export default function Filtre({ navigation }) {
 
 	const [titreModal, setTittreModal] = useState('Choisissez votre catégorie');
-	const [etat, setEtat] = useState('');
+	const [etat, setEtat] = useState('neuf/Utilisé');
 
 	//filter variables Standard 
-	const [city, setCity] = useState('');
+	const [city, setCity] = useState('Toutes les villes');
 	const [priceMax, setPriceMax] = useState(0);
 	const [priceMin, setPriceMin] = useState(0);
 
 	//filter variables Voiture
-	const [marqueVoiture, setMarqueVoiture] = useState('');
+	const [marqueVoiture, setMarqueVoiture] = useState('tt');
 	const [carburant, setCarburant] = useState('*');
 	const [puissance, setPuissance] = useState('');
-	const [transtaction, setTransaction] = useState('');
+	const [transtaction, setTransaction] = useState('*');
 
 	const [anneeMax, setAnneeMax] = useState('');
 	const [anneeMin, setAnneeMin] = useState('');
