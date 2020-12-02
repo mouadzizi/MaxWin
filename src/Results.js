@@ -42,6 +42,7 @@ export default function Results({ route, navigation }) {
     }, [])
 
     const veheculesFilter = async (category) => {
+        
         const { city, etat, marqueVoiture, carburant, transtaction } = filterOptions
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
