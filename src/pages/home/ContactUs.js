@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 export default function ContactUs() {
     return (
         <View>
-            <Text>Contact</Text>
+            <Text>Contact hey</Text>
         </View>
     )
 }
