@@ -175,7 +175,7 @@ export const GlobalStyle = StyleSheet.create({
     },
 
     cardChip: {
-      color: '#B9B9BB', 
+      color: '#767676', 
       fontSize: 12,
       alignSelf: 'center', 
       marginLeft: 2,
