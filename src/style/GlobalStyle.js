@@ -205,6 +205,7 @@ export const GlobalStyle = StyleSheet.create({
       width: '100%',
       alignSelf: 'center',
       borderRadius: 8,
+      
     },
 
     infoContainer:{

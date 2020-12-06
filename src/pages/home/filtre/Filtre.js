@@ -4,6 +4,7 @@ import { TextInput } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
+import { parse } from 'react-native-svg';
 
 export default function Filtre({ navigation }) {
 
@@ -11,22 +12,22 @@ export default function Filtre({ navigation }) {
 	const [etat, setEtat] = useState('neuf/Utilisé');
 
 	//filter variables Standard 
-	const [city, setCity] = useState('Touts les villes');
+	const [city, setCity] = useState('Toutes les villes');
 	const [priceMax, setPriceMax] = useState(0);
 	const [priceMin, setPriceMin] = useState(0);
 
 	//filter variables Voiture
 	const [marqueVoiture, setMarqueVoiture] = useState('tt');
 	const [carburant, setCarburant] = useState('*');
-	const [puissance, setPuissance] = useState('');
+	const [puissance, setPuissance] = useState('*');
 	const [transtaction, setTransaction] = useState('*');
 
-	const [anneeMax, setAnneeMax] = useState('');
-	const [anneeMin, setAnneeMin] = useState('');
+	const [anneeMax, setAnneeMax] = useState(Infinity);
+	const [anneeMin, setAnneeMin] = useState(0);
 
 	// filter variables Location 
-	const [SuperficieMin, setSuperficieMin] = useState('');
-	const [SuperficieMax, setSuperficieMax] = useState('');
+	const [SuperficieMin, setSuperficieMin] = useState(0);
+	const [SuperficieMax, setSuperficieMax] = useState(Infinity);
 
 	//filter variables phone
 	const [marquePhone, setMarquePhone] = useState('*');
@@ -54,8 +55,8 @@ export default function Filtre({ navigation }) {
 		var filterOptions = {
 			selectedCategory,
 			superCategory,
-			anneeMax,
-			anneeMin,
+			anneeMax:anneeMax? anneeMax : Infinity,
+			anneeMin:anneeMin? anneeMin :0,
 			etat,
 			city,
 			priceMin: priceMin ? priceMin : 0,
@@ -298,7 +299,7 @@ export default function Filtre({ navigation }) {
 										mode="outlined"
 										placeholder="1996"
 										theme={textTheme}
-										onChangeText={setAnneeMin}
+										onChangeText={(e)=>setAnneeMin(parseInt(e))}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
 									/>
@@ -308,7 +309,7 @@ export default function Filtre({ navigation }) {
 										mode="outlined"
 										placeholder="2020"
 										theme={textTheme}
-										onChangeText={setAnneeMax}
+										onChangeText={(e)=>setAnneeMax(parseInt(e))}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
 									/>
@@ -332,12 +333,13 @@ export default function Filtre({ navigation }) {
 
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Puissance fiscale</Text>
 								<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
-									<Picker
+								<Picker
 										selectedValue={puissance}
 										prompt="Puissance Fiscale"
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
 									>
+										<Picker.Item label="Tous" value="*" />
 										<Picker.Item label="4CH" value="4ch" />
 										<Picker.Item label="5CH" value="5ch" />
 										<Picker.Item label="6CH" value="6ch" />
@@ -378,7 +380,7 @@ export default function Filtre({ navigation }) {
 										theme={textTheme}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
-										onChangeText={setSuperficieMin}
+										onChangeText={(e)=>setSuperficieMin(parseInt(e))}
 									/>
 
 									<TextInput
@@ -388,7 +390,7 @@ export default function Filtre({ navigation }) {
 										theme={textTheme}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
-										onChangeText={setSuperficieMax}
+										onChangeText={(e)=>setSuperficieMax(parseInt(e))}
 									/>
 								</View>
 

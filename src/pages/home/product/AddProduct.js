@@ -10,7 +10,8 @@ import {
 	Image,
 	FlatList,
 	Dimensions,
-	InteractionManager
+	InteractionManager,
+	Alert
 } from 'react-native';
 
 import { TextInput, Checkbox, Button } from 'react-native-paper';
@@ -32,10 +33,10 @@ export default function AddProduct({ route, navigation }) {
 
 	//Variables for inputs for Voiture
 	const [marqueVoiture, setMarqueVoiture] = useState('');
-	const [kilometrage, setKilometrage] = useState('');
+	const [kilometrage, setKilometrage] = useState(0);
 	const [carburant, setCarburant] = useState('');
-	const [fabrication, setFabrication] = useState('');
-	const [puissance, setPuissance] = useState('');
+	const [fabrication, setFabrication] = useState(0);
+	const [puissance, setPuissance] = useState(0);
 	const [transtaction, setTransaction] = useState('');
 	//TOBE ADD
 	const [dedouan, setDedouan] = useState('');
@@ -63,8 +64,8 @@ export default function AddProduct({ route, navigation }) {
 
 
 	//Variables for inputs for Location
-	const [piece, setPiece] = useState('');
-	const [superficie, setSuperficie] = useState('');
+	const [piece, setPiece] = useState(0);
+	const [superficie, setSuperficie] = useState(0);
 	//TOBE ADD as equipments
 	const [ascensseur, setAscensseur] = useState(false);
 	const [balcon, setBalcon] = useState(false);
@@ -136,7 +137,6 @@ export default function AddProduct({ route, navigation }) {
 				});
 			});
 			return () => {
-				console.log('exite');
 				AsyncStorage.clear();
 				setImages([]);
 			};
@@ -293,8 +293,9 @@ export default function AddProduct({ route, navigation }) {
 			}
 		};
 
-		if (images.length == 0) {
-			Alert.alert('enter at least one images');
+		if (images==null) {
+			Alert.alert('Information:','Enter at least one images');
+			setLoading(false)
 			return;
 		} else {
 			uploadPics(images).then((imagesUrls) => {
@@ -464,7 +465,7 @@ export default function AddProduct({ route, navigation }) {
 							placeholder="DHS"
 							theme={textTheme}
 							onChangeText={(e)=>setPrice(parseFloat(e))}
-							keyboardType="numeric"
+							keyboardType="number-pad"
 						/>
 
 						{etatVisible ? (
@@ -561,7 +562,7 @@ export default function AddProduct({ route, navigation }) {
 
 
 								<TextInput
-									onChangeText={setKilometrage}
+									onChangeText={(e)=>setKilometrage(parseFloat(e))}
 									label="Kilometrage"
 									mode="outlined"
 									maxLength={7}
@@ -572,7 +573,7 @@ export default function AddProduct({ route, navigation }) {
 								/>
 
 								<TextInput
-									onChangeText={setFabrication}
+									onChangeText={(e)=>setFabrication(parseInt(e))}
 									label="Année de fabrication"
 									mode="outlined"
 									maxLength={4}
@@ -603,20 +604,18 @@ export default function AddProduct({ route, navigation }) {
 										selectedValue={puissance}
 										prompt="Puissance Fiscale"
 										style={{ height: 50, width: '100%' }}
-										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
+										onValueChange={(itemValue, itemIndex) => setPuissance(parseInt(itemValue))}
 									>
 									
-										<Picker.Item label="Choisissez" value="Choisissez" />
-										<Picker.Item label="4CH" value="4ch" />
-										<Picker.Item label="5CH" value="5ch" />
-										<Picker.Item label="6CH" value="6ch" />
-										<Picker.Item label="7CH" value="7ch" />
-										<Picker.Item label="8CH" value="8ch" />
-										<Picker.Item label="9CH" value="9ch" />
-										<Picker.Item label="10CH" value="10ch" />
-										<Picker.Item label="11CH" value="11CH" />
-										<Picker.Item label="12CH" value="12CH" />
-										<Picker.Item label="Plus que 10CH" value="+10ch" />
+										<Picker.Item label="Choisissez" value="" />
+										<Picker.Item label="4CH" value="4" />
+										<Picker.Item label="5CH" value="5" />
+										<Picker.Item label="6CH" value="6" />
+										<Picker.Item label="7CH" value="7" />
+										<Picker.Item label="8CH" value="8" />
+										<Picker.Item label="9CH" value="9" />
+										<Picker.Item label="10CH" value="10" />
+										<Picker.Item label="Plus que 10CH" value="11" />
 									</Picker>
 								</View>
 
@@ -787,7 +786,7 @@ export default function AddProduct({ route, navigation }) {
 									theme={textTheme}
 									keyboardType="numeric"
 									style={{ marginTop: 10 }}
-									onChangeText={setSuperficie}
+									onChangeText={(e)=>setSuperficie(parseFloat(e))}
 								/>
 							</View>
 						) : null}
@@ -810,7 +809,7 @@ export default function AddProduct({ route, navigation }) {
 										mode="dropdown"
 										selectedValue={piece}
 										style={{ height: 50, width: '100%' }}
-										onValueChange={(itemValue, itemIndex) => setPiece(itemValue)}
+										onValueChange={(itemValue, itemIndex) => setPiece(parseInt(itemValue))}
 									>
 										<Picker.Item label="1" value="1" />
 										<Picker.Item label="2" value="2" />
@@ -911,7 +910,7 @@ export default function AddProduct({ route, navigation }) {
 							uppercase={false}
 							onPress={() => upload()}
             				style={{ alignSelf: 'center', marginVertical: 20,  width: '100%', height: 40, borderRadius: 15, marginBottom: 30 }}
-							disabled={(!title || !city || !price ||! description)}
+							//disabled={(!title || !city || !price ||! description)}
 							color='#4898D3'
 							loading={loading}
 							dark={true}>

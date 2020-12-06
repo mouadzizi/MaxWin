@@ -42,12 +42,14 @@ export default function Results({ route, navigation }) {
     }, [])
 
     const veheculesFilter = async (category) => {
-        
-        const { city, etat, marqueVoiture, carburant, transtaction } = filterOptions
+        const {
+            city, etat, marqueVoiture,
+            carburant, transtaction, anneeMax,
+            anneeMin, puissance } = filterOptions
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
         //filter by city
-        if (city != 'Toutes les villes') {
+        if (city !='Toutes les villes') {
             postsRef = postsRef.where('city', '==', city)
         }
         //filter by condition
@@ -68,23 +70,35 @@ export default function Results({ route, navigation }) {
             postsRef = postsRef.where('transtaction', '==', filterOptions.transtaction)
 
         }
+        //fiter by year
+        //postsRef=postsRef.where('fabrication','>=',anneeMin).where('fabrication','<=',anneeMax)
+        //filter by HP
+        if (puissance != '*') postsRef = postsRef.where('puissance', '==', puissance)
+
+        else if (puissance == '+10ch') postsRef = postsRef.where('puissance', '==', puissance)
+
+
         //fiter by price
         const results = postsRef.where('price', '>=', filterOptions.priceMin)
             .where('price', '<=', filterOptions.priceMax).get();
 
 
-        (await results).docs.forEach(doc => {
-            console.log(doc.data().title);
-            items.push({
-                ...doc.data(),
-                key: doc.id,
+        (await results).docs
+            .filter(doc => doc.data().fabrication >= anneeMin)
+            .filter(doc => doc.data().fabrication <= anneeMax)
+            .forEach(e => {
+                console.log(e.data().fabrication);
+                items.push({
+                    ...e.data(),
+                    key: e.id
+                })
             })
-        })
+
         setResults(items)
 
     }
     const immobilierFilter = async (category) => {
-        const { city, priceMax, priceMin, superficieMax, superficieMin } = filterOptions;
+        const { city, priceMax, priceMin, SuperficieMax, SuperficieMin } = filterOptions;
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
         //filter by city
@@ -92,21 +106,19 @@ export default function Results({ route, navigation }) {
             postsRef = postsRef.where('city', '==', city)
         }
 
-        //filter by area
-        //postsRef = postsRef.where('superficieMin', '>=', superficieMin).where('superficieMax', '<=', superficieMax)
-
-
         //fiter by price
         const results = postsRef.where('price', '>=', priceMin)
             .where('price', '<=', priceMax).get();
-        console.log((await results).size);
-        (await results).docs.forEach(doc => {
-            console.log(doc.data().title);
-            items.push({
-                ...doc.data(),
-                key: doc.id,
+        (await results).docs
+            .filter(doc => doc.data().superficie >= SuperficieMin)
+            .filter(doc => doc.data().superficie <= SuperficieMax)
+            .forEach(doc => {
+                console.log(doc.data().title);
+                items.push({
+                    ...doc.data(),
+                    key: doc.id,
+                })
             })
-        })
         setResults(items)
     }
     const maison_decoFilter = async (category) => {
@@ -193,24 +205,24 @@ export default function Results({ route, navigation }) {
         setResults(items)
     }
     return (
-            <FlatList
-                data={aResults}
-                renderItem={({ item }) => (
-                    <Product
-                        name={item.title}
-                        owner={item.user.owner}
-                        price={item.price}
-                        location={item.city}
-                        img={item.urls[0]}
-                        particulier={!item.user.accountType}
-                        p1={item.laivraison}
-                        p2={item.paiement}
-                        p3={item.negociable}
-                        p4={item.bonCondition}
-                        click={() => navigation.navigate('ProductDetails', { id: item.key })}
-                    />
-                )}
-            />
+        <FlatList
+            data={aResults}
+            renderItem={({ item }) => (
+                <Product
+                    name={item.title}
+                    owner={item.user.owner}
+                    price={item.price}
+                    location={item.city}
+                    img={item.urls[0]}
+                    particulier={!item.user.accountType}
+                    p1={item.laivraison}
+                    p2={item.paiement}
+                    p3={item.negociable}
+                    p4={item.bonCondition}
+                    click={() => navigation.navigate('ProductDetails', { id: item.key })}
+                />
+            )}
+        />
     )
 }
 
