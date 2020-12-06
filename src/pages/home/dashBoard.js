@@ -38,7 +38,7 @@ export default function DashBoard({ navigation }) {
 	const fetchItems = async () => {
 		let postsA = [];
 		var ref = db.collection('posts');
-		const allPosts = await ref.orderBy('addDate').get();
+		const allPosts = await ref.orderBy('addDate','desc').get();
 		allPosts.forEach((p) => {
 			postsA.push({
 				...p.data(),

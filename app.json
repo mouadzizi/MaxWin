@@ -31,8 +31,10 @@
     "android": {
       "package": "com.us.maxwin",
       "versionCode": 1,
-      "googleServicesFile": "./src/API/google-services.json"
+      "googleServicesFile": "./src/API/google-services.json",
+      "enableDangerousExperimentalLeanBuilds":true
     },
     "description": ""
+    
   }
 }
