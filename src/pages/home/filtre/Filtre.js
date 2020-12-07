@@ -172,37 +172,59 @@ export default function Filtre({ navigation }) {
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 
-								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
+<Picker.Item label="Toutes les villes" value="Toutes les villes" />
 								<Picker.Item label="Agadir" value="Agadir" />
+								<Picker.Item label="Al Hoceima" value="Al hoceima" />
 								<Picker.Item label="Asilah" value="Asilah" />
 								<Picker.Item label="Asfi" value="Asfi" />
-								<Picker.Item label="Azrou" value="Arzou" />
+								<Picker.Item label="Azrou" value="Azrou" />
+								<Picker.Item label="Ben Guerir" value="Ben Guerir" />
+								<Picker.Item label="Ben Slimane" value="Ben Slimane" />
 								<Picker.Item label="Beni mellal" value="Beni mellal" />
 								<Picker.Item label="Berkane" value="Berkane" />
+								<Picker.Item label="Berrechid" value="Berrechid" />
+								<Picker.Item label="Boujdour" value="Boujdour" />
+								<Picker.Item label="Boulemane" value="Boulemane" />
+								<Picker.Item label="Bouznika" value="Bouznika" />
 								<Picker.Item label="Casablanca" value="Casablanca" />
+								<Picker.Item label="chefchaouen" value="chefchaouen" />
 								<Picker.Item label="Dakhla" value="Dakhla" />
-								<Picker.Item label="El hociema" value="El hociema" />
-								<Picker.Item label="El jedida" value="El jedida" />
+								<Picker.Item label="El Hajeb" value="El Hajeb" />
+								<Picker.Item label="El Jedida" value="El jedida" />
 								<Picker.Item label="Errachidia" value="Errachidia" />
+								<Picker.Item label="Essaouira" value="Essaouira" />
+								<Picker.Item label="Essemara" value="Essemara" />
 								<Picker.Item label="Fes" value="Fes" />
+								<Picker.Item label="Figuig" value="Figuig" />
+								<Picker.Item label="Guercif" value="Guercif" />
 								<Picker.Item label="Ifrane" value="Ifrane" />
-								<Picker.Item label="Kheribga" value="Kheribga" />
-								<Picker.Item label="Kser lekebir" value="Kser lekebir" />
-								<Picker.Item label="Khenifra" value="Khenifra" />
 								<Picker.Item label="Kenitra" value="Kenitra" />
+								<Picker.Item label="Khoribga" value="Khoribga" />
+								<Picker.Item label="Ksar kebir" value="Ksar kebir" />
+								<Picker.Item label="Khenifra" value="Khenifra" />
 								<Picker.Item label="Larache" value="Larache" />
+								<Picker.Item label="Laâyoune" value="Laâyoune" />
+								<Picker.Item label="Marrakech" value="Marrakech" />
 								<Picker.Item label="Meknes" value="Meknes" />
-								<Picker.Item label="Merakech" value="Merakech" />
-								<Picker.Item label="Mohamadia" value="Mohamadia" />
+								<Picker.Item label="Mohammedia" value="Mohammedia" />
 								<Picker.Item label="Nador" value="Nador" />
-								<Picker.Item label="Ouejda" value="Ouejda" />
+								<Picker.Item label="Ouad Zem" value="Ouad Zem" />
+								<Picker.Item label="Ouarzzazate" value="Ouarzzazate" />
+								<Picker.Item label="Ouazzane" value="Ouazzane" />
+								<Picker.Item label="Oujda" value="Oujda" />
 								<Picker.Item label="Rabat" value="Rabat" />
-								<Picker.Item label="Rissani" value="Rissani" />
+								<Picker.Item label="Safi" value="Safi" />
 								<Picker.Item label="Sale" value="Sale" />
+								<Picker.Item label="Safrou" value="Safrou" />
 								<Picker.Item label="Settat" value="Settat" />
 								<Picker.Item label="Tanger" value="Tanger" />
+								<Picker.Item label="Tan-Tan" value="Tan-Tan" />
+								<Picker.Item label="Taza" value="Taza" />
+								<Picker.Item label="Taounate" value="Taounate" />
 								<Picker.Item label="Tétouan" value="Tétouan" />
-								<Picker.Item label="Temara" value="Temara" />
+								<Picker.Item label="Temara-Sekhirate" value="Temara-Sekhirate" />
+								<Picker.Item label="Youssoufia" value="Youssoufia" />
+								<Picker.Item label="Zagora" value="Zagora" />
 							</Picker>
 						</View>
 
@@ -240,7 +262,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Neuf/Utilisé" value="neuf/Utilisé" />
+										<Picker.Item label="Toutes les cas" value="" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
@@ -258,7 +280,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="touts le marques" value="tt" />
+										<Picker.Item label="toutes les marques" value="" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -323,7 +345,7 @@ export default function Filtre({ navigation }) {
 										prompt="Carburant"
 										onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
 									>
-										<Picker.Item label="tous " value="*" />
+										<Picker.Item label="toutes les carburant" value="*" />
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
 										<Picker.Item label="Hybrid" value="Hybrid" />
@@ -339,7 +361,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
 									>
-										<Picker.Item label="Tous" value="*" />
+										<Picker.Item label="Tous les puissances" value="*" />
 										<Picker.Item label="4CH" value="4ch" />
 										<Picker.Item label="5CH" value="5ch" />
 										<Picker.Item label="6CH" value="6ch" />
@@ -347,7 +369,7 @@ export default function Filtre({ navigation }) {
 										<Picker.Item label="8CH" value="8ch" />
 										<Picker.Item label="9CH" value="9ch" />
 										<Picker.Item label="10CH" value="10ch" />
-										<Picker.Item label="Plus que 10CH" value="+10ch" />
+										<Picker.Item label="Plus que 10CH" value="Plus que 10CH" />
 									</Picker>
 								</View>
 
@@ -359,7 +381,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTransaction(itemValue)}
 									>
-										<Picker.Item label="tout " value="*" />
+										<Picker.Item label="toutes les transactions" value="*" />
 										<Picker.Item label="Mannuel " value="Mannuel" />
 										<Picker.Item label="Automatique" value="Automatique" />
 									</Picker>
@@ -434,7 +456,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTypeService(itemValue)}
 									>
-										<Picker.Item label="tous" value="*" />
+										<Picker.Item label="Type de Service" value="*" />
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />

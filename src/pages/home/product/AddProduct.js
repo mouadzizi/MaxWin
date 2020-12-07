@@ -27,7 +27,7 @@ export default function AddProduct({ route, navigation }) {
 	
 	//Variables for inputs for standar product
 	const [title, setTitle] = useState('');
-	const [city, setCity] = useState('Touts les villes');
+	const [city, setCity] = useState('Toutes les villes');
 	const [price, setPrice] = useState('');
 	const [description, setDescription] = useState('');
 
@@ -422,36 +422,57 @@ export default function AddProduct({ route, navigation }) {
 							>
 								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
 								<Picker.Item label="Agadir" value="Agadir" />
+								<Picker.Item label="Al Hoceima" value="Al hoceima" />
 								<Picker.Item label="Asilah" value="Asilah" />
 								<Picker.Item label="Asfi" value="Asfi" />
-								<Picker.Item label="Azrou" value="Arzou" />
+								<Picker.Item label="Azrou" value="Azrou" />
+								<Picker.Item label="Ben Guerir" value="Ben Guerir" />
+								<Picker.Item label="Ben Slimane" value="Ben Slimane" />
 								<Picker.Item label="Beni mellal" value="Beni mellal" />
 								<Picker.Item label="Berkane" value="Berkane" />
+								<Picker.Item label="Berrechid" value="Berrechid" />
+								<Picker.Item label="Boujdour" value="Boujdour" />
+								<Picker.Item label="Boulemane" value="Boulemane" />
+								<Picker.Item label="Bouznika" value="Bouznika" />
 								<Picker.Item label="Casablanca" value="Casablanca" />
+								<Picker.Item label="chefchaouen" value="chefchaouen" />
 								<Picker.Item label="Dakhla" value="Dakhla" />
-								<Picker.Item label="El hociema" value="El hociema" />
-								<Picker.Item label="El jedida" value="El jedida" />
+								<Picker.Item label="El Hajeb" value="El Hajeb" />
+								<Picker.Item label="El Jedida" value="El jedida" />
 								<Picker.Item label="Errachidia" value="Errachidia" />
+								<Picker.Item label="Essaouira" value="Essaouira" />
+								<Picker.Item label="Essemara" value="Essemara" />
 								<Picker.Item label="Fes" value="Fes" />
+								<Picker.Item label="Figuig" value="Figuig" />
+								<Picker.Item label="Guercif" value="Guercif" />
 								<Picker.Item label="Ifrane" value="Ifrane" />
-								<Picker.Item label="Kheribga" value="Kheribga" />
-								<Picker.Item label="Kser lekebir" value="Kser lekebir" />
-								<Picker.Item label="Khenifra" value="Khenifra" />
 								<Picker.Item label="Kenitra" value="Kenitra" />
+								<Picker.Item label="Khoribga" value="Khoribga" />
+								<Picker.Item label="Ksar kebir" value="Ksar kebir" />
+								<Picker.Item label="Khenifra" value="Khenifra" />
 								<Picker.Item label="Larache" value="Larache" />
 								<Picker.Item label="Laâyoune" value="Laâyoune" />
+								<Picker.Item label="Marrakech" value="Marrakech" />
 								<Picker.Item label="Meknes" value="Meknes" />
-								<Picker.Item label="Merakech" value="Merakech" />
-								<Picker.Item label="Mohamadia" value="Mohamadia" />
+								<Picker.Item label="Mohammedia" value="Mohammedia" />
 								<Picker.Item label="Nador" value="Nador" />
-								<Picker.Item label="Ouejda" value="Ouejda" />
+								<Picker.Item label="Ouad Zem" value="Ouad Zem" />
+								<Picker.Item label="Ouarzzazate" value="Ouarzzazate" />
+								<Picker.Item label="Ouazzane" value="Ouazzane" />
+								<Picker.Item label="Oujda" value="Oujda" />
 								<Picker.Item label="Rabat" value="Rabat" />
-								<Picker.Item label="Rissani" value="Rissani" />
+								<Picker.Item label="Safi" value="Safi" />
 								<Picker.Item label="Sale" value="Sale" />
+								<Picker.Item label="Safrou" value="Safrou" />
 								<Picker.Item label="Settat" value="Settat" />
 								<Picker.Item label="Tanger" value="Tanger" />
+								<Picker.Item label="Tan-Tan" value="Tan-Tan" />
+								<Picker.Item label="Taza" value="Taza" />
+								<Picker.Item label="Taounate" value="Taounate" />
 								<Picker.Item label="Tétouan" value="Tétouan" />
-								<Picker.Item label="Temara" value="Temara" />
+								<Picker.Item label="Temara-Sekhirate" value="Temara-Sekhirate" />
+								<Picker.Item label="Youssoufia" value="Youssoufia" />
+								<Picker.Item label="Zagora" value="Zagora" />
 							</Picker>
 						</View>
 
@@ -479,7 +500,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Neuf/Utilisé" value="" />
+										<Picker.Item label="Choissisez votre Etat" value="" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
@@ -500,15 +521,15 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPhoneMarque(itemValue)}
 									>
-										<Picker.Item label="Choissisez votre marque" value="rien" />
-										<Picker.Item label="Samsung " value="Samsung " />
-										<Picker.Item label="Iphone" value="Iphone" />
-										<Picker.Item label="Xiaomi" value="Xiaomi" />
-										<Picker.Item label="OPPO" value="OPPO" />
+										<Picker.Item label="Choissisez votre marque" value="" />
 										<Picker.Item label="Huawei" value="Huawei" />
-										<Picker.Item label="Sony" value="Sony" />
+										<Picker.Item label="Iphone" value="Iphone" />
 										<Picker.Item label="Nokia" value="Nokia" />
-										<Picker.Item label="Autre" value="Autre" />
+										<Picker.Item label="OPPO" value="OPPO" />
+										<Picker.Item label="Sony" value="Sony" />
+										<Picker.Item label="Samsung " value="Samsung " />
+										<Picker.Item label="Xiaomi" value="Xiaomi" />
+										<Picker.Item label="AUTRE" value="AUTRE" />
 									</Picker>
 								</View>
 							</View>
@@ -526,7 +547,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="Choisissez votre marque " value="" />
+										<Picker.Item label="Choisissez votre marque" value="" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -590,7 +611,8 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										prompt="Carburant"
 										onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
-									>
+									>	
+										<Picker.Item label="Choisissez votre Carburant" value="" />
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
 										<Picker.Item label="Hybrid" value="Hybrid" />
@@ -607,7 +629,7 @@ export default function AddProduct({ route, navigation }) {
 										onValueChange={(itemValue, itemIndex) => setPuissance(parseInt(itemValue))}
 									>
 									
-										<Picker.Item label="Choisissez" value="" />
+										<Picker.Item label="Choisissez la puissance" value="" />
 										<Picker.Item label="4CH" value="4" />
 										<Picker.Item label="5CH" value="5" />
 										<Picker.Item label="6CH" value="6" />
@@ -615,7 +637,7 @@ export default function AddProduct({ route, navigation }) {
 										<Picker.Item label="8CH" value="8" />
 										<Picker.Item label="9CH" value="9" />
 										<Picker.Item label="10CH" value="10" />
-										<Picker.Item label="Plus que 10CH" value="11" />
+										<Picker.Item label="Plus que 10CH" value="Plus que 10CH" />
 									</Picker>
 								</View>
 
@@ -628,7 +650,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTransaction(itemValue)}
 									>
-										<Picker.Item label="Choisissez" value="Choisissez" />
+										<Picker.Item label="Choisissez la transtaction" value="" />
 										<Picker.Item label="Manuelle" value="Manuelle" />
 										<Picker.Item label="Automatique" value="Automatique" />
 									</Picker>
@@ -759,7 +781,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setServiceType(itemValue)}
 									>
-										<Picker.Item label="Choisissez" value="Choisissez" />
+										<Picker.Item label="Choisissez le type de Service" value="" />
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
@@ -811,10 +833,11 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPiece(parseInt(itemValue))}
 									>
+										<Picker.Item label="Nombre de piece" value="" />
 										<Picker.Item label="1" value="1" />
 										<Picker.Item label="2" value="2" />
 										<Picker.Item label="3" value="3" />
-										<Picker.Item label="4 et plus" value="5" />
+										<Picker.Item label="4 et plus" value="4 et plus" />
 									</Picker>
 								</View>
 							</View>

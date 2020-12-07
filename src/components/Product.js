@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { GlobalStyle } from '../style/GlobalStyle';
 import { FontAwesome, Entypo, MaterialCommunityIcons, Feather, FontAwesome5 } from 'react-native-vector-icons';
 import PriceTag from '../icons/priceTag';
+import PaymenLivraison from '../icons/paymentLaivraison';
 
 export default function Product(props) {
 	const [ chip1, setChip1 ] = useState(props.p1);
@@ -67,7 +68,7 @@ export default function Product(props) {
 
 						{chip2 ? (
 							<View style={{ flexDirection: 'row', marginTop: 2 }}>
-								<FontAwesome name="money" size={15} color="#4898D3" />
+								<PaymenLivraison />
 								<Text style={GlobalStyle.cardChip}> Paiement à la livraison</Text>
 							</View>
 						) : null}
