@@ -296,7 +296,7 @@ export default function ProductDetails({ navigation, route }) {
 					<View
 					style={{flexDirection: 'row', marginTop: 5, marginBottom : 5}}>
 					<Text
-					style={{fontSize: 17, color: '#000', width: '60%'}}>Boîte de vitesses</Text>
+					style={{fontSize: 17, color: '#000', width: '60%'}}>Boîte de vitesse</Text>
 			
 					<Text
 					style={{fontSize: 17, color: '#767676', width: '35%'}}>{post.transtaction}</Text>
@@ -564,7 +564,7 @@ export default function ProductDetails({ navigation, route }) {
 					color='#4898D3'
 					/>
 					<Text
-					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Transaction est {post.transtaction}</Text>
+					style={{fontSize: 17, color: '#767676', marginStart: 80, alignSelf: 'center'}}>Vitesse {post.transtaction}</Text>
 					</View>
 				
 				</View>
@@ -603,7 +603,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => console.log(post.urls)}
+							onPress={() => Alert.alert("Message", "Start Desscusion.")}
 							style={{
 								backgroundColor: '#FF6347',
 								borderRadius: 15,
@@ -621,6 +621,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
+							onPress={() => Alert.alert("Partager", "Partager post")}
 							style={{
 								backgroundColor: '#fff',
 								borderColor: '#4898D3',

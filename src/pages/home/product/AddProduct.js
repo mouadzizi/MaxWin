@@ -521,7 +521,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPhoneMarque(itemValue)}
 									>
-										<Picker.Item label="Choissisez votre marque" value="" />
+										<Picker.Item label="Choissisez votre marque" value="*" />
 										<Picker.Item label="Huawei" value="Huawei" />
 										<Picker.Item label="Iphone" value="Iphone" />
 										<Picker.Item label="Nokia" value="Nokia" />
@@ -547,7 +547,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="Choisissez votre marque" value="" />
+										<Picker.Item label="Choisissez votre marque" value="*" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -612,7 +612,7 @@ export default function AddProduct({ route, navigation }) {
 										prompt="Carburant"
 										onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
 									>	
-										<Picker.Item label="Choisissez votre Carburant" value="" />
+										<Picker.Item label="Choisissez votre Carburant" value="*" />
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
 										<Picker.Item label="Hybrid" value="Hybrid" />
@@ -629,7 +629,7 @@ export default function AddProduct({ route, navigation }) {
 										onValueChange={(itemValue, itemIndex) => setPuissance(parseInt(itemValue))}
 									>
 									
-										<Picker.Item label="Choisissez la puissance" value="" />
+										<Picker.Item label="Choisissez la puissance" value="*" />
 										<Picker.Item label="4CH" value="4" />
 										<Picker.Item label="5CH" value="5" />
 										<Picker.Item label="6CH" value="6" />
@@ -781,7 +781,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setServiceType(itemValue)}
 									>
-										<Picker.Item label="Choisissez le type de Service" value="" />
+										<Picker.Item label="Choisissez le type de Service" value="*" />
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
@@ -833,7 +833,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPiece(parseInt(itemValue))}
 									>
-										<Picker.Item label="Nombre de piece" value="" />
+										<Picker.Item label="Nombre de piece" value="*" />
 										<Picker.Item label="1" value="1" />
 										<Picker.Item label="2" value="2" />
 										<Picker.Item label="3" value="3" />
@@ -933,11 +933,11 @@ export default function AddProduct({ route, navigation }) {
 							uppercase={false}
 							onPress={() => upload()}
             				style={{ alignSelf: 'center', marginVertical: 20,  width: '100%', height: 40, borderRadius: 15, marginBottom: 30 }}
-							//disabled={(!title || !city || !price ||! description)}
+							disabled={(!title || !city || !price ||! description)}
 							color='#4898D3'
 							loading={loading}
 							dark={true}>
-							Valider l’annonce
+						Valider l’annonce
 						</Button>
 					</View>
 				</ScrollView>

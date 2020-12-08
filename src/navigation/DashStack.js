@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import {Button} from 'react-native'
 
 {
 	/* import pages */
@@ -145,12 +146,15 @@ export default function DashStack() {
 					title: 'Filtre',
 					headerTitleAlign: 'center',
 					headerStyle: {
-						backgroundColor: '#4898D3'
+						backgroundColor: '#fff'
 					},
-					headerTintColor: '#fff',
-					headerTitleStyle: {
-						fontWeight: '500'
-					}
+					headerRight: () => (
+					<Button
+					onPress={() => alert('This is a button!')}
+					title="Info"
+					color="#fff"
+					/>
+					),
 				}}
 			/>
 
