@@ -33,10 +33,10 @@ export default function AddProduct({ route, navigation }) {
 
 	//Variables for inputs for Voiture
 	const [marqueVoiture, setMarqueVoiture] = useState('');
-	const [kilometrage, setKilometrage] = useState(0);
+	const [kilometrage, setKilometrage] = useState('');
 	const [carburant, setCarburant] = useState('');
-	const [fabrication, setFabrication] = useState(0);
-	const [puissance, setPuissance] = useState(0);
+	const [fabrication, setFabrication] = useState('');
+	const [puissance, setPuissance] = useState('');
 	const [transtaction, setTransaction] = useState('');
 	//TOBE ADD
 	const [dedouan, setDedouan] = useState('');
@@ -626,7 +626,7 @@ export default function AddProduct({ route, navigation }) {
 										selectedValue={puissance}
 										prompt="Puissance Fiscale"
 										style={{ height: 50, width: '100%' }}
-										onValueChange={(itemValue, itemIndex) => setPuissance(parseInt(itemValue))}
+										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
 									>
 									
 										<Picker.Item label="Choisissez la puissance" value="*" />
@@ -637,7 +637,7 @@ export default function AddProduct({ route, navigation }) {
 										<Picker.Item label="8CH" value="8" />
 										<Picker.Item label="9CH" value="9" />
 										<Picker.Item label="10CH" value="10" />
-										<Picker.Item label="Plus que 10CH" value="Plus que 10CH" />
+										<Picker.Item label="Plus que 10CH" value="11" />
 									</Picker>
 								</View>
 

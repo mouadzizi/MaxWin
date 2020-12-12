@@ -38,7 +38,8 @@ export default function ProfilStack(){
           name="Items" 
           component={Items}
           options={{ 
-          title: 'Mes produits', headerTitleAlign: 'center', 
+          title: 'Mes produits', 
+          headerTitleAlign: 'center', 
           headerStyle: {
             backgroundColor: '#4898D3',
           },

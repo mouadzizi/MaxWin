@@ -20,7 +20,8 @@ const Stack = createStackNavigator();
           <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }}/>
           <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }}/>
           <Stack.Screen name="register" component={SignUp} options={{ headerShown: false }}/>
-          <Stack.Screen name="Privacy" component={Privacy} options={{
+          <Stack.Screen name="Privacy" component={Privacy}
+          options={{
 					title: 'Politiques confidentialité',
 					headerTitleAlign: 'center',
 					headerStyle: {

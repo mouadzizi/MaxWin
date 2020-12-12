@@ -24,6 +24,7 @@ import Results from '../Results';
 }
 import Messages from '../pages/messages';
 import Img from '../pages/home/product/ImagesBrowser';
+import Header from '../components/Header';
 
 export default function DashStack() {
 	const Stack = createStackNavigator();
@@ -143,17 +144,8 @@ export default function DashStack() {
 			<Stack.Screen name="results"
 				component={Results}
 				options={{
-					title: 'Filtre',
-					headerTitleAlign: 'center',
-					headerStyle: {
-						backgroundColor: '#fff'
-					},
-					headerRight: () => (
-					<Button
-					onPress={() => alert('This is a button!')}
-					title="Info"
-					color="#fff"
-					/>
+					headerTitle: () => (
+					<Header />
 					),
 				}}
 			/>

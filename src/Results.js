@@ -72,8 +72,6 @@ export default function Results({ route, navigation }) {
         }
         //fiter by year
         //postsRef=postsRef.where('fabrication','>=',anneeMin).where('fabrication','<=',anneeMax)
-        //filter by HP
-        if (puissance != '*') postsRef = postsRef.where('puissance', '==', puissance)
 
         else if (puissance == '+10ch') postsRef = postsRef.where('puissance', '==', puissance)
 
