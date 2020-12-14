@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, View, Image, Dimensions, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {ProgressBar} from 'react-native-paper'
 import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../style/GlobalStyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -120,7 +121,7 @@ export default function Splash({ navigation }) {
 	return (
 		<SafeAreaView style={GlobalStyle.container}>
 			<View style={{ flex: 5 }}>
-				<ActivityIndicator animating={loading} size="large" />
+				<ProgressBar indeterminate={true} visible={loading}  />
 				
 			<Text style={GlobalStyle.splashHeadTitle}> Maxwin </Text>
 				<SwiperIntro />

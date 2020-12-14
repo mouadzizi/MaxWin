@@ -46,6 +46,7 @@ export default function ProductDetails({ navigation, route }) {
 					setPost(p.data());
 					setRender(true);
 				});
+				
 			});
 
 			return () => {}
@@ -603,7 +604,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => Alert.alert("Message", "Start Desscusion.")}
+							onPress={() => navigation.navigate('Messages',{seller:post.user})}
 							style={{
 								backgroundColor: '#FF6347',
 								borderRadius: 15,

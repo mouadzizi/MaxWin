@@ -4,6 +4,7 @@ import { ProgressBar } from 'react-native-paper';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { db, auth } from '../API/firebase';
 import firebase from 'firebase';
+import { warning } from 'react-native-gifted-chat/lib/utils';
 
 export default function messages({route}) {
 
@@ -14,31 +15,35 @@ export default function messages({route}) {
     const chatRef = db.collection('chats')
     const user=auth.currentUser
     const {seller}=route.params
+    const recId = seller._id? seller._id : seller.uid
 
     React.useEffect(() => {
         setLoading(true)
-        const unsub = chatRef.doc(chatId()).collection('messages').onSnapshot(querySnapShoot=>{
-            const dbMessages=querySnapShoot.docChanges()
-                            .filter(({type})=>type==='added')
-                            .map(({doc})=>{
-                                const messages=doc.data()
-                                setLoading(false)
-                                return {...messages,createdAt:messages.createdAt.toDate()};
-                            })
-                            
-                            appendMessages(dbMessages)
-                            setLoading(false)
+        var unsub = chatRef.doc(chatId()).collection('messages').onSnapshot((querySnap)=>{
+            const firestoreMessages=querySnap
+            .docChanges().filter(({type})=> type == 'added')
+            .map(({doc})=>{
+                const dbMessage =doc.data() 
+                return {...dbMessage,createdAt:dbMessage.createdAt.toDate()}
+            })
+            appendMessages(firestoreMessages)
+            setLoading(false)
         })
         return () => {
-            unsub()
+             unsub()
         }
     }, [])
 
     async function sendMessage(messages) {
-        messages.reverse()
-        const writes=messages.map(m=>
-            chatRef.doc(chatId()).collection('messages').add({...m,seller}))
-            await chatRef.doc(`${user.uid}-${seller.uid}`).set({test:'test'})
+         const writes=messages.map((m) =>  {
+             db.collection('chats')
+             .doc(chatId())
+             .collection('messages')
+             .add({
+                 ...m,
+                 seller
+             })
+        })
         await Promise.all(writes)
     }
 
@@ -48,8 +53,8 @@ export default function messages({route}) {
 
 
     const chatId=()=> {
-        if (user.uid > seller.uid) return `${user.uid}-${seller.uid}`
-      else return `${seller.uid}-${user.uid}`;}
+        if (user.uid >recId) return `${user.uid}-${recId}`
+      else return `${recId}-${user.uid}`;}
 
     return (
 
@@ -57,12 +62,11 @@ export default function messages({route}) {
 {           loading? <ProgressBar color='blue' indeterminate={true} visible={true} /> :null
 }
             <GiftedChat
-                messages={messages.reverse()}
-                onSend={sendMessage}
+                messages={messages}
+                onSend={(messages)=>sendMessage(messages)}
                 user={{
-                    id: user.uid,
-                    name: user.displayName,
-                    avatar: user.photoURL? user.photoURL :'https://placeimg.com/140/140/any'
+                    _id:user.uid,
+                    name:user.displayName,
                 }} />
         </View>
     )

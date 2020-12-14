@@ -46,3 +46,5 @@
 [1203/175256.451:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1204/221619.019:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1206/002349.869:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1206/010828.050:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\mosaw\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\d7bc6234-aa8c-437c-807a-8982b0f7e26a: The system cannot find the path specified. (0x3)
+[1213/220542.314:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
