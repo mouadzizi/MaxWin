@@ -21,11 +21,13 @@ export default function messages({route}) {
         setLoading(true)
         var unsub = chatRef.doc(chatId()).collection('messages').onSnapshot((querySnap)=>{
             const firestoreMessages=querySnap
-            .docChanges().filter(({type})=> type == 'added')
+            .docChanges()
+            .filter(({type})=> type == 'added')
             .map(({doc})=>{
                 const dbMessage =doc.data() 
                 return {...dbMessage,createdAt:dbMessage.createdAt.toDate()}
             })
+            
             appendMessages(firestoreMessages)
             setLoading(false)
         })
@@ -35,6 +37,10 @@ export default function messages({route}) {
     }, [])
 
     async function sendMessage(messages) {
+        db.collection('chats')
+        .doc(chatId()).set({
+            test:new Date()
+        })
          const writes=messages.map((m) =>  {
              db.collection('chats')
              .doc(chatId())
@@ -62,7 +68,7 @@ export default function messages({route}) {
 {           loading? <ProgressBar color='blue' indeterminate={true} visible={true} /> :null
 }
             <GiftedChat
-                messages={messages}
+                messages={messages.sort((a,b)=>b.createdAt.getTime()-a.createdAt.getTime())}
                 onSend={(messages)=>sendMessage(messages)}
                 user={{
                     _id:user.uid,

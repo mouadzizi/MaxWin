@@ -17,7 +17,6 @@ export default function Chats({ navigation }) {
 
     React.useEffect(() => {
         //Retrieve the reciever
-        
         let items = []
         db.collection('chats').onSnapshot(querySnapShot => {
             querySnapShot.docs.forEach(doc => {
@@ -34,11 +33,10 @@ export default function Chats({ navigation }) {
                             })
                             setConversations(items)
                     })
-
                 }
             })
-
         })
+        console.log(conversations[1]);
         return () => {
             setConversations(null)
         }
