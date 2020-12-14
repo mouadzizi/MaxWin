@@ -1,25 +1,12 @@
 import * as React from 'react';
-import {ScrollView,View, Text, SafeAreaView} from 'react-native';
-import {MaterialCommunityIcons} from 'react-native-vector-icons'
+import {ScrollView, Text, SafeAreaView} from 'react-native';
 
 export default function Privacy({navigation})
 {
     return(
         <SafeAreaView>
         <ScrollView>
-        
-        <View
-        style={{width: '100%', backgroundColor: '#4898D3', height: 50, flexDirection: 'row'}}>
-        <MaterialCommunityIcons
-        name='keyboard-backspace'
-        size={35}
-        color='white'
-        style={{top: 5, left: 5}}
-        onPress={()=>{navigation.navigate('DashStack')}}
-        />
-        <Text
-        style={{textAlign: 'center', fontWeight: 'bold', color: '#fff', textAlignVertical: 'center', marginLeft: 25}}>Conditions Générales</Text>
-        </View>
+
 
                 <Text
                 style={{fontSize: 20, textAlign: 'center', color: 'red', fontWeight: 'bold', marginBottom: 20}}>Conditions Générales d’Utilisation</Text>

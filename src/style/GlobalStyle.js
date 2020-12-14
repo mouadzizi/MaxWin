@@ -2,14 +2,15 @@ import {StyleSheet} from 'react-native';
 
 export const GlobalStyle = StyleSheet.create({
 
+  //Global Container
     container: {
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      
     },
 
+    //Splash page
     dot:{
       backgroundColor: 'grey',
       width: 8,
@@ -37,14 +38,50 @@ export const GlobalStyle = StyleSheet.create({
 
     splashHeadTitle:{
       fontSize: 30,
-      fontWeight: 'bold',
+      fontFamily: 'serif',
       color: '#4898D3',
       textAlign: 'center',
-      marginTop: 30,
+      marginTop: 50,
     },
     
     swiperContainer: {
-      margin : 30,
+      marginHorizontal : 30
+    },
+
+    //Button Style Global
+    BouttonStyle :{
+      backgroundColor: '#4898D3',
+      borderRadius: 30,
+      width: '90%',
+      height: 50,
+      marginBottom: 35,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+    BouttonStyleOutlined :{
+      borderColor: '#4898D3',
+      borderRadius: 30,
+      borderWidth: 2,
+      width: '90%',
+      height: 50,
+      marginBottom: 35,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+    BouttonStyleText:{
+      fontWeight: 'bold',
+      fontSize: 16,
+      color: 'white',
+      alignSelf: 'center'
+    },
+
+    BouttonStyleTextOutlined:{
+      fontWeight: 'bold',
+      fontSize: 16,
+      color: '#4898D3',
+      alignSelf: 'center'
     },
 
     signInBoutton:{
@@ -56,7 +93,6 @@ export const GlobalStyle = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
-
 
     signInText:{
       fontWeight: 'bold',
@@ -74,13 +110,14 @@ export const GlobalStyle = StyleSheet.create({
       alignItems: 'center',
     },
 
-
     text:{
       fontWeight: 'bold',
       fontSize: 16,
       color: 'white',
       alignSelf: 'center'
     },
+
+    //Profile 
 
     usernameProfil:{
       color: '#4898D3',

@@ -78,23 +78,27 @@ export default function SignUp({ navigation }) {
     }
 
     const { width, height } = Dimensions.get('window');
-    const height_image = height * 0.23;
-    const width_image = width * 0.5;
+    const height_image = height * 0.35;
+    const width_image = width * 0.55;
+
+    
+  const [showPass,setShowPass]=useState(true)
+
 
     return (
 
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
-            <ScrollView showsVerticalScrollIndicator={false}>
+        <SafeAreaView style={{backgroundColor: '#fff', padding: 20 }} >
+            <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor: '#fff'}}>
 
-                <View style={{ flex: 1, backgroundColor: '#fff' }}>
+                <View style={{ height: height*0.20, backgroundColor: '#fff' }}>
 
-                    <Image source={require('../../../assets/logo.jpg')}
+                    <Image source={require('../../../assets/logo.png')}
                         style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                         resizeMode={"stretch"}
                     />
                 </View>
 
-                <View style={{ flex: 5 }}>
+                <View style={{ height: height*0.75, marginTop: 20}}>
 
                     <Text
                         style={{ color: 'red', alignSelf: 'center', marginBottom: 8 }}>{errorMessage}</Text>
@@ -134,11 +138,11 @@ export default function SignUp({ navigation }) {
                     <TextInput
                         label='mot de passe'
                         mode='outlined'
-                        secureTextEntry={true}
                         theme={textTheme}
                         style={{ marginTop: 10 }}
+                        secureTextEntry={showPass}
                         onChangeText={password => setPassword(password)}
-						right={ <TextInput.Icon name="lock" color='#4898D3'/> }
+						right={<TextInput.Icon name={showPass? 'eye-off':'eye'} color='#4898D3'  onPress={()=>setShowPass(!showPass)} size={30} />}
                     />
 
                     <TextInput
@@ -176,7 +180,7 @@ export default function SignUp({ navigation }) {
                     <Text
                         style={{ fontSize: 12, marginTop: 15, color: '#c2c2c2', textAlign: 'center' }}>
                         en créant ce compte, vous acceptez les
-                </Text>
+                    </Text>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }} >
 

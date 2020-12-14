@@ -9,6 +9,7 @@ import * as Facebook from 'expo-facebook';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function SignIn({ navigation }) {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -224,6 +225,7 @@ export default function SignIn({ navigation }) {
         style={{color:'red', alignSelf: 'center'}}
         >{errorMessage}</Text>
         <View style={{ flex: 4, marginTop: 5 }}>
+        
           <TextInput
             label='E-mail'
             autoCapitalize="none"
@@ -254,6 +256,7 @@ export default function SignIn({ navigation }) {
               color: '#4898D3',
             }}>Oublie mon mot de passe ?</Text>
           </TouchableOpacity>
+
           <Button
             mode='contained'
             uppercase={false}
@@ -265,6 +268,7 @@ export default function SignIn({ navigation }) {
             dark={true}>
             Se Connecter
         </Button>
+
           <View style={{ flexDirection: 'row', marginVertical: 20, justifyContent: 'center' }} >
             <Text>vous n'avez pas de compte? </Text>
             <TouchableOpacity

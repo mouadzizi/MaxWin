@@ -4,7 +4,6 @@ import { TextInput } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
-import { parse } from 'react-native-svg';
 
 export default function Filtre({ navigation }) {
 
@@ -19,7 +18,6 @@ export default function Filtre({ navigation }) {
 	//filter variables Voiture
 	const [marqueVoiture, setMarqueVoiture] = useState('tt');
 	const [carburant, setCarburant] = useState('*');
-	const [puissance, setPuissance] = useState('*');
 	const [transtaction, setTransaction] = useState('*');
 
 	const [anneeMax, setAnneeMax] = useState(Infinity);
@@ -63,7 +61,6 @@ export default function Filtre({ navigation }) {
 			priceMax: priceMax ? priceMax : Infinity,
 			marqueVoiture,
 			carburant,
-			puissance,
 			transtaction,
 			SuperficieMin,
 			SuperficieMax,
@@ -353,25 +350,6 @@ export default function Filtre({ navigation }) {
 									</Picker>
 								</View>
 
-								<Text style={{ color: '#4898D3', marginTop: 5 }}>Puissance fiscale</Text>
-								<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
-								<Picker
-										selectedValue={puissance}
-										prompt="Puissance Fiscale"
-										style={{ height: 50, width: '100%' }}
-										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
-									>
-										<Picker.Item label="Tous les puissances" value="*" />
-										<Picker.Item label="4CH" value="4ch" />
-										<Picker.Item label="5CH" value="5ch" />
-										<Picker.Item label="6CH" value="6ch" />
-										<Picker.Item label="7CH" value="7ch" />
-										<Picker.Item label="8CH" value="8ch" />
-										<Picker.Item label="9CH" value="9ch" />
-										<Picker.Item label="10CH" value="10ch" />
-										<Picker.Item label="Plus que 10CH" value="Plus que 10CH" />
-									</Picker>
-								</View>
 
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Boite de vitesses</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
