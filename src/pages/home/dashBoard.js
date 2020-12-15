@@ -49,8 +49,6 @@ export default function DashBoard({ navigation }) {
 	};
 	return (
 		<View>
-			<StatusBar backgroundColor={colors.primary} />
-
 			<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
 				<Ionicons
 					onPress={() => navigation.openDrawer()}
