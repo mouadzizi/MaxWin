@@ -112,9 +112,6 @@ export default function DashBoard({ navigation }) {
 				</TouchableOpacity>
 			</View>
 
-			<View>
-			<NavigationSections/>
-			</View>
 			
 			<View>
 
@@ -122,6 +119,12 @@ export default function DashBoard({ navigation }) {
 			{ready ? (
 				<View style={{ height: height_screen }}>
 					<FlatList
+					ListHeaderComponent={
+					<View style={{padding: 10, backgroundColor: 'white'}}>
+					<Text style={{color: '#4898D3', marginBottom: 10}}>Top categories</Text>
+					<NavigationSections/>
+					</View>
+					}
 						data={posts}
 						renderItem={({ item }) => (
 							<Product
