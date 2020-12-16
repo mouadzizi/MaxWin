@@ -29,6 +29,9 @@ export default function Items({ navigation }) {
 					posts.push({
 						title: s.data().title,
 						price: s.data().price,
+						owner: s.data().user.owner,
+						city: s.data().city,
+
 						key: s.id,
 						pics: s.data().urls
 					});

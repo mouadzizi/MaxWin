@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
+import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
-import Product from '../../components/Product';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
+
+
+import Product from '../../components/Product';
+import NavigationSections from '../../components/NavigationSections';
 
 export default function DashBoard({ navigation }) {
 	const [ ready, setReady ] = useState(false);
@@ -107,6 +110,10 @@ export default function DashBoard({ navigation }) {
 						Filtre
 					</Text>
 				</TouchableOpacity>
+			</View>
+
+			<View>
+			<NavigationSections/>
 			</View>
 			
 			<View>
