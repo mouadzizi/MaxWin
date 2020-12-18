@@ -287,9 +287,10 @@ export default function AddProduct({ route, navigation }) {
 			addDate:new Date(),
 			category: route.params.parent,
 			user: {
-				uid: user.uid,
+				_id: user.uid,
 				accountType: user.accountType,
-				owner: user.name
+				name: user.name,
+				avatar:auth.currentUser.photoURL
 			}
 		};
 

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { FlatList, View, Text, Image, Dimensions } from 'react-native';
 import ChatIndicator from '../../components/ChatIndicator';
+import { useFocusEffect } from '@react-navigation/native'
 import { db, auth } from '../../API/firebase'
 import { app } from 'firebase';
 
 export default function Chats({ navigation }) {
     const [conversations, setConversations] = React.useState([])
-
-
 
     const { uid } = auth.currentUser
 
@@ -15,30 +14,36 @@ export default function Chats({ navigation }) {
     const height_image = height * 0.6;
     const width_image = width;
 
-    React.useEffect(() => {
-        //Retrieve the reciever
+    useFocusEffect(React.useCallback(() => {
         let items = []
-        db.collection('chats').onSnapshot(querySnapShot => {
+        const _unsub = db.collection('chats').onSnapshot(querySnapShot => {
             querySnapShot.docs.forEach(doc => {
-                if (doc.id.search(uid)>=0) {
-                    doc.ref.collection('messages').orderBy('createdAt', 'desc').limit(1).onSnapshot(snap => {
-                        snap.docChanges()
-                            .filter(({ type }) => type === 'added')
-                            .forEach(d => {
-                                const data = d.doc.data()
-                                items.push({
-                                    ...data,
-                                    key: doc.id
-                                })
+                if (doc.id.search(uid) >= 0) {
+                    doc.ref.collection('messages').orderBy('createdAt', 'desc').limit(1).get().then(snap => {
+                        snap.docs.forEach(d => {
+                            items.push({
+                                ...d.data(),
+                                sender: doc.data().senderUID,
+                                contact: doc.data().contact,
+                                key: d.data()._id
                             })
-                            setConversations(items)
+                        })
+                        setConversations(items)
                     })
                 }
             })
         })
-        console.log(conversations[1]);
+
         return () => {
-            setConversations(null)
+            _unsub()
+        }
+    }, []))
+
+    React.useEffect(() => {
+        //Retrieve the reciever
+
+        return () => {
+            //setConversations([])
         }
     }, [])
 
@@ -52,11 +57,13 @@ export default function Chats({ navigation }) {
             style={{ backgroundColor: '#fff', flex: 1 }}>
             <FlatList
                 data={conversations}
-                keyExtractor={(item,index)=>index.toString()}
-                renderItem={({ item }) => 
-                <ChatIndicator
-                    click={() => navigation.navigate('Messages', { seller: (uid === item.user._id)? item.seller :item.user })}
-                    lastMessage={item.text} sellerName = { (uid === item.user._id)? item.seller.owner : item.user.name}  />
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) =>
+                    <ChatIndicator
+                        time={item.createdAt.toDate().getTime()}
+                        sellerAvatar={(uid != item.sender) ? item.user.avatar : item.contact.avatar}
+                        click={() => navigation.navigate('Messages', { seller: (uid === item.sender) ? item.contact : item.user })}
+                        lastMessage={item.text} sellerName={(uid === item.sender) ? item.contact.name : item.user.name} />
                 }
 
                 ListEmptyComponent={() => (

@@ -604,7 +604,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => navigation.navigate('Messages',{seller:post.user})}
+							onPress={() => navigation.navigate('Messages',{seller:post.user,parent:route.name})}
 							style={{
 								backgroundColor: '#FF6347',
 								borderRadius: 15,
