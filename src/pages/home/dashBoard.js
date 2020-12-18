@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
-import { Ionicons } from 'react-native-vector-icons';
+import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
@@ -120,16 +120,31 @@ export default function DashBoard({ navigation }) {
 				<View style={{ height: height_screen }}>
 					<FlatList
 					ListHeaderComponent={
-					<View style={{padding: 10, backgroundColor: 'white'}}>
-					<Text style={{color: '#4898D3', marginBottom: 10}}>Top categories</Text>
-					<NavigationSections/>
-					</View>
+						<View style={{backgroundColor: '#fff', paddingBottom: 10}}>
+
+						<View style={{flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 5, flex: 1}}> 
+						
+						<View style={{flex: 1}}>
+						<Text style={{color:'#4898D3', fontWeight: 'bold', alignSelf: 'flex-start'}}>Top catégories</Text>
+						</View>
+						
+						
+						<View style={{flex: 1}}>
+						
+						<MaterialCommunityIcons name="arrow-right" size={20} color="#4898D3" style={{alignSelf: 'flex-end'}} />
+						</View>
+						
+						</View>
+						
+						<NavigationSections/>
+						</View>
+						
 					}
 						data={posts}
 						renderItem={({ item }) => (
 							<Product
 								name={item.title}
-								owner={item.user.owner}
+								owner={item.user.name}
 								price={item.price}
 								location={item.city}
 								img={item.urls[0]}

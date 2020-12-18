@@ -22,7 +22,7 @@ export default function Items({ navigation }) {
 		setRefresh(true);
 		await db
 			.collection('posts')
-			.where('user.uid', '==', auth.currentUser.uid)
+			.where('user._id', '==', auth.currentUser.uid)
 			.get()
 			.then((snap) => {
 				snap.forEach((s) => {
@@ -31,8 +31,7 @@ export default function Items({ navigation }) {
 						price: s.data().price,
 						owner: s.data().user.owner,
 						city: s.data().city,
-
-						key: s.id,
+						key: s._id,
 						pics: s.data().urls
 					});
 				});
