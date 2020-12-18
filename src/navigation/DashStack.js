@@ -144,6 +144,9 @@ export default function DashStack() {
 			<Stack.Screen name="results"
 				component={Results}
 				options={{
+					headerStyle: {
+						backgroundColor: '#4898D3'
+					},
 					headerTitle: () => (
 					<Header />
 					),

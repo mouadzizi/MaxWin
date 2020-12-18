@@ -3,7 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import DashStack from '../navigation/DashStack';
 import DrawerContent from '../navigation/DrawerContent';
-import Privacy from '../pages/authentication/Privacy';
+import Privacy from '../pages/home/PrivacyPage';
 import Contact from '../pages/home/ContactUs';
 
 const DrawerMEnu = createDrawerNavigator();

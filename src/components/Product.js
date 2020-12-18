@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { GlobalStyle } from '../style/GlobalStyle';
-import { FontAwesome, Entypo, MaterialCommunityIcons, Feather, FontAwesome5 } from 'react-native-vector-icons';
+import { Entypo, MaterialCommunityIcons, Feather } from 'react-native-vector-icons';
 import PriceTag from '../icons/priceTag';
 import PaymenLivraison from '../icons/paymentLaivraison';
 

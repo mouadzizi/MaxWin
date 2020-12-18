@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
+import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
-import Product from '../../components/Product';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
+
+
+import Product from '../../components/Product';
+import NavigationSections from '../../components/NavigationSections';
 
 export default function DashBoard({ navigation }) {
 	const [ ready, setReady ] = useState(false);
@@ -49,8 +52,6 @@ export default function DashBoard({ navigation }) {
 	};
 	return (
 		<View>
-			<StatusBar backgroundColor={colors.primary} />
-
 			<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
 				<Ionicons
 					onPress={() => navigation.openDrawer()}
@@ -110,6 +111,7 @@ export default function DashBoard({ navigation }) {
 					</Text>
 				</TouchableOpacity>
 			</View>
+
 			
 			<View>
 
@@ -117,6 +119,12 @@ export default function DashBoard({ navigation }) {
 			{ready ? (
 				<View style={{ height: height_screen }}>
 					<FlatList
+					ListHeaderComponent={
+					<View style={{padding: 10, backgroundColor: 'white'}}>
+					<Text style={{color: '#4898D3', marginBottom: 10}}>Top categories</Text>
+					<NavigationSections/>
+					</View>
+					}
 						data={posts}
 						renderItem={({ item }) => (
 							<Product

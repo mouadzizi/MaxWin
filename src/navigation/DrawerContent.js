@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View, StyleSheet,TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,7 +9,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { 
     Title,
-    Caption,
     Drawer,
 } from "react-native-paper";
 
