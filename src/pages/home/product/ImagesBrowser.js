@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { FAB} from 'react-native-paper';
 import { ImageBrowser } from 'expo-image-picker-multiple';
 import AsyncStorage from '@react-native-community/async-storage';

@@ -31,7 +31,7 @@ export default function Items({ navigation }) {
 						price: s.data().price,
 						owner: s.data().user.owner,
 						city: s.data().city,
-						key: s._id,
+						key: s.id,
 						pics: s.data().urls
 					});
 				});
@@ -54,7 +54,8 @@ export default function Items({ navigation }) {
 	const width_image = width;
 
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}>
+		<SafeAreaView 
+		style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}>
 
 			{ready ? (
 				<FlatList

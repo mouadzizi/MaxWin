@@ -28,6 +28,8 @@ import Seat from '../../../icons/seat';
 import Driver from '../../../icons/driver';
 import KeyCar from '../../../icons/KeyCar';
 
+import call from 'react-native-phone-call'
+
 export default function ProductDetails({ navigation, route }) {
 
 	const [ canRender, setRender ] = React.useState();
@@ -36,7 +38,11 @@ export default function ProductDetails({ navigation, route }) {
 	const _SlideHeight = Dimensions.get('window').height * 0.42;
 	const _SlideWidth = Dimensions.get('window').width * 0.95;
 
-
+	 
+	const args = {
+	number: '+212626617611', 
+	prompt: false,
+	}
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -58,6 +64,7 @@ export default function ProductDetails({ navigation, route }) {
 			if (seller._id != auth.currentUser.uid) navigation.navigate('Messages',{seller:seller});
 			else alert('you cant send msg to yourself')
 			}
+
 	return (
 		
 		<View style={{flex: 1}}>
@@ -586,10 +593,10 @@ export default function ProductDetails({ navigation, route }) {
 				<View style={{padding: 20, marginVertical: 5}}>
 
 
-
-						<TouchableOpacity
+						{post.phone ?
+							<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => Alert.alert("Information", "Nous vous informons que l'annonceur préfère le contact par Chat Merci de votre compréhension.")}
+							onPress={() => call(args).catch(console.error)}
 							style={{
 								backgroundColor: '#4898D3',
 								height: 40,
@@ -604,7 +611,10 @@ export default function ProductDetails({ navigation, route }) {
 						<Feather name="smartphone" size={25} color="#fff" />
 						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif', marginStart: 5 }}>Numéro  de téléphone</Text>
 						</View>
-						</TouchableOpacity>
+						</TouchableOpacity> : null
+						}
+
+
 
 						<TouchableOpacity
 							delayPressIn={0}
