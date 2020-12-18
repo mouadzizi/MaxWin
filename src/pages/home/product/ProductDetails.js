@@ -1,4 +1,4 @@
-import React, {useState, useRef, useNativeDriver} from 'react';
+import React from 'react'
 import { 
 	View, 
 	Image, 
@@ -15,7 +15,7 @@ import Swiper from 'react-native-swiper';
 import { GlobalStyle } from '../../../style/GlobalStyle';
 import { MaterialCommunityIcons, FontAwesome, Feather } from 'react-native-vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-import { db } from '../../../API/firebase';
+import { db,auth } from '../../../API/firebase';
 
 import Wheels from '../../../icons/jantes';
 import NavigationSystem from '../../../icons/navigationSystem';
@@ -53,7 +53,11 @@ export default function ProductDetails({ navigation, route }) {
 		}, [])
 	);
 
-
+		const handleNavigation = (seller)=>{
+			console.log(seller._id);
+			if (seller._id != auth.currentUser.uid) navigation.navigate('Messages',{seller:seller});
+			else alert('you cant send msg to yourself')
+			}
 	return (
 		
 		<View style={{flex: 1}}>
@@ -604,7 +608,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => navigation.navigate('Messages',{seller:post.user,parent:route.name})}
+							onPress={() => handleNavigation(post.user)}
 							style={{
 								backgroundColor: '#FF6347',
 								borderRadius: 15,

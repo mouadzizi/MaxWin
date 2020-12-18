@@ -10,17 +10,15 @@ export default function messages({ route }) {
 
     const [messages, setMessages] = React.useState([]);
     const [loading, setLoading] = React.useState(false)
-    const [qty,setQty]=React.useState(30)
 
 
     const chatRef = db.collection('chats')
     const user = auth.currentUser
     const { seller } = route.params
-    // const recId = seller._id ? seller._id : seller.uid
 
     React.useEffect(() => {
         setLoading(true)
-        var unsub = chatRef.doc(chatId()).collection('messages').orderBy('createdAt','desc').limit(qty).onSnapshot((querySnap) => {
+        var unsub = chatRef.doc(chatId()).collection('messages').orderBy('createdAt','desc').onSnapshot((querySnap) => {
             setMessages([])
             const firestoreMessages = querySnap
                 .docChanges()
@@ -29,14 +27,13 @@ export default function messages({ route }) {
                     const dbMessage = doc.data()
                     return { ...dbMessage, createdAt: dbMessage.createdAt.toDate() }
                 })
-
             appendMessages(firestoreMessages)
             setLoading(false)
         })
         return () => {
             unsub()
         }
-    }, [qty])
+    }, [])
 
     async function sendMessage(messages) {
         db.collection('chats')
@@ -63,15 +60,10 @@ export default function messages({ route }) {
         else return `${seller._id}-${user.uid}`;
     }
 
-    const updateQty =()=>{
-        console.log(qty);
-        setQty(qty+10)
-    } 
     return (
         <View style={{ flex: 1 }}>
             {           loading ? <ProgressBar color='blue' indeterminate={true} visible={true} /> : null
             }
-            <Button title='Load more' onPress={updateQty} />
             <GiftedChat
                 renderBubble = { props =>
                     <Bubble
@@ -92,7 +84,6 @@ export default function messages({ route }) {
                   />
                 }
                 messages={messages
-                    // .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
                 }
                 onSend={(messages) => sendMessage(messages)}
                 user={{
