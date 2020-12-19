@@ -1,21 +1,14 @@
-import React from 'react'
-import { 
-	View, 
-	Image, 
-	Text, 
-	ScrollView, 
-	TouchableOpacity, 
-	Alert, 
-	InteractionManager, 
-	Dimensions
- } from 'react-native';
-
+import React from 'react';
+import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, StyleSheet} from 'react-native';
 import { ProgressBar, Divider } from 'react-native-paper';
-import Swiper from 'react-native-swiper';
-import { GlobalStyle } from '../../../style/GlobalStyle';
-import { Feather } from 'react-native-vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { db,auth } from '../../../API/firebase';
+
+import { Feather } from 'react-native-vector-icons';
+import { GlobalStyle } from '../../../style/GlobalStyle';
+
+import call from 'react-native-phone-call';
+import Swiper from 'react-native-swiper';
 
 // Components
 import ServicesDetails from '../../../components/ServicesDetails';
@@ -23,7 +16,6 @@ import Description from '../../../components/DescriptionDetails';
 import Details from '../../../components/GeneralDetails';
 import CarDetailsList from '../../../components/CarDetailsList';
 
-import call from 'react-native-phone-call'
 
 export default function ProductDetails({ navigation, route }) {
 
@@ -57,7 +49,7 @@ export default function ProductDetails({ navigation, route }) {
 		const handleNavigation = (seller)=>{
 			console.log(seller._id);
 			if (seller._id != auth.currentUser.uid) navigation.navigate('Messages',{seller:seller});
-			else alert('you cant send msg to yourself')
+			else Alert.alert('Désolé(e)', 'vous êtes le propriétaire de ce produit, vous ne pouvez pas vous envoyer de message')
 			}
 		
 	return (
@@ -66,13 +58,12 @@ export default function ProductDetails({ navigation, route }) {
 
 			{canRender ? 
 				
-			<ScrollView 
-			showsVerticalScrollIndicator={false}
-			style={{flex: 1}}>
+				<ScrollView 
+				showsVerticalScrollIndicator={false}
+				style={{flex: 1}}>
 					
-						<View style={{width: _SlideWidth, marginTop: 10, justifyContent: 'center', alignSelf: 'center', borderRadius: 8, height: _SlideHeight}}>
+						<View style={[styles.swipercontainer, {width: _SlideWidth, height: _SlideHeight}]}>
 							<Swiper autoplay activeDotColor="#FF6347">
-
 								{post ? (
 									post.urls.map((img, index) => {
 										return (
@@ -84,7 +75,6 @@ export default function ProductDetails({ navigation, route }) {
 													style={GlobalStyle.sliderImage}
 												/>
 											</View>
-
 										);
 									})
 								) : null}
@@ -118,67 +108,46 @@ export default function ProductDetails({ navigation, route }) {
 
 				
 
-				<View style={{padding: 20, marginVertical: 5}}>
+				<View style={styles.bouttonContainer}>
 
-
+						{/* Button Call */}
 						{post.phone ?
+
 							<TouchableOpacity
 							delayPressIn={0}
 							onPress={() => call(args).catch(console.error)}
-							style={{
-								backgroundColor: '#4898D3',
-								height: 40,
-								borderRadius: 15,
-								marginBottom: 5,
-								marginTop: 5,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-						<View style={{flexDirection: 'row'}}>
-						<Feather name="smartphone" size={25} color="#fff" />
-						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif', marginStart: 5 }}>Numéro  de téléphone</Text>
-						</View>
-						</TouchableOpacity> : null
+							style={styles.buttonCall}
+							>
+								<View style={{flexDirection: 'row'}}>
+									<Feather name="smartphone" size={25} color="#fff" />
+									<Text style={styles.btnText}>Numéro  de téléphone</Text>
+								</View>
+							</TouchableOpacity>
+						: null
 						}
 
 
-
+						{/* Button Message */}
 						<TouchableOpacity
 							delayPressIn={0}
 							onPress={() => handleNavigation(post.user)}
-							style={{
-								backgroundColor: '#FF6347',
-								borderRadius: 15,
-								height: 40,
-								marginBottom: 5,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
+							style={styles.buttonMessage}
 						>
 						<View style={{flexDirection: 'row'}}>
 						<Feather name="message-square" size={25} color="#fff" />
-						<Text style={{ color: '#fff', fontSize: 18, fontFamily: 'serif', marginStart: 10 }}>Envoyer un message</Text>
+						<Text style={styles.btnText}>Envoyer un message</Text>
 						</View>
 						</TouchableOpacity>
 
+						{/* Button Share */}
 						<TouchableOpacity
 							delayPressIn={0}
 							onPress={() => Alert.alert("Partager", "Partager post")}
-							style={{
-								backgroundColor: '#fff',
-								borderColor: '#4898D3',
-								height: 40,
-								borderRadius: 15,
-								marginBottom: 5,
-								marginTop: 5,
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
+							style={styles.buttonShare}
 						>
 						<View style={{flexDirection: 'row'}}>
 						<Feather name="share-2" size={25} color="#4898D3" />
-						<Text style={{ color: '#4898D3', fontSize: 18, fontFamily: 'serif', marginStart: 15 }}>Partager</Text>
+						<Text style={styles.btnText2}>Partager</Text>
 						</View>
 						</TouchableOpacity>
 
@@ -195,3 +164,55 @@ export default function ProductDetails({ navigation, route }) {
 
 	);
 }
+
+const styles = StyleSheet.create({
+    buttonShare:{
+		backgroundColor: '#fff',
+		borderColor: '#4898D3',
+		height: 40,
+		borderRadius: 15,
+		marginBottom: 5,
+		marginTop: 5,
+		justifyContent: 'center',
+		alignItems: 'center',
+    },
+    buttonCall:{
+		backgroundColor: '#4898D3',
+		height: 40,
+		borderRadius: 15,
+		marginBottom: 5,
+		marginTop: 5,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	swipercontainer:{
+		marginTop: 10, 
+		justifyContent: 'center', 
+		alignSelf: 'center', 
+		borderRadius: 8, 
+	},
+    buttonMessage: {
+		backgroundColor: '#FF6347',
+		borderRadius: 15,
+		height: 40,
+		marginBottom: 5,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	bouttonContainer:{
+		padding: 20,
+		margin: 5
+	},
+	btnText:{ 
+		color: '#fff',
+		fontSize: 18,
+		fontFamily: 'serif',
+		marginStart: 5
+	},
+	btnText2:{ 
+		color: '#4898D3',
+		fontSize: 18,
+		fontFamily: 'serif',
+		marginStart: 5
+	}
+})

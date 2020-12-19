@@ -83,7 +83,7 @@ export default function CarDetailsList(props) {
             <View>
                 <View style={styles.line}>
                     
-				<MaterialCommunityIcons name="car-abs" size={25} color='#4898D3'/>
+				<MaterialCommunityIcons name="car-brake-abs" size={25} color='#4898D3'/>
 					<Text style={styles.type}>ABS</Text>
 				</View>
 				<Divider/>
@@ -119,6 +119,7 @@ export default function CarDetailsList(props) {
                     <VitreElectrique />
 					<Text style={styles.type}>Vitres électriques</Text>
 				</View>
+                <Divider/>
             </View>
             : null }
 
@@ -129,6 +130,7 @@ export default function CarDetailsList(props) {
 				    <AirbagsIcon/>
 					<Text style={styles.type}>Airbags</Text>
 				</View>
+                <Divider/>
             </View>
             : null }
 
@@ -140,6 +142,7 @@ export default function CarDetailsList(props) {
 				    <MaterialCommunityIcons name="car-shift-pattern" size={25} color='#4898D3'/>
 					<Text style={styles.type}>transtaction</Text>
 				</View>
+                <Divider/>
             </View>
             : null }
 	
