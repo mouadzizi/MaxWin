@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 		right: 3,
 		bottom: 3,
 		justifyContent: 'center',
-		backgroundColor: '#0580FF'
+		backgroundColor: '#4898D3'
 	},
 	countBadgeText: {
 		fontWeight: 'bold',

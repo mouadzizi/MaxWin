@@ -5,40 +5,35 @@ export default function AppartementIcon() {
     return (
         <Svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 64 64"
+        viewBox="0 0 512 512"
         stroke='#4898D3'
         fill='#4898D3'
         fillRule={'nonzero'}
         height={25}
-        width={25}
-      >
-        <G data-name="Fill Outline">
-          <Path fill="#dfd9d3" d="M13 11h38v50H13z" />
-          <Path fill="#c7c2bc" d="M32 11h19v50H32z" />
-          <Path fill="#6e6350" d="M13 57h12v4H13zM39 57h12v4H39z" />
-          <Path
-            d="M16 61a3 3 0 10-1.116-5.78 2.975 2.975 0 00-4-2 2.992 2.992 0 10-5.664 1.9A2.993 2.993 0 006 61zM48 61a3 3 0 111.116-5.78 2.975 2.975 0 014-2 2.992 2.992 0 115.664 1.9A2.993 2.993 0 0158 61z"
-            fill="#8cc63f"
-          />
-          <Path fill="#95866d" d="M11 8h42v4H11z" />
-          <Path fill="#b4b0aa" d="M16 49h2v2h-2zM46 49h2v2h-2z" />
-          <Path
-            fill="#dfd9d3"
-            d="M8 18h2v18H8zM54 32h2v15h-2zM27 3h19v2H27zM48 3h2v2h-2z"
-          />
-          <Path fill="#56a8c6" d="M25 51h7v10h-7z" />
-          <Path fill="#80c5d4" d="M32 51h7v10h-7z" />
-          <Path fill="#6e6350" d="M22 50h20v2H22z" />
-          <Path fill="#56a8c6" d="M18 34h4v8h-4z" />
-          <Path fill="#80c5d4" d="M22 34h4v8h-4z" />
-          <Path fill="#56a8c6" d="M38 34h4v8h-4z" />
-          <Path fill="#80c5d4" d="M42 34h4v8h-4z" />
-          <Path fill="#56a8c6" d="M18 17h4v8h-4z" />
-          <Path fill="#80c5d4" d="M22 17h4v8h-4z" />
-          <Path fill="#56a8c6" d="M38 17h4v8h-4z" />
-          <Path fill="#80c5d4" d="M42 17h4v8h-4z" />
-          <Path fill="#95866d" d="M13 42h38v4H13zM13 25h38v4H13z" />
-        </G>
-      </Svg>
+        width={25}>
+
+      <Path fill="#F16E44" d="M382.933 73.6H441.6V176h-58.667z" />
+      <Path fill="#F16E44" d="M360.533 21.333H464V76.8H360.533z" />
+      <Path
+        d="M44.8 276.267V512h418.133V276.267L253.866 67.2C172.8 149.333 126.933 195.2 44.8 276.267z"
+        fill="#F16E44"
+      />
+      <Path
+        d="M464 276.267L254.933 67.2c-41.6 40.533-73.6 72.533-105.6 104.533L44.8 276.266v48l209.067-209.067 209.067 209.067v6.4-54.4H464z"
+        fill="#4898D3"
+      />
+      <Path
+        d="M216.533 512H90.667V388.267c0-35.2 28.8-62.933 62.933-62.933 35.2 0 62.933 28.8 62.933 62.933V512z"
+        fill="#415a6b"
+      />
+      <Path fill="#344a5e" d="M253.867 325.333h164.267v144H253.867z" />
+      <G fill="#8ad7f8">
+        <Path d="M270.933 342.4h56.533v109.867h-56.533zM344.533 342.4h56.533v109.867h-56.533z" />
+      </G>
+      <Path
+        d="M502.4 232.533L279.467 9.6c-12.8-12.8-35.2-12.8-48 0L9.6 232.533c-12.8 12.8-12.8 35.2 0 48 12.8 12.8 35.2 12.8 48 0L256 82.133l198.4 198.4c12.8 12.8 35.2 12.8 48 0 12.8-13.866 12.8-35.2 0-48z"
+        fill="#4898D3"
+      />
+    </Svg>
     )
 }
