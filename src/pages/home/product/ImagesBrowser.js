@@ -27,6 +27,7 @@ export default function ImagesBrowser({ navigation }) {
 				for (let photo of photos) {
 				const pPhoto = await _processImageAsync(photo.localUri)
 					cPhotos.push({
+						id:photo.id,
 						name: photo.filename,
 						uri: pPhoto.uri,
 						type: 'image/jpg',
@@ -53,7 +54,6 @@ export default function ImagesBrowser({ navigation }) {
 		  [],
 		  { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG }
 		)
-		console.log(file);
 		return file;
 	  }
 	return (

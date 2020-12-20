@@ -25,6 +25,7 @@ export default function DashBoard({ navigation }) {
 		}, [])
 	);
 
+
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
 
@@ -34,7 +35,6 @@ export default function DashBoard({ navigation }) {
 
 	const [ searchQuery, setSearchQuery ] = useState('');
 	const onChangeSearch = (query) => setSearchQuery(query);
-
 	const action = () => {
 		navigation.navigate('ProductDetails');
 	};
@@ -129,7 +129,7 @@ export default function DashBoard({ navigation }) {
 						renderItem={({ item }) => (
 							<Product
 								name={item.title}
-								owner={item.user.owner}
+								owner={item.user.name}
 								price={item.price}
 								location={item.city}
 								img={item.urls[0]}

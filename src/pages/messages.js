@@ -21,9 +21,9 @@ export default function messages({ route }) {
         var unsub = chatRef.doc(chatId()).collection('messages').orderBy('createdAt','desc').onSnapshot((querySnap) => {
             setMessages([])
             const firestoreMessages = querySnap
-                .docChanges()
-                .filter(({ type }) => type == 'added')
-                .map(({ doc }) => {
+                .docs
+                .map(( doc ) => {
+                    
                     const dbMessage = doc.data()
                     return { ...dbMessage, createdAt: dbMessage.createdAt.toDate() }
                 })
@@ -39,7 +39,8 @@ export default function messages({ route }) {
         db.collection('chats')
             .doc(chatId()).set({
                 senderUID: user.uid,
-                contact:seller
+                contact:seller,
+                lastMessage:messages[0].text
             })
         const writes = messages.map((m) => {
             db.collection('chats')

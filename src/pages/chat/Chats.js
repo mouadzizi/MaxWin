@@ -43,7 +43,7 @@ export default function Chats({ navigation }) {
         //Retrieve the reciever
 
         return () => {
-            //setConversations([])
+            setConversations([])
         }
     }, [])
 

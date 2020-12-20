@@ -135,6 +135,7 @@ export default function AddProduct({ route, navigation }) {
 					setUser(u);
 					setCanRender(true);
 				});
+				console.log(images);
 			});
 			return () => {
 				AsyncStorage.clear();
@@ -339,11 +340,11 @@ export default function AddProduct({ route, navigation }) {
 									borderBottomWidth: 1
 								}}
 								data={images}
-								keyExtractor={(item) => item.index}
+								keyExtractor={(item)=>item.id}
 								renderItem={({ item, index }) =>
-									<Animated.View key={index} animation='bounceIn' duration={1000} style={{ flex: 1, margin: 10 }}>
-										<TouchableOpacity  activeOpacity={.6} delayPressIn={1} onPress={() => navigation.navigate('image')} >
-											<Image
+									<Animated.View  animation='bounceIn' duration={1000} style={{ flex: 1, margin: 10 }}>
+										<TouchableOpacity   activeOpacity={.6} delayPressIn={1} onPress={() => navigation.navigate('image')} >
+											<Image  
 												source={{ uri: item.uri }}
 												style={{
 													width: 200, height: 250, borderRadius: 16,
@@ -352,7 +353,7 @@ export default function AddProduct({ route, navigation }) {
 											/>
 										</TouchableOpacity>
 
-										<View style={{
+										<View  style={{
 											alignItems: 'center', letterSpacing: 3,
 											justifyContent: 'center',
 											position: 'absolute', right: 4,
@@ -363,11 +364,11 @@ export default function AddProduct({ route, navigation }) {
 											opacity: .8,
 										}} >
 
-											<Text style={{ fontSize: 20, color: '#fff', marginLeft: 3 }}
+											<Text key={index} style={{ fontSize: 20, color: '#fff', marginLeft: 3 }}
 											> {index + 1}  </Text>
 
 										</View>
-										<MaterialCommunityIcons
+										<MaterialCommunityIcons 
 											name='camera-plus-outline'
 											color='#ecf0f1'
 											size={30}
