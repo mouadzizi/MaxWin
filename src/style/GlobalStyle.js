@@ -57,6 +57,7 @@ export const GlobalStyle = StyleSheet.create({
       marginBottom: 35,
       justifyContent: 'center',
       alignItems: 'center',
+      alignSelf: 'center',
     },
 
     BouttonStyleOutlined :{

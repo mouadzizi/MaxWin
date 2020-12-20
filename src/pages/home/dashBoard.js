@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions} from 'react-native';
+import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar} from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
 
+import * as Animatable from 'react-native-animatable';
 
 import Product from '../../components/Product';
 import NavigationSections from '../../components/NavigationSections';
@@ -52,6 +53,8 @@ export default function DashBoard({ navigation }) {
 	};
 	return (
 		<View>
+		
+		<StatusBar/>
 			<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
 				<Ionicons
 					onPress={() => navigation.openDrawer()}
