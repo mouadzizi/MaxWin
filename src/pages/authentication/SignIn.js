@@ -8,6 +8,8 @@ import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import * as Animatable from 'react-native-animatable';
+
 export default function SignIn({ navigation }) {
 
   const [email, setEmail] = useState('');
@@ -181,19 +183,23 @@ export default function SignIn({ navigation }) {
       accountType:'Particulier'
     })
 
-  }
+  };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 20 }} >
+    <View
+    style={{flex: 1, backgroundColor: '#fff', padding: 20 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
 
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <Animatable.View 
+        animation="fadeInUpBig"
+        duration={2000}
+        style={{flex: 1, backgroundColor: '#fff'}}>
 
           <Image source={require('../../../assets/logo.jpg')}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"}
           />
-        </View>
+        </Animatable.View>
 
         <TouchableOpacity
           disabled={gLoading}
@@ -279,7 +285,7 @@ export default function SignIn({ navigation }) {
 
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
 
   );
 }

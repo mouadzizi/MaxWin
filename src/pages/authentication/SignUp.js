@@ -5,6 +5,7 @@ import { textTheme } from '../../style/GlobalStyle';
 import { auth, db } from '../../API/firebase';
 
 
+import * as Animatable from 'react-native-animatable';
 
 export default function SignUp({ navigation }) {
     const [errorMessage, setErrorMessage] = useState('');
@@ -90,15 +91,21 @@ export default function SignUp({ navigation }) {
         <SafeAreaView style={{backgroundColor: '#fff', padding: 20 }} >
             <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor: '#fff'}}>
 
-                <View style={{ height: height*0.20, backgroundColor: '#fff' }}>
+            <Animatable.View 
+            animation="fadeInUpBig"
+            duration={2000} 
+            style={{ height: height*0.20, backgroundColor: '#fff' }}>
 
                     <Image source={require('../../../assets/logo.png')}
                         style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                         resizeMode={"stretch"}
                     />
-                </View>
+                </Animatable.View>
 
-                <View style={{ height: height*0.75, marginTop: 20}}>
+                <Animatable.View 
+                    animation="fadeInUpBig"
+                    duration={2000} 
+                    style={{ height: height*0.75, marginTop: 20}}>
 
                     <Text
                         style={{ color: 'red', alignSelf: 'center', marginBottom: 8 }}>{errorMessage}</Text>
@@ -195,7 +202,7 @@ export default function SignUp({ navigation }) {
                     </View>
 
 
-                </View>
+                </Animatable.View>
 
 
 

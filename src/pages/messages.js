@@ -1,10 +1,8 @@
 import React from 'react'
-import { View,Button } from 'react-native';
+import { View } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import { GiftedChat,Bubble } from 'react-native-gifted-chat';
 import { db, auth } from '../API/firebase';
-import firebase from 'firebase';
-import { warning } from 'react-native-gifted-chat/lib/utils';
 
 export default function messages({ route }) {
 
