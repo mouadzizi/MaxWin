@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
-export default function ProductEdit({ item, callback }) {
+export default function ProductEdit({ item, callback, goEdit }) {
 
 	return (
 
@@ -37,7 +37,8 @@ export default function ProductEdit({ item, callback }) {
 					text: 'Non'
 				},
 				{
-					text: 'Oui'
+					text: 'Oui',
+					onPress: goEdit
 				}
 			]);
 		}}>

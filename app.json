@@ -34,7 +34,10 @@
       "versionCode": 1,
       "googleServicesFile": "./src/API/google-services.json",
       "enableDangerousExperimentalLeanBuilds": true,
-      "permissions":["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "description": ""
   }
