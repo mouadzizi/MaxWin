@@ -35,6 +35,7 @@ export default function ProfilStack(){
           headerTitleStyle: {
             fontWeight: '500',
           },}}/>
+          
           <Stack.Screen 
           name="Items" 
           component={Items}

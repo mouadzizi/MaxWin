@@ -84,7 +84,7 @@ export default function GeneralDetails(props) {
 				<Divider/>
                 <View style={styles.line}>
 					<Text style={styles.type}>Kilométrage</Text>
-					<Text style={styles.description}>{props.kilometrage}</Text>
+					<Text style={styles.description}>{props.kilometrage} Km</Text>
 				</View>
             </View>
             : null }
@@ -106,7 +106,7 @@ export default function GeneralDetails(props) {
 				<Divider/>
                 <View style={styles.line}>
 					<Text style={styles.type}>Puissance Fiscale</Text>
-					<Text style={styles.description}>{props.puissance}</Text>
+					<Text style={styles.description}>{props.puissance} CH</Text>
 				</View>
             </View>
             : null }

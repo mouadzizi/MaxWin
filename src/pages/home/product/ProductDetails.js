@@ -120,7 +120,7 @@ export default function ProductDetails({ navigation, route }) {
 							>
 								<View style={{flexDirection: 'row'}}>
 									<Feather name="smartphone" size={25} color="#fff" />
-									<Text style={styles.btnText}>Numéro  de téléphone</Text>
+									<Text style={styles.btnText}>Appeler l'annonceur</Text>
 								</View>
 							</TouchableOpacity>
 						: null
@@ -147,7 +147,7 @@ export default function ProductDetails({ navigation, route }) {
 						>
 						<View style={{flexDirection: 'row'}}>
 						<Feather name="share-2" size={25} color="#4898D3" />
-						<Text style={styles.btnText2}>Partager</Text>
+						<Text style={styles.btnText2}>Partager L'annonce</Text>
 						</View>
 						</TouchableOpacity>
 

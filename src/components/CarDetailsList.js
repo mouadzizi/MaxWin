@@ -20,7 +20,7 @@ export default function CarDetailsList(props) {
     return (
     <View style={GlobalStyle.infoContainer}>
         
-			<Text style={styles.title}>Équipement</Text>
+			<Text style={styles.title}>Équipements</Text>
             <Divider/>
 
         {/*line Première main*/}
@@ -140,7 +140,7 @@ export default function CarDetailsList(props) {
             <View>
                 <View style={styles.line}> 
 				    <MaterialCommunityIcons name="car-shift-pattern" size={25} color='#4898D3'/>
-					<Text style={styles.type}>transtaction</Text>
+					<Text style={styles.type}>Vitesse {props.transtaction}</Text>
 				</View>
                 <Divider/>
             </View>

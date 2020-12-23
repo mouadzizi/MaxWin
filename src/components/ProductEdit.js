@@ -32,7 +32,7 @@ export default function ProductEdit({ item, callback, goEdit }) {
 		<TouchableOpacity 
 		style={styles.buttonSection1}
 		onPress={() => {
-			Alert.alert('Éditer', 'Êtes-vous sûr de bien vouloir Éditer cet élément ?', [
+			Alert.alert('Modifier', 'Êtes-vous sûr de bien vouloir Éditer cet élément ?', [
 				{
 					text: 'Non'
 				},
@@ -43,7 +43,7 @@ export default function ProductEdit({ item, callback, goEdit }) {
 			]);
 		}}>
 		<MaterialCommunityIcons name="briefcase-edit-outline" size={35} color="#fff" style={{ alignSelf: 'center' }} />
-		<Text style={styles.btnText}>Éditer</Text>
+		<Text style={styles.btnText}>Modifier</Text>
 		</TouchableOpacity>
 
 		<TouchableOpacity 

@@ -169,7 +169,7 @@ export default function Filtre({ navigation }) {
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 
-<Picker.Item label="Toutes les villes" value="Toutes les villes" />
+						<Picker.Item label="Toutes les villes" value="Toutes les villes" />
 								<Picker.Item label="Agadir" value="Agadir" />
 								<Picker.Item label="Al Hoceima" value="Al hoceima" />
 								<Picker.Item label="Asilah" value="Asilah" />
@@ -259,7 +259,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Toutes les cas" value="" />
+										<Picker.Item label="Neuf et Utilisé" value="" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
