@@ -410,6 +410,7 @@ export default function Filtre({ navigation }) {
 										onValueChange={(itemValue, itemIndex) => setMarquePhone(itemValue)}
 									>
 										<Picker.Item label="Choissisez votre marque" value="*" />
+										
 										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
 										<Picker.Item label="IPHONE" value="IPHONE" />
 										<Picker.Item label="Xiaomi" value="Xiaomi" />
