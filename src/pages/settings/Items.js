@@ -67,6 +67,9 @@ export default function Items({ navigation }) {
 									removeItem(item.key).then(() => {
 										fetchItems();
 									})}
+								goEdit={() =>
+									navigation.navigate('EditProduct')
+								}
 								item={item}
 							/>
 						);

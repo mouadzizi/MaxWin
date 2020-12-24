@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
-export default function ProductEdit({ item, callback }) {
+export default function ProductEdit({ item, callback, goEdit }) {
 
 	return (
 
@@ -32,17 +32,18 @@ export default function ProductEdit({ item, callback }) {
 		<TouchableOpacity 
 		style={styles.buttonSection1}
 		onPress={() => {
-			Alert.alert('Éditer', 'Êtes-vous sûr de bien vouloir Éditer cet élément ?', [
+			Alert.alert('Modifier', 'Êtes-vous sûr de bien vouloir Éditer cet élément ?', [
 				{
 					text: 'Non'
 				},
 				{
-					text: 'Oui'
+					text: 'Oui',
+					onPress: goEdit
 				}
 			]);
 		}}>
 		<MaterialCommunityIcons name="briefcase-edit-outline" size={35} color="#fff" style={{ alignSelf: 'center' }} />
-		<Text style={styles.btnText}>Éditer</Text>
+		<Text style={styles.btnText}>Modifier</Text>
 		</TouchableOpacity>
 
 		<TouchableOpacity 

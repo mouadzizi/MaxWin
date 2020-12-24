@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, StyleSheet} from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, StyleSheet, Share} from 'react-native';
 import { ProgressBar, Divider } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
 import { db,auth } from '../../../API/firebase';
@@ -51,7 +51,27 @@ export default function ProductDetails({ navigation, route }) {
 			if (seller._id != auth.currentUser.uid) navigation.navigate('Messages',{seller:seller});
 			else Alert.alert('Désolé(e)', 'vous êtes le propriétaire de ce produit, vous ne pouvez pas vous envoyer de message')
 			}
-		
+	
+				const onShare = async () => {
+				  try {
+					const result = await Share.share({
+					  message:
+						'MAxwin | application mobile pour vous',
+					});
+					if (result.action === Share.sharedAction) {
+					  if (result.activityType) {
+						// shared with activity type of result.activityType
+					  } else {
+						// shared
+					  }
+					} else if (result.action === Share.dismissedAction) {
+					  // dismissed
+					}
+				  } catch (error) {
+					alert(error.message);
+				  }
+				}
+
 	return (
 		
 		<View style={{flex: 1}}>
@@ -120,7 +140,7 @@ export default function ProductDetails({ navigation, route }) {
 							>
 								<View style={{flexDirection: 'row'}}>
 									<Feather name="smartphone" size={25} color="#fff" />
-									<Text style={styles.btnText}>Numéro  de téléphone</Text>
+									<Text style={styles.btnText}>Appeler l'annonceur</Text>
 								</View>
 							</TouchableOpacity>
 						: null
@@ -142,12 +162,12 @@ export default function ProductDetails({ navigation, route }) {
 						{/* Button Share */}
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => Alert.alert("Partager", "Partager post")}
+							onPress={onShare}
 							style={styles.buttonShare}
 						>
 						<View style={{flexDirection: 'row'}}>
 						<Feather name="share-2" size={25} color="#4898D3" />
-						<Text style={styles.btnText2}>Partager</Text>
+						<Text style={styles.btnText2}>Partager L'annonce</Text>
 						</View>
 						</TouchableOpacity>
 

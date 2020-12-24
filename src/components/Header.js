@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <View style={styles.header}>
         <Text style={styles.max}>Max</Text>
-        <Text style={styles.win}>Win</Text>
+        <Text style={styles.win}>win</Text>
         </View>
     )
 }

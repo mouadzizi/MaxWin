@@ -524,14 +524,16 @@ export default function AddProduct({ route, navigation }) {
 										onValueChange={(itemValue, itemIndex) => setPhoneMarque(itemValue)}
 									>
 										<Picker.Item label="Choissisez votre marque" value="*" />
-										<Picker.Item label="Huawei" value="Huawei" />
-										<Picker.Item label="Iphone" value="Iphone" />
-										<Picker.Item label="Nokia" value="Nokia" />
-										<Picker.Item label="OPPO" value="OPPO" />
-										<Picker.Item label="Sony" value="Sony" />
-										<Picker.Item label="Samsung " value="Samsung " />
+										
+										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
+										<Picker.Item label="IPHONE" value="IPHONE" />
 										<Picker.Item label="Xiaomi" value="Xiaomi" />
-										<Picker.Item label="AUTRE" value="AUTRE" />
+										<Picker.Item label="OPPO" value="OPPO" />
+										<Picker.Item label="HUAWEI" value="HUAWEI" />
+										<Picker.Item label="SONY" value="SONY" />
+										<Picker.Item label="NOKIA" value="NOKIA" />
+										<Picker.Item label="Asus" value="Asus" />
+										<Picker.Item label="Autre" value="Autre" />
 									</Picker>
 								</View>
 							</View>

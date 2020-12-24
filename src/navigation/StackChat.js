@@ -12,9 +12,10 @@ export default function StackChat(){
     return(
 
         <Stack.Navigator  initialRouteName='Chat'>
-          <Stack.Screen name="Dasboard" component={Chat}
+        
+          <Stack.Screen name="Messagerie" component={Chat}
           options={{ 
-            title: 'Chat', headerTitleAlign: 'center', 
+            title: 'Messagerie', headerTitleAlign: 'center', 
             headerStyle: {
               backgroundColor: '#4898D3',
             },

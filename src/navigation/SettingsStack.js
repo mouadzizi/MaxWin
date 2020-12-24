@@ -5,7 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Settings from '../pages/settings/Settings';
 import Profil from '../pages/settings/Profil';
 import Items from '../pages/settings/Items';
-import Notifications from '../pages/settings/notofications'
+import EditProduct from '../pages/home/product/EditProductPage';
+import Notifications from '../pages/settings/notofications';
 
 export default function ProfilStack(){
     const Stack = createStackNavigator();
@@ -34,6 +35,7 @@ export default function ProfilStack(){
           headerTitleStyle: {
             fontWeight: '500',
           },}}/>
+          
           <Stack.Screen 
           name="Items" 
           component={Items}
@@ -53,6 +55,19 @@ export default function ProfilStack(){
           component={Notifications}
           options={{ 
           title: 'Notofications', headerTitleAlign: 'center', 
+          headerStyle: {
+            backgroundColor: '#4898D3',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: '500',
+          },}}/>
+
+        <Stack.Screen 
+          name="EditProduct" 
+          component={EditProduct}
+          options={{ 
+          title: 'Modifier le produit', headerTitleAlign: 'center', 
           headerStyle: {
             backgroundColor: '#4898D3',
           },

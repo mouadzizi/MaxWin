@@ -48,7 +48,7 @@ return (
 
       
         <Tab.Screen name="Accueil" component={Drawer}/>
-        <Tab.Screen name="Discussions" component={StackChat} tabBarBadge='1'/>
+        <Tab.Screen name="Discussions" component={StackChat}/>
         <Tab.Screen name="Paramètres" component={SettingsStack} />
 
       </Tab.Navigator>

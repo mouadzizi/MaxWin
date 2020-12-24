@@ -24,16 +24,16 @@ export default function NavigationSections() {
 
             <TouchableOpacity
             style={styles.categorieItem}
-            onPress={()=> Alert.alert('Téléphones', 'Go to Téléphones categorie')}>
-            <SmartPhone/>
-            <Text style={styles.textStyle}>Téléphones</Text>
+            onPress={()=> Alert.alert('Appartements', 'Go to Appartements categorie')}>
+            <Appartement/>
+            <Text style={styles.textStyle}>Appartements</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
             style={styles.categorieItem}
-            onPress={()=> Alert.alert('Appartements', 'Go to Appartements categorie')}>
-            <Appartement/>
-            <Text style={styles.textStyle}>Appartements</Text>
+            onPress={()=> Alert.alert('Téléphones', 'Go to Téléphones categorie')}>
+            <SmartPhone/>
+            <Text style={styles.textStyle}>Téléphones</Text>
             </TouchableOpacity>
 
             <TouchableOpacity

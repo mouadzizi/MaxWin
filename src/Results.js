@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, FlatList, Button } from 'react-native';
+import { FlatList } from 'react-native';
 import { db } from './API/firebase';
 import Product from './components/Product'
 
@@ -224,10 +224,3 @@ export default function Results({ route, navigation }) {
     )
 }
 
-const styles = StyleSheet.create({
-    conatiner: {
-        flex: 1,
-        backgroundColor: '#bdc3c7',
-    }
-
-})

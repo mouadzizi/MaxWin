@@ -64,6 +64,7 @@ export default function messages({ route }) {
             {           loading ? <ProgressBar color='blue' indeterminate={true} visible={true} /> : null
             }
             <GiftedChat
+            placeholder="Tapper un message"
                 renderBubble = { props =>
                     <Bubble
                     {...props}
@@ -75,6 +76,7 @@ export default function messages({ route }) {
                     wrapperStyle={{
                       left: {
                         backgroundColor: '#F16E44',
+                        
                       },
                       right :{
                           backgroundColor : '#4898D3'
