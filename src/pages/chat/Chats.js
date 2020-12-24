@@ -35,13 +35,12 @@ export default function Chats({ navigation }) {
         })
 
         return () => {
-            _unsub()
+             _unsub()
         }
     }, []))
 
     React.useEffect(() => {
         //Retrieve the reciever
-
         return () => {
             setConversations([])
         }
@@ -56,11 +55,10 @@ export default function Chats({ navigation }) {
         <View
             style={{ backgroundColor: '#fff', flex: 1 }}>
             <FlatList
-                data={conversations}
+                data={conversations.sort((a,b)=>b.createdAt.toDate().getTime()-a.createdAt.toDate().getTime())}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) =>
                     <ChatIndicator
-                        time={item.createdAt.toDate().getTime()}
                         sellerAvatar={(uid != item.sender) ? item.user.avatar : item.contact.avatar}
                         click={() => navigation.navigate('Messages', { seller: (uid === item.sender) ? item.contact : item.user })}
                         lastMessage={item.text} sellerName={(uid === item.sender) ? item.contact.name : item.user.name} />

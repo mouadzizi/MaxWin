@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar } from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
+import * as Permissions from 'expo-permissions'
+import * as Notifications from 'expo-notifications'
 
 import * as Animatable from 'react-native-animatable';
 
@@ -12,8 +14,8 @@ import Product from '../../components/Product';
 import NavigationSections from '../../components/NavigationSections';
 
 export default function DashBoard({ navigation }) {
-	const [ ready, setReady ] = useState(false);
-	const [ posts, setPosts ] = useState([]);
+	const [ready, setReady] = useState(false);
+	const [posts, setPosts] = useState([]);
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -26,7 +28,30 @@ export default function DashBoard({ navigation }) {
 		}, [])
 	);
 
+	useEffect(() => {
+		registerForPushNotificationsAsync()
+		return () => {
 
+		}
+	}, [])
+
+	async function registerForPushNotificationsAsync() {
+		let token;
+
+		const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+		let finalStatus = existingStatus;
+		if (existingStatus !== 'granted') {
+			const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+			finalStatus = status;
+		}
+		if (finalStatus !== 'granted') {
+			alert('Failed to get push token for push notification!');
+			return;
+		}
+		token = (await Notifications.getExpoPushTokenAsync()).data;
+		console.log(token);
+
+	}
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
 
@@ -34,7 +59,7 @@ export default function DashBoard({ navigation }) {
 
 	//SearchBar Const
 
-	const [ searchQuery, setSearchQuery ] = useState('');
+	const [searchQuery, setSearchQuery] = useState('');
 	const onChangeSearch = (query) => setSearchQuery(query);
 	const action = () => {
 		navigation.navigate('ProductDetails');
@@ -42,7 +67,7 @@ export default function DashBoard({ navigation }) {
 	const fetchItems = async () => {
 		let postsA = [];
 		var ref = db.collection('posts');
-		const allPosts = await ref.orderBy('addDate','desc').get();
+		const allPosts = await ref.orderBy('addDate', 'desc').get();
 		allPosts.forEach((p) => {
 			postsA.push({
 				...p.data(),
@@ -53,8 +78,8 @@ export default function DashBoard({ navigation }) {
 	};
 	return (
 		<View>
-		
-		<StatusBar/>
+
+			<StatusBar />
 			<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
 				<Ionicons
 					onPress={() => navigation.openDrawer()}
@@ -115,56 +140,56 @@ export default function DashBoard({ navigation }) {
 				</TouchableOpacity>
 			</View>
 
-			
+
 			<View>
 
-			{/* Products Lists */}
-			{ready ? (
-				<View style={{ height: height_screen }}>
-					<FlatList
-					ListHeaderComponent={
-						<View style={{backgroundColor: '#fff', paddingBottom: 10}}>
+				{/* Products Lists */}
+				{ready ? (
+					<View style={{ height: height_screen }}>
+						<FlatList
+							ListHeaderComponent={
+								<View style={{ backgroundColor: '#fff', paddingBottom: 10 }}>
 
-						<View style={{flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 5, flex: 1}}> 
-						
-						<View style={{flex: 1}}>
-						<Text style={{color:'#4898D3', fontWeight: 'bold', alignSelf: 'flex-start'}}>Top catégories</Text>
-						</View>
-						
-						
-						<View style={{flex: 1}}>
-						
-						<MaterialCommunityIcons name="arrow-right" size={20} color="#4898D3" style={{alignSelf: 'flex-end'}} />
-						</View>
-						
-						</View>
-						
-						<NavigationSections/>
-						</View>
-						
-					}
-						data={posts}
-						renderItem={({ item }) => (
-							<Product
-								name={item.title}
-								owner={item.user.name}
-								price={item.price}
-								location={item.city}
-								img={item.urls[0]}
-								particulier={!item.user.accountType}
-								p1={item.laivraison}
-								p2={item.paiement}
-								p3={item.negociable}
-								p4={item.bonCondition}
-								click={() => navigation.navigate('ProductDetails', { id: item.key })}
-							/>
-						)}
-					/>
-				</View>
-			) : (
-				<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
-			)}
-			
+									<View style={{ flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 5, flex: 1 }}>
+
+										<View style={{ flex: 1 }}>
+											<Text style={{ color: '#4898D3', fontWeight: 'bold', alignSelf: 'flex-start' }}>Top catégories</Text>
+										</View>
+
+
+										<View style={{ flex: 1 }}>
+
+											<MaterialCommunityIcons name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
+										</View>
+
+									</View>
+
+									<NavigationSections />
+								</View>
+
+							}
+							data={posts}
+							renderItem={({ item }) => (
+								<Product
+									name={item.title}
+									owner={item.user.name}
+									price={item.price}
+									location={item.city}
+									img={item.urls[0]}
+									particulier={!item.user.accountType}
+									p1={item.laivraison}
+									p2={item.paiement}
+									p3={item.negociable}
+									p4={item.bonCondition}
+									click={() => navigation.navigate('ProductDetails', { id: item.key })}
+								/>
+							)}
+						/>
+					</View>
+				) : (
+						<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
+					)}
+
 			</View>
 		</View>
 	);
