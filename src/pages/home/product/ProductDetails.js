@@ -10,6 +10,8 @@ import { GlobalStyle } from '../../../style/GlobalStyle';
 import call from 'react-native-phone-call';
 import Swiper from 'react-native-swiper';
 
+import * as Animatble from 'react-native-animatable';
+
 // Components
 import ServicesDetails from '../../../components/ServicesDetails';
 import Description from '../../../components/DescriptionDetails';
@@ -82,7 +84,9 @@ export default function ProductDetails({ navigation, route }) {
 				showsVerticalScrollIndicator={false}
 				style={{flex: 1}}>
 					
-						<View style={[styles.swipercontainer, {width: _SlideWidth, height: _SlideHeight}]}>
+						<Animatble.View 
+						style={[styles.swipercontainer, {width: _SlideWidth, height: _SlideHeight}]}
+						animation="zoomIn">
 							<Swiper autoplay activeDotColor="#FF6347">
 								{post ? (
 									post.urls.map((img, index) => {
@@ -99,7 +103,7 @@ export default function ProductDetails({ navigation, route }) {
 									})
 								) : null}
 							</Swiper>
-						</View>
+						</Animatble.View>
 
 					<View style={GlobalStyle.infoContainer}>
 

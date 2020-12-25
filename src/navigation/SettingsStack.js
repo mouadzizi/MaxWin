@@ -27,7 +27,7 @@ export default function ProfilStack(){
           <Stack.Screen name="Profil" 
           component={Profil}
           options={{ 
-          title: 'Profil', headerTitleAlign: 'center', 
+          title: 'Mon Profil', headerTitleAlign: 'center', 
           headerStyle: {
             backgroundColor: '#4898D3',
           },
