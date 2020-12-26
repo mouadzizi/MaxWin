@@ -5,8 +5,6 @@ import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
-import * as Permissions from 'expo-permissions'
-import * as Notifications from 'expo-notifications'
 
 import * as Animatable from 'react-native-animatable';
 
@@ -29,29 +27,13 @@ export default function DashBoard({ navigation }) {
 	);
 
 	useEffect(() => {
-		registerForPushNotificationsAsync()
 		return () => {
 
 		}
 	}, [])
 
-	async function registerForPushNotificationsAsync() {
-		let token;
 
-		const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-		let finalStatus = existingStatus;
-		if (existingStatus !== 'granted') {
-			const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-			finalStatus = status;
-		}
-		if (finalStatus !== 'granted') {
-			alert('Failed to get push token for push notification!');
-			return;
-		}
-		token = (await Notifications.getExpoPushTokenAsync()).data;
-		console.log(token);
 
-	}
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
 
@@ -67,7 +49,7 @@ export default function DashBoard({ navigation }) {
 	const fetchItems = async () => {
 		let postsA = [];
 		var ref = db.collection('posts');
-		const allPosts = await ref.orderBy('addDate', 'desc').get();
+		const allPosts = await ref.orderBy('addDate', 'desc').limit(10).get();
 		allPosts.forEach((p) => {
 			postsA.push({
 				...p.data(),
@@ -157,9 +139,9 @@ export default function DashBoard({ navigation }) {
 										</View>
 
 
-										<View style={{ flex: 1 }}>
+										<View   style={{ flex: 1 }}>
 
-											<MaterialCommunityIcons name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
+											<MaterialCommunityIcons onPress={()=>scrollRef.scrollTo(0)} name="arrow-left" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
 										</View>
 
 									</View>

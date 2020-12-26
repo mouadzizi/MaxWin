@@ -7,11 +7,12 @@ import Appartement from '../icons/AppartementIcon';
 import ClothMen from '../icons/ManClothes';
 import ClothWomen from '../icons/WomenClothes';
 
-export default function NavigationSections() {
+export default function NavigationSections(props) {
+ 
     return (
-
         <ScrollView 
         horizontal={true}
+        ref={ref=> sRef=ref }
         showsHorizontalScrollIndicator={false}
         style={styles.container}>
 

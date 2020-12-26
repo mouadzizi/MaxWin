@@ -1,15 +1,13 @@
 import React from 'react'
 import { View } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
-import { GiftedChat,Bubble } from 'react-native-gifted-chat';
+import { GiftedChat,Bubble,Send } from 'react-native-gifted-chat';
 import { db, auth } from '../API/firebase';
 
 export default function messages({ route }) {
 
     const [messages, setMessages] = React.useState([]);
     const [loading, setLoading] = React.useState(false)
-
-
     const chatRef = db.collection('chats')
     const user = auth.currentUser
     const { seller } = route.params
@@ -21,7 +19,6 @@ export default function messages({ route }) {
             const firestoreMessages = querySnap
                 .docs
                 .map(( doc ) => {
-                    
                     const dbMessage = doc.data()
                     return { ...dbMessage, createdAt: dbMessage.createdAt.toDate() }
                 })
@@ -36,11 +33,13 @@ export default function messages({ route }) {
     async function sendMessage(messages) {
         db.collection('chats')
             .doc(chatId()).set({
-                senderUID: user.uid,
+                sender: user.displayName,
                 contact:seller,
-                lastMessage:messages[0].text
+                lastMessage:messages[0].text,
+                
             })
         const writes = messages.map((m) => {
+            console.log(m.createdAt);
             db.collection('chats')
                 .doc(chatId())
                 .collection('messages')
@@ -83,6 +82,9 @@ export default function messages({ route }) {
                       }
                     }}
                   />
+                }
+                renderSend={props=> 
+                <Send {...props} alwaysShowSend={true} label='Envoyer' textStyle={{color:'red'}} />
                 }
                 messages={messages
                 }

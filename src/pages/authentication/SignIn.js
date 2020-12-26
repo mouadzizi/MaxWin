@@ -7,7 +7,8 @@ import firebase from 'firebase';
 import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import * as Permissions from 'expo-permissions'
+import * as Notifications from 'expo-notifications'
 import * as Animatable from 'react-native-animatable';
 
 export default function SignIn({ navigation }) {
@@ -20,13 +21,14 @@ export default function SignIn({ navigation }) {
   const [gLoading, setGLoading] = useState(false)
   const [fbLoading, setFBLoading] = useState(false)
   const [showPass,setShowPass]=useState(true)
+  const [token,setToken]=useState('');
 
   const { width, height } = Dimensions.get('window');
   const height_image = height * 0.3;
   const width_image = width * 0.6;
 
   useEffect(() => {
-
+    registerForPushNotificationsAsync().then(token=>setToken(token))
     return () => {
 
     }
@@ -51,7 +53,6 @@ export default function SignIn({ navigation }) {
             break;
             default:
               setErrorMessage(err.code)
-      
         }
         setLoading(false)
         isErr = true;
@@ -180,11 +181,28 @@ export default function SignIn({ navigation }) {
       phone: '',
       location: '',
       aboutMe: '',
-      accountType:'Particulier'
+      accountType:'Particulier',
+      expoPushNotif:token
     })
 
   };
 
+  async function registerForPushNotificationsAsync() {
+		let token;
+		  const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+		  let finalStatus = existingStatus;
+		  if (existingStatus !== 'granted') {
+			const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+			finalStatus = status;
+		  }
+		  if (finalStatus !== 'granted') {
+			alert('Failed to get push token for push notification!');
+			return;
+		  }
+		  token = (await Notifications.getExpoPushTokenAsync()).data;
+		return token;
+    }
+    
   return (
     <View
     style={{flex: 1, backgroundColor: '#fff', padding: 20 }}>

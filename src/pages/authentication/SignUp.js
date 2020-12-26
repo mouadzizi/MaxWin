@@ -3,14 +3,18 @@ import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, S
 import { TextInput, Button } from 'react-native-paper'
 import { textTheme } from '../../style/GlobalStyle';
 import { auth, db } from '../../API/firebase';
-
-
+import * as Permissions from 'expo-permissions'
+import * as Notifications from 'expo-notifications'
 import * as Animatable from 'react-native-animatable';
 
 export default function SignUp({ navigation }) {
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
-
+    const { width, height } = Dimensions.get('window');
+    const height_image = height * 0.35;
+    const width_image = width * 0.55;
+    const [showPass, setShowPass] = useState(true)
+    const [token, setToken] = useState('')
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
@@ -18,11 +22,13 @@ export default function SignUp({ navigation }) {
     const [owner, setOwner] = useState(true)
 
 
+    React.useEffect(()=>{
+        registerForPushNotificationsAsync().then(expoToken=>setToken(expoToken))
+    },[])
 
     //firebase stuff
     const createUser = () => {
         setLoading(true)
-
         if (password === confPassword && password.match('')) {
             var errs = false
             auth.createUserWithEmailAndPassword(email, password)
@@ -58,7 +64,7 @@ export default function SignUp({ navigation }) {
                     }
                 })
         }
-        else{
+        else {
             setErrorMessage("Password didn't match")
             setLoading(false)
         }
@@ -74,27 +80,36 @@ export default function SignUp({ navigation }) {
             location: '',
             aboutMe: '',
             accountType: owner,
+            expoPushNotif: token
         })
 
     }
 
-    const { width, height } = Dimensions.get('window');
-    const height_image = height * 0.35;
-    const width_image = width * 0.55;
 
-    
-  const [showPass,setShowPass]=useState(true)
-
-
+    async function registerForPushNotificationsAsync() {
+        let token;
+        const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+        let finalStatus = existingStatus;
+        if (existingStatus !== 'granted') {
+            const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+            finalStatus = status;
+        }
+        if (finalStatus !== 'granted') {
+            alert('Failed to get push token for push notification!');
+            return;
+        }
+        token = (await Notifications.getExpoPushTokenAsync()).data;
+        return token;
+    }
     return (
 
-        <SafeAreaView style={{backgroundColor: '#fff', padding: 20 }} >
-            <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor: '#fff'}}>
+        <SafeAreaView style={{ backgroundColor: '#fff', padding: 20 }} >
+            <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: '#fff' }}>
 
-            <Animatable.View 
-            animation="fadeInUpBig"
-            duration={2000} 
-            style={{ height: height*0.20, backgroundColor: '#fff' }}>
+                <Animatable.View
+                    animation="fadeInUpBig"
+                    duration={2000}
+                    style={{ height: height * 0.20, backgroundColor: '#fff' }}>
 
                     <Image source={require('../../../assets/logo.png')}
                         style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
@@ -102,10 +117,10 @@ export default function SignUp({ navigation }) {
                     />
                 </Animatable.View>
 
-                <Animatable.View 
+                <Animatable.View
                     animation="fadeInUpBig"
-                    duration={2000} 
-                    style={{ height: height*0.75, marginTop: 20}}>
+                    duration={2000}
+                    style={{ height: height * 0.75, marginTop: 20 }}>
 
                     <Text
                         style={{ color: 'red', alignSelf: 'center', marginBottom: 8 }}>{errorMessage}</Text>
@@ -116,7 +131,7 @@ export default function SignUp({ navigation }) {
                         placeholder='Votre surnom'
                         theme={textTheme}
                         onChangeText={name => setUserName(name)}
-						right={ <TextInput.Icon name="face" color='#4898D3'/> }
+                        right={<TextInput.Icon name="face" color='#4898D3' />}
                     />
 
                     <TextInput
@@ -127,8 +142,8 @@ export default function SignUp({ navigation }) {
                         theme={textTheme}
                         style={{ marginTop: 10 }}
                         onChangeText={email => setEmail(email)}
-                        
-						right={ <TextInput.Icon name="email" color='#4898D3'/> }
+
+                        right={<TextInput.Icon name="email" color='#4898D3' />}
                     />
 
                     <View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10 }}>
@@ -149,7 +164,7 @@ export default function SignUp({ navigation }) {
                         style={{ marginTop: 10 }}
                         secureTextEntry={showPass}
                         onChangeText={password => setPassword(password)}
-						right={<TextInput.Icon name={showPass? 'eye-off':'eye'} color='#4898D3'  onPress={()=>setShowPass(!showPass)} size={30} />}
+                        right={<TextInput.Icon name={showPass ? 'eye-off' : 'eye'} color='#4898D3' onPress={() => setShowPass(!showPass)} size={30} />}
                     />
 
                     <TextInput
@@ -161,7 +176,7 @@ export default function SignUp({ navigation }) {
                         theme={textTheme}
                         style={{ marginTop: 10 }}
                         onChangeText={text => setConfPassword(text)}
-						right={ <TextInput.Icon name="lock" color='#4898D3'/> }
+                        right={<TextInput.Icon name="lock" color='#4898D3' />}
                     />
 
                     <Button

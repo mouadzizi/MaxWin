@@ -291,7 +291,8 @@ export default function AddProduct({ route, navigation }) {
 				_id: user.uid,
 				accountType: user.accountType,
 				name: user.name,
-				avatar:auth.currentUser.photoURL
+				avatar:auth.currentUser.photoURL,
+				expoPushNotif:user.expoPushNotif,
 			}
 		};
 

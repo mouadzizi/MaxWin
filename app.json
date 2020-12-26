@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "MaxWin v2",
+    "name": "MaxWin v3",
     "slug": "maxwin-v2",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -34,10 +34,8 @@
       "versionCode": 1,
       "googleServicesFile": "./src/API/google-services.json",
       "enableDangerousExperimentalLeanBuilds": true,
-      "permissions": [
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ]
+      "useNextNotificationsApi": true
+
     },
     "description": ""
   }
