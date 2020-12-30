@@ -7,9 +7,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
 
 import * as Animatable from 'react-native-animatable';
-
 import Product from '../../components/Product';
 import NavigationSections from '../../components/NavigationSections';
+import {fitler} from './fiterData'
 
 export default function DashBoard({ navigation }) {
 	const [ready, setReady] = useState(false);
@@ -45,11 +45,11 @@ export default function DashBoard({ navigation }) {
 	const onChangeSearch = (query) => setSearchQuery(query);
 	const action = () => {
 		navigation.navigate('ProductDetails');
-	};
+	}; 
 	const fetchItems = async () => {
 		let postsA = [];
 		var ref = db.collection('posts');
-		const allPosts = await ref.orderBy('addDate', 'desc').limit(10).get();
+		const allPosts = await ref.orderBy('addDate', 'desc').get();
 		allPosts.forEach((p) => {
 			postsA.push({
 				...p.data(),
@@ -141,12 +141,24 @@ export default function DashBoard({ navigation }) {
 
 										<View   style={{ flex: 1 }}>
 
-											<MaterialCommunityIcons onPress={()=>scrollRef.scrollTo(0)} name="arrow-left" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
+											<MaterialCommunityIcons onPress={()=>{
+												setReady(false)
+												fetchItems().then((p) => {
+													setPosts(p);
+													setReady(true);
+												})
+											}} name="reload" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
 										</View>
 
 									</View>
 
-									<NavigationSections />
+									<NavigationSections onPress={(category)=>{
+										setReady(false)
+										fitler(category).then(data=>{
+											setPosts(data)
+											setReady(true)
+										})
+									}} />
 								</View>
 
 							}
