@@ -96,7 +96,8 @@ export default function DashBoard({ navigation }) {
 					<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />
 
 					<Text style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}>
-						Ajouter Produit
+						
+					Publier une annonce
 					</Text>
 				</TouchableOpacity>
 

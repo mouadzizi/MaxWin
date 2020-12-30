@@ -427,7 +427,6 @@ export default function AddProduct({ route, navigation }) {
 								<Picker.Item label="Agadir" value="Agadir" />
 								<Picker.Item label="Al Hoceima" value="Al hoceima" />
 								<Picker.Item label="Asilah" value="Asilah" />
-								<Picker.Item label="Asfi" value="Asfi" />
 								<Picker.Item label="Azrou" value="Azrou" />
 								<Picker.Item label="Ben Guerir" value="Ben Guerir" />
 								<Picker.Item label="Ben Slimane" value="Ben Slimane" />
