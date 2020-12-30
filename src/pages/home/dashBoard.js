@@ -96,7 +96,8 @@ export default function DashBoard({ navigation }) {
 					<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />
 
 					<Text style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}>
-						Ajouter Produit
+						
+					Publier une annonce
 					</Text>
 				</TouchableOpacity>
 
@@ -141,7 +142,7 @@ export default function DashBoard({ navigation }) {
 
 										<View   style={{ flex: 1 }}>
 
-											<MaterialCommunityIcons onPress={()=>scrollRef.scrollTo(0)} name="arrow-left" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
+											<MaterialCommunityIcons name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
 										</View>
 
 									</View>

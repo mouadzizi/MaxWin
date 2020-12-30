@@ -24,6 +24,25 @@ export default function EditProductForm(props) {
             theme={textTheme}
             style={{marginBottom: 15}}
             />
+        
+        <TextInput
+            label='Kilometrage'
+            mode='outlined'
+            value={props.Kilometrage}
+            keyboardType="numeric"
+            theme={textTheme}
+            style={{marginBottom: 15}}
+            />
+
+        <TextInput
+            label='Année de fabrication'
+            mode='outlined'
+            value={props.yearFab}
+            keyboardType="numeric"
+            theme={textTheme}
+            style={{marginBottom: 15}}
+            />
+        
 
         <TextInput
             label='Description de votre annonce'

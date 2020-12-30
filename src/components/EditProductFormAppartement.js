@@ -24,6 +24,15 @@ export default function EditProductForm(props) {
             theme={textTheme}
             style={{marginBottom: 15}}
             />
+        
+        <TextInput
+            label='Superficielle'
+            mode='outlined'
+            value={props.space}
+            keyboardType="numeric"
+            theme={textTheme}
+            style={{marginBottom: 15}}
+            />
 
         <TextInput
             label='Description de votre annonce'
