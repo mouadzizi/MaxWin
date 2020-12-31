@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Image, Text, Alert, StatusBar} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import {TextInput} from 'react-native-paper'
+import {TextInput} from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
-import {GlobalStyle, textTheme} from '../../style/GlobalStyle'
+import {GlobalStyle, textTheme} from '../../style/GlobalStyle';
 
 export default function ContactUs({navigation}) {
     return (
