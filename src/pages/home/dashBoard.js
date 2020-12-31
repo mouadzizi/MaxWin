@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar } from 'react-native';
-import { Searchbar, ProgressBar } from 'react-native-paper';
+import { Searchbar, ProgressBar, Button } from 'react-native-paper';
 import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
 
 import * as Animatable from 'react-native-animatable';
-
 import Product from '../../components/Product';
 import NavigationSections from '../../components/NavigationSections';
+import {fitler} from './fiterData'
+import { set } from 'react-native-reanimated';
 
 export default function DashBoard({ navigation }) {
 	const [ready, setReady] = useState(false);
 	const [posts, setPosts] = useState([]);
+	const [qte,setQte]=useState(10)
+	const [loading,setLoading]=useState(false)
 
 	useFocusEffect(
 		React.useCallback(() => {
+			setQte(10)
 			InteractionManager.runAfterInteractions(async () => {
-				await fetchItems().then((p) => {
+				await fetchItems(qte).then((p) => {
+					console.log(qte);
 					setPosts(p);
 					setReady(true);
 				});
@@ -45,11 +50,11 @@ export default function DashBoard({ navigation }) {
 	const onChangeSearch = (query) => setSearchQuery(query);
 	const action = () => {
 		navigation.navigate('ProductDetails');
-	};
-	const fetchItems = async () => {
+	}; 
+	const fetchItems = async (qte) => {
 		let postsA = [];
 		var ref = db.collection('posts');
-		const allPosts = await ref.orderBy('addDate', 'desc').limit(10).get();
+		const allPosts = await ref.orderBy('addDate', 'desc').limit(qte).get();
 		allPosts.forEach((p) => {
 			postsA.push({
 				...p.data(),
@@ -122,14 +127,23 @@ export default function DashBoard({ navigation }) {
 					</Text>
 				</TouchableOpacity>
 			</View>
-
-
 			<View>
 
 				{/* Products Lists */}
 				{ready ? (
 					<View style={{ height: height_screen }}>
 						<FlatList
+						style={{flexGrow:0}}
+						ListFooterComponent={<Button loading={loading} style={{
+							
+						}} mode='contained' onPress={()=>{
+							setLoading(true)
+							setQte(qte+10)
+							fetchItems(qte).then(p=>{
+								setPosts(p)
+								setLoading(false)
+							})
+						}} > Load More </Button>}
 							ListHeaderComponent={
 								<View style={{ backgroundColor: '#fff', paddingBottom: 10 }}>
 
@@ -140,14 +154,26 @@ export default function DashBoard({ navigation }) {
 										</View>
 
 
-										<View   style={{ flex: 1 }}>
+										<View style={{ flex: 1 }}>
 
-											<MaterialCommunityIcons name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
+											<MaterialCommunityIcons onPress={()=>{
+												setReady(false)
+												fetchItems().then((p) => {
+													setPosts(p);
+													setReady(true);
+												})
+											}} name="reload" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
 										</View>
 
 									</View>
 
-									<NavigationSections />
+									<NavigationSections onPress={(category)=>{
+										setReady(false)
+										fitler(category).then(data=>{
+											setPosts(data)
+											setReady(true)
+										})
+									}} />
 								</View>
 
 							}

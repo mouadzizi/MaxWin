@@ -34,12 +34,12 @@ export default function messages({ route }) {
         db.collection('chats')
             .doc(chatId()).set({
                 sender: user.displayName,
+                senderUID:user.uid,
                 contact:seller,
                 lastMessage:messages[0].text,
                 
             })
         const writes = messages.map((m) => {
-            console.log(m.createdAt);
             db.collection('chats')
                 .doc(chatId())
                 .collection('messages')

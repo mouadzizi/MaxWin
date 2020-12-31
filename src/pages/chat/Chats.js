@@ -3,11 +3,9 @@ import { FlatList, View, Text, Image, Dimensions } from 'react-native';
 import ChatIndicator from '../../components/ChatIndicator';
 import { useFocusEffect } from '@react-navigation/native'
 import { db, auth } from '../../API/firebase'
-import { app } from 'firebase';
 
 export default function Chats({ navigation }) {
     const [conversations, setConversations] = React.useState([])
-
     const { uid } = auth.currentUser
 
     const { width, height } = Dimensions.get('window');
@@ -17,6 +15,7 @@ export default function Chats({ navigation }) {
     useFocusEffect(React.useCallback(() => {
         let items = []
         const _unsub = db.collection('chats').onSnapshot(querySnapShot => {
+        
             querySnapShot.docs.forEach(doc => {
                 if (doc.id.search(uid) >= 0) {
                     doc.ref.collection('messages').orderBy('createdAt', 'desc').limit(1).get().then(snap => {
@@ -35,7 +34,7 @@ export default function Chats({ navigation }) {
         })
 
         return () => {
-             _unsub()
+            // _unsub()
         }
     }, []))
 
@@ -55,7 +54,7 @@ export default function Chats({ navigation }) {
         <View
             style={{ backgroundColor: '#fff', flex: 1 }}>
             <FlatList
-                data={conversations.sort((a,b)=>b.createdAt.toDate().getTime()-a.createdAt.toDate().getTime())}
+                data={conversations.sort((a, b) => b.createdAt.toDate().getTime() - a.createdAt.toDate().getTime())}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) =>
                     <ChatIndicator

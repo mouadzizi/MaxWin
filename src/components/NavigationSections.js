@@ -12,41 +12,45 @@ export default function NavigationSections(props) {
     return (
         <ScrollView 
         horizontal={true}
-        ref={ref=> sRef=ref }
         showsHorizontalScrollIndicator={false}
         style={styles.container}>
 
             <TouchableOpacity
+            delayPressIn={0}
             style={styles.categorieItem}
-            onPress={()=> Alert.alert('Voiture', 'Go to voiture categorie')}>
+            onPress={()=>props.onPress('Voitures')}>
             <CarCategorie/>
             <Text style={styles.textStyle}>Voiture</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
+            delayPressIn={0}
             style={styles.categorieItem}
-            onPress={()=> Alert.alert('Appartements', 'Go to Appartements categorie')}>
+            onPress={()=> props.onPress('Appartements')}>
             <Appartement/>
             <Text style={styles.textStyle}>Appartements</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
+            delayPressIn={0}
             style={styles.categorieItem}
-            onPress={()=> Alert.alert('Téléphones', 'Go to Téléphones categorie')}>
+            onPress={()=> props.onPress('Téléphones')}>
             <SmartPhone/>
             <Text style={styles.textStyle}>Téléphones</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
+            delayPressIn={0}
             style={styles.categorieItem}
-            onPress={()=> Alert.alert('Vêtment', 'Go to Homme vêtment  categorie')}>
+            onPress={()=> props.onPress('Vêtements')}>
             <ClothMen/>
             <Text style={styles.textStyle}>Vêtment Homme</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
+            delayPressIn={0}
             style={styles.categorieItem}
-            onPress={()=> Alert.alert('Vêtment', 'Go to Femme vêtment categorie')}>
+            onPress={()=> props.onPress('Vêtements')}>
             <ClothWomen/>
             <Text style={styles.textStyle}>Vêtment Femme</Text>
             </TouchableOpacity>
