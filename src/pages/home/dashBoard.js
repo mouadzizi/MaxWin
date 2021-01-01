@@ -5,12 +5,9 @@ import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
-
-import * as Animatable from 'react-native-animatable';
 import Product from '../../components/Product';
 import NavigationSections from '../../components/NavigationSections';
 import {fitler} from './fiterData'
-import { set } from 'react-native-reanimated';
 
 export default function DashBoard({ navigation }) {
 	const [ready, setReady] = useState(false);
@@ -174,7 +171,7 @@ export default function DashBoard({ navigation }) {
 											setReady(true)
 										})
 									}} />
-								</View>
+								</View> 
 
 							}
 							data={posts}

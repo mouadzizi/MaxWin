@@ -47,8 +47,8 @@ export const DATA = [
 	{
 		title: 'ESPACE HOMMES',
 		data: [
-			'Vêtements',
-			'Chaussures',
+			'Vêtements Homme',
+			'Chaussures Homme',
 			'Montres et accessoires',
 			'Produits de bien être',
 		]
@@ -57,8 +57,8 @@ export const DATA = [
 	{
 		title: 'ESPACE FEMMES',
 		data: [
-			'Vêtements',
-			'Chaussures',
+			'Vêtements Femmes',
+			'Chaussures Femmes',
 			'Montres, Bijoux et accessoires',
 			'Maquillage et produits de bien être',
 		]
