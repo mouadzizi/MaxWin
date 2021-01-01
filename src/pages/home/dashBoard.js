@@ -129,18 +129,10 @@ export default function DashBoard({ navigation }) {
 				{/* Products Lists */}
 				{ready ? (
 					<View style={{ height: height_screen }}>
-						<FlatList
-						style={{flexGrow:0}}
-						ListFooterComponent={<Button loading={loading} style={{
-							
-						}} mode='contained' onPress={()=>{
-							setLoading(true)
-							setQte(qte+10)
-							fetchItems(qte).then(p=>{
-								setPosts(p)
-								setLoading(false)
-							})
-						}} > Load More </Button>}
+
+
+						<FlatList style={{flexGrow:0}}
+
 							ListHeaderComponent={
 								<View style={{ backgroundColor: '#fff', paddingBottom: 10 }}>
 
@@ -153,13 +145,8 @@ export default function DashBoard({ navigation }) {
 
 										<View style={{ flex: 1 }}>
 
-											<MaterialCommunityIcons onPress={()=>{
-												setReady(false)
-												fetchItems().then((p) => {
-													setPosts(p);
-													setReady(true);
-												})
-											}} name="reload" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
+											<MaterialCommunityIcons
+											name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
 										</View>
 
 									</View>
@@ -190,8 +177,22 @@ export default function DashBoard({ navigation }) {
 									click={() => navigation.navigate('ProductDetails', { id: item.key })}
 								/>
 							)}
-						/>
-					</View>
+
+						ListFooterComponent={
+						<Button loading={loading} 
+						style={{ borderRadius: 15, width: '95%', backgroundColor: '#4898D3', alignSelf: 'center' }} 
+							mode='contained' onPress={()=>{
+							
+							setLoading(true)
+							setQte(qte+10)
+							fetchItems(qte).then(p=>{
+							setPosts(p)
+							setLoading(false)
+							})
+
+							}} > charger plus </Button>}
+					/>
+				</View>
 				) : (
 						<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
 					)}

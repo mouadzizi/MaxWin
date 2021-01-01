@@ -27,12 +27,6 @@ export default function ProductDetails({ navigation, route }) {
 	const _SlideHeight = Dimensions.get('window').height * 0.42;
 	const _SlideWidth = Dimensions.get('window').width * 0.95;
 
-	 
-	const args = {
-	number: '+212626617611', 
-	prompt: false,
-	}
-
 	useFocusEffect(
 		React.useCallback(() => {
 			const { id } = route.params;
@@ -73,6 +67,13 @@ export default function ProductDetails({ navigation, route }) {
 					alert(error.message);
 				  }
 				}
+
+					 
+	const args = {
+		number: "0621212121"
+	}
+
+	console.log(args.hey)
 
 	return (
 		
@@ -135,7 +136,7 @@ export default function ProductDetails({ navigation, route }) {
 				<View style={styles.bouttonContainer}>
 
 						{/* Button Call */}
-						{post.phone ?
+						{(post.phone && post.user.phoneNumber )?
 
 							<TouchableOpacity
 							delayPressIn={0}

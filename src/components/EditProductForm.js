@@ -33,7 +33,7 @@ export default function EditProductForm(props) {
 
         {props.Kilometrage ?
             <TextInput
-            label='Prix de votre annonce'
+            label='Kilometrage de votre VIHICULE'
             mode='outlined'
             value={props.Kilometrage}
             keyboardType="numeric"
@@ -45,7 +45,7 @@ export default function EditProductForm(props) {
 
         {props.yearFab ?
             <TextInput
-            label='Prix de votre annonce'
+            label='Année de Fabrication'
             mode='outlined'
             value={props.yearFab}
             keyboardType="numeric"
@@ -57,7 +57,7 @@ export default function EditProductForm(props) {
 
         {props.Superficielle ?
             <TextInput
-            label='Prix de votre annonce'
+            label='Supperrficielle'
             mode='outlined'
             value={props.Superficielle}
             keyboardType="numeric"

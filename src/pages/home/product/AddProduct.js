@@ -289,6 +289,7 @@ export default function AddProduct({ route, navigation }) {
 			category: route.params.parent,
 			user: {
 				_id: user.uid,
+				phoneNumber: user.phone,
 				accountType: user.accountType,
 				name: user.name,
 				avatar:auth.currentUser.photoURL,

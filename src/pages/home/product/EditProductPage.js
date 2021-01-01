@@ -8,7 +8,7 @@ export default function EditProductPage() {
         <ScrollView style={styles.container}>
         <Text style={styles.title}>vous pouvez modifier votre annonce ici</Text>
  
-            <EditForm title="titre de annonce" price="250000" Kilometrage="12000" yearFab="2005" description="petite dicription ur le produit"/>
+            <EditForm title="titre de annonce" price="250000" Kilometrage="12000" yearFab="2005" Superficielle="500" description="petite dicription ur le produit"/>
             <Button
 				mode='contained'
 				uppercase={false}
