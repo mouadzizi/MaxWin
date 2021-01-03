@@ -60,6 +60,9 @@ export default function SignIn({ navigation }) {
       .then(() => {
         if (auth.currentUser && !isErr) {
           setLoading(false)
+          db.collection('users').doc(auth.currentUser.uid).update({
+            expoPushNotif:token
+          })
           navigation.replace('HomeTabs')
         }
       })
@@ -94,7 +97,12 @@ export default function SignIn({ navigation }) {
         // Sign in with credential from the Google user.
         auth.signInAndRetrieveDataWithCredential(credential)
           .then(() => {
-            saveUserInfo(auth.currentUser).then(() => navigation.replace('HomeTabs'))
+            saveUserInfo(auth.currentUser).then(async() =>{
+              await db.collection('users').doc(auth.currentUser.uid).update({
+                expoPushNotif:token
+              })
+              navigation.replace('HomeTabs')
+          })
             setGLoading(false)
           })
           .catch((error) => {
@@ -152,7 +160,12 @@ export default function SignIn({ navigation }) {
                 photoURL: response.url
               })
             })
-            saveUserInfo(auth.currentUser).then(() => navigation.replace('HomeTabs'))
+            saveUserInfo(auth.currentUser).then(async() => {
+              await db.collection('users').doc(auth.currentUser.uid).update({
+                expoPushNotif:token
+              })
+              navigation.replace('HomeTabs')
+          })
           });
 
       }
@@ -184,9 +197,9 @@ export default function SignIn({ navigation }) {
       accountType:'Particulier',
       expoPushNotif:token
     })
-
   };
 
+  
   async function registerForPushNotificationsAsync() {
 		let token;
 		  const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
