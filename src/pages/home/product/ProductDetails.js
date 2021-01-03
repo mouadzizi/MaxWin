@@ -23,9 +23,13 @@ export default function ProductDetails({ navigation, route }) {
 
 	const [ canRender, setRender ] = React.useState();
 	const [ post, setPost ] = React.useState('');
+	const [ args, setArgs ] = React.useState({
+		number:''
+	});
 
 	const _SlideHeight = Dimensions.get('window').height * 0.42;
 	const _SlideWidth = Dimensions.get('window').width * 0.95;
+	
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -33,6 +37,7 @@ export default function ProductDetails({ navigation, route }) {
 			InteractionManager.runAfterInteractions(async () => {
 				await db.collection('posts').doc(id).get().then((p) => {
 					setPost(p.data());
+					setArgs({number:p.data().user.phoneNumber})
 					setRender(true);
 				});
 				
@@ -41,6 +46,7 @@ export default function ProductDetails({ navigation, route }) {
 			return () => {}
 		}, [])
 	);
+
 
 		const handleNavigation = (seller)=>{
 			
@@ -67,13 +73,6 @@ export default function ProductDetails({ navigation, route }) {
 					alert(error.message);
 				  }
 				}
-
-					 
-	const args = {
-		number: "0621212121"
-	}
-
-	console.log(args.hey)
 
 	return (
 		
@@ -136,20 +135,24 @@ export default function ProductDetails({ navigation, route }) {
 				<View style={styles.bouttonContainer}>
 
 						{/* Button Call */}
-						{(post.phone && post.user.phoneNumber )?
-
-							<TouchableOpacity
+						{
+						(post.Telephone && post.user.phoneNumber)?
+						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => call(args).catch(console.error)}
+							onPress={() => 
+							 call(args).catch((err)=>alert(err.message))
+								
+							}
 							style={styles.buttonCall}
 							>
 								<View style={{flexDirection: 'row'}}>
 									<Feather name="smartphone" size={25} color="#fff" />
 									<Text style={styles.btnText}>Appeler l'annonceur</Text>
 								</View>
-							</TouchableOpacity>
-						: null
+							</TouchableOpacity> : null
 						}
+						 
+						
 
 
 						{/* Button Message */}
