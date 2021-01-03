@@ -1,29 +1,49 @@
 import React from 'react'
 import { ScrollView, Text, StyleSheet, Alert } from 'react-native'
-import EditForm from '../../../components/EditProductForm'
-import {Button} from 'react-native-paper';
+import VoituresEdit from '../../../components/Edits/Vehicules/Voitures'
+import MotoVelo from '../../../components/Edits/Vehicules/Moto_velos'
+import Appartement from '../../../components/Edits/Immobilier/Appartement'
+import HouseDeco from '../../../components/Edits/Maison et Deco/EditeForm';
+import Phone from '../../../components/Edits/Informatique/Phone'
+import Laptop from '../../../components/Edits/Informatique/Laptop';
+import Service from '../../../components/Edits/Services/Services'
+import EditeForm from '../../../components/Edits/Maison et Deco/EditeForm'
 
-export default function EditProductPage() {
+
+export default function EditProductPage({ route }) {
+    const { item_id, cat } = route.params
+    React.useEffect(() => {
+        console.log(cat);
+        return () => {
+
+        }
+    }, [])
+    const renderComponent = ()=>{
+        switch (cat) {
+            case 'Voitures' || 'Location de Voiture':
+                return  <VoituresEdit id={item_id} /> 
+            case  'Motos & vélos' || 'Véhicules professionnels':
+                return   <MotoVelo id={item_id} />
+            case 'Appartements' || 'Maisons & Villas' || 'Terrains' || 'Commerces & Bureaux' || 'Location courte durée (vacances)' || 'Location long durée':
+                return   <Appartement id={item_id} />
+            case 'Téléphones' || 'Tablettes':
+                return   <Phone id={item_id}/>
+            case 'Services et travaux professionnels' :
+                return  <Service id={item_id}/>
+            default : return <EditeForm id={item_id}/>
+                
+        }
+    }
     return (
         <ScrollView style={styles.container}>
-        <Text style={styles.title}>vous pouvez modifier votre annonce ici</Text>
- 
-            <EditForm title="titre de annonce" price="250000" Kilometrage="12000" yearFab="2005" Superficielle="500" description="petite dicription ur le produit"/>
-            <Button
-				mode='contained'
-				uppercase={false}
-				onPress={() => Alert.alert('update')}
-            	color='#4898D3'
-				dark={true}>
-			Valider le changement
-			</Button>
-
+            <Text style={styles.title}>vous pouvez modifier votre annonce ici</Text>
+            {renderComponent()}
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
-    container : {
+    container: {
         paddingHorizontal: 20,
         backgroundColor: '#fff'
     },
@@ -34,7 +54,7 @@ const styles = StyleSheet.create({
         color: '#453254',
         textAlign: 'center'
     },
-    Buttontyle: { 
+    Buttontyle: {
         alignSelf: 'center',
         marginVertical: 20,
         width: '100%',
@@ -42,5 +62,5 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginBottom: 30
     },
-							
+
 });

@@ -4,6 +4,7 @@ import { TextInput } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
+import { useFocusEffect } from '@react-navigation/native'
 
 export default function Filtre({ navigation }) {
 
@@ -12,7 +13,7 @@ export default function Filtre({ navigation }) {
 
 	//filter variables Standard 
 	const [city, setCity] = useState('Toutes les villes');
-	const [priceMax, setPriceMax] = useState(0);
+	const [priceMax, setPriceMax] = useState(Infinity);
 	const [priceMin, setPriceMin] = useState(0);
 
 	//filter variables Voiture
@@ -53,8 +54,8 @@ export default function Filtre({ navigation }) {
 		var filterOptions = {
 			selectedCategory,
 			superCategory,
-			anneeMax:anneeMax? anneeMax : Infinity,
-			anneeMin:anneeMin? anneeMin :0,
+			anneeMax: anneeMax ? anneeMax : Infinity,
+			anneeMin: anneeMin ? anneeMin : 0,
 			etat,
 			city,
 			priceMin: priceMin ? priceMin : 0,
@@ -70,7 +71,7 @@ export default function Filtre({ navigation }) {
 		navigation.navigate('results', { filterOptions })
 	}
 
-	const choiseAction = (item,title) => {
+	const choiseAction = (item, title) => {
 		setSelectedCategory(item)
 		setSuperCategory(title)
 		setTittreModal(item)
@@ -169,7 +170,7 @@ export default function Filtre({ navigation }) {
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
 
-						<Picker.Item label="Toutes les villes" value="Toutes les villes" />
+								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
 								<Picker.Item label="Agadir" value="Agadir" />
 								<Picker.Item label="Al Hoceima" value="Al hoceima" />
 								<Picker.Item label="Asilah" value="Asilah" />
@@ -258,7 +259,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Neuf et Utilisé" value="" />
+										<Picker.Item label="Neuf et Utilisé" value="Neuf/Utilisé" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
@@ -317,7 +318,7 @@ export default function Filtre({ navigation }) {
 										mode="outlined"
 										placeholder="1996"
 										theme={textTheme}
-										onChangeText={(e)=>setAnneeMin(parseInt(e))}
+										onChangeText={(e) => setAnneeMin(parseInt(e))}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
 									/>
@@ -327,7 +328,7 @@ export default function Filtre({ navigation }) {
 										mode="outlined"
 										placeholder="2020"
 										theme={textTheme}
-										onChangeText={(e)=>setAnneeMax(parseInt(e))}
+										onChangeText={(e) => setAnneeMax(parseInt(e))}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
 									/>
@@ -359,7 +360,7 @@ export default function Filtre({ navigation }) {
 										onValueChange={(itemValue, itemIndex) => setTransaction(itemValue)}
 									>
 										<Picker.Item label="toutes les transactions" value="*" />
-										<Picker.Item label="Mannuel " value="Mannuel" />
+										<Picker.Item label="Manuelle " value="Manuelle" />
 										<Picker.Item label="Automatique" value="Automatique" />
 									</Picker>
 								</View>
@@ -379,7 +380,7 @@ export default function Filtre({ navigation }) {
 										theme={textTheme}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
-										onChangeText={(e)=>setSuperficieMin(parseInt(e))}
+										onChangeText={(e) => setSuperficieMin(parseInt(e))}
 									/>
 
 									<TextInput
@@ -389,7 +390,7 @@ export default function Filtre({ navigation }) {
 										theme={textTheme}
 										keyboardType="numeric"
 										style={{ width: '45%' }}
-										onChangeText={(e)=>setSuperficieMax(parseInt(e))}
+										onChangeText={(e) => setSuperficieMax(parseInt(e))}
 									/>
 								</View>
 
@@ -409,7 +410,7 @@ export default function Filtre({ navigation }) {
 										onValueChange={(itemValue, itemIndex) => setMarquePhone(itemValue)}
 									>
 										<Picker.Item label="Choissisez votre marque" value="*" />
-										
+
 										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
 										<Picker.Item label="IPHONE" value="IPHONE" />
 										<Picker.Item label="Xiaomi" value="Xiaomi" />

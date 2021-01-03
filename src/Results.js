@@ -46,20 +46,31 @@ export default function Results({ route, navigation }) {
             city, etat, marqueVoiture,
             carburant, transtaction, anneeMax,
             anneeMin, puissance } = filterOptions
+        
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
+
         //filter by city
         if (city !='Toutes les villes') {
             postsRef = postsRef.where('city', '==', city)
         }
+
         //filter by condition
         if (etat != 'neuf/Utilisé') {
             postsRef = postsRef.where('etat', '==', etat)
         }
+
+
         //filter by brand 
-        if (marqueVoiture != 'tt') {
+        if (marqueVoiture !='tt') {
             postsRef = postsRef.where('marqueVoiture', '==', marqueVoiture)
         }
+        postsRef.get().then(snap=>{
+            snap.docs.forEach(d=>{
+                console.log(d.data().title);
+            })
+        })
+
         //filter by fuel
         if (carburant != '*') {
             postsRef = postsRef.where('carburant', '==', filterOptions.carburant)
@@ -67,13 +78,11 @@ export default function Results({ route, navigation }) {
 
         //filter by Transaction 
         if (transtaction != '*') {
-            postsRef = postsRef.where('transtaction', '==', filterOptions.transtaction)
+            postsRef = postsRef.where('transtaction', '==',transtaction)
 
         }
-        //fiter by year
-        //postsRef=postsRef.where('fabrication','>=',anneeMin).where('fabrication','<=',anneeMax)
 
-        else if (puissance == '+10ch') postsRef = postsRef.where('puissance', '==', puissance)
+        // else if (puissance == '+10ch') postsRef = postsRef.where('puissance', '==', puissance)
 
 
         //fiter by price
@@ -85,7 +94,7 @@ export default function Results({ route, navigation }) {
             .filter(doc => doc.data().fabrication >= anneeMin)
             .filter(doc => doc.data().fabrication <= anneeMax)
             .forEach(e => {
-                console.log(e.data().fabrication);
+                console.log(e.data().title);
                 items.push({
                     ...e.data(),
                     key: e.id
@@ -93,6 +102,7 @@ export default function Results({ route, navigation }) {
             })
 
         setResults(items)
+       
 
     }
     const immobilierFilter = async (category) => {
@@ -201,6 +211,9 @@ export default function Results({ route, navigation }) {
             })
         })
         setResults(items)
+    }
+    const clothFilter=async()=>{
+
     }
     return (
         <FlatList

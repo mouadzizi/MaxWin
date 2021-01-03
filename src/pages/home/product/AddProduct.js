@@ -126,6 +126,7 @@ export default function AddProduct({ route, navigation }) {
 
 	useFocusEffect(
 		React.useCallback(() => {
+			console.log(route.params.parent);
 			InteractionManager.runAfterInteractions(async () => {
 				await getPhotos().then((obj) => {
 					let imgs = JSON.parse(obj);

@@ -32,7 +32,8 @@ export default function Items({ navigation }) {
 						owner: s.data().user.owner,
 						city: s.data().city,
 						key: s.id,
-						pics: s.data().urls
+						pics: s.data().urls,
+						cat:s.data().category.item
 					});
 				});
 				setRefresh(false);
@@ -68,7 +69,7 @@ export default function Items({ navigation }) {
 										fetchItems();
 									})}
 								goEdit={() =>
-									navigation.navigate('EditProduct')
+									navigation.navigate('EditProduct',{item_id:item.key,cat:item.cat})
 								}
 								item={item}
 							/>
