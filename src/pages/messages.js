@@ -15,7 +15,7 @@ export default function messages({ route }) {
 
     React.useEffect(() => {
         setLoading(true)
-        var unsub = chatRef.doc(chatId()).collection('messages').orderBy('createdAt','desc').onSnapshot((querySnap) => {
+        var unsub = chatRef.doc(chatId()).collection('messages').orderBy('serverTime','desc').onSnapshot((querySnap) => {
             setMessages([])
             const firestoreMessages = querySnap
                 .docs
