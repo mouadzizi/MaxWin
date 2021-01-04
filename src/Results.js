@@ -2,16 +2,19 @@ import React from 'react'
 import { FlatList } from 'react-native';
 import { db } from './API/firebase';
 import Product from './components/Product'
+import { ProgressBar } from 'react-native-paper'
+import { View } from 'react-native-animatable';
 
 
 
 export default function Results({ route, navigation }) {
     const [aResults, setResults] = React.useState([]);
+    const [ready, setReady] = React.useState(false)
 
     const { filterOptions } = route.params
     React.useEffect(() => {
         const { selectedCategory, superCategory } = filterOptions
-        console.log(filterOptions);
+        setReady(true)
         switch (superCategory) {
             case 'VEHICULES':
                 veheculesFilter(selectedCategory);
@@ -45,28 +48,28 @@ export default function Results({ route, navigation }) {
         const {
             city, etat, marqueVoiture,
             carburant, transtaction, anneeMax,
-            anneeMin, puissance } = filterOptions
-        
+            anneeMin } = filterOptions
+
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
 
         //filter by city
-        if (city !='Toutes les villes') {
+        if (city != 'Toutes les villes') {
             postsRef = postsRef.where('city', '==', city)
         }
 
         //filter by condition
-        if (etat != 'neuf/Utilisé') {
+        if (etat != 'Neuf/Utilisé') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
 
         //filter by brand 
-        if (marqueVoiture !='tt') {
+        if (marqueVoiture != '') {
             postsRef = postsRef.where('marqueVoiture', '==', marqueVoiture)
         }
-        postsRef.get().then(snap=>{
-            snap.docs.forEach(d=>{
+        postsRef.get().then(snap => {
+            snap.docs.forEach(d => {
                 console.log(d.data().title);
             })
         })
@@ -78,7 +81,7 @@ export default function Results({ route, navigation }) {
 
         //filter by Transaction 
         if (transtaction != '*') {
-            postsRef = postsRef.where('transtaction', '==',transtaction)
+            postsRef = postsRef.where('transtaction', '==', transtaction)
 
         }
 
@@ -102,7 +105,7 @@ export default function Results({ route, navigation }) {
             })
 
         setResults(items)
-       
+        setReady(true)
 
     }
     const immobilierFilter = async (category) => {
@@ -139,7 +142,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != 'neuf/Utilisé') {
+        if (etat != 'Neuf/Utilisé') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
@@ -193,7 +196,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != 'neuf/Utilisé') {
+        if (etat != 'Neuf/Utilisé') {
             postsRef = postsRef.where('etat', '==', etat)
         }
         //filter by type
@@ -212,28 +215,32 @@ export default function Results({ route, navigation }) {
         })
         setResults(items)
     }
-    const clothFilter=async()=>{
+    const clothFilter = async () => {
 
     }
     return (
-        <FlatList
-            data={aResults}
-            renderItem={({ item }) => (
-                <Product
-                    name={item.title}
-                    owner={item.user.owner}
-                    price={item.price}
-                    location={item.city}
-                    img={item.urls[0]}
-                    particulier={!item.user.accountType}
-                    p1={item.laivraison}
-                    p2={item.paiement}
-                    p3={item.negociable}
-                    p4={item.bonCondition}
-                    click={() => navigation.navigate('ProductDetails', { id: item.key })}
-                />
-            )}
-        />
+        <View style={{flex:1}} >
+            {
+                ready ? <FlatList
+                    data={aResults}
+                    renderItem={({ item }) => (
+                        <Product
+                            name={item.title}
+                            owner={item.user.name}
+                            price={item.price}
+                            location={item.city}
+                            img={item.urls[0]}
+                            particulier={!item.user.accountType}
+                            p1={item.laivraison}
+                            p2={item.paiement}
+                            p3={item.negociable}
+                            p4={item.bonCondition}
+                            click={() => navigation.navigate('ProductDetails', { id: item.key })}
+                        />
+                    )}
+                /> : <ProgressBar indeterminate={true} visible={true}/>
+            }
+        </View>
     )
 }
 
