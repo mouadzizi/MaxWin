@@ -166,7 +166,7 @@ export default function AddProduct({ route, navigation }) {
 				break;
 
 			case parent.title == 'VEHICULES':
-				navigation.setOptions({ title: 'Vehicule' });
+				navigation.setOptions({ title: 'Véhicule' });
 				setChips(false);
 				setVoitureChips(true);
 				break;
@@ -175,7 +175,7 @@ export default function AddProduct({ route, navigation }) {
 				(parent.item == 'Téléphones' || parent.item == 'Tablettes'):
 				setTelephone(true);
 				
-				navigation.setOptions({ title: 'Electronique' });
+				navigation.setOptions({ title: 'Électronique' });
 				break;
 
 			case parent.title == 'IMMOBILIER' &&
@@ -504,7 +504,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Choissisez votre Etat" value="" />
+										<Picker.Item label="Choissisez L'etat de produit" value="" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
@@ -553,7 +553,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="Choisissez votre marque" value="*" />
+										<Picker.Item label="Choisissez la marque de votre voiture" value="*" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
@@ -618,7 +618,7 @@ export default function AddProduct({ route, navigation }) {
 										prompt="Carburant"
 										onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
 									>	
-										<Picker.Item label="Choisissez votre Carburant" value="*" />
+										<Picker.Item label="Choisissez le Carburant" value="*" />
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
 										<Picker.Item label="Hybrid" value="Hybrid" />

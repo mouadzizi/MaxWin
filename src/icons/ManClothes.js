@@ -8,8 +8,8 @@ export default function ManClothes() {
         stroke='#4898D3'
         fill='#4898D3'
         fillRule={'nonzero'}
-        height={25}
-        width={25}
+        height={40}
+        width={35}
         >
         <Path fill="#4898D3" d="M300.138 132.414v105.931H256V105.931z" />
         <Path

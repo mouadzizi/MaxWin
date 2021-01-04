@@ -69,6 +69,9 @@ export default function VehiculePro(props) {
                         value={item.description}
                         label='Description'
                         mode='outlined'
+                        
+                        multiline={true}
+                        numberOfLines={4}
                         onChangeText={(e => setItem({ ...item, description: e }))}
                     />
 

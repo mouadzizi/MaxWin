@@ -25,7 +25,7 @@ export default function ContactForm() {
         <View style={{padding: 20}}>
 
         <TextInput
-        label='Nom complete'
+        label='Nom complet'
         mode='outlined'
         placeholder='votre nom'
         theme={textTheme}

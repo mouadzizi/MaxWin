@@ -9,8 +9,8 @@ export default function AppartementIcon() {
         stroke='#4898D3'
         fill='#4898D3'
         fillRule={'nonzero'}
-        height={25}
-        width={25}>
+        height={35}
+        width={50}>
 
       <Path fill="#F16E44" d="M382.933 73.6H441.6V176h-58.667z" />
       <Path fill="#F16E44" d="M360.533 21.333H464V76.8H360.533z" />

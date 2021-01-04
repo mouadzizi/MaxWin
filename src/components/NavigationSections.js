@@ -20,7 +20,6 @@ export default function NavigationSections(props) {
             style={styles.categorieItem}
             onPress={()=>props.onPress('Voitures')}>
             <CarCategorie/>
-            <Text style={styles.textStyle}>Voiture</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -28,7 +27,6 @@ export default function NavigationSections(props) {
             style={styles.categorieItem}
             onPress={()=> props.onPress('Appartements')}>
             <Appartement/>
-            <Text style={styles.textStyle}>Appartements</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -36,7 +34,6 @@ export default function NavigationSections(props) {
             style={styles.categorieItem}
             onPress={()=> props.onPress('Téléphones')}>
             <SmartPhone/>
-            <Text style={styles.textStyle}>Téléphones</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -44,7 +41,6 @@ export default function NavigationSections(props) {
             style={styles.categorieItem}
             onPress={()=> props.onPress('Vêtements Homme')}>
             <ClothMen/>
-            <Text style={styles.textStyle}>Vêtment Homme</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -52,7 +48,6 @@ export default function NavigationSections(props) {
             style={styles.categorieItem}
             onPress={()=> props.onPress('Vêtements Femmes')}>
             <ClothWomen/>
-            <Text style={styles.textStyle}>Vêtment Femme</Text>
             </TouchableOpacity>
 
         </ScrollView>
@@ -78,11 +73,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderWidth: 1,
         borderColor: '#F16E44',
-        height: 65,
+        height: 50,
         padding: 3,
         alignItems: 'center',
         marginHorizontal: 10,
-        width: 110,
+        width: 90,
     },
     textStyle: {
         color: '#4898D3',

@@ -36,8 +36,7 @@
       "useNextNotificationsApi": true,
       "permissions": [
         "Permissions.NOTIFICATIONS"
-        ]
-
+      ]
     },
     "description": ""
   }

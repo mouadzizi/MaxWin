@@ -1,8 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View, Picker } from 'react-native';
-import { Button, TextInput, ProgressBar } from 'react-native-paper';
-import { textTheme } from '../../../style/GlobalStyle';
+import { TextInput, ProgressBar } from 'react-native-paper';
+import { textTheme, GlobalStyle } from '../../../style/GlobalStyle';
 import { db } from '../../../API/firebase';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Phone(props) {
     const [item, setItem] = React.useState({})
@@ -75,9 +76,11 @@ export default function Phone(props) {
                         onChangeText={(e => setItem({ ...item, description: e }))}
                     />
 
-                    <Button onPress={() => update()} mode='contained' >
-                        Modifier
-                    </Button>
+                    <TouchableOpacity
+                    onPress={() => update()} mode='contained'
+                    style={GlobalStyle.BouttonStyle}>
+                    <Text style={GlobalStyle.BouttonStyleText}>Modifier</Text>
+                    </TouchableOpacity>
                 </View> :
                 <ProgressBar indeterminate={true} visible={true} />}
         </View>

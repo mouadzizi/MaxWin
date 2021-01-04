@@ -27,7 +27,7 @@ export default function ProductDetails({ navigation, route }) {
 		number:''
 	});
 
-	const _SlideHeight = Dimensions.get('window').height * 0.42;
+	const _SlideHeight = Dimensions.get('window').height * 0.55;
 	const _SlideWidth = Dimensions.get('window').width * 0.95;
 	
 

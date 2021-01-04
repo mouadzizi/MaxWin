@@ -259,7 +259,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Neuf et Utilisé" value="Neuf/Utilisé" />
+										<Picker.Item label="Neuf ou Utilisé" value="Neuf/Utilisé" />
 										<Picker.Item label="Neuf" value="neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
