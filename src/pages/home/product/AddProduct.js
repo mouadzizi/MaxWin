@@ -27,7 +27,7 @@ export default function AddProduct({ route, navigation }) {
 	
 	//Variables for inputs for standar product
 	const [title, setTitle] = useState('');
-	const [city, setCity] = useState('Toutes les villes');
+	const [city, setCity] = useState('');
 	const [price, setPrice] = useState('');
 	const [description, setDescription] = useState('');
 
@@ -504,8 +504,8 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Choissisez L'etat de produit" value="" />
-										<Picker.Item label="Neuf" value="neuf" />
+										<Picker.Item label="Choissisez votre Etat" value="" />
+										<Picker.Item label="Neuf" value="Neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
 								</View>

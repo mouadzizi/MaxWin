@@ -9,7 +9,7 @@ import { useFocusEffect } from '@react-navigation/native'
 export default function Filtre({ navigation }) {
 
 	const [titreModal, setTittreModal] = useState('Choisissez votre catégorie');
-	const [etat, setEtat] = useState('neuf/Utilisé');
+	const [etat, setEtat] = useState('Neuf/Utilisé');
 
 	//filter variables Standard 
 	const [city, setCity] = useState('Toutes les villes');
@@ -17,7 +17,7 @@ export default function Filtre({ navigation }) {
 	const [priceMin, setPriceMin] = useState(0);
 
 	//filter variables Voiture
-	const [marqueVoiture, setMarqueVoiture] = useState('tt');
+	const [marqueVoiture, setMarqueVoiture] = useState('');
 	const [carburant, setCarburant] = useState('*');
 	const [transtaction, setTransaction] = useState('*');
 
@@ -169,7 +169,6 @@ export default function Filtre({ navigation }) {
 								style={{ height: 50, width: '100%' }}
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
-
 								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
 								<Picker.Item label="Agadir" value="Agadir" />
 								<Picker.Item label="Al Hoceima" value="Al hoceima" />
