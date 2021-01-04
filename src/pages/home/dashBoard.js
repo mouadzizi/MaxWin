@@ -12,7 +12,7 @@ import {fitler} from './fiterData'
 export default function DashBoard({ navigation }) {
 	const [ready, setReady] = useState(false);
 	const [posts, setPosts] = useState([]);
-	const [qte,setQte]=useState(10)
+	const [qte,setQte]=useState(50)
 	const [loading,setLoading]=useState(false)
 
 	useFocusEffect(

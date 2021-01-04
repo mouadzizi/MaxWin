@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import { GiftedChat,Bubble,Send } from 'react-native-gifted-chat';
 import { db, auth } from '../API/firebase';
+import * as firebase from 'firebase'
 
 export default function messages({ route }) {
 
@@ -43,7 +44,7 @@ export default function messages({ route }) {
             db.collection('chats')
                 .doc(chatId())
                 .collection('messages')
-                .add(m)
+                .add({...m,serverTime:firebase.firestore.FieldValue.serverTimestamp()})
         })
         await Promise.all(writes)
     }
