@@ -425,7 +425,7 @@ export default function AddProduct({ route, navigation }) {
 								style={{ height: 50, width: '100%' }}
 								onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
 							>
-								<Picker.Item label="Toutes les villes" value="Toutes les villes" />
+								<Picker.Item label="Choisissez une ville" value="" />
 								<Picker.Item label="Agadir" value="Agadir" />
 								<Picker.Item label="Al Hoceima" value="Al hoceima" />
 								<Picker.Item label="Asilah" value="Asilah" />
@@ -525,7 +525,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPhoneMarque(itemValue)}
 									>
-										<Picker.Item label="Choissisez votre marque" value="*" />
+										<Picker.Item label="Choissisez une marque" value="*" />
 										
 										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
 										<Picker.Item label="IPHONE" value="IPHONE" />
@@ -553,7 +553,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setMarqueVoiture(itemValue)}
 									>
-										<Picker.Item label="Choisissez la marque de votre voiture" value="*" />
+										<Picker.Item label="Choisissez une marque" value="*" />
 										<Picker.Item label="AUDI" value="AUDI" />
 										<Picker.Item label="BMW" value="BMW" />
 										<Picker.Item label="CHEVROLET" value="CHEVROLET" />
