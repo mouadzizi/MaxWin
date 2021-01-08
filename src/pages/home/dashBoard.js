@@ -199,7 +199,7 @@ export default function DashBoard({ navigation }) {
 						onEndReached={()=>loadMore()}
 						onEndReachedThreshold={0.01}
 						ListFooterComponent={
-							<ActivityIndicator color='red' size='large' animating={loading}  />
+							<ActivityIndicator color="#4898D3" size='large' animating={loading}  />
 						}
 					/>
 				</View>
