@@ -49,7 +49,7 @@ export default function Chats({ navigation }) {
                 data={conversations}
                 renderItem={({ item }) =>
                     <ChatIndicator
-                        sellerAvatar={item.contact.avatar}
+                        sellerAvatar={(uid===item.senderUID)?item.contact.avatar:item.senderPhotoUrl}
                         click={() => navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })}
                         lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender} />
                 }

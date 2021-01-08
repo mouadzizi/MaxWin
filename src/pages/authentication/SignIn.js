@@ -195,7 +195,8 @@ export default function SignIn({ navigation }) {
       location: '',
       aboutMe: '',
       accountType:'Particulier',
-      expoPushNotif:token
+      expoPushNotif:token,
+      avatar:''
     })
   };
 

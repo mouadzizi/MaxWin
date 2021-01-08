@@ -15,9 +15,10 @@ export default function messages({ route }) {
     const { seller } = route.params
 
     React.useEffect(() => {
-        console.log(seller);
+        
         getContact().then(c=>{
             setContact(c)
+            console.log(c);
         })
         var unsub = chatRef.doc(chatId()).collection('messages').orderBy('serverTime','desc').onSnapshot((querySnap) => {
             setMessages([])
@@ -40,7 +41,8 @@ export default function messages({ route }) {
         return {
             _id:dbData.data().uid,
             name : dbData.data().name,
-            avatar :null,//for now....
+            avatar :dbData.data().avatar,
+            expoPushNotif:dbData.data().expoPushNotif
         }
     }
     async function sendMessage(messages) {
@@ -48,6 +50,7 @@ export default function messages({ route }) {
             .doc(chatId()).set({
                 sender: user.displayName,
                 senderUID:user.uid,
+                senderPhotoUrl:user.photoURL,
                 contact:contact,
                 lastMessage:messages[0].text,
                 

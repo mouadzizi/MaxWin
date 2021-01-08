@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "296245537422",
-    "firebase_url": "https://maxwin-35d61.firebaseio.com",
-    "project_id": "maxwin-35d61",
-    "storage_bucket": "maxwin-35d61.appspot.com"
+    "project_number": "1091885761805",
+    "project_id": "maxwinapp-2020",
+    "storage_bucket": "maxwinapp-2020.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:296245537422:android:3013db7888d790b06677df",
+        "mobilesdk_app_id": "1:1091885761805:android:aa9e8ba180f959329adc44",
         "android_client_info": {
           "package_name": "com.us.maxwin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "296245537422-5f612o3jp5j921qsri6cbrvpqc6fckm7.apps.googleusercontent.com",
+          "client_id": "1091885761805-gu78131vvrii4hki0j7uh51q1elvs4th.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.us.maxwin",
-            "certificate_hash": "38ad5c2844ffc5b5d0872d328c68fd31314ce073"
+            "certificate_hash": "581a1d59f9e1d0465cc52e36702322fd808a67cd"
           }
         },
         {
-          "client_id": "296245537422-blq2ki7tsompefj2tljp33f187ni7dgt.apps.googleusercontent.com",
+          "client_id": "1091885761805-6i988udhr197vmq9v014sdkoif1c06ri.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBJ1Wtx0Zi1oz2HVFsYgsDxbDuwlTdHavs"
+          "current_key": "AIzaSyBKCT9HgwXskL2aBxGcwrNFBuwXtIVE0-0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "296245537422-blq2ki7tsompefj2tljp33f187ni7dgt.apps.googleusercontent.com",
+              "client_id": "1091885761805-6i988udhr197vmq9v014sdkoif1c06ri.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

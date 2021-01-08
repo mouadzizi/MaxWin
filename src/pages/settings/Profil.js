@@ -50,7 +50,8 @@ export default function Profil() {
 							aboutMe,
 							name,
 							phone,
-							location
+							location,
+							avatar:auth.currentUser.photoURL
 						})
 						.then(() => {
 							setEdit(!edit);
