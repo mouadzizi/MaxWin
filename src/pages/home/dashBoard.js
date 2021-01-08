@@ -190,7 +190,7 @@ export default function DashBoard({ navigation }) {
 							setLoading(false)
 							})
 
-							}} > charger plus </Button>}
+							}} > Voir plus d'annonces </Button>}
 					/>
 				</View>
 				) : (
