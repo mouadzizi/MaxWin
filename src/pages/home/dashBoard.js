@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar } from 'react-native';
-import { Searchbar, ProgressBar, Button } from 'react-native-paper';
+import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar,ActivityIndicator } from 'react-native';
+import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
@@ -65,7 +65,6 @@ export default function DashBoard({ navigation }) {
 		setQte(qte+10)
 		switch (current) {
 			case 'all':
-				console.log(qte);
 				fetchItems(qte).then(p=>{
 					setPosts(p)
 					setLoading(false)
@@ -197,13 +196,11 @@ export default function DashBoard({ navigation }) {
 									click={() => navigation.navigate('ProductDetails', { id: item.key })}
 								/>
 							)}
-						
+						onEndReached={()=>loadMore()}
+						onEndReachedThreshold={0.01}
 						ListFooterComponent={
-						<Button loading={loading} 
-						style={{ borderRadius: 15, width: '95%', backgroundColor: '#4898D3', alignSelf: 'center' }} 
-							mode='contained' onPress={()=>{
-							loadMore()
-							}} > charger plus </Button>}
+							<ActivityIndicator color='red' size='large' animating={loading}  />
+						}
 					/>
 				</View>
 				) : (
