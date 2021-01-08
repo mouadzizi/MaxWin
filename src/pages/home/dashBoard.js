@@ -12,15 +12,15 @@ import {fitler} from './fiterData'
 export default function DashBoard({ navigation }) {
 	const [ready, setReady] = useState(false);
 	const [posts, setPosts] = useState([]);
-	const [qte,setQte]=useState(50)
+	const [qte,setQte]=useState(10)
 	const [loading,setLoading]=useState(false)
+	const [current, setcurrent] = useState('all')
 
 	useFocusEffect(
 		React.useCallback(() => {
 			setQte(10)
 			InteractionManager.runAfterInteractions(async () => {
 				await fetchItems(qte).then((p) => {
-					console.log(qte);
 					setPosts(p);
 					setReady(true);
 				});
@@ -60,6 +60,25 @@ export default function DashBoard({ navigation }) {
 		});
 		return postsA;
 	};
+	const loadMore= ()=>{
+		setLoading(true);
+		setQte(qte+10)
+		switch (current) {
+			case 'all':
+				console.log(qte);
+				fetchItems(qte).then(p=>{
+					setPosts(p)
+					setLoading(false)
+					})
+				break;
+		
+			default:
+				fitler(current,qte).then(data=>{
+					setPosts(data)
+					setLoading(false)
+				})
+		}
+	}
 	return (
 		<View>
 
@@ -153,7 +172,8 @@ export default function DashBoard({ navigation }) {
 
 									<NavigationSections onPress={(category)=>{
 										setReady(false)
-										fitler(category).then(data=>{
+										setcurrent(category)
+										fitler(category,qte).then(data=>{
 											setPosts(data)
 											setReady(true)
 										})
@@ -177,19 +197,12 @@ export default function DashBoard({ navigation }) {
 									click={() => navigation.navigate('ProductDetails', { id: item.key })}
 								/>
 							)}
-
+						
 						ListFooterComponent={
 						<Button loading={loading} 
 						style={{ borderRadius: 15, width: '95%', backgroundColor: '#4898D3', alignSelf: 'center' }} 
 							mode='contained' onPress={()=>{
-							
-							setLoading(true)
-							setQte(qte+10)
-							fetchItems(qte).then(p=>{
-							setPosts(p)
-							setLoading(false)
-							})
-
+							loadMore()
 							}} > charger plus </Button>}
 					/>
 				</View>
