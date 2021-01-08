@@ -80,6 +80,12 @@ export default function messages({ route }) {
                 renderBubble = { props =>
                     <Bubble
                     {...props}
+                    timeTextStyle={{
+                    left: {
+                        color: 'white',
+                    }, }}
+
+
                     textStyle={{
                       left: {
                         color: 'white',
@@ -87,8 +93,7 @@ export default function messages({ route }) {
                     }}
                     wrapperStyle={{
                       left: {
-                        backgroundColor: '#F16E44',
-                        
+                        backgroundColor: '#F16E44',                    
                       },
                       right :{
                           backgroundColor : '#4898D3'

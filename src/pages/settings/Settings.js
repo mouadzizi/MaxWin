@@ -35,23 +35,6 @@ export default function Settings({navigation}) {
                 size={40}
             />}/>
         </View>
-
-       
-
-        <View
-        style={{flex:1, backgroundColor: '#fff', marginTop: 10 }}>
- 
-        <List.Item
-        
-        onPress={()=> navigation.navigate('Notifications')}
-            title="Notifications"
-            style={{padding: 10}}
-            left={props =><Ionicons 
-                name='md-notifications'
-                color='#4898D3'
-                size={40}
-            />}/>
-        </View>
             
         </ScrollView>
         </SafeAreaView>
