@@ -9,12 +9,16 @@ export default function messages({ route }) {
 
     const [messages, setMessages] = React.useState([]);
     const [loading, setLoading] = React.useState(false)
+    const [contact, setContact] = React.useState({})
     const chatRef = db.collection('chats')
     const user = auth.currentUser
     const { seller } = route.params
 
     React.useEffect(() => {
-        setLoading(true)
+        console.log(seller);
+        getContact().then(c=>{
+            setContact(c)
+        })
         var unsub = chatRef.doc(chatId()).collection('messages').orderBy('serverTime','desc').onSnapshot((querySnap) => {
             setMessages([])
             const firestoreMessages = querySnap
@@ -31,12 +35,20 @@ export default function messages({ route }) {
         }
     }, [])
 
+    const getContact = async ()=>{
+        const dbData = await db.collection('users').doc(seller).get()
+        return {
+            _id:dbData.data().uid,
+            name : dbData.data().name,
+            avatar :null,//for now....
+        }
+    }
     async function sendMessage(messages) {
         db.collection('chats')
             .doc(chatId()).set({
                 sender: user.displayName,
                 senderUID:user.uid,
-                contact:seller,
+                contact:contact,
                 lastMessage:messages[0].text,
                 
             })
@@ -55,8 +67,8 @@ export default function messages({ route }) {
 
 
     const chatId = () => {
-        if (user.uid > seller._id) return `${user.uid}-${seller._id}`
-        else return `${seller._id}-${user.uid}`;
+        if (user.uid > seller) return `${user.uid}-${seller}`
+        else return `${seller}-${user.uid}`;
     }
 
     return (

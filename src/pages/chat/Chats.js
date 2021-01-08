@@ -12,35 +12,23 @@ export default function Chats({ navigation }) {
     const height_image = height * 0.6;
     const width_image = width;
 
-    useFocusEffect(React.useCallback(() => {
-        let items = []
-        const _unsub = db.collection('chats').onSnapshot(querySnapShot => {
-        
-            querySnapShot.docs.forEach(doc => {
-                if (doc.id.search(uid) >= 0) {
-                    doc.ref.collection('messages').orderBy('createdAt', 'desc').limit(1).get().then(snap => {
-                        snap.docs.forEach(d => {
-                            items.push({
-                                ...d.data(),
-                                sender: doc.data().senderUID,
-                                contact: doc.data().contact,
-                                key: d.data()._id
-                            })
-                        })
-                        setConversations(items)
-                    })
-                }
-            })
-        })
 
-        return () => {
-            // _unsub()
-        }
-    }, []))
 
     React.useEffect(() => {
         //Retrieve the reciever
+        console.log(uid);
+        const _unsub = db.collection('chats').onSnapshot(querySnapShot=>{
+            const rooms = querySnapShot.docs.filter(doc=>doc.id.search(uid)>=0).map(d=>{
+                return {
+                    key:d.id,
+                    ...d.data()
+                }
+            })
+            setConversations(rooms)
+            console.log(rooms);
+        })
         return () => {
+            _unsub()
             setConversations([])
         }
     }, [])
@@ -50,17 +38,20 @@ export default function Chats({ navigation }) {
             setConversations(prev => [...prev, m])
         })
     })
+    const loadConversation = async () => {
+        
+
+    }
     return (
         <View
             style={{ backgroundColor: '#fff', flex: 1 }}>
             <FlatList
-                data={conversations.sort((a, b) => b.createdAt.toDate().getTime() - a.createdAt.toDate().getTime())}
-                keyExtractor={(item, index) => index.toString()}
+                data={conversations}
                 renderItem={({ item }) =>
                     <ChatIndicator
-                        sellerAvatar={(uid != item.sender) ? item.user.avatar : item.contact.avatar}
-                        click={() => navigation.navigate('Messages', { seller: (uid === item.sender) ? item.contact : item.user })}
-                        lastMessage={item.text} sellerName={(uid === item.sender) ? item.contact.name : item.user.name} />
+                        sellerAvatar={item.contact.avatar}
+                        click={() => navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })}
+                        lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender} />
                 }
 
                 ListEmptyComponent={() => (

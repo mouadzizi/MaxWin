@@ -158,7 +158,7 @@ export default function ProductDetails({ navigation, route }) {
 						{/* Button Message */}
 						<TouchableOpacity
 							delayPressIn={0}
-							onPress={() => handleNavigation(post.user)}
+							onPress={() => handleNavigation(post.user._id)}
 							style={styles.buttonMessage}
 						>
 						<View style={{flexDirection: 'row'}}>
