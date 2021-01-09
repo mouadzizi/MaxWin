@@ -3,7 +3,8 @@ import { Text, View } from 'react-native';
 import { GlobalStyle } from '../../style/GlobalStyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { auth } from '../../API/firebase';
-import {ProgressBar} from 'react-native-paper'
+import {ProgressBar} from 'react-native-paper';
+import * as Permissions from 'expo-permissions'
 
 import * as Updates from 'expo-updates';
 
@@ -16,7 +17,6 @@ export default function Splash({ navigation }) {
 
 	React.useEffect(() => {
 		checkUpdate();
-
 		setLoading(true);
 		const unsub = auth.onAuthStateChanged((user) => {
 			if (user) {
@@ -47,6 +47,7 @@ export default function Splash({ navigation }) {
 			// handle or log error
 		}
 	};
+
 
 	return (
 		<SafeAreaView style={GlobalStyle.container}>

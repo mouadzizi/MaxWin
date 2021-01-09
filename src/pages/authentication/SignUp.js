@@ -80,7 +80,8 @@ export default function SignUp({ navigation }) {
             location: '',
             aboutMe: '',
             accountType: owner,
-            expoPushNotif: token
+            expoPushNotif: token,
+            avatar:''
         })
 
     }

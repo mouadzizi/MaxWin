@@ -16,7 +16,6 @@ export default function Chats({ navigation }) {
 
     React.useEffect(() => {
         //Retrieve the reciever
-        console.log(uid);
         const _unsub = db.collection('chats').onSnapshot(querySnapShot=>{
             const rooms = querySnapShot.docs.filter(doc=>doc.id.search(uid)>=0).map(d=>{
                 return {
@@ -25,7 +24,6 @@ export default function Chats({ navigation }) {
                 }
             })
             setConversations(rooms)
-            console.log(rooms);
         })
         return () => {
             _unsub()
@@ -33,15 +31,8 @@ export default function Chats({ navigation }) {
         }
     }, [])
 
-    const appendConversations = React.useCallback((messages) => {
-        messages.forEach(m => {
-            setConversations(prev => [...prev, m])
-        })
-    })
-    const loadConversation = async () => {
-        
 
-    }
+
     return (
         <View
             style={{ backgroundColor: '#fff', flex: 1 }}>

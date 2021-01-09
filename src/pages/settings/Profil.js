@@ -17,7 +17,6 @@ export default function Profil() {
 	});
 	const [ name, setName ] = useState('');
 	const [ phone, setPhone ] = useState('');
-	const [ aboutMe, setAboutMe ] = useState('');
 	const [ location, setLocation ] = useState('');
 	const [ image, setImage ] = useState('');
 
@@ -40,14 +39,13 @@ export default function Profil() {
 
 	const updateProfile = async () => {
 		setEdit(!edit);
-		setLoading(true);
 		if (edit) {
-			name || phone || aboutMe || location
+			setLoading(true);
+			name || phone || image || location  
 				? await db
 						.collection('users')
 						.doc(currentUser.uid)
 						.update({
-							aboutMe,
 							name,
 							phone,
 							location,
@@ -66,7 +64,6 @@ export default function Profil() {
 		setName(doc.name);
 		setPhone(doc.phone);
 		setLocation(doc.location);
-		setAboutMe(doc.aboutMe);
 		setUser({
 			email: doc.email,
 			accountType: doc.accountType
@@ -88,20 +85,22 @@ export default function Profil() {
 	}
 
 	async function openImagePicker() {
-		let result = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.Images,
-			allowsEditing: true,
-			aspect: [1, 1],
-			quality: .3,
-			
-		  });
-	  
-		  console.log(result);
-	  
-		  if (!result.cancelled) {
-			setImage(result.uri);
-		  }
-		  updateProfileImage(result.uri)
+		if(edit){
+			let result = await ImagePicker.launchImageLibraryAsync({
+				mediaTypes: ImagePicker.MediaTypeOptions.Images,
+				allowsEditing: true,
+				aspect: [1, 1],
+				quality: .3,
+				allowsMultipleSelection:true
+				
+			  });
+		  		  
+			  if (!result.cancelled) {
+				setImage(result.uri);
+			  }
+			  updateProfileImage(result.uri)
+		}
+		else alert('Clicker sur modifier pour changer la photo')
 	}
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 10 }}>
@@ -281,8 +280,9 @@ export default function Profil() {
 				<ProgressBar color="#4898D3" indeterminate={true} visible={true} />
 			)}
 			<FAB
+				loading={loading}
 				style={{ position: 'absolute', margin: 16, right: 0, bottom: 0, backgroundColor: '#4898D3' }}
-				label={edit ? 'enregistrer' : 'modifier'}
+				label={(edit) ? 'enregistrer' : 'modifier'}
 				color="#fff"
 				onPress={() => updateProfile()}
 			/>
