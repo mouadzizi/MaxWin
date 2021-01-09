@@ -27,8 +27,8 @@ export default function ProductDetails({ navigation, route }) {
 		number:''
 	});
 
-	const _SlideHeight = Dimensions.get('window').height * 0.55;
-	const _SlideWidth = Dimensions.get('window').width * 0.95;
+	const _SlideHeight = Dimensions.get('window').height * 0.65;
+	const _SlideWidth = Dimensions.get('window').width * 0.98;
 	
 
 	useFocusEffect(
