@@ -8,6 +8,7 @@ import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 import { auth, db,st } from '../../API/firebase';
 
 export default function Profil() {
+	
 	const [ edit, setEdit ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
 	const [ canRender, setCanRender ] = useState(false);
@@ -15,11 +16,11 @@ export default function Profil() {
 		email: '',
 		accountType: false
 	});
+
 	const [ name, setName ] = useState('');
 	const [ phone, setPhone ] = useState('');
 	const [ location, setLocation ] = useState('');
 	const [ image, setImage ] = useState('');
-
 	const {currentUser}= auth
 
 	useFocusEffect(

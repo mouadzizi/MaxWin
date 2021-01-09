@@ -864,8 +864,9 @@ export default function AddProduct({ route, navigation }) {
 
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>
 						<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
-
-							<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+							
+							{ user.phone ?
+								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 								<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
 								<Checkbox
 									status={phone ? 'checked' : 'unchecked'}
@@ -875,6 +876,8 @@ export default function AddProduct({ route, navigation }) {
 									color="#4898D3"
 								/>
 							</View>
+							: null }
+							
 
 							{chips ? (
 								<View>
@@ -939,7 +942,7 @@ export default function AddProduct({ route, navigation }) {
 							uppercase={false}
 							onPress={() => upload()}
             				style={{ alignSelf: 'center', marginVertical: 20,  width: '100%', height: 40, borderRadius: 15, marginBottom: 30 }}
-							disabled={(!title || !city || !price ||! description)}
+							disabled={(!title || !city || !price ||!description || !loading)}
 							color='#4898D3'
 							loading={loading}
 							dark={true}>

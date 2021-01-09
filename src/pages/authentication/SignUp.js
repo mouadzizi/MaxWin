@@ -65,7 +65,7 @@ export default function SignUp({ navigation }) {
                 })
         }
         else {
-            setErrorMessage("Password didn't match")
+            setErrorMessage("Le mot de passe ne correspond pas")
             setLoading(false)
         }
 
