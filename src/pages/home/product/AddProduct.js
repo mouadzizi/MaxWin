@@ -876,7 +876,8 @@ export default function AddProduct({ route, navigation }) {
 									color="#4898D3"
 								/>
 							</View>
-							: null }
+							: 
+							<Text>Merci d'enregistrer votre N de téléphone sur votre profil ,afin qu'il soit visible sur votre annonce</Text> }
 							
 
 							{chips ? (
