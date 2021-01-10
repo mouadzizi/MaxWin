@@ -27,8 +27,8 @@ export default function ProductDetails({ navigation, route }) {
 		number:''
 	});
 
-	const _SlideHeight = Dimensions.get('window').height * 0.65;
-	const _SlideWidth = Dimensions.get('window').width * 0.98;
+	const _SlideHeight = Dimensions.get('window').height * 0.48;
+	const _SlideWidth = Dimensions.get('window').width * 0.97;
 	
 
 	useFocusEffect(
@@ -136,7 +136,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						{/* Button Call */}
 						{
-						(post.Telephone && post.user.phoneNumber)?
+						post.Telephone ?
 						<TouchableOpacity
 							delayPressIn={0}
 							onPress={() => 
