@@ -306,7 +306,6 @@ export default function Filtre({ navigation }) {
 										<Picker.Item label="TOYOTA" value="TOYOTA" />
 										<Picker.Item label="VOLSWAGEN" value="VOLSWAGEN" />
 										<Picker.Item label="VOLVO" value="VOLVO" />
-										<Picker.Item label="AUTRE" value="AUTRE" />
 									</Picker>
 								</View>
 
