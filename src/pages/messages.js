@@ -18,7 +18,6 @@ export default function messages({ route }) {
         
         getContact().then(c=>{
             setContact(c)
-            console.log(c);
         })
         var unsub = chatRef.doc(chatId()).collection('messages').orderBy('serverTime','desc').onSnapshot((querySnap) => {
             setMessages([])

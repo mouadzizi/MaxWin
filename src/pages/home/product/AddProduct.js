@@ -90,7 +90,7 @@ export default function AddProduct({ route, navigation }) {
 	const [graphique, setGraphique] = useState('');
 
 	//Visibility for State
-	const [etat, setEtat] = useState('');
+	const [etat, setEtat] = useState('Neuf/Utilisé');
 
 	//Variables chips fro aditional services
 	const [ phone, setPhone ] = useState(false);
@@ -504,7 +504,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Choissisez votre Etat" value="" />
+										<Picker.Item label="Choissisez votre Etat" value="Neuf/Utilisé" />
 										<Picker.Item label="Neuf" value="Neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>

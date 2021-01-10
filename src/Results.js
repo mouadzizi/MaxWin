@@ -14,6 +14,7 @@ export default function Results({ route, navigation }) {
     const { filterOptions } = route.params
     React.useEffect(() => {
         const { selectedCategory, superCategory } = filterOptions
+        console.log(filterOptions);
         switch (superCategory) {
             case 'VEHICULES':
                 veheculesFilter(selectedCategory).then((items) => {
@@ -82,7 +83,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != '') {
+        if (etat != 'Neuf/Utilisé') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
