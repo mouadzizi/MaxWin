@@ -14,31 +14,54 @@ export default function Results({ route, navigation }) {
     const { filterOptions } = route.params
     React.useEffect(() => {
         const { selectedCategory, superCategory } = filterOptions
-        setReady(true)
         switch (superCategory) {
             case 'VEHICULES':
-                veheculesFilter(selectedCategory);
+                veheculesFilter(selectedCategory).then((items) => {
+                    setResults(items)
+                    setReady(true)
+                });
                 break;
             case 'MAISON & DECO':
-                maison_decoFilter(selectedCategory)
+                maison_decoFilter(selectedCategory).then((items)=>{
+                    setResults(items)
+                    setReady(true)
+                })  
                 break;
             case 'INFORMATIQUE ET ELECTRONIQUE':
-                techFilter(selectedCategory)
+                techFilter(selectedCategory).then((items)=>{
+                    setResults(items)
+                    setReady(true)
+                })  
                 break;
             case 'ESPACE HOMMES':
-                maison_decoFilter(selectedCategory)
+                maison_decoFilter(selectedCategory).then((items)=>{
+                    setResults(items)
+                    setReady(true)
+                })  
                 break;
             case 'ESPACE FEMMES':
-                maison_decoFilter(selectedCategory)
+                maison_decoFilter(selectedCategory).then((items)=>{
+                    setResults(items)
+                    setReady(true)
+                })  
                 break;
             case 'ESPACE BEBES ET ENFANTS':
-                maison_decoFilter(selectedCategory)
+                maison_decoFilter(selectedCategory).then((items)=>{
+                    setResults(items)
+                    setReady(true)
+                })  
                 break;
             case 'MATERIELS ET SERVICES':
-                servicesFilter(selectedCategory)
+                servicesFilter(selectedCategory).then((items)=>{
+                    setResults(items)
+                    setReady(true)
+                })  
                 break;
             case 'IMMOBILIER':
-                immobilierFilter(selectedCategory)
+                immobilierFilter(selectedCategory).then(items=>{
+                    setResults(items)
+                    setReady(true)
+                })
                 break;
         }
         return () => { }
@@ -59,7 +82,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != 'Neuf/Utilisé') {
+        if (etat != '') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
@@ -89,7 +112,7 @@ export default function Results({ route, navigation }) {
 
 
         //fiter by price
-        const results = postsRef.where('price', '>=', filterOptions.priceMin)
+        const results = await postsRef.where('price', '>=', filterOptions.priceMin)
             .where('price', '<=', filterOptions.priceMax).get();
 
 
@@ -103,9 +126,7 @@ export default function Results({ route, navigation }) {
                     key: e.id
                 })
             })
-
-        setResults(items)
-        setReady(true)
+        return await Promise.all(items)
 
     }
     const immobilierFilter = async (category) => {
@@ -130,7 +151,7 @@ export default function Results({ route, navigation }) {
                     key: doc.id,
                 })
             })
-        setResults(items)
+        return await Promise.all(items)
     }
     const maison_decoFilter = async (category) => {
         const { city, priceMax, priceMin, etat } = filterOptions;
@@ -142,7 +163,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != 'Neuf/Utilisé') {
+        if (etat != '') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
@@ -156,7 +177,7 @@ export default function Results({ route, navigation }) {
                 key: doc.id,
             })
         })
-        setResults(items)
+        return await Promise.all(items)
     }
     const techFilter = async (category) => {
         const { city, priceMax, priceMin, marquePhone } = filterOptions;
@@ -184,7 +205,7 @@ export default function Results({ route, navigation }) {
                 key: doc.id,
             })
         })
-        setResults(items)
+        return await Promise.all(items)
     }
     const servicesFilter = async (category) => {
         const { city, priceMax, priceMin, etat, typeService } = filterOptions;
@@ -196,7 +217,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != 'Neuf/Utilisé') {
+        if (etat != '') {
             postsRef = postsRef.where('etat', '==', etat)
         }
         //filter by type
@@ -213,15 +234,18 @@ export default function Results({ route, navigation }) {
                 key: doc.id,
             })
         })
-        setResults(items)
+        return await Promise.all(items)
     }
     const clothFilter = async () => {
 
     }
     return (
-        <View style={{flex:1}} >
-            {
-                ready ? <FlatList
+        <View style={{ flex: 1 }} >
+            { 
+            !ready ? 
+            <ProgressBar style={{ height: 7 }} color={'#4898D3'} indeterminate={true} visible={true} />
+                : <FlatList
+
                     data={aResults}
                     renderItem={({ item }) => (
                         <Product
@@ -238,8 +262,10 @@ export default function Results({ route, navigation }) {
                             click={() => navigation.navigate('ProductDetails', { id: item.key })}
                         />
                     )}
-                /> : <ProgressBar indeterminate={true} visible={true}/>
+                />
             }
+
+
         </View>
     )
 }

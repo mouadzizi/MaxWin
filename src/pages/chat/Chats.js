@@ -3,6 +3,7 @@ import { FlatList, View, Text, Image, Dimensions } from 'react-native';
 import ChatIndicator from '../../components/ChatIndicator';
 import { useFocusEffect } from '@react-navigation/native'
 import { db, auth } from '../../API/firebase'
+import { Divider } from 'react-native-paper';
 
 export default function Chats({ navigation }) {
     const [conversations, setConversations] = React.useState([])
@@ -16,13 +17,15 @@ export default function Chats({ navigation }) {
 
     React.useEffect(() => {
         //Retrieve the reciever
-        const _unsub = db.collection('chats').onSnapshot(querySnapShot=>{
-            const rooms = querySnapShot.docs.filter(doc=>doc.id.search(uid)>=0).map(d=>{
-                return {
-                    key:d.id,
-                    ...d.data()
-                }
-            })
+        const _unsub = db.collection('chats').onSnapshot(querySnapShot => {
+            const rooms = querySnapShot.docs
+                .filter(doc => doc.id.search(uid) >= 0)
+                .map(d => {
+                    return {
+                        key: d.id,
+                        ...d.data()
+                    }
+                })
             setConversations(rooms)
         })
         return () => {
@@ -39,12 +42,14 @@ export default function Chats({ navigation }) {
             <FlatList
                 data={conversations}
                 renderItem={({ item }) =>
-                    <ChatIndicator
-                        sellerAvatar={(uid===item.senderUID)?item.contact.avatar:item.senderPhotoUrl}
-                        click={() => navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })}
-                        lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender} />
-                }
+                    <View style={{ justifyContent: 'center' }} >
+                        <ChatIndicator
+                            sellerAvatar={(uid === item.senderUID) ? item.contact.avatar : item.senderPhotoUrl}
+                            click={() => navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })}
+                            lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender} />
 
+                    </View>
+                }
                 ListEmptyComponent={() => (
                     <View>
                         <Image

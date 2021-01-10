@@ -98,8 +98,10 @@ export default function Profil() {
 		  		  
 			  if (!result.cancelled) {
 				setImage(result.uri);
+				updateProfileImage(result.uri)
 			  }
-			  updateProfileImage(result.uri)
+			  if(result.cancelled)console.log('cancelled');
+			  
 		}
 		else alert('Clicker sur modifier pour changer la photo')
 	}

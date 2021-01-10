@@ -3,6 +3,7 @@ import { View, Text, Alert, Dimensions, TouchableOpacity, Image, SafeAreaView, S
 import { TextInput, Button } from 'react-native-paper'
 import { textTheme } from '../../style/GlobalStyle';
 import { auth, db } from '../../API/firebase';
+import {sendWelcomeNotification} from '../../API/notificationAPI'
 import * as Permissions from 'expo-permissions'
 import * as Notifications from 'expo-notifications'
 import * as Animatable from 'react-native-animatable';
@@ -52,13 +53,14 @@ export default function SignUp({ navigation }) {
                     setLoading(false)
                     errs = true
                 })
-                .then(() => {
+                .then(async() => {
 
                     if (auth.currentUser && !errs) {
-                        auth.currentUser.updateProfile({
+                       await auth.currentUser.updateProfile({
                             displayName: userName
                         })
                         setLoading(false)
+                        await sendWelcomeNotification()
                         saveUserInfo(auth.currentUser).then(() => navigation.replace('HomeTabs'))
 
                     }
