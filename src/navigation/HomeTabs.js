@@ -35,9 +35,9 @@ return (
               ? 'ios-chatbubbles' 
               : 'ios-chatbubbles';
             }
-
             return <Ionicons name={iconName} size={size} color={color} />;
           },
+          
         })}
         tabBarOptions={{
           activeTintColor: '#4898D3',
@@ -47,7 +47,7 @@ return (
       >
 
       
-        <Tab.Screen name="Accueil" component={Drawer}/>
+        <Tab.Screen  name="Accueil" component={Drawer}/>
         <Tab.Screen name="Discussions" component={StackChat}/>
         <Tab.Screen name="Paramètres" component={SettingsStack} />
 

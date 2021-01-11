@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
+import {Chip} from 'react-native-paper'
 
 import CarCategorie from '../icons/carCategorie'; 
 import SmartPhone from '../icons/SmartPhone';
@@ -17,9 +18,10 @@ export default function NavigationSections(props) {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         style={styles.container}>
-
             <TouchableOpacity
+            disabled = {props.disabled}
             delayPressIn={0}
+            onPress={()=>props.onPress('All')}
             style={styles.categorieItem}>
             <Image 
                 source={require(logo)}
@@ -27,7 +29,6 @@ export default function NavigationSections(props) {
                 style={styles.imagesLogo}
             />
             </TouchableOpacity>
-
             <TouchableOpacity
             delayPressIn={0}
             style={styles.categorieItem}

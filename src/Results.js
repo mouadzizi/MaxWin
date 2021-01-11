@@ -191,7 +191,7 @@ export default function Results({ route, navigation }) {
 
         //filter by brand
         if (marquePhone != '*') {
-            postsRef = postsRef.where('marquePhone', '==', marquePhone)
+            postsRef = postsRef.where('phoneMarque', '==', marquePhone)
         }
 
         //fiter by price
