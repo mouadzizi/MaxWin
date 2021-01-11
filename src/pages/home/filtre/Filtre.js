@@ -417,7 +417,6 @@ export default function Filtre({ navigation }) {
 										<Picker.Item label="SONY" value="SONY" />
 										<Picker.Item label="NOKIA" value="NOKIA" />
 										<Picker.Item label="Asus" value="Asus" />
-										<Picker.Item label="Autre" value="Autre" />
 									</Picker>
 								</View>
 							</View>

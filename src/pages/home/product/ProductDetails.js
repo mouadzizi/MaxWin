@@ -136,7 +136,7 @@ export default function ProductDetails({ navigation, route }) {
 
 						{/* Button Call */}
 						{
-						post.Telephone ?
+						post.phone ?
 						<TouchableOpacity
 							delayPressIn={0}
 							onPress={() => 
@@ -149,8 +149,8 @@ export default function ProductDetails({ navigation, route }) {
 									<Feather name="smartphone" size={25} color="#fff" />
 									<Text style={styles.btnText}>Appeler l'annonceur</Text>
 								</View>
-							</TouchableOpacity> : null
-						}
+							</TouchableOpacity> : 
+							null }
 						 
 						
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native'
+import { Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
 
 import CarCategorie from '../icons/carCategorie'; 
 import SmartPhone from '../icons/SmartPhone';
@@ -8,12 +8,26 @@ import ClothMen from '../icons/ManClothes';
 import ClothWomen from '../icons/WomenClothes';
 
 export default function NavigationSections(props) {
+
+   
+    const logo = '../../assets/logoo.png';
  
     return (
         <ScrollView 
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         style={styles.container}>
+
+            <TouchableOpacity
+            delayPressIn={0}
+            style={styles.categorieItem}
+            onPress={()=>props.onPress('Voitures')}>
+            <Image 
+                source={require(logo)}
+                resizeMode={'contain'}
+                style={styles.imagesLogo}
+            />
+            </TouchableOpacity>
 
             <TouchableOpacity
             delayPressIn={0}
@@ -83,5 +97,9 @@ const styles = StyleSheet.create({
         color: '#4898D3',
         fontWeight: '600',
         textAlign: 'center',
+    },
+    imagesLogo :{
+        height: '95%',
+        width: '95%'
     }
 })

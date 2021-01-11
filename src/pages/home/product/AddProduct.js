@@ -406,8 +406,7 @@ export default function AddProduct({ route, navigation }) {
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
-							maxLength={25}
-							multiline={false}
+							maxLength={20}
 							theme={textTheme}
 							onChangeText={setTitle}
 						/>
@@ -877,7 +876,10 @@ export default function AddProduct({ route, navigation }) {
 								/>
 							</View>
 							: 
-							<Text>Merci d'enregistrer votre N de téléphone sur votre profil ,afin qu'il soit visible sur votre annonce</Text> }
+						<Text style={{ color: 'red', fontSize: 11}}>
+						Merci d'enregistrer votre N de téléphone sur votre profil ,afin qu'il soit visible sur votre annonce</Text>
+						}
+						
 							
 
 							{chips ? (
@@ -943,7 +945,7 @@ export default function AddProduct({ route, navigation }) {
 							uppercase={false}
 							onPress={() => upload()}
             				style={{ alignSelf: 'center', marginVertical: 20,  width: '100%', height: 40, borderRadius: 15, marginBottom: 30 }}
-							disabled={(!title || !city || !price ||!description || !loading)}
+							disabled={(!title || !city || !price ||!description || loading)}
 							color='#4898D3'
 							loading={loading}
 							dark={true}>

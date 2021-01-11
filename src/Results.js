@@ -100,7 +100,7 @@ export default function Results({ route, navigation }) {
 
         //filter by fuel
         if (carburant != '*') {
-            postsRef = postsRef.where('carburant', '==', filterOptions.carburant)
+            postsRef = postsRef.where('carburant', '==', carburant)
         }
 
         //filter by Transaction 
