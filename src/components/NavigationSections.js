@@ -21,7 +21,7 @@ export default function NavigationSections(props) {
             <TouchableOpacity
             delayPressIn={0}
             style={styles.categorieItem}
-            onPress={()=>props.onPress('Voitures')}>
+            onPress={()=>props.onPress('')}>
             <Image 
                 source={require(logo)}
                 resizeMode={'contain'}
