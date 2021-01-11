@@ -164,7 +164,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != '') {
+        if (etat != 'Neuf/Utilisé') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 

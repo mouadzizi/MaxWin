@@ -2,12 +2,11 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/Ionicons';
 import Drawer from './Drawer';
 import SettingsStack from './SettingsStack';
 import StackChat from './StackChat';
 
-export default function HomeTabs() {
+export default function HomeTabs(props) {
 
   
 const Tab = createBottomTabNavigator();
@@ -16,7 +15,6 @@ return (
       <Tab.Navigator backBehavior='none' 
       initialRouteName='Accueil'
       keyboardHidesTabBar={true}
-      
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -37,18 +35,19 @@ return (
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          
+         
         })}
         tabBarOptions={{
           activeTintColor: '#4898D3',
           inactiveTintColor: '#fff',
           inactiveTintColor: 'gray',
+        
         }}
       >
 
       
         <Tab.Screen  name="Accueil" component={Drawer}/>
-        <Tab.Screen name="Discussions" component={StackChat}/>
+        <Tab.Screen options={{tabBarBadge:props.badge}}  name="Discussions" component={StackChat}/>
         <Tab.Screen name="Paramètres" component={SettingsStack} />
 
       </Tab.Navigator>
