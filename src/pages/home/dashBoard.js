@@ -45,6 +45,7 @@ export default function DashBoard({ navigation }) {
 
 	const [searchQuery, setSearchQuery] = useState('');
 	const onChangeSearch = (query) => setSearchQuery(query);
+	
 	const action = () => {
 		navigation.navigate('ProductDetails');
 	}; 
