@@ -20,8 +20,7 @@ export default function NavigationSections(props) {
 
             <TouchableOpacity
             delayPressIn={0}
-            style={styles.categorieItem}
-            onPress={()=>props.onPress('')}>
+            style={styles.categorieItem}>
             <Image 
                 source={require(logo)}
                 resizeMode={'contain'}
