@@ -44,17 +44,6 @@ export default function DashBoard({ navigation }) {
 	const [searchQuery, setSearchQuery] = useState('');
 	const onChangeSearch = (query) => setSearchQuery(query);
 
-	const allItems =async() => {
-		const dbItems = await db.collection('posts').orderBy('addDate', 'desc').get();
-
-		const posts = dbItems.docs.map(d=>{
-			return {
-				...d.data(),
-				key:d.id
-			}
-		})
-		return posts
-	};
 	const fetchItems = async (qte) => {
 		let postsA = [];
 		var ref = db.collection('posts');
