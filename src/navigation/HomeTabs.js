@@ -12,7 +12,7 @@ export default function HomeTabs() {
   const notificationListener = React.useRef();
   const responseListener = React.useRef();
   const Tab = createBottomTabNavigator();
-  
+
   React.useEffect(() => {
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification)
@@ -22,7 +22,7 @@ export default function HomeTabs() {
      setNotification(response.notification)
     });
     return () => {
-      //  setNotification(false)
+      setNotification(false)
     };
   }, [])
 

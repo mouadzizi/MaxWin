@@ -52,6 +52,7 @@ export default function messages({ route }) {
                 senderPhotoUrl:user.photoURL,
                 contact:contact,
                 lastMessage:messages[0].text,
+                createdAt:firebase.firestore.FieldValue.serverTimestamp()
                 
             })
         const writes = messages.map((m) => {

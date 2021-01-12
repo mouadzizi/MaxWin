@@ -13,11 +13,9 @@ export default function Chats({ navigation }) {
     const height_image = height * 0.6;
     const width_image = width;
 
-
-
     React.useEffect(() => {
         //Retrieve the reciever
-        const _unsub = db.collection('chats').onSnapshot(querySnapShot => {
+        const _unsub = db.collection('chats').orderBy('createdAt','desc').onSnapshot(querySnapShot => {
             const rooms = querySnapShot.docs
                 .filter(doc => doc.id.search(uid) >= 0)
                 .map(d => {
