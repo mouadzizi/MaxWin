@@ -109,9 +109,6 @@ export default function Results({ route, navigation }) {
 
         }
 
-        // else if (puissance == '+10ch') postsRef = postsRef.where('puissance', '==', puissance)
-
-
         //fiter by price
         const results = await postsRef.where('price', '>=', filterOptions.priceMin)
             .where('price', '<=', filterOptions.priceMax).get();
@@ -181,7 +178,7 @@ export default function Results({ route, navigation }) {
         return await Promise.all(items)
     }
     const techFilter = async (category) => {
-        const { city, priceMax, priceMin, marquePhone } = filterOptions;
+        const { city, priceMax, priceMin, marquePhone, etat } = filterOptions;
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
         //filter by city
@@ -193,6 +190,12 @@ export default function Results({ route, navigation }) {
         if (marquePhone != '*') {
             postsRef = postsRef.where('phoneMarque', '==', marquePhone)
         }
+        
+        //filter by condition
+        if (etat != 'Neuf/Utilisé') {
+            postsRef = postsRef.where('etat', '==', etat)
+        }
+
 
         //fiter by price
         const results = postsRef.where('price', '>=', priceMin)
@@ -208,6 +211,7 @@ export default function Results({ route, navigation }) {
         })
         return await Promise.all(items)
     }
+
     const servicesFilter = async (category) => {
         const { city, priceMax, priceMin, etat, typeService } = filterOptions;
         const items = []
@@ -217,14 +221,16 @@ export default function Results({ route, navigation }) {
             postsRef = postsRef.where('city', '==', city)
         }
 
-        //filter by condition
-        if (etat != '') {
+         //filter by condition
+        if (etat != 'Neuf/Utilisé') {
             postsRef = postsRef.where('etat', '==', etat)
         }
+
         //filter by type
         if (typeService != '*') {
             postsRef = postsRef.where('typeService', '==', typeService)
         }
+        
         //fiter by price
         const results = postsRef.where('price', '>=', priceMin)
             .where('price', '<=', priceMax).get();

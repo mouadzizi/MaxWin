@@ -110,7 +110,7 @@ export default function Filtre({ navigation }) {
 				setEtatVisibility(false)
 				break;
 			case (item === 'Matériels professionnels'):
-				setService(true)
+				setService(false)
 				setLocation(false)
 				setPhone(false)
 				setVoiture(false)

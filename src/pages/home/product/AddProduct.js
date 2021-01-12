@@ -194,16 +194,17 @@ export default function AddProduct({ route, navigation }) {
 				navigation.setOptions({ title: 'Immobilier' });
 				break;
 
-
-			case parent.item == 'Matériels professionnels':
-				navigation.setOptions({ title: 'Matériels professionnels' });
-				break;
-
 			case parent.item == 'Services et travaux professionnels':
 				setChips(false);
 				setEtatVisible(false);
 				setServices(true);
 				navigation.setOptions({ title: 'Services et travaux' });
+				break;
+
+				case parent.title == 'MATERIELS ET SERVICES' &&
+				(parent.item == 'Matériels professionnels'):
+				navigation.setOptions({ title: 'Matériels professionnels' });
+				setServices(false);
 				break;
 
 			case parent.item == 'Formations & autres':
