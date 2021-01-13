@@ -1,11 +1,30 @@
 import React from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
-import { Avatar } from 'react-native-paper'
+import { Avatar,Divider } from 'react-native-paper';
+import * as Notifications from 'expo-notifications';
+
 
 export default function ChatIndicator(props) {
+    const [notification, setNotification] = React.useState(true)
+    const notificationListener = React.useRef();
+    const responseListener = React.useRef();
+    React.useEffect(() => {
+        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+           setNotification(notification)
+          console.log(notification.request.content.body);
+        });
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+          setNotification(response.notification)
+        });
+        return () => {
+          //setNotification(false)
+          
+        };
+      }, [])
     return (
         <View
             style={{ width: '90%', height: 80 }}>
+            {notification?<Text style={{position:'absolute',right:0,top:'50%',backgroundColor:'red',width:20,height:20,borderRadius:10}} ></Text>:null}    
             <TouchableOpacity
                 delayPressIn={0}
                 style={{ padding: 20, flexDirection: 'row' }}
@@ -23,7 +42,9 @@ export default function ChatIndicator(props) {
                         {props.time}
                     </Text>
                 </View>
+                
             </TouchableOpacity>
+            
         </View>
     )
 }
