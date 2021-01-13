@@ -23,43 +23,43 @@ export default function Results({ route, navigation }) {
                 });
                 break;
             case 'MAISON & DECO':
-                maison_decoFilter(selectedCategory).then((items)=>{
+                maison_decoFilter(selectedCategory).then((items) => {
                     setResults(items)
                     setReady(true)
-                })  
+                })
                 break;
             case 'INFORMATIQUE ET ELECTRONIQUE':
-                techFilter(selectedCategory).then((items)=>{
+                techFilter(selectedCategory).then((items) => {
                     setResults(items)
                     setReady(true)
-                })  
+                })
                 break;
             case 'ESPACE HOMMES':
-                maison_decoFilter(selectedCategory).then((items)=>{
+                maison_decoFilter(selectedCategory).then((items) => {
                     setResults(items)
                     setReady(true)
-                })  
+                })
                 break;
             case 'ESPACE FEMMES':
-                maison_decoFilter(selectedCategory).then((items)=>{
+                maison_decoFilter(selectedCategory).then((items) => {
                     setResults(items)
                     setReady(true)
-                })  
+                })
                 break;
             case 'ESPACE BEBES ET ENFANTS':
-                maison_decoFilter(selectedCategory).then((items)=>{
+                maison_decoFilter(selectedCategory).then((items) => {
                     setResults(items)
                     setReady(true)
-                })  
+                })
                 break;
             case 'MATERIELS ET SERVICES':
-                servicesFilter(selectedCategory).then((items)=>{
+                servicesFilter(selectedCategory).then((items) => {
                     setResults(items)
                     setReady(true)
-                })  
+                })
                 break;
             case 'IMMOBILIER':
-                immobilierFilter(selectedCategory).then(items=>{
+                immobilierFilter(selectedCategory).then(items => {
                     setResults(items)
                     setReady(true)
                 })
@@ -242,28 +242,28 @@ export default function Results({ route, navigation }) {
     }
     return (
         <View style={{ flex: 1 }} >
-            { 
-            !ready ? 
-            <ProgressBar style={{ height: 7 }} color={'#4898D3'} indeterminate={true} visible={true} />
-                : <FlatList
+            {
+                !ready ?
+                    <ProgressBar style={{ height: 7 }} color={'#4898D3'} indeterminate={true} visible={true} />
+                    : <FlatList
 
-                    data={aResults}
-                    renderItem={({ item }) => (
-                        <Product
-                            name={item.title}
-                            owner={item.user.name}
-                            price={item.price}
-                            location={item.city}
-                            img={item.urls[0]}
-                            particulier={!item.user.accountType}
-                            p1={item.laivraison}
-                            p2={item.paiement}
-                            p3={item.negociable}
-                            p4={item.bonCondition}
-                            click={() => navigation.navigate('ProductDetails', { id: item.key })}
-                        />
-                    )}
-                />
+                        data={aResults.sort((a, b) => b.addDate.toDate().getTime() - a.addDate.toDate().getTime())}
+                        renderItem={({ item }) => (
+                            <Product
+                                name={item.title}
+                                owner={item.user.name}
+                                price={item.price}
+                                location={item.city}
+                                img={item.urls[0]}
+                                particulier={!item.user.accountType}
+                                p1={item.laivraison}
+                                p2={item.paiement}
+                                p3={item.negociable}
+                                p4={item.bonCondition}
+                                click={() => navigation.navigate('ProductDetails', { id: item.key })}
+                            />
+                        )}
+                    />
             }
 
 
