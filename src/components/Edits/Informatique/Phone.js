@@ -34,7 +34,7 @@ export default function Phone(props) {
         <View>
             {ready ?
                 <View style={styles.form} >
-                    <Text> Category : {item.category.item} </Text>
+                    <Text> Catégory : {item.category.item} </Text>
                     <TextInput
                         style={styles.input}
                         theme={textTheme}
@@ -104,7 +104,7 @@ export default function Phone(props) {
                     <TouchableOpacity
                     onPress={() => update()} mode='contained'
                     style={GlobalStyle.BouttonStyle}>
-                    <Text style={GlobalStyle.BouttonStyleText}>Modifier</Text>
+                    <Text style={GlobalStyle.BouttonStyleText}>Enregistrer</Text>
                     </TouchableOpacity>
                 </View> :
                 <ProgressBar indeterminate={true} visible={true} />}

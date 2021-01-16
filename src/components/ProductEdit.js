@@ -32,7 +32,7 @@ export default function ProductEdit({ item, callback, goEdit }) {
 		<TouchableOpacity 
 		style={styles.buttonSection1}
 		onPress={() => {
-			Alert.alert('Modifier', 'Êtes-vous sûr de bien vouloir Éditer cet élément ?', [
+			Alert.alert('Modifier', 'Êtes-vous sûr de bien vouloir modifier cet élément ?', [
 				{
 					text: 'Non'
 				},

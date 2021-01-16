@@ -33,7 +33,7 @@ export default function ContactForm() {
         />
 
         <TextInput
-        label='Numero de Telephone'
+        label='Numero de Téléphone'
         mode='outlined'
         placeholder='votre Numéro de Telephone'
         keyboardType='numeric'

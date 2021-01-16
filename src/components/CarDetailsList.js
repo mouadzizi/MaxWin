@@ -106,7 +106,7 @@ export default function CarDetailsList(props) {
             <View>
                 <View style={styles.line}>
                     <KeyCar/>
-                    <Text style={styles.type}>Centralisé</Text>
+                    <Text style={styles.type}>Centralisée</Text>
 				<Divider/>
                 </View>
             </View>

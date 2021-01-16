@@ -128,7 +128,7 @@ export default function GeneralDetails(props) {
 				<Divider/>
                 <View style={styles.line}>
 					<Text style={styles.type}>Superficie</Text>
-					<Text style={styles.description}>{props.superficie}</Text>
+					<Text style={styles.description}>{props.superficie} m2</Text>
 				</View>
             </View>
             : null }

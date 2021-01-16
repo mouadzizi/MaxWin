@@ -37,7 +37,7 @@ export default function DashStack() {
 				name="ProductDetails"
 				component={ProductDetails}
 				options={{
-					title: 'Details',
+					title: 'Détails',
 					headerTitleAlign: 'center',
 					headerStyle: {
 						backgroundColor: '#4898D3'
