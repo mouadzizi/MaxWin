@@ -495,7 +495,7 @@ export default function AddProduct({ route, navigation }) {
 
 						{etatVisible ? (
 							<View>
-								<Text style={{ color: '#4898D3', marginTop: 5 }}>Etat</Text>
+								<Text style={{ color: '#4898D3', marginTop: 5 }}>État</Text>
 
 								<View style={{ borderWidth: 1, borderColor: '#444', borderRadius: 4, marginTop: 5 }}>
 									<Picker
@@ -504,7 +504,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Choissisez votre Etat" value="Neuf/Utilisé" />
+										<Picker.Item label="Choissisez l'état de produit" value="Neuf/Utilisé" />
 										<Picker.Item label="Neuf" value="Neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>
@@ -590,7 +590,7 @@ export default function AddProduct({ route, navigation }) {
 
 								<TextInput
 									onChangeText={(e)=>setKilometrage(parseFloat(e))}
-									label="Kilometrage"
+									label="Kilométrage"
 									mode="outlined"
 									maxLength={7}
 									placeholder="12.000 Km"
@@ -728,7 +728,7 @@ export default function AddProduct({ route, navigation }) {
 									</View>
 
 									<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-										<Text style={{ marginTop: 7, width: '60%' }}>centralisé</Text>
+										<Text style={{ marginTop: 7, width: '60%' }}>centralisée</Text>
 										<Checkbox
 											status={centraliser ? 'checked' : 'unchecked'}
 											onPress={() => {

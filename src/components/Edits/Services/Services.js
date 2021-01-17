@@ -33,7 +33,7 @@ export default function Services(props) {
         <View>
             {ready ?
                 <View style={styles.form} >
-                    <Text> Category : {item.category.item} </Text>
+                    <Text> Catégory : {item.category.item} </Text>
                     <TextInput
                         style={styles.input}
                         theme={textTheme}
@@ -98,7 +98,7 @@ export default function Services(props) {
                     />
 
                     <Button onPress={() => update()} mode='contained' >
-                        Modifier
+                    Enregistrer
                     </Button>
                 </View> :
                 <ProgressBar indeterminate={true} visible={true} />}

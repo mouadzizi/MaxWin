@@ -3,9 +3,7 @@ import { ScrollView, Text, StyleSheet, Alert } from 'react-native'
 import VoituresEdit from '../../../components/Edits/Vehicules/Voitures'
 import MotoVelo from '../../../components/Edits/Vehicules/Moto_velos'
 import Appartement from '../../../components/Edits/Immobilier/Appartement'
-import HouseDeco from '../../../components/Edits/Maison et Deco/EditeForm';
 import Phone from '../../../components/Edits/Informatique/Phone'
-import Laptop from '../../../components/Edits/Informatique/Laptop';
 import Service from '../../../components/Edits/Services/Services'
 import EditeForm from '../../../components/Edits/Maison et Deco/EditeForm'
 
