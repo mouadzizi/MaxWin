@@ -63,8 +63,8 @@ export default function Filtre({ navigation }) {
 			marqueVoiture,
 			carburant,
 			transtaction,
-			SuperficieMin:SuperficieMin? SuperficieMin:0,
-			SuperficieMax:SuperficieMax? SuperficieMax:0,
+			SuperficieMin:SuperficieMin? SuperficieMin: 0,
+			SuperficieMax:SuperficieMax? SuperficieMax: Infinity,
 			marquePhone,
 			typeService,
 		}
