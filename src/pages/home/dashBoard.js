@@ -9,24 +9,24 @@ import Product from '../../components/Product';
 import NavigationSections from '../../components/NavigationSections';
 import { fitler } from './fiterData'
 
-export default function DashBoard({ navigation }) {
+export default function DashBoard({ navigation, route }) {
 	const [ready, setReady] = useState(false);
 	const [posts, setPosts] = useState([]);
 	const [qte, setQte] = useState(10)
 	const [loading, setLoading] = useState(false)
-	const [current, setcurrent] = useState('all')
+	const [current, setcurrent] = useState('All')
+	const [searchQuery, setSearchQuery] = useState("")
 
-	useFocusEffect(
-		React.useCallback(() => {
-			setQte(10)
-			InteractionManager.runAfterInteractions(async () => {
-				await fetchItems(qte).then((p) => {
-					setPosts(p);
-					setReady(true);
-				});
+	useEffect(() => {
+		setQte(10)
+		InteractionManager.runAfterInteractions(async () => {
+			await fetchItems(qte).then((p) => {
+				setPosts(p);
+				setReady(true);
 			});
-		}, [])
-	);
+		});
+	}
+		, []);
 
 	useEffect(() => {
 		return () => {
@@ -41,8 +41,7 @@ export default function DashBoard({ navigation }) {
 
 	//SearchBar Const
 
-	const [searchQuery, setSearchQuery] = useState('');
-	const onChangeSearch = (query) => setSearchQuery(query);
+
 
 	const fetchItems = async (qte) => {
 		let postsA = [];
@@ -56,7 +55,7 @@ export default function DashBoard({ navigation }) {
 		});
 		return postsA
 	};
-	const loadMore = async() => {
+	const loadMore = async () => {
 		setLoading(true);
 		setQte(qte + 10)
 		switch (current) {
@@ -74,6 +73,16 @@ export default function DashBoard({ navigation }) {
 				})
 		}
 	}
+	const handleSearch = async () => {
+		console.log(searchQuery);
+		if (searchQuery.length === 0) {
+			alert('tapper quelque choise')
+			return
+		}
+		var text = searchQuery.toLowerCase().split(' ')
+
+		navigation.navigate('search_results', { searchArr: text })
+	}
 	return (
 		<View>
 
@@ -89,9 +98,10 @@ export default function DashBoard({ navigation }) {
 
 				<Searchbar
 					placeholder="Rechercher"
-					onChangeText={onChangeSearch}
-					value={searchQuery}
+					onChangeText={setSearchQuery}
+					onEndEditing={handleSearch}
 					style={{ width: '83%', margin: 8 }}
+
 				/>
 			</View>
 
@@ -156,26 +166,26 @@ export default function DashBoard({ navigation }) {
 												name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
 										</View>
 									</View>
-									<NavigationSections 
-									
-									onPress={(category) => {
-										setReady(false)
-										setcurrent(category)
-										switch (category) {
-											case 'All':
-												fetchItems(qte).then(pata => {
-													setPosts(pata)
-													setReady(true)
-												})
-												break;
-											default:
-												fitler(category, qte).then(data => {
-													setPosts(data)
-													setReady(true)
-												})
-												break;
-										}
-									}} />
+									<NavigationSections
+
+										onPress={(category) => {
+											setReady(false)
+											setcurrent(category)
+											switch (category) {
+												case 'All':
+													fetchItems(qte).then(pata => {
+														setPosts(pata)
+														setReady(true)
+													})
+													break;
+												default:
+													fitler(category, qte).then(data => {
+														setPosts(data)
+														setReady(true)
+													})
+													break;
+											}
+										}} />
 								</View>
 
 							}

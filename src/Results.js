@@ -12,6 +12,7 @@ export default function Results({ route, navigation }) {
     const [ready, setReady] = React.useState(false)
 
     const { filterOptions } = route.params
+    
     React.useEffect(() => {
         const { selectedCategory, superCategory } = filterOptions
         console.log(filterOptions);

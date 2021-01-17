@@ -296,7 +296,8 @@ export default function AddProduct({ route, navigation }) {
 				name: user.name,
 				avatar:auth.currentUser.photoURL,
 				expoPushNotif:user.expoPushNotif,
-			}
+			},
+			terms:title.toLowerCase().split(' ')
 		};
 
 		if (images==null) {
@@ -589,7 +590,7 @@ export default function AddProduct({ route, navigation }) {
 
 
 								<TextInput
-									onChangeText={(e)=>setKilometrage(parseFloat(e))}
+									onChangeText={setKilometrage}
 									label="Kilométrage"
 									mode="outlined"
 									maxLength={7}

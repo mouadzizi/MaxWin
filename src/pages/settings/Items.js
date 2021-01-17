@@ -21,7 +21,7 @@ export default function Items({ navigation }) {
 		var posts = [];
 		setRefresh(true);
 		await db
-			.collection('posts')
+			.collection('posts').orderBy('addDate','desc')
 			.where('user._id', '==', auth.currentUser.uid)
 			.get()
 			.then((snap) => {
@@ -33,7 +33,7 @@ export default function Items({ navigation }) {
 						city: s.data().city,
 						key: s.id,
 						pics: s.data().urls,
-						cat:s.data().category.item
+						cat:s.data().category.item,
 					});
 				});
 				setRefresh(false);

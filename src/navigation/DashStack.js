@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import {Button} from 'react-native'
+import { Button } from 'react-native'
 
 {
 	/* import pages */
@@ -19,6 +19,7 @@ import AddProductCat from '../pages/home/product/AddProductCat';
 import Filtre from '../pages/home/filtre/Filtre';
 import FilterCat from '../pages/home/filtre/FilterCat';
 import Results from '../Results';
+import SearchResults from '../pages/Search_results'
 {
 	/* pages */
 }
@@ -148,11 +149,21 @@ export default function DashStack() {
 						backgroundColor: '#4898D3'
 					},
 					headerTitle: () => (
-					<Header />
+						<Header />
 					),
 				}}
 			/>
-
+			<Stack.Screen name="search_results"
+				component={SearchResults}
+				options={{
+					headerStyle: {
+						backgroundColor: '#4898D3'
+					},
+					headerTitle: () => (
+						<Header />
+					),
+				}}
+			/>
 		</Stack.Navigator>
 	);
 }

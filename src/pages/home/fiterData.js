@@ -1,7 +1,7 @@
 import {db} from '../../API/firebase'
 
 export const fitler = async(name,qte)=>{
-    const data = db.collection('posts').limit(qte).where('category.item','==',name).get()
+    const data = db.collection('posts').limit(qte).orderBy('addDate','desc').where('category.item','==',name).get()
 
     return await Promise.all((await data).docs.map(d=>{
         return {
