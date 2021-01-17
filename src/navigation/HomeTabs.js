@@ -20,6 +20,7 @@ export default function HomeTabs() {
     });
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
      setNotification(response.notification)
+     console.log(response);
     });
     return () => {
       setNotification(false)

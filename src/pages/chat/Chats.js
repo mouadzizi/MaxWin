@@ -15,7 +15,7 @@ export default function Chats({ navigation }) {
 
     React.useEffect(() => {
         //Retrieve the reciever
-        const _unsub = db.collection('chats').orderBy('createdAt','desc').onSnapshot(querySnapShot => {
+        const _unsub = db.collection('chats').orderBy('createdAt', 'desc').onSnapshot(querySnapShot => {
             const rooms = querySnapShot.docs
                 .filter(doc => doc.id.search(uid) >= 0)
                 .map(d => {
@@ -40,10 +40,14 @@ export default function Chats({ navigation }) {
             <FlatList
                 data={conversations}
                 renderItem={({ item }) =>
-                    <View style={{ justifyContent: 'center' }} >
+                    <View style={{ justifyContent: 'center' }}>
                         <ChatIndicator
+                            badge={(uid===item.senderUID)? null : !item.contact.seen}
                             sellerAvatar={(uid === item.senderUID) ? item.contact.avatar : item.senderPhotoUrl}
-                            click={() => navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })}
+                            click={() => {
+                               (uid==item.contact._id)?db.collection('chats').doc(item.key).update({contact:{...item.contact,seen:true}}):null
+                                navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })
+                            }}
                             lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender} />
 
                     </View>

@@ -63,8 +63,8 @@ export default function Filtre({ navigation }) {
 			marqueVoiture,
 			carburant,
 			transtaction,
-			SuperficieMin,
-			SuperficieMax,
+			SuperficieMin:SuperficieMin? SuperficieMin:0,
+			SuperficieMax:SuperficieMax? SuperficieMax:0,
 			marquePhone,
 			typeService,
 		}

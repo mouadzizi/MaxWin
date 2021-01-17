@@ -41,7 +41,8 @@ export default function messages({ route }) {
             _id:dbData.data().uid,
             name : dbData.data().name,
             avatar :dbData.data().avatar,
-            expoPushNotif:dbData.data().expoPushNotif
+            expoPushNotif:dbData.data().expoPushNotif,
+           
         }
     }
     async function sendMessage(messages) {
@@ -50,7 +51,7 @@ export default function messages({ route }) {
                 sender: user.displayName,
                 senderUID:user.uid,
                 senderPhotoUrl:user.photoURL,
-                contact:contact,
+                contact:{...contact, seen:false,},
                 lastMessage:messages[0].text,
                 createdAt:firebase.firestore.FieldValue.serverTimestamp()
                 

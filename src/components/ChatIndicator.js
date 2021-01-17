@@ -18,13 +18,12 @@ export default function ChatIndicator(props) {
         });
         return () => {
           //setNotification(false)
-          
         };
       }, [])
     return (
         <View
             style={{ width: '90%', height: 80 }}>
-            {notification?<Text style={{position:'absolute',right:0,top:'50%',backgroundColor:'red',width:20,height:20,borderRadius:10}} ></Text>:null}    
+            {props.badge?<Text style={{position:'absolute',right:0,top:'50%',backgroundColor:'red',width:20,height:20,borderRadius:10}} ></Text>:null}    
             <TouchableOpacity
                 delayPressIn={0}
                 style={{ padding: 20, flexDirection: 'row' }}
