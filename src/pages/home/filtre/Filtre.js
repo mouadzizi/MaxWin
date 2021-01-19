@@ -8,7 +8,7 @@ import FilterCategory from '../filtre/FilterCat';
 export default function Filtre({ navigation }) {
 
 	const [titreModal, setTittreModal] = useState('Choisissez votre catégorie');
-	const [etat, setEtat] = useState('Neuf/Utilisé');
+	const [etat, setEtat] = useState('');
 
 	//filter variables Standard 
 	const [city, setCity] = useState('Toutes les villes');
@@ -256,7 +256,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setEtat(itemValue)}
 									>
-										<Picker.Item label="Neuf ou Utilisé" value="Neuf/Utilisé" />
+										<Picker.Item label="Neuf ou Utilisé" value="" />
 										<Picker.Item label="Neuf" value="Neuf" />
 										<Picker.Item label="Utilisé" value="Utilisé" />
 									</Picker>

@@ -14,7 +14,7 @@ export default function ImagesBrowser({ navigation }) {
 	);
 
 	const emptyStayComponent = <Text style={styles.emptyStay}>Empty =(</Text>;
-	const noCameraPermissionComponent = <Text style={styles.emptyStay}>No access to camera</Text>;
+	const noCameraPermissionComponent = (<Text style={styles.emptyStay}>No access to camera</Text>);
 
 	const updateHandler = (count, onSubmit) => {
 		onSubmit();
