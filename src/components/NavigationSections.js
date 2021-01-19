@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
-import {Chip} from 'react-native-paper'
+import {StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
 
 import CarCategorie from '../icons/carCategorie'; 
 import SmartPhone from '../icons/SmartPhone';
@@ -11,7 +10,7 @@ import ClothWomen from '../icons/WomenClothes';
 export default function NavigationSections(props) {
 
    
-    const logo = '../../assets/logoo.png';
+    const logo = '../../assets/logo2.jpg';
  
     return (
         <ScrollView 
@@ -25,7 +24,7 @@ export default function NavigationSections(props) {
             style={styles.categorieItem}>
             <Image 
                 source={require(logo)}
-                resizeMode={'contain'}
+                resizeMode={'cover'}
                 style={styles.imagesLogo}
             />
             </TouchableOpacity>
@@ -81,6 +80,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignSelf: 'center',
         backgroundColor: '#fff',
+        marginLeft: 8,
     },
     categorieItem : {
         borderRadius:  30,
@@ -100,6 +100,6 @@ const styles = StyleSheet.create({
     },
     imagesLogo :{
         height: '95%',
-        width: '95%'
+        width: '80%'
     }
 })

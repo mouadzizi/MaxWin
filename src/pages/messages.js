@@ -106,7 +106,7 @@ export default function messages({ route }) {
                   />
                 }
                 renderSend={props=> 
-                <Send {...props} alwaysShowSend={true} label='Envoyer' textStyle={{color:'red'}} />
+                <Send {...props} alwaysShowSend={true} label='Envoyer' textStyle={{color:'#4898D3'}} />
                 }
                 messages={messages
                 }

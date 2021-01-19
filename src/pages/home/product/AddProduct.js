@@ -38,12 +38,15 @@ export default function AddProduct({ route, navigation }) {
 	const [fabrication, setFabrication] = useState('');
 	const [puissance, setPuissance] = useState('');
 	const [transtaction, setTransaction] = useState('');
+
 	//TOBE ADD
 	const [dedouan, setDedouan] = useState('');
 	const [garantierVoiture, setGarantierVoiture] = useState('');
 	const [modeleVoiture, setModeleVoiture] = useState('');
+
 	//ADITIONAL INFO
 	const [ voitureChips, setVoitureChips ] = useState(false);
+
 	//Variables for equipments
 	const [jantes, setJanets] = useState(false);
 	const [airbags, setAirbags] = useState(false);
@@ -62,10 +65,10 @@ export default function AddProduct({ route, navigation }) {
 	const [ordinateur, setOrdinateur] = useState(false);
 	const [alarmeVoiture, setAlarmeVoiture] = useState(false);
 
-
 	//Variables for inputs for Location
 	const [piece, setPiece] = useState(0);
 	const [superficie, setSuperficie] = useState(0);
+
 	//TOBE ADD as equipments
 	const [ascensseur, setAscensseur] = useState(false);
 	const [balcon, setBalcon] = useState(false);
@@ -75,11 +78,12 @@ export default function AddProduct({ route, navigation }) {
 	//Variables for inputs for Services
 	const [servicetype, setServiceType] = useState('');
 
-
 	//Variables for inputs for Phone
 	const [phoneMarque, setPhoneMarque] = useState('');
+
 	//Variables for inputs for PC
 	const [laptopMarque, setLaptopMarque] = useState('');
+
 	//TOBE ADD for PC, Tabllete & phone
 	const [ram, setRam] = useState('');
 	const [rom, setRom] = useState('');
@@ -90,7 +94,7 @@ export default function AddProduct({ route, navigation }) {
 	const [graphique, setGraphique] = useState('');
 
 	//Visibility for State
-	const [etat, setEtat] = useState('Neuf/Utilisé');
+	const [etat, setEtat] = useState('');
 
 	//Variables chips fro aditional services
 	const [ phone, setPhone ] = useState(false);

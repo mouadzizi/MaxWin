@@ -84,7 +84,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != 'Neuf/Utilisé') {
+        if (etat != '') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
@@ -162,7 +162,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by condition
-        if (etat != 'Neuf/Utilisé') {
+        if (etat != '') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
@@ -193,7 +193,7 @@ export default function Results({ route, navigation }) {
         }
         
         //filter by condition
-        if (etat != 'Neuf/Utilisé') {
+        if (etat != '') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 
@@ -223,7 +223,7 @@ export default function Results({ route, navigation }) {
         }
 
          //filter by condition
-        if (etat != 'Neuf/Utilisé') {
+        if (etat != '') {
             postsRef = postsRef.where('etat', '==', etat)
         }
 

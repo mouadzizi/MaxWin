@@ -4,7 +4,6 @@ import { TextInput } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../../style/GlobalStyle';
 import { AntDesign } from 'react-native-vector-icons';
 import FilterCategory from '../filtre/FilterCat';
-import { useFocusEffect } from '@react-navigation/native'
 
 export default function Filtre({ navigation }) {
 
@@ -20,7 +19,6 @@ export default function Filtre({ navigation }) {
 	const [marqueVoiture, setMarqueVoiture] = useState('');
 	const [carburant, setCarburant] = useState('*');
 	const [transtaction, setTransaction] = useState('*');
-
 	const [anneeMax, setAnneeMax] = useState(Infinity);
 	const [anneeMin, setAnneeMin] = useState(0);
 
