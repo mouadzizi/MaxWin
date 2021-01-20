@@ -55,7 +55,7 @@ export default function Slider() {
 
             <Text style={GlobalStyle.splashText}>
                 Maxwin est une application qui vous facilite la vente de vos produits , publiez vos articles et
-                augmenter vos revenus.{' '}
+                augmentez vos revenus.{' '}
             </Text>
         </View>
 
