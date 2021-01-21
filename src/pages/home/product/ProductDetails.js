@@ -157,12 +157,10 @@ export default function ProductDetails({ navigation, route }) {
 							<TouchableOpacity
 								delayPressIn={0}
 								onPress={() =>  {
-								Alert.alert('Alerte', 'Êtes-vous sûr de bien vouloir supprimer cet élément ?', [
+								Alert.alert('Nous vous conseillons :', "1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit. 2)De bien choisir le lieu de rencontre avec l'annonceur.", 
+								[
 									{
-										text: 'Annuler'
-									},
-									{
-										text: 'Oui',
+										text: 'Je confirme',
 										onPress: handleNavigation(post.user._id)
 									}
 								]);
