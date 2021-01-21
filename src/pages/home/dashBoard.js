@@ -207,9 +207,7 @@ export default function DashBoard({ navigation, route }) {
 							)}
 							onEndReached={() => loadMore()}
 							onEndReachedThreshold={0.01}
-							ListFooterComponent={
-								<ActivityIndicator color="#4898D3" size='large' animating={loading} />
-							}
+								
 						/>
 					</View>
 				) : (
@@ -217,6 +215,7 @@ export default function DashBoard({ navigation, route }) {
 					)}
 
 			</View>
+			<ActivityIndicator color="#4898D3" size={75} animating={loading} style={{position: 'absolute', alignSelf: 'center', top: '50%'}} />
 		</View>
 	);
 }

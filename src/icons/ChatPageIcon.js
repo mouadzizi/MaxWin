@@ -7,8 +7,8 @@ const ChatPageIcon = () => {
 <Svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512.001 512.001"
-      width="55"
-      height="55"
+      width="200"
+      height="200"
       stroke='#fff'
       fill='#4898D3'
     >
@@ -21,7 +21,7 @@ const ChatPageIcon = () => {
         y2={-30.455}
         gradientTransform="matrix(1.0039 0 0 -1.0039 .192 516.56)"
       >
-        <Stop offset={0} stopColor="#4898D3" />
+        <Stop offset={0} stopColor="#F16E44" />
         <Stop offset={1} stopColor="#F16E44" />
       </LinearGradient>
       <Path
@@ -37,8 +37,8 @@ const ChatPageIcon = () => {
         y2={240.773}
         gradientTransform="matrix(1.0039 0 0 -1.0039 .192 516.56)"
       >
-        <Stop offset={0} stopColor="#4898D3" stopOpacity={0} />
-        <Stop offset={1} stopColor="#009e74" />
+        <Stop offset={0} stopColor="#F16E44" stopOpacity={0} />
+        <Stop offset={1} stopColor="#F16E44" />
       </LinearGradient>
       <Path
         d="M340.366 164.133c93.488-1.428 169.792 72.153 171.602 165.634.266 13.725-1.106 27.084-3.932 39.898-4.786 21.697-7.631 43.776-7.631 65.995v42.948c0 6.58-5.334 11.914-11.914 11.914h-42.948c-22.219 0-44.298 2.845-65.995 7.631-12.813 2.826-26.172 4.198-39.897 3.932-93.48-1.809-167.061-78.111-165.635-171.597 1.391-91.25 75.101-164.961 166.35-166.355z"
