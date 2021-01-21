@@ -114,7 +114,7 @@ export default function messages({ route }) {
                 user={{
                     _id: user.uid,
                     name: user.displayName,
-                    avatar: user.photoURL
+                    avatar: user.photoURL? user.photoURL : 'https://placeimg.com/140/140/any'
                 }} />
         </View>
     )

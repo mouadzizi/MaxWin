@@ -60,7 +60,6 @@ export default function DashBoard({ navigation, route }) {
 		setQte(qte + 10)
 		switch (current) {
 			case 'All':
-				console.log('load more');
 				await fetchItems(qte).then(p => {
 					setPosts(p)
 					setLoading(false)
@@ -85,7 +84,7 @@ export default function DashBoard({ navigation, route }) {
 	}
 	return (
 		<View>
-
+			{console.log('DASHBOARD')}
 			<StatusBar />
 			<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
 				<Ionicons

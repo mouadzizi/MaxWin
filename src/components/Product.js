@@ -6,15 +6,17 @@ import PriceTag from '../icons/priceTag';
 import PaymenLivraison from '../icons/paymentLaivraison';
 
 export default function Product(props) {
-	const [ chip1, setChip1 ] = useState(props.p1);
-	const [ chip2, setChip2 ] = useState(props.p2);
+	const chip1 =props.p1
+	const chip2 = props.p2
 	
-	const [ chip3, setChip3 ] = useState(props.p3);
-	const [ chip4, setChip4 ] = useState(props.p4);
+	const  chip3 =props.p3
+	const  chip4 = props.p4
 
-	const [ state, setState ] = useState(props.particulier);
+	const  state = props.particulier
 	return (
+		
 		<View>
+			{console.log('re-render')}
 			<TouchableOpacity delayPressIn={0} onPress={props.click}>
 				<View
 					style={

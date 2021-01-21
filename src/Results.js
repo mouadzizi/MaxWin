@@ -214,7 +214,7 @@ export default function Results({ route, navigation }) {
     }
 
     const servicesFilter = async (category) => {
-        const { city, priceMax, priceMin, etat, typeService } = filterOptions;
+        const { city, priceMax, priceMin,  typeService } = filterOptions;
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
         //filter by city
@@ -222,17 +222,13 @@ export default function Results({ route, navigation }) {
             postsRef = postsRef.where('city', '==', city)
         }
 
-         //filter by condition
-        if (etat != '') {
-            postsRef = postsRef.where('etat', '==', etat)
-        }
-
         //filter by type
-        if (typeService != '*') {
-            postsRef = postsRef.where('typeService', '==', typeService)
+        if (typeService != '') {
+            postsRef = postsRef.where('servicetype', '==', typeService)
         }
         
-        //fiter by price
+
+        // fiter by price
         const results = postsRef.where('price', '>=', priceMin)
             .where('price', '<=', priceMax).get();
         (await results).docs.forEach(doc => {
@@ -252,8 +248,8 @@ export default function Results({ route, navigation }) {
             {
                 !ready ?
                     <ProgressBar style={{ height: 7 }} color={'#4898D3'} indeterminate={true} visible={true} />
-                    : <FlatList
-
+                    :
+                    <FlatList
                         data={aResults.sort((a, b) => b.addDate.toDate().getTime() - a.addDate.toDate().getTime())}
                         renderItem={({ item }) => (
                             <Product
@@ -268,7 +264,7 @@ export default function Results({ route, navigation }) {
                                 p3={item.negociable}
                                 p4={item.bonCondition}
                                 click={() => navigation.navigate('ProductDetails', { id: item.key })}
-                            />
+                           />
                         )}
                     />
             }
