@@ -156,9 +156,20 @@ export default function ProductDetails({ navigation, route }) {
 						{ post.user._id != auth.currentUser.uid?
 							<TouchableOpacity
 								delayPressIn={0}
-								onPress={() => handleNavigation(post.user._id)}
+								onPress={() =>  {
+								Alert.alert('Alerte', 'Êtes-vous sûr de bien vouloir supprimer cet élément ?', [
+									{
+										text: 'Annuler'
+									},
+									{
+										text: 'Oui',
+										onPress: handleNavigation(post.user._id)
+									}
+								]);
+							}}
 								style={styles.buttonMessage}
 							>
+
 								<View style={{ flexDirection: 'row' }}>
 									<Feather name="message-square" size={25} color="#fff" />
 									<Text style={styles.btnText}>Envoyer un message</Text>

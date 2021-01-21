@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { FlatList, View, Text, Image, Dimensions } from 'react-native';
 import ChatIndicator from '../../components/ChatIndicator';
-import { useFocusEffect } from '@react-navigation/native'
-import { db, auth } from '../../API/firebase'
-import { Divider } from 'react-native-paper';
+import { db, auth } from '../../API/firebase';
+import ChatPageIcon from '../../icons/ChatPageIcon'
 
 export default function Chats({ navigation }) {
     const [conversations, setConversations] = React.useState([])
@@ -52,11 +51,9 @@ export default function Chats({ navigation }) {
                     </View>
                 }
                 ListEmptyComponent={() => (
-                    <View>
-                        <Image
-                            source={require('../../../assets/slide3.jpg')}
-                            style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
-                            resizeMode={'stretch'} />
+                    <View
+                    style={{flex: 1, alignContent: 'center', alignItems: 'center', alignSelf: 'center'}}>
+                        <ChatPageIcon />
                         <Text
                             style={{ textAlign: 'center', color: '#4898D3', fontSize: 20, fontFamily: 'serif' }}>Actuellement ,votre Chat lsit est vide.</Text>
                     </View>
