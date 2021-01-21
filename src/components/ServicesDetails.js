@@ -5,6 +5,7 @@ import PriceTag from '../icons/priceTag';
 import { MaterialCommunityIcons, FontAwesome, Feather } from 'react-native-vector-icons';
 import {GlobalStyle} from '../style/GlobalStyle';
 
+import PaymenLivraison from '../icons/paymentLaivraison';
 export default function ServicesDetails(props) {
     return (
         <View style={GlobalStyle.infoContainer}>
@@ -39,7 +40,7 @@ export default function ServicesDetails(props) {
             {/*Paiement*/}
             {props.paiement ? 
                 <View style={styles.line}>
-                <FontAwesome name="money" color="#4898D3" size={20} style={{ marginRight: 5 }} />
+                <PaymenLivraison  />
                     <Text style={styles.text}> Paiement à la livraison </Text>
                 </View>
             : null }
