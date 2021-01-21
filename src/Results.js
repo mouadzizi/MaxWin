@@ -217,6 +217,7 @@ export default function Results({ route, navigation }) {
         const { city, priceMax, priceMin, etat, typeService } = filterOptions;
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
+        
         //filter by city
         if (city != 'Toutes les villes') {
             postsRef = postsRef.where('city', '==', city)
@@ -228,7 +229,7 @@ export default function Results({ route, navigation }) {
         }
 
         //filter by type
-        if (typeService != '*') {
+        if (typeService != '') {
             postsRef = postsRef.where('typeService', '==', typeService)
         }
         
@@ -243,9 +244,6 @@ export default function Results({ route, navigation }) {
             })
         })
         return await Promise.all(items)
-    }
-    const clothFilter = async () => {
-
     }
     return (
         <View style={{ flex: 1 }} >

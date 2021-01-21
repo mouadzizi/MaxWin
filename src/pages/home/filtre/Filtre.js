@@ -30,7 +30,7 @@ export default function Filtre({ navigation }) {
 	const [marquePhone, setMarquePhone] = useState('*');
 
 	//filter variables phone
-	const [typeService, setTypeService] = useState('*');
+	const [typeService, setTypeService] = useState('');
 
 	//Visibility
 	const [modalVisible, setModalVisible] = useState(false);
@@ -430,7 +430,7 @@ export default function Filtre({ navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setTypeService(itemValue)}
 									>
-										<Picker.Item label="Type de Service" value="*" />
+										<Picker.Item label="Type de Service" value="" />
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
@@ -442,7 +442,6 @@ export default function Filtre({ navigation }) {
 										<Picker.Item label="Plombier" value="Plombier" />
 										<Picker.Item label="Soudeur" value="Soudeur" />
 										<Picker.Item label="Vitre" value="Vitre" />
-										<Picker.Item label="AUTRES" value="AUTRES" />
 									</Picker>
 								</View>
 							</View>

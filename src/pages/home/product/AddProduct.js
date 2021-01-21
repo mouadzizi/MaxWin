@@ -792,7 +792,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setServiceType(itemValue)}
 									>
-										<Picker.Item label="Choisissez le type de Service" value="*" />
+										<Picker.Item label="Choisissez le type de Service" value="" />
 										<Picker.Item label="Alarme & sécurité" value="Alarme & sécurité" />
 										<Picker.Item label="Electricien " value="Electricien" />
 										<Picker.Item label="Jardinier" value="Jardinier" />
@@ -804,7 +804,6 @@ export default function AddProduct({ route, navigation }) {
 										<Picker.Item label="Plombier" value="Plombier" />
 										<Picker.Item label="Soudeur" value="Soudeur" />
 										<Picker.Item label="Vitre" value="Vitre" />
-										<Picker.Item label="AUTRES" value="AUTRES" />
 									</Picker>
 								</View>
 							</View>
