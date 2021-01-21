@@ -47,8 +47,8 @@ export const DATA = [
 	{
 		title: 'ESPACE HOMMES',
 		data: [
-			'Vêtements Homme',
-			'Chaussures Homme',
+			'Vêtements Hommes',
+			'Chaussures Hommes',
 			'Montres et accessoires',
 			'Produits de bien être',
 		]

@@ -52,7 +52,7 @@ export default function NavigationSections(props) {
             <TouchableOpacity
             delayPressIn={0}
             style={styles.categorieItem}
-            onPress={()=> props.onPress('Vêtements Homme')}>
+            onPress={()=> props.onPress('Vêtements Hommes')}>
             <ClothMen/>
             </TouchableOpacity>
 

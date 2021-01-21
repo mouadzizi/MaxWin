@@ -8,7 +8,7 @@ export default function Conditions() {
 
 
                 <Text
-                style={{fontSize: 20, textAlign: 'center', color: 'red', fontWeight: 'bold', marginBottom: 20}}>Conditions Générales d’Utilisation</Text>
+                style={{fontSize: 20, textAlign: 'center', color: '#F16E44', fontWeight: 'bold', marginBottom: 20}}>Conditions Générales d’Utilisation</Text>
                 
                 <Text
                 style={{fontSize: 17, textAlign: 'left', color: '#4898D3',marginLeft: 10, fontWeight: 'bold'}}>Droit d'utilisation :</Text>
