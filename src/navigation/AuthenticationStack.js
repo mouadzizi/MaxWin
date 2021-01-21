@@ -32,8 +32,9 @@ const Stack = createStackNavigator();
 						fontWeight: '500'
 					}
 				}}/>
-          <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }}/>
-
+          <Stack.Screen name="HomeTabs" options={{ headerShown: false }} component={HomeTabs}/>
+           
+         
         </Stack.Navigator>
       </NavigationContainer>
     );

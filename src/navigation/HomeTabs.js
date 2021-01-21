@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as Notifications from 'expo-notifications';
+import {useFocusEffect} from '@react-navigation/native'
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Drawer from './Drawer';
@@ -8,7 +9,7 @@ import SettingsStack from './SettingsStack';
 import StackChat from './StackChat';
 
 export default function HomeTabs() {
-  const [notification, setNotification] = React.useState(false)
+  const [notification, setNotification] = React.useState({})
   const notificationListener = React.useRef();
   const responseListener = React.useRef();
   const Tab = createBottomTabNavigator();
@@ -16,17 +17,16 @@ export default function HomeTabs() {
   React.useEffect(() => {
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification)
-      console.log(notification.request.content.body);
-    });
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-     setNotification(response.notification)
-     console.log(response);
+      console.log('notif',notification);
     });
     return () => {
-      setNotification(false)
+      setNotification(null)
+      Notifications.removeNotificationSubscription(notificationListener)
     };
   }, [])
-
+useFocusEffect(()=>{
+  setNotification(null)
+},[])
   return (
     <Tab.Navigator backBehavior='none'
       initialRouteName='Accueil'
@@ -56,11 +56,12 @@ export default function HomeTabs() {
         activeTintColor: '#4898D3',
         inactiveTintColor: '#fff',
         inactiveTintColor: 'gray',
+        
 
       }}
     >
       <Tab.Screen name="Accueil" component={Drawer} />
-      <Tab.Screen options={{ tabBarBadge: notification ? true : null }} name="Discussions" component={StackChat} />
+      <Tab.Screen  options={{ tabBarBadge: notification ? true : null }} name="Discussions" component={StackChat} />
       <Tab.Screen name="Paramètres" component={SettingsStack} />
 
     </Tab.Navigator>
