@@ -5,7 +5,7 @@ import Product from '../components/Product'
 import { ProgressBar } from 'react-native-paper'
 
 
-export default function Search_results({ route }) {
+export default function Search_results({ route, navigation }) {
     const [aResults, setResults] = React.useState([]);
     const [ready, setReady] = React.useState(false)
 

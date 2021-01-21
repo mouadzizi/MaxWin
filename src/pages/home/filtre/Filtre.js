@@ -442,7 +442,6 @@ export default function Filtre({ navigation }) {
 										<Picker.Item label="Plombier" value="Plombier" />
 										<Picker.Item label="Soudeur" value="Soudeur" />
 										<Picker.Item label="Vitre" value="Vitre" />
-										<Picker.Item label="AUTRES" value="AUTRES" />
 									</Picker>
 								</View>
 							</View>

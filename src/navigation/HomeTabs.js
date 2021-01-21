@@ -56,12 +56,11 @@ useFocusEffect(()=>{
         activeTintColor: '#4898D3',
         inactiveTintColor: '#fff',
         inactiveTintColor: 'gray',
-        
-
+      
       }}
     >
       <Tab.Screen name="Accueil" component={Drawer} />
-      <Tab.Screen  options={{ tabBarBadge: notification ? true : null }} name="Discussions" component={StackChat} />
+      <Tab.Screen  options={{ tabBarBadge: notification ? true : null}} name="Discussions" component={StackChat} />
       <Tab.Screen name="Paramètres" component={SettingsStack} />
 
     </Tab.Navigator>

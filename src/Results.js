@@ -217,6 +217,7 @@ export default function Results({ route, navigation }) {
         const { city, priceMax, priceMin,  typeService } = filterOptions;
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
+        
         //filter by city
         if (city != 'Toutes les villes') {
             postsRef = postsRef.where('city', '==', city)
@@ -239,9 +240,6 @@ export default function Results({ route, navigation }) {
             })
         })
         return await Promise.all(items)
-    }
-    const clothFilter = async () => {
-
     }
     return (
         <View style={{ flex: 1 }} >
