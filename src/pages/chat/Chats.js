@@ -55,7 +55,7 @@ export default function Chats({ navigation }) {
                     style={{flex: 1, alignContent: 'center', alignItems: 'center', alignSelf: 'center', marginTop: '50%'}}>
                         <ChatPageIcon />
                         <Text
-                            style={{ textAlign: 'center', color: '#4898D3', fontSize: 20, fontFamily: 'serif' }}>Actuellement ,votre Chat lsit est vide.</Text>
+                            style={{ textAlign: 'center', color: '#4898D3', fontSize: 20, fontFamily: 'serif' }}>Actuellement ,votre Messagerie est vide.</Text>
                     </View>
                 )}
             />

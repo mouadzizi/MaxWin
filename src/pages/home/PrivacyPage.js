@@ -20,7 +20,7 @@ export default function PrivacyPage({navigation}) {
             </View>
 
             <View  style={{flex: 4, alignSelf: 'center'}}>
-                <Text style={{fontWeight: 'bold', color: '#fff', marginStart: 55, fontSize: 17}}>Condition Générales</Text>
+                <Text style={{fontWeight: 'bold', color: '#fff', marginStart: 55, fontSize: 17}}>Conditions Générales</Text>
             </View>
             
 

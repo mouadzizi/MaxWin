@@ -34,7 +34,7 @@ export default function EditProductPage({ route }) {
     }
     return (
         <ScrollView style={styles.container}>
-            <Text style={styles.title}> Vous pouvez modifier seulement les données ci dessous ,si votre annonce a besoin de plus de modification, merci de procéder à la création d'une nouvelle annonce . </Text>
+            <Text style={styles.title}> Vous pouvez modifier seulement les données ci dessous ,si votre annonce à besoin de plus de modification, merci de procéder à la création d'une nouvelle annonce . </Text>
             {renderComponent()}
         </ScrollView>
     )

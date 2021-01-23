@@ -62,7 +62,7 @@ export default function Phone(props) {
                             style={{ height: 50, width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setItem({ ...item, etat: itemValue })}
                         >
-                            <Picker.Item label="Choissisez votre Etat" value="" />
+                            <Picker.Item label="Choissisez l'état de produit" value="" />
                             <Picker.Item label="Neuf" value="neuf" />
                             <Picker.Item label="Utilisé" value="Utilisé" />
                         </Picker>
@@ -77,7 +77,7 @@ export default function Phone(props) {
                             style={{ height: 50, width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setItem({...item,phoneMarque:itemValue})}
                         >
-                            <Picker.Item label="Choissisez votre marque" value="*" />
+                            <Picker.Item label="Choissisez la marque" value="*" />
 
                             <Picker.Item label="SAMSUNG " value="SAMSUNG " />
                             <Picker.Item label="IPHONE" value="IPHONE" />

@@ -157,7 +157,7 @@ export default function ProductDetails({ navigation, route }) {
 							<TouchableOpacity
 								delayPressIn={0}
 								onPress={() =>  {
-								Alert.alert('Nous vous conseillons :', "1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit. 2)De bien choisir le lieu de rencontre avec l'annonceur.", 
+								Alert.alert('Nous vous conseillons :', "1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit.\n2) De bien choisir le lieu de rencontre avec l'annonceur.", 
 								[
 									{
 										text: 'Je confirme',

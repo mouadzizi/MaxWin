@@ -6,7 +6,7 @@ import {GlobalStyle, textTheme} from '../style/GlobalStyle';
 
 
 const { width, height } = Dimensions.get('window');
-const height_image = height*0.27;
+const height_image = height*0.20;
 const width_image = width;
 
 export default function ContactForm() {
@@ -33,7 +33,7 @@ export default function ContactForm() {
         />
 
         <TextInput
-        label='Numero de Téléphone'
+        label='Numéro de Téléphone'
         mode='outlined'
         placeholder='votre Numéro de Telephone'
         keyboardType='numeric'

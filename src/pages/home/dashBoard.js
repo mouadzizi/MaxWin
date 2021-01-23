@@ -215,7 +215,7 @@ export default function DashBoard({ navigation, route }) {
 					)}
 
 			</View>
-			<ActivityIndicator color="#4898D3" size={75} animating={loading} style={{position: 'absolute', alignSelf: 'center', top: '50%'}} />
+			<ActivityIndicator color="#4898D3" size={45} animating={loading} style={{position: 'absolute', alignSelf: 'center', top: '50%'}} />
 		</View>
 	);
 }

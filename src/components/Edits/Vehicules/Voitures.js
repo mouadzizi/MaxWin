@@ -35,7 +35,7 @@ export default function Voitures(props) {
         <View>
             {ready ?
                 <View style={styles.form} >
-                    <Text> Catégory : {item.category.item} </Text>
+                    <Text> Catégorie : {item.category.item} </Text>
                     <TextInput
                         style={styles.input}
                         theme={textTheme}
