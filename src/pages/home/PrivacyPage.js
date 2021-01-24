@@ -1,12 +1,16 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import { Ionicons } from 'react-native-vector-icons';
 import Condition from '../../components/Conditions'
 
 
+const { width, height } = Dimensions.get('window');
+
+
 export default function PrivacyPage({navigation}) {
+
     return (
-        <View>
+        <View style={{height: height*0.88, width: width}}>
 
             <View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
             <View style={{flex: 1}}>

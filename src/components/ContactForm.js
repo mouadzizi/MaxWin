@@ -18,8 +18,7 @@ export default function ContactForm() {
                     source={require('../../assets/logo.jpg')}
                     style={{height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                     resizeMode={'cover'}
-                />
-
+        />
         </View>
 
         <View style={{padding: 20}}>
@@ -49,6 +48,7 @@ export default function ContactForm() {
         theme={textTheme}
         style={{marginBottom: 10}}
         />
+
         <TextInput
         label='Message'
         autoCapitalize="none"
@@ -59,6 +59,7 @@ export default function ContactForm() {
         multiline={true}
         numberOfLines={5}
         />
+
         </View>
         
         <TouchableOpacity 
