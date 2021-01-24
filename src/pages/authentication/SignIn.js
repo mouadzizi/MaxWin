@@ -286,14 +286,6 @@ export default function SignIn({ navigation }) {
             onChangeText={pass => setPassword(pass)}
             right={<TextInput.Icon name={showPass? 'eye-off':'eye'} color='#4898D3'  onPress={()=>setShowPass(!showPass)} size={30} />} />
 
-          <TouchableOpacity
-            onPress={() => alert('comming up on the next virsion')}>
-            <Text style={{
-              marginTop: 15,
-              fontWeight: 'bold',
-              color: '#4898D3',
-            }}>Oublie mon mot de passe ?</Text>
-          </TouchableOpacity>
 
           <Button
             mode='contained'

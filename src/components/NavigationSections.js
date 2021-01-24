@@ -17,6 +17,7 @@ export default function NavigationSections(props) {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         style={styles.container}>
+        
             <TouchableOpacity
             disabled = {props.disabled}
             delayPressIn={0}
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         backgroundColor: '#fff',
         marginLeft: 8,
+        paddingBottom: 8,
     },
     categorieItem : {
         borderRadius:  30,

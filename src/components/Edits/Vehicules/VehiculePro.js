@@ -32,7 +32,7 @@ export default function VehiculePro(props) {
         <View>
             {ready ?
                 <View style={styles.form} >
-                    <Text> Catégory : {item.category.item} </Text>
+                    <Text> Catégorie : {item.category.item} </Text>
                     <TextInput
                         style={styles.input}
                         theme={textTheme}
@@ -58,7 +58,7 @@ export default function VehiculePro(props) {
                             style={{ height: 50, width: '100%' }}
                             onValueChange={(itemValue, itemIndex) => setItem({ ...item, etat: itemValue })}
                         >
-                            <Picker.Item label="Choissisez votre Etat" value="" />
+                            <Picker.Item label="Choissisez l'état de produit" value="" />
                             <Picker.Item label="Neuf" value="neuf" />
                             <Picker.Item label="Utilisé" value="Utilisé" />
                         </Picker>

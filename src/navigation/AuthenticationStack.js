@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
           <Stack.Screen name="register" component={SignUp} options={{ headerShown: false }}/>
           <Stack.Screen name="Privacy" component={Privacy}
           options={{
-					title: 'Politiques confidentialité',
+					title: 'Conditions générales',
 					headerTitleAlign: 'center',
 					headerStyle: {
 						backgroundColor: '#4898D3'

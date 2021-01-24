@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar, ActivityIndicator } from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
-import { Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
+import { Ionicons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
-import { useFocusEffect } from '@react-navigation/native';
 import { db } from '../../API/firebase';
 import Product from '../../components/Product';
-import NavigationSections from '../../components/NavigationSections';
+import DashoboardHeader from '../../components/DashboardHeader';
+
 import { fitler } from './fiterData'
 
-export default function DashBoard({ navigation, route }) {
+export default function DashBoard({ navigation }) {
 	const [ready, setReady] = useState(false);
 	const [posts, setPosts] = useState([]);
 	const [qte, setQte] = useState(10)
@@ -40,8 +40,6 @@ export default function DashBoard({ navigation, route }) {
 	const height_screen = height * 0.782;
 
 	//SearchBar Const
-
-
 
 	const fetchItems = async (qte) => {
 		let postsA = [];
@@ -75,7 +73,7 @@ export default function DashBoard({ navigation, route }) {
 	const handleSearch = async () => {
 		console.log(searchQuery);
 		if (searchQuery.length === 0) {
-			alert('tapper quelque choise')
+			alert('Merci de taper quelque choise')
 			return
 		}
 		var text = searchQuery.toLowerCase().split(' ')
@@ -152,42 +150,30 @@ export default function DashBoard({ navigation, route }) {
 				{/* Products Lists */}
 				{ready ? (
 					<View style={{ height: height_screen }}>
+
 						<FlatList style={{ flexGrow: 0 }}
+
 							ListHeaderComponent={
-								<View style={{ backgroundColor: '#fff', paddingBottom: 10 }}>
-									<View style={{ flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 5, flex: 1 }}>
-										<View style={{ flex: 1 }}>
-											<Text style={{ color: '#4898D3', fontWeight: 'bold', alignSelf: 'flex-start' }}>Top catégories</Text>
-										</View>
-										<View style={{ flex: 1 }}>
-
-											<MaterialCommunityIcons
-												name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
-										</View>
-									</View>
-									<NavigationSections
-
-										onPress={(category) => {
-											setReady(false)
-											setcurrent(category)
-											switch (category) {
-												case 'All':
-													fetchItems(qte).then(pata => {
-														setPosts(pata)
-														setReady(true)
-													})
-													break;
-												default:
-													fitler(category, qte).then(data => {
-														setPosts(data)
-														setReady(true)
-													})
-													break;
-											}
-										}} />
-								</View>
-
+							<DashoboardHeader click={(category) => {
+									setReady(false)
+									setcurrent(category)
+									switch (category) {
+										case 'All':
+											fetchItems(qte).then(pata => {
+												setPosts(pata)
+												setReady(true)
+											})
+											break;
+										default:
+											fitler(category, qte).then(data => {
+												setPosts(data)
+												setReady(true)
+											})
+											break;
+									}
+							}}/>
 							}
+
 							data={posts}
 							renderItem={({ item }) => (
 								<Product
@@ -206,9 +192,7 @@ export default function DashBoard({ navigation, route }) {
 							)}
 							onEndReached={() => loadMore()}
 							onEndReachedThreshold={0.01}
-							ListFooterComponent={
-								<ActivityIndicator color="#4898D3" size='large' animating={loading} />
-							}
+								
 						/>
 					</View>
 				) : (
@@ -216,6 +200,7 @@ export default function DashBoard({ navigation, route }) {
 					)}
 
 			</View>
+			<ActivityIndicator color="#4898D3" size={45} animating={loading} style={{position: 'absolute', alignSelf: 'center', top: '50%'}} />
 		</View>
 	);
 }

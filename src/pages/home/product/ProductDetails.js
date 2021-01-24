@@ -156,9 +156,18 @@ export default function ProductDetails({ navigation, route }) {
 						{ post.user._id != auth.currentUser.uid?
 							<TouchableOpacity
 								delayPressIn={0}
-								onPress={() => handleNavigation(post.user._id)}
+								onPress={() =>  {
+								Alert.alert('Nous vous conseillons :', "1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit.\n2) De bien choisir le lieu de rencontre avec l'annonceur.", 
+								[
+									{
+										text: 'Je confirme',
+										onPress: handleNavigation(post.user._id)
+									}
+								]);
+							}}
 								style={styles.buttonMessage}
 							>
+
 								<View style={{ flexDirection: 'row' }}>
 									<Feather name="message-square" size={25} color="#fff" />
 									<Text style={styles.btnText}>Envoyer un message</Text>
