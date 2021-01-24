@@ -14,19 +14,6 @@ export default function HomeTabs() {
   const responseListener = React.useRef();
   const Tab = createBottomTabNavigator();
 
-  React.useEffect(() => {
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification)
-      console.log('notif',notification);
-    });
-    return () => {
-      setNotification(null)
-      Notifications.removeNotificationSubscription(notificationListener)
-    };
-  }, [])
-useFocusEffect(()=>{
-  setNotification(null)
-},[])
   return (
     <Tab.Navigator backBehavior='none'
       initialRouteName='Accueil'
@@ -60,7 +47,7 @@ useFocusEffect(()=>{
       }}
     >
       <Tab.Screen name="Accueil" component={Drawer} />
-      <Tab.Screen  options={{ tabBarBadge: notification ? true : null}} name="Discussions" component={StackChat} />
+      <Tab.Screen name="Discussions" component={StackChat} />
       <Tab.Screen name="Paramètres" component={SettingsStack} />
 
     </Tab.Navigator>

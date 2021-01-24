@@ -17,7 +17,6 @@ export default function DashboardHeader(props) {
 				<MaterialCommunityIcons name="arrow-right" size={20} color="#4898D3" style={{ alignSelf: 'flex-end' }} />
             </View>
         </View>
-
         <NavigationSections onPress={props.click} />
         </View>
     )
