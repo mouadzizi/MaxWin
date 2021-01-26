@@ -42,7 +42,9 @@ export default function Voitures(props) {
                         value={item.title}
                         label='Titre'
                         mode='outlined'
-                        onChangeText={(e => setItem({ ...item, title: e }))}
+                        onChangeText={(e => {
+                            return setItem({ ...item, title: e });
+                        })}
                     />
                     <TextInput
                         style={styles.input}

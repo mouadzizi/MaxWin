@@ -114,7 +114,7 @@ export default function messages({ route }) {
                 user={{
                     _id: user.uid,
                     name: user.displayName,
-                    avatar: user.photoURL? user.photoURL : 'https://firebasestorage.googleapis.com/v0/b/maxwinapp-2020.appspot.com/o/logo2.jpg?alt=media&token=794f3e1d-d564-48e0-9666-aa6bb55aff54'
+                    avatar: user.photoURL
                 }} />
         </View>
     )

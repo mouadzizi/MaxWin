@@ -6,6 +6,9 @@ import PriceTag from '../icons/priceTag';
 import PaymenLivraison from '../icons/paymentLaivraison';
 
 export default function Product(props) {
+	React.useEffect(()=>{
+		console.log('render Products');
+	},[])
 	const chip1 =props.p1
 	const chip2 = props.p2
 	
@@ -16,7 +19,6 @@ export default function Product(props) {
 	return (
 		
 		<View>
-			{console.log('re-render')}
 			<TouchableOpacity delayPressIn={0} onPress={props.click}>
 				<View
 					style={
