@@ -81,6 +81,7 @@ export default function DashBoard({ navigation }) {
 
 		navigation.navigate('search_results', { searchArr: text })
 	}
+	
 	return (
 		<View>
 			<StatusBar />
