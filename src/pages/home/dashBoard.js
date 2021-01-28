@@ -72,7 +72,6 @@ export default function DashBoard({ navigation }) {
 		}
 	}
 	const handleSearch = async () => {
-		console.log(searchQuery);
 		if (searchQuery.length === 0) {
 			alert('Merci de taper quelque choise')
 			return

@@ -23,7 +23,6 @@ export default function Splash({ navigation }) {
 				navigation.replace('HomeTabs');
 			} else {
 				setLoading(false);
-				console.log('no user');
 			}
 		});
 

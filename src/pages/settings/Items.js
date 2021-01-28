@@ -45,9 +45,7 @@ export default function Items({ navigation }) {
 		return items;
 	};
 	const removeItem = async (id) => {
-		await db.collection('posts').doc(id).delete().then(() => {
-			console.log(id);
-		});
+		await db.collection('posts').doc(id).delete()
 	};
 	
 	const { width, height } = Dimensions.get('window');
