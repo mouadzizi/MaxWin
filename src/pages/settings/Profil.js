@@ -103,7 +103,7 @@ export default function Profil() {
 			  if(result.cancelled)console.log('cancelled');
 			  
 		}
-		else alert('Clicker sur modifier pour changer la photo')
+		else alert('Pour changer la photo, merci de cliquer sur modifier')
 	}
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 10 }}>

@@ -55,7 +55,7 @@ export default function DashBoard({ navigation }) {
 	};
 	const loadMore = async () => {
 		setLoading(true);
-		setQte(qte + 10)
+		setQte(qte + 15)
 		switch (current) {
 			case 'All':
 				await fetchItems(qte).then(p => {

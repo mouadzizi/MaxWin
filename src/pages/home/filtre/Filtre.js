@@ -100,14 +100,14 @@ export default function Filtre({ navigation }) {
 				setEtatVisibility(false)
 				break;
 
-			case (item === 'Services et travaux professionnels' || item === 'Formations & autres'):
+			case (item === 'Services et travaux professionnels' ):
 				setService(true)
 				setLocation(false)
 				setPhone(false)
 				setVoiture(false)
 				setEtatVisibility(false)
 				break;
-			case (item === 'Matériels professionnels'):
+			case (item === 'Matériels professionnels' || item === 'Formations & autres'):
 				setService(false)
 				setLocation(false)
 				setPhone(false)
