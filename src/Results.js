@@ -223,6 +223,12 @@ export default function Results({ route, navigation }) {
             postsRef = postsRef.where('city', '==', city)
         }
 
+        //filter by condition
+        if (etat != '') {
+            postsRef = postsRef.where('etat', '==', etat)
+        }
+
+
         //filter by type
         if (typeService != '') {
             postsRef = postsRef.where('servicetype', '==', typeService)
