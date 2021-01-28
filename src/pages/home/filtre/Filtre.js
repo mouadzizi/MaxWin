@@ -107,12 +107,20 @@ export default function Filtre({ navigation }) {
 				setVoiture(false)
 				setEtatVisibility(false)
 				break;
-			case (item === 'Matériels professionnels' || item === 'Formations & autres'):
+			case (item === 'Matériels professionnels'):
 				setService(false)
 				setLocation(false)
 				setPhone(false)
 				setVoiture(false)
 				setEtatVisibility(true)
+				break;
+			
+			case (item === 'Formations & autres'):
+				setService(false)
+				setLocation(false)
+				setPhone(false)
+				setVoiture(false)
+				setEtatVisibility(false)
 				break;
 
 			default:
@@ -338,7 +346,7 @@ export default function Filtre({ navigation }) {
 										prompt="Carburant"
 										onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
 									>
-										<Picker.Item label="toutes les carburant" value="*" />
+										<Picker.Item label="tous les carburants" value="*" />
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
 										<Picker.Item label="Hybrid" value="Hybrid" />
