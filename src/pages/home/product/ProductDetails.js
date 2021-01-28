@@ -137,7 +137,16 @@ export default function ProductDetails({ navigation, route }) {
 								<TouchableOpacity
 									delayPressIn={0}
 									onPress={() =>
-										call(args).catch((err) => alert(err.message))
+										Alert.alert(
+											'Nous vous conseillons :', "1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit.\n2) De bien choisir le lieu de rencontre avec l'annonceur.",
+											[
+
+												{
+													text: 'Je confirme',
+													onPress: () => call(args).catch((err) => alert(err.message))
+												}
+											])
+
 
 									}
 									style={styles.buttonCall}
@@ -153,18 +162,20 @@ export default function ProductDetails({ navigation, route }) {
 
 
 						{/* Button Message */}
-						{ post.user._id != auth.currentUser.uid?
+						{post.user._id != auth.currentUser.uid ?
 							<TouchableOpacity
 								delayPressIn={0}
-								onPress={() =>  {
-								Alert.alert('Nous vous conseillons :', "1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit.\n2) De bien choisir le lieu de rencontre avec l'annonceur.", 
-								[
-									{
-										text: 'Je confirme',
-										onPress: handleNavigation(post.user._id)
-									}
-								]);
-							}}
+								onPress={() => {
+									Alert.alert(
+										'Nous vous conseillons :', "1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit.\n2) De bien choisir le lieu de rencontre avec l'annonceur.",
+										[
+
+											{
+												text: 'Je confirme',
+												onPress: () => handleNavigation(post.user._id)
+											}
+										]);
+								}}
 								style={styles.buttonMessage}
 							>
 
@@ -172,7 +183,7 @@ export default function ProductDetails({ navigation, route }) {
 									<Feather name="message-square" size={25} color="#fff" />
 									<Text style={styles.btnText}>Envoyer un message</Text>
 								</View>
-							</TouchableOpacity>: null}
+							</TouchableOpacity> : null}
 
 						{/* Button Share */}
 						<TouchableOpacity
