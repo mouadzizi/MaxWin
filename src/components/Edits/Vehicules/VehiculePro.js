@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Picker } from 'react-native';
+import { StyleSheet, Text, View, Picker, Alert } from 'react-native';
 import { Button, TextInput, ProgressBar } from 'react-native-paper';
 import { textTheme } from '../../../style/GlobalStyle';
 import { db } from '../../../API/firebase';
@@ -8,6 +8,8 @@ export default function VehiculePro(props) {
     const [item, setItem] = React.useState({})
     const post_id = props.id
     const [ready, setReady] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
+
 
     React.useEffect(() => {
         getItem().then(post => {
@@ -21,12 +23,20 @@ export default function VehiculePro(props) {
         return dbPost.data();
     }
     const update = async () => {
+        setLoading(true)
         await db.collection('posts').doc(post_id).update({
             title: item.title,
             price: parseInt(item.price),
             etat: item.etat,
             description: item.description,
-        })
+        }).then(()=>{
+            setLoading(false)
+            Alert.alert('Info','Votre produite a été modifié',[
+                {
+                    text:'Ok',
+                    onPress: props.callBack
+                }
+            ])        })
     }
     return (
         <View>
@@ -75,7 +85,7 @@ export default function VehiculePro(props) {
                         onChangeText={(e => setItem({ ...item, description: e }))}
                     />
 
-                    <Button onPress={() => update()} mode='contained' >
+                    <Button loading={loading} onPress={() => update()} mode='contained' >
                     Enregistrer
                     </Button>
                 </View> :

@@ -8,27 +8,26 @@ import Service from '../../../components/Edits/Services/Services'
 import EditeForm from '../../../components/Edits/Maison et Deco/EditeForm'
 
 
-export default function EditProductPage({ route }) {
+export default function EditProductPage({ route,navigation }) {
     const { item_id, cat } = route.params
     React.useEffect(() => {
         console.log(cat);
         return () => {
-
         }
     }, [])
     const renderComponent = ()=>{
         switch (cat) {
             case 'Voitures' || 'Location de Voiture':
-                return  <VoituresEdit id={item_id} /> 
+                return  <VoituresEdit id={item_id} callBack={()=>navigation.goBack()} /> 
             case  'Motos & vélos' || 'Véhicules professionnels':
-                return   <MotoVelo id={item_id} />
+                return   <MotoVelo id={item_id} callBack={()=>navigation.goBack()} />
             case 'Appartements' || 'Maisons & Villas' || 'Terrains' || 'Commerces & Bureaux' || 'Location courte durée (vacances)' || 'Location long durée':
-                return   <Appartement id={item_id} />
+                return   <Appartement id={item_id} callBack={()=>navigation.goBack()} />
             case 'Téléphones' || 'Tablettes':
-                return   <Phone id={item_id}/>
+                return   <Phone id={item_id} callBack={()=>navigation.goBack()} />
             case 'Services et travaux professionnels' :
-                return  <Service id={item_id}/>
-            default : return <EditeForm id={item_id}/>
+                return  <Service id={item_id} callBack={()=>navigation.goBack()}/>
+            default : return <EditeForm id={item_id} callBack={()=>navigation.goBack()}/>
                 
         }
     }
