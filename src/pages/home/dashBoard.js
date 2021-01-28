@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar, ActivityIndicator,VirtualizedList } from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { db } from '../../API/firebase';
 import Product from '../../components/Product';
 import DashoboardHeader from '../../components/DashboardHeader';
+import {sendWelcomeNotification} from '../../API/notificationAPI'
 
 import { fitler } from './fiterData'
 
@@ -82,7 +83,6 @@ export default function DashBoard({ navigation }) {
 	}
 	return (
 		<View>
-			{console.log('DASHBOARD')}
 			<StatusBar />
 			<View style={{ flexDirection: 'row', backgroundColor: '#4898D3' }}>
 				<Ionicons
@@ -107,7 +107,7 @@ export default function DashBoard({ navigation }) {
 				<TouchableOpacity
 					delayPressIn={0}
 					onPress={() => {
-						navigation.navigate('AddProductCat');
+						 navigation.navigate('AddProductCat');
 					}}
 					style={{
 						flexDirection: 'row',
@@ -150,9 +150,51 @@ export default function DashBoard({ navigation }) {
 				{/* Products Lists */}
 				{ready ? (
 					<View style={{ height: height_screen }}>
-
+						{/* <VirtualizedList 
+						data={posts}
+						initialNumToRender={5}
+						removeClippedSubviews={true}
+						ListHeaderComponent={
+							<DashoboardHeader click={(category) => {
+								setReady(false)
+								setcurrent(category)
+								switch (category) {
+									case 'All':
+										fetchItems(qte).then(pata => {
+											setPosts(pata)
+											setReady(true)
+										})
+										break;
+									default:
+										fitler(category, qte).then(data => {
+											setPosts(data)
+											setReady(true)
+										})
+										break;
+								}
+						}}/>}
+						renderItem={({ item }) => (
+							<Product
+								name={item.title}
+								owner={item.user.name}
+								price={item.price}
+								location={item.city}
+								img={item.urls[0]}
+								particulier={!item.user.accountType}
+								p1={item.laivraison}
+								p2={item.paiement}
+								p3={item.negociable}
+								p4={item.bonCondition}
+								click={() => navigation.navigate('ProductDetails', { id: item.key })}
+							/>
+						)}
+						onEndReached={() => loadMore()}
+						onEndReachedThreshold={0.01}
+						 /> */}
 						<FlatList style={{ flexGrow: 0 }}
-
+							initialNumToRender={3}
+							removeClippedSubviews={true}
+							disableVirtualization={true}
 							ListHeaderComponent={
 							<DashoboardHeader click={(category) => {
 									setReady(false)

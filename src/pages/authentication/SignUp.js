@@ -83,7 +83,7 @@ export default function SignUp({ navigation }) {
             aboutMe: '',
             accountType: owner,
             expoPushNotif: token,
-            avatar:''
+            avatar:'https://firebasestorage.googleapis.com/v0/b/maxwinapp-2020.appspot.com/o/logo2.jpg?alt=media&token=794f3e1d-d564-48e0-9666-aa6bb55aff54'
         })
 
     }

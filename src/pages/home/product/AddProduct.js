@@ -21,6 +21,7 @@ import * as Animated from 'react-native-animatable'
 import { addProduct } from './APIFunctions';
 import { auth, db, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
+import {sendItemAddedNotification,sendItemRevisionNotification} from '../../../API/notificationAPI'
 
 export default function AddProduct({ route, navigation }) {
 
@@ -223,7 +224,7 @@ export default function AddProduct({ route, navigation }) {
 		return () => { };
 	}, []);
 
-	const upload = () => {
+	const upload = async () => {
 		setLoading(true);
 		var item = {
 			//ALL Product
@@ -310,12 +311,15 @@ export default function AddProduct({ route, navigation }) {
 			return;
 		} else {
 			uploadPics(images).then((imagesUrls) => {
-				addProduct(item, imagesUrls).then(() => {
+				addProduct(item, imagesUrls).then(async() => {
 					setLoading(false);
+					await sendItemAddedNotification(title)
+					await sendItemRevisionNotification(title)
 					navigation.navigate('Dasboard');
 				});
 			});
 		}
+		
 	};
 
 	const uploadPics = async (pics) => {
