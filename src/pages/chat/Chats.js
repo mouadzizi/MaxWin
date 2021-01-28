@@ -34,7 +34,7 @@ export default function Chats({ navigation }) {
     
     return (
         <View
-            style={{ backgroundColor: '#fff', flex: 1 }}>
+            style={{ backgroundColor: '#fff', flex: 1}}>
             <FlatList
                 data={conversations}
                 renderItem={({ item }) =>
