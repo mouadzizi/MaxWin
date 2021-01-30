@@ -15,7 +15,7 @@ export default function ContactForm() {
 
         <View style={{height: height_image, width: width_image}}>
         <Image
-                    source={require('../../assets/logo.jpg')}
+                    source={require('../../assets/logo.png')}
                     style={{height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                     resizeMode={'cover'}
         />

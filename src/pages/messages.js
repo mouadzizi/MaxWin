@@ -42,9 +42,9 @@ export default function messages({ route }) {
             name : dbData.data().name,
             avatar :dbData.data().avatar,
             expoPushNotif:dbData.data().expoPushNotif,
-           
         }
     }
+
     async function sendMessage(messages) {
         db.collection('chats')
             .doc(chatId()).set({
@@ -77,8 +77,7 @@ export default function messages({ route }) {
 
     return (
         <View style={{ flex: 1 }}>
-            {           loading ? <ProgressBar color='blue' indeterminate={true} visible={true} /> : null
-            }
+            {loading ? <ProgressBar color='blue' indeterminate={true} visible={true} /> : null}
             <GiftedChat
             placeholder="Tapper un message"
                 renderBubble = { props =>
@@ -88,7 +87,6 @@ export default function messages({ route }) {
                     left: {
                         color: 'white',
                     }, }}
-
 
                     textStyle={{
                       left: {

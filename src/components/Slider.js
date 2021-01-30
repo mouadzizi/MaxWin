@@ -9,7 +9,7 @@ export default function Slider() {
 	const height_image = height * 0.3;
     const width_image = width * 0.6;
     
-    const image1 = '../../assets/logo.jpg';
+    const image1 = '../../assets/logo.png';
     const image2 = '../../assets/slide1.jpg';
     const image3 = '../../assets/slide3.jpg';
     const image4 = '../../assets/slide2.jpg';

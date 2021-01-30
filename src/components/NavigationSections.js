@@ -10,7 +10,7 @@ import ClothWomen from '../icons/WomenClothes';
 export default function NavigationSections(props) {
 
    
-    const logo = '../../assets/logo2.jpg';
+    const logo = '../../assets/iconApp.png';
  
     return (
         <ScrollView 

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { FlatList, View, Text, Dimensions } from 'react-native';
-import {useFocusEffect} from '@react-navigation/native'
 import ChatIndicator from '../../components/ChatIndicator';
 import { db, auth } from '../../API/firebase';
 import ChatPageIcon from '../../icons/ChatPageIcon'
