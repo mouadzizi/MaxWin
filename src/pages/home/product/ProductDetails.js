@@ -84,7 +84,7 @@ export default function ProductDetails({ navigation, route }) {
 					<Animatble.View
 						style={[styles.swipercontainer, { width: _SlideWidth, height: _SlideHeight }]}
 						animation="zoomIn">
-						<Swiper autoplay activeDotColor="#FF6347">
+						<Swiper activeDotColor="#FF6347">
 							{post ? (
 								post.urls.map((img, index) => {
 									return (

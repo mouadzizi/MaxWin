@@ -33,7 +33,7 @@ export default function Services(props) {
             servicetype:item.servicetype
         }).then(()=>{
             setLoading(false)
-            Alert.alert('Info','Votre produite a été modifié',[
+            Alert.alert('Info','Votre produit a été modifié',[
                 {
                     text:'Ok',
                     onPress: props.callBack
