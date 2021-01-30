@@ -15,7 +15,6 @@ export default function Results({ route, navigation }) {
     
     React.useEffect(() => {
         const { selectedCategory, superCategory } = filterOptions
-        console.log(filterOptions);
         switch (superCategory) {
             case 'VEHICULES':
                 veheculesFilter(selectedCategory).then((items) => {
@@ -93,11 +92,7 @@ export default function Results({ route, navigation }) {
         if (marqueVoiture != '') {
             postsRef = postsRef.where('marqueVoiture', '==', marqueVoiture)
         }
-        postsRef.get().then(snap => {
-            snap.docs.forEach(d => {
-                console.log(d.data().title);
-            })
-        })
+
 
         //filter by fuel
         if (carburant != '*') {
@@ -119,7 +114,6 @@ export default function Results({ route, navigation }) {
             .filter(doc => doc.data().fabrication >= anneeMin)
             .filter(doc => doc.data().fabrication <= anneeMax)
             .forEach(e => {
-                console.log(e.data().title);
                 items.push({
                     ...e.data(),
                     key: e.id
@@ -144,7 +138,6 @@ export default function Results({ route, navigation }) {
             .filter(doc => doc.data().superficie >= SuperficieMin)
             .filter(doc => doc.data().superficie <= SuperficieMax)
             .forEach(doc => {
-                console.log(doc.data().title);
                 items.push({
                     ...doc.data(),
                     key: doc.id,
@@ -170,7 +163,6 @@ export default function Results({ route, navigation }) {
         const results = postsRef.where('price', '>=', priceMin)
             .where('price', '<=', priceMax).get();
         (await results).docs.forEach(doc => {
-            console.log(doc.data().title);
             items.push({
                 ...doc.data(),
                 key: doc.id,
@@ -202,9 +194,8 @@ export default function Results({ route, navigation }) {
         const results = postsRef.where('price', '>=', priceMin)
             .where('price', '<=', priceMax).get();
 
-        console.log((await results).size);
+       
         (await results).docs.forEach(doc => {
-            console.log(doc.data().title);
             items.push({
                 ...doc.data(),
                 key: doc.id,
@@ -214,7 +205,7 @@ export default function Results({ route, navigation }) {
     }
 
     const servicesFilter = async (category) => {
-        const { city, priceMax, priceMin,  typeService } = filterOptions;
+        const { city, priceMax, priceMin,  typeService,etat } = filterOptions;
         const items = []
         var postsRef = db.collection('posts').where('category.item', '==', category);
         
@@ -239,7 +230,6 @@ export default function Results({ route, navigation }) {
         const results = postsRef.where('price', '>=', priceMin)
             .where('price', '<=', priceMax).get();
         (await results).docs.forEach(doc => {
-            console.log(doc.data().title);
             items.push({
                 ...doc.data(),
                 key: doc.id,

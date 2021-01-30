@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { FlatList, View, Text, Image, Dimensions } from 'react-native';
+import { FlatList, View, Text, Dimensions } from 'react-native';
+import {useFocusEffect} from '@react-navigation/native'
 import ChatIndicator from '../../components/ChatIndicator';
 import { db, auth } from '../../API/firebase';
 import ChatPageIcon from '../../icons/ChatPageIcon'
@@ -11,10 +12,10 @@ export default function Chats({ navigation }) {
     const { width, height } = Dimensions.get('window');
     const height_image = height * 0.6;
     const width_image = width;
-
+    var _unsub
     React.useEffect(() => {
         //Retrieve the reciever
-        const _unsub = db.collection('chats').orderBy('createdAt', 'desc').onSnapshot(querySnapShot => {
+         _unsub = db.collection('chats').orderBy('createdAt', 'desc').onSnapshot(querySnapShot => {
             const rooms = querySnapShot.docs
                 .filter(doc => doc.id.search(uid) >= 0)
                 .map(d => {
@@ -31,7 +32,6 @@ export default function Chats({ navigation }) {
         }
     }, [])
 
-    
     return (
         <View
             style={{ backgroundColor: '#fff', flex: 1}}>

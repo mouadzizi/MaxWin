@@ -6,9 +6,7 @@ import PriceTag from '../icons/priceTag';
 import PaymenLivraison from '../icons/paymentLaivraison';
 
 export default function Product(props) {
-	React.useEffect(()=>{
-		console.log('render Products');
-	},[])
+
 	const chip1 =props.p1
 	const chip2 = props.p2
 	

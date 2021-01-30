@@ -10,11 +10,7 @@ import EditeForm from '../../../components/Edits/Maison et Deco/EditeForm'
 
 export default function EditProductPage({ route,navigation }) {
     const { item_id, cat } = route.params
-    React.useEffect(() => {
-        console.log(cat);
-        return () => {
-        }
-    }, [])
+
     const renderComponent = ()=>{
         switch (cat) {
             case 'Voitures' || 'Location de Voiture':
