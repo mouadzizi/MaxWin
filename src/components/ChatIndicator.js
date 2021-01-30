@@ -28,7 +28,7 @@ export default function ChatIndicator(props) {
                 onPress={props.click}>
                 <Avatar.Image size={60} source={{
                     uri: props.sellerAvatar ? props.sellerAvatar
-                        : 'https://firebasestorage.googleapis.com/v0/b/maxwinapp-2020.appspot.com/o/logo2.jpg?alt=media&token=d3c5eb9e-e06f-42a2-aae8-709c96e3852c'
+                        : 'https://firebasestorage.googleapis.com/v0/b/maxwinapp-2020.appspot.com/o/transgender_1.png?alt=media&token=8b2f0464-330a-45ef-b35e-6b7f32cd2ed4'
                 }}
                 />
                 <View
