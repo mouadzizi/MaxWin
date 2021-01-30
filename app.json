@@ -4,7 +4,7 @@
     "slug": "maxwin-v4",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/iconApp.png",
     "splash": {
       "image": "./assets/logo.png",
       "resizeMode": "contain",
