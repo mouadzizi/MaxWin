@@ -33,7 +33,7 @@ export default function EditeForm(props) {
             description: item.description,
         }).then(() => {
             setLoading(false)
-            Alert.alert('Info','Votre produite a été modifié',[
+            Alert.alert('Info','Votre produit a été modifié',[
                 {
                     text:'Ok',
                     onPress: props.callBack
