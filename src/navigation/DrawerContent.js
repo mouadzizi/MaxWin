@@ -5,6 +5,7 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { auth,db } from '../API/firebase';
 import * as Google from 'expo-google-sign-in';
+import {logOutAsync} from 'expo-facebook'
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { 
@@ -47,7 +48,7 @@ export default function DrawerContent(props){
     const logOut = () => {
         auth.signOut()
             .then(() => {
-                provider === 'google.com' ? Google.signOutAsync() : faceBookLogOut();
+                provider === 'google.com' ? Google.signOutAsync() : logOutAsync();
             })
             .catch(err => { Alert.alert('Error', err.message) })
     }

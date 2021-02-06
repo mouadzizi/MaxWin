@@ -143,7 +143,7 @@ export default function SignIn({ navigation }) {
   async function signInWithFacebook() {
     setFBLoading(true)
     try {
-      await Facebook.initializeAsync('424654075104803');
+      await Facebook.initializeAsync('424654075104803','v9.0');
       const { type, token } = await Facebook.logInWithReadPermissionsAsync({
         permissions: ['public_profile', 'email']
       });
@@ -162,18 +162,19 @@ export default function SignIn({ navigation }) {
             })
             saveUserInfo(auth.currentUser).then(async() => {
               await db.collection('users').doc(auth.currentUser.uid).update({
-                expoPushNotif:token
+                expoPushNotif:token,
+                avatar:auth.currentUser.photoURL
               })
               navigation.replace('HomeTabs')
           })
-          });
+          }).catch(e=>alert('Firebase err',JSON.stringify(e)));
 
       }
       if (type === 'cancel') {
         setFBLoading(false)
       }
     } catch (e) {
-      Alert.alert('Facebook Login Error:', e.message);
+      Alert.alert('Facebook Login Error:', JSON.stringify(e));
       setFBLoading(false)
     }
   }
