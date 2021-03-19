@@ -35,6 +35,7 @@ export default function Chats({ navigation }) {
         <View
             style={{ backgroundColor: '#fff', flex: 1}}>
             <FlatList
+            style={{flexGrow:0,padding:6}}
                 data={conversations}
                 renderItem={({ item }) =>
                     <View style={{ justifyContent: 'center' }}>
@@ -45,7 +46,9 @@ export default function Chats({ navigation }) {
                                (uid==item.contact._id)?db.collection('chats').doc(item.key).update({contact:{...item.contact,seen:true}}):null
                                 navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })
                             }}
-                            lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender} />
+                            lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender}
+                            title={item.title}
+                            />
 
                     </View>
                 }

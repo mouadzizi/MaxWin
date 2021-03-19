@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
-import { GiftedChat,Bubble,Send } from 'react-native-gifted-chat';
+import { GiftedChat,Bubble,Send,MessageText } from 'react-native-gifted-chat';
 import { db, auth } from '../API/firebase';
 import * as firebase from 'firebase'
 
@@ -12,7 +12,7 @@ export default function messages({ route }) {
     const [contact, setContact] = React.useState({})
     const chatRef = db.collection('chats')
     const user = auth.currentUser
-    const { seller } = route.params
+    const { seller,post } = route.params
 
     React.useEffect(() => {
         
@@ -53,7 +53,8 @@ export default function messages({ route }) {
                 senderPhotoUrl:user.photoURL,
                 contact:{...contact, seen:false,},
                 lastMessage:messages[0].text,
-                createdAt:firebase.firestore.FieldValue.serverTimestamp()
+                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                title:post
                 
             })
         const writes = messages.map((m) => {
@@ -92,7 +93,9 @@ export default function messages({ route }) {
                       left: {
                         color: 'white',
                       },
+
                     }}
+                    
                     wrapperStyle={{
                       left: {
                         backgroundColor: '#F16E44',                    
@@ -101,7 +104,9 @@ export default function messages({ route }) {
                           backgroundColor : '#4898D3'
                       }
                     }}
+
                   />
+                  
                 }
                 renderSend={props=> 
                 <Send {...props} alwaysShowSend={true} label='Envoyer' textStyle={{color:'#4898D3'}} />

@@ -45,9 +45,9 @@ export default function ProductDetails({ navigation, route }) {
 	);
 
 
-	const handleNavigation = (seller) => {
+	const handleNavigation = (seller,title) => {
 
-		if (seller._id != auth.currentUser.uid) navigation.navigate('Messages', { seller: seller });
+		if (seller._id != auth.currentUser.uid) navigation.navigate('Messages', { seller: seller,post:title });
 		else Alert.alert('Désolé(e)', 'vous êtes le propriétaire de ce produit, vous ne pouvez pas vous envoyer de message')
 	}
 
@@ -164,7 +164,7 @@ export default function ProductDetails({ navigation, route }) {
 								'Nous vous conseillons',
 								"1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit.\n2) De bien choisir le lieu de rencontre avec l'annonceur.",
 								[
-								{text: 'Je confirme', onPress: () => handleNavigation(post.user._id)},
+								{text: 'Je confirme', onPress: () => handleNavigation(post.user._id,post.title)},
 								],
 								{ cancelable: false }
 							)}

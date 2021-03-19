@@ -7,7 +7,7 @@ export default function ChatIndicator(props) {
 
     return (
         <View
-            style={{ width: '90%', height: 80 }}>
+            style={{ height:90,marginVertical:2,borderBottomWidth:1,padding:9,justifyContent:'center' }}>
             {props.badge ?
                 <Text
                     style={{
@@ -24,7 +24,7 @@ export default function ChatIndicator(props) {
 
             <TouchableOpacity
                 delayPressIn={0}
-                style={{ padding: 20, flexDirection: 'row' }}
+                style={{ flexDirection: 'row',height:'100%' }}
                 onPress={props.click}>
                 <Avatar.Image size={60} source={{
                     uri: props.sellerAvatar ? props.sellerAvatar
@@ -32,11 +32,14 @@ export default function ChatIndicator(props) {
                 }}
                 />
                 <View
-                    style={{ marginHorizontal: 5 }}>
+                    style={{ marginHorizontal: '5%' }}>
                     <Text style={{ fontSize: 20, fontFamily: 'sans-serif', fontWeight: 'bold' }}>
                         {props.sellerName}
                     </Text>
-                    <Text style={{ fontSize: 14, color: '#444', marginTop: 9, marginHorizontal: 2 }}>
+                    <Text style={{ fontSize: 16, color:'#F16E44' ,letterSpacing:2 }}>
+                        Produit: {props?.title || "no item"} 
+                    </Text>
+                    <Text style={{ fontSize: 14, color: '#444', marginHorizontal: 2 }}>
                         {props.lastMessage}
                     </Text>
                     <Text style={{ fontSize: 12 }}>

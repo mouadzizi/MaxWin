@@ -21,11 +21,11 @@ import * as Animated from 'react-native-animatable'
 import { addProduct } from './APIFunctions';
 import { auth, db, st } from '../../../API/firebase';
 import AsyncStorage from '@react-native-community/async-storage';
-import {sendItemAddedNotification,sendItemRevisionNotification} from '../../../API/notificationAPI'
+import { sendItemAddedNotification, sendItemRevisionNotification } from '../../../API/notificationAPI'
 
 export default function AddProduct({ route, navigation }) {
 
-	
+
 	//Variables for inputs for standar product
 	const [title, setTitle] = useState('');
 	const [city, setCity] = useState('');
@@ -46,7 +46,7 @@ export default function AddProduct({ route, navigation }) {
 	const [modeleVoiture, setModeleVoiture] = useState('');
 
 	//ADITIONAL INFO
-	const [ voitureChips, setVoitureChips ] = useState(false);
+	const [voitureChips, setVoitureChips] = useState(false);
 
 	//Variables for equipments
 	const [jantes, setJanets] = useState(false);
@@ -59,7 +59,7 @@ export default function AddProduct({ route, navigation }) {
 	const [premierMain, setPremierMain] = useState(false);
 	const [centraliser, setCentraliser] = useState(false);
 	const [salon, setSalon] = useState(false);
-	
+
 	//TOBE ADD as equipments
 	const [toitOuvrant, setToitOuvrant] = useState(false);
 	const [cameraRecule, setCameraRecule] = useState(false);
@@ -98,26 +98,26 @@ export default function AddProduct({ route, navigation }) {
 	const [etat, setEtat] = useState('');
 
 	//Variables chips fro aditional services
-	const [ phone, setPhone ] = useState(false);
-	const [ laivraison, setLaivraison ] = useState(false);
-	const [ paiement, setPaiement ] = useState(false);
-	const [ negociable, setNegociable ] = useState(false);
-	const [ bonCondition, setBonCondition ] = useState(false);
+	const [phone, setPhone] = useState(false);
+	const [laivraison, setLaivraison] = useState(false);
+	const [paiement, setPaiement] = useState(false);
+	const [negociable, setNegociable] = useState(false);
+	const [bonCondition, setBonCondition] = useState(false);
 
 	//components Visibility
 	const [chips, setChips] = useState(true);
 	const [etatVisible, setEtatVisible] = useState(true);
 
 	//Category Visibility
-	const [ voiture, setVoiture ] = useState(false);
-	const [ Location, setLocation ] = useState(false);
-	const [ terrain, setTerrain ] = useState(false);
-	const [ services, setServices ] = useState(false);
-	const [ Telephone, setTelephone ] = useState(false);
-	
+	const [voiture, setVoiture] = useState(false);
+	const [Location, setLocation] = useState(false);
+	const [terrain, setTerrain] = useState(false);
+	const [services, setServices] = useState(false);
+	const [Telephone, setTelephone] = useState(false);
+
 	//Condition Rendering
-	const [ canRender, setCanRender ] = useState(false);
-	const [ loading, setLoading ] = useState(false);
+	const [canRender, setCanRender] = useState(false);
+	const [loading, setLoading] = useState(false);
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
 
@@ -177,7 +177,7 @@ export default function AddProduct({ route, navigation }) {
 			case parent.title == 'INFORMATIQUE ET ELECTRONIQUE' &&
 				(parent.item == 'Téléphones' || parent.item == 'Tablettes'):
 				setTelephone(true);
-				
+
 				navigation.setOptions({ title: 'Électronique' });
 				break;
 
@@ -204,7 +204,7 @@ export default function AddProduct({ route, navigation }) {
 				navigation.setOptions({ title: 'Services et travaux' });
 				break;
 
-				case parent.title == 'MATERIELS ET SERVICES' &&
+			case parent.title == 'MATERIELS ET SERVICES' &&
 				(parent.item == 'Matériels professionnels'):
 				navigation.setOptions({ title: 'Matériels professionnels' });
 				setServices(false);
@@ -290,26 +290,26 @@ export default function AddProduct({ route, navigation }) {
 			negociable,
 			bonCondition,
 			Telephone,
-			addDate:new Date(),
+			addDate: new Date(),
 			category: route.params.parent,
 			user: {
 				_id: user.uid,
 				phoneNumber: user.phone,
 				accountType: user.accountType,
 				name: user.name,
-				avatar:auth.currentUser.photoURL,
-				expoPushNotif:user.expoPushNotif,
+				avatar: auth.currentUser.photoURL,
+				expoPushNotif: user.expoPushNotif,
 			},
-			terms:title.toLowerCase().split(' ')
+			terms: title.toLowerCase().split(' ')
 		};
 
-		if (images==null) {
-			Alert.alert('Information:','Enter at least one images');
+		if (images == null) {
+			Alert.alert('Information:', 'Enter at least one images');
 			setLoading(false)
 			return;
 		} else {
 			uploadPics(images).then((imagesUrls) => {
-				addProduct(item, imagesUrls).then(async() => {
+				addProduct(item, imagesUrls).then(async () => {
 					setLoading(false);
 					await sendItemAddedNotification(title)
 					await sendItemRevisionNotification(title)
@@ -317,7 +317,7 @@ export default function AddProduct({ route, navigation }) {
 				});
 			});
 		}
-		
+
 	};
 
 	const uploadPics = async (pics) => {
@@ -351,11 +351,11 @@ export default function AddProduct({ route, navigation }) {
 									borderBottomWidth: 1
 								}}
 								data={images}
-								keyExtractor={(item)=>item.id}
+								keyExtractor={(item) => item.id}
 								renderItem={({ item, index }) =>
-									<Animated.View  animation='bounceIn' duration={1000} style={{ flex: 1, margin: 10 }}>
-										<TouchableOpacity   activeOpacity={.6} delayPressIn={1} onPress={() => navigation.navigate('image')} >
-											<Image  
+									<Animated.View animation='bounceIn' duration={1000} style={{ flex: 1, margin: 10 }}>
+										<TouchableOpacity activeOpacity={.6} delayPressIn={1} onPress={() => navigation.navigate('image')} >
+											<Image
 												source={{ uri: item.uri }}
 												style={{
 													width: 200, height: 250, borderRadius: 16,
@@ -364,7 +364,7 @@ export default function AddProduct({ route, navigation }) {
 											/>
 										</TouchableOpacity>
 
-										<View  style={{
+										<View style={{
 											alignItems: 'center', letterSpacing: 3,
 											justifyContent: 'center',
 											position: 'absolute', right: 4,
@@ -379,7 +379,7 @@ export default function AddProduct({ route, navigation }) {
 											> {index + 1}  </Text>
 
 										</View>
-										<MaterialCommunityIcons 
+										<MaterialCommunityIcons
 											name='camera-plus-outline'
 											color='#ecf0f1'
 											size={30}
@@ -410,7 +410,7 @@ export default function AddProduct({ route, navigation }) {
 
 					<View style={{ flex: 1, marginTop: 20 }}>
 
-					<Text style={{ color: 'red', fontSize: 11}}>Obligatoir *</Text>
+						<Text style={{ color: 'red', fontSize: 11 }}>Obligatoir *</Text>
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
@@ -421,7 +421,7 @@ export default function AddProduct({ route, navigation }) {
 						<Text style={{ color: '#4898D3', fontSize: 11 }}>
 							Merci d’entrer le Nom exacte de votre article
 						</Text>
-						
+
 
 
 
@@ -496,7 +496,7 @@ export default function AddProduct({ route, navigation }) {
 							multiline={false}
 							placeholder="DHS"
 							theme={textTheme}
-							onChangeText={(e)=>setPrice(parseFloat(e))}
+							onChangeText={(e) => setPrice(parseFloat(e))}
 							keyboardType="number-pad"
 						/>
 
@@ -533,7 +533,7 @@ export default function AddProduct({ route, navigation }) {
 										onValueChange={(itemValue, itemIndex) => setPhoneMarque(itemValue)}
 									>
 										<Picker.Item label="Choissisez une marque" value="*" />
-										
+
 										<Picker.Item label="SAMSUNG " value="SAMSUNG " />
 										<Picker.Item label="IPHONE" value="IPHONE" />
 										<Picker.Item label="Xiaomi" value="Xiaomi" />
@@ -607,7 +607,7 @@ export default function AddProduct({ route, navigation }) {
 								/>
 
 								<TextInput
-									onChangeText={(e)=>setFabrication(parseInt(e))}
+									onChangeText={(e) => setFabrication(parseInt(e))}
 									label="Année de fabrication"
 									mode="outlined"
 									maxLength={4}
@@ -624,7 +624,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										prompt="Carburant"
 										onValueChange={(itemValue, itemIndex) => setCarburant(itemValue)}
-									>	
+									>
 										<Picker.Item label="Choisissez le Carburant" value="*" />
 										<Picker.Item label="Diesel " value="Diesel" />
 										<Picker.Item label="Essence" value="Essence" />
@@ -641,7 +641,7 @@ export default function AddProduct({ route, navigation }) {
 										style={{ height: 50, width: '100%' }}
 										onValueChange={(itemValue, itemIndex) => setPuissance(itemValue)}
 									>
-									
+
 										<Picker.Item label="Choisissez la puissance" value="*" />
 										<Picker.Item label="4CH" value="4" />
 										<Picker.Item label="5CH" value="5" />
@@ -788,7 +788,7 @@ export default function AddProduct({ route, navigation }) {
 								<Text style={{ color: '#4898D3', marginTop: 5 }}>Type de service</Text>
 								<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 									<Picker
-									
+
 										selectedValue={servicetype}
 										prompt="Type de service"
 										style={{ height: 50, width: '100%' }}
@@ -810,7 +810,7 @@ export default function AddProduct({ route, navigation }) {
 								</View>
 							</View>
 						) : null}
-						
+
 						{terrain ? (
 							<View>
 								<TextInput
@@ -820,7 +820,7 @@ export default function AddProduct({ route, navigation }) {
 									theme={textTheme}
 									keyboardType="numeric"
 									style={{ marginTop: 10 }}
-									onChangeText={(e)=>setSuperficie(parseFloat(e))}
+									onChangeText={(e) => setSuperficie(parseFloat(e))}
 								/>
 							</View>
 						) : null}
@@ -866,28 +866,40 @@ export default function AddProduct({ route, navigation }) {
 							onChangeText={setDescription}
 							multiline={true}
 						/>
-
+						<View>
+						<Text style={{ color: 'red', fontSize: 11,marginTop:10 }}>Obligatoir *</Text>
+						<TextInput
+							label="Téléphone"
+							mode="outlined"
+							theme={textTheme}
+							keyboardType="phone-pad"
+							style={{ marginTop: 6 }}
+							value={user.phone}
+							onChangeText={(e)=>setUser({...user,phone:e})}
+						/>
+						</View>
+					
 
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>
 						<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
-							
-							{ user.phone ?
+
+							{user.phone ?
 								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-								<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
-								<Checkbox
-									status={phone ? 'checked' : 'unchecked'}
-									onPress={() => {
-										setPhone(!phone);
-									}}
-									color="#4898D3"
-								/>
-							</View>
-							: 
-						<Text style={{ color: 'red', fontSize: 11}}>
-						Merci d'enregistrer votre N de téléphone sur votre profil ,afin qu'il soit visible sur votre annonce</Text>
-						}
-						
-							
+									<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
+									<Checkbox
+										status={phone ? 'checked' : 'unchecked'}
+										onPress={() => {
+											setPhone(!phone);
+										}}
+										color="#4898D3"
+									/>
+								</View>
+								:
+								<Text style={{ color: 'red', fontSize: 11 }}>
+									Merci d'enregistrer votre N de téléphone sur votre profil ,afin qu'il soit visible sur votre annonce</Text>
+							}
+
+
 
 							{chips ? (
 								<View>
@@ -946,17 +958,17 @@ export default function AddProduct({ route, navigation }) {
 							) : null}
 
 						</View>
-						
+
 						<Button
 							mode='contained'
 							uppercase={false}
 							onPress={() => upload()}
-            				style={{ alignSelf: 'center', marginVertical: 20,  width: '100%', height: 40, borderRadius: 15, marginBottom: 30 }}
-							disabled={(!title || !city || !price ||!description || loading)}
+							style={{ alignSelf: 'center', marginVertical: 20, width: '100%', height: 40, borderRadius: 15, marginBottom: 30 }}
+							disabled={(!title || !city || !price || !description || loading)}
 							color='#4898D3'
 							loading={loading}
 							dark={true}>
-						Valider l’annonce
+							Valider l’annonce
 						</Button>
 					</View>
 				</ScrollView>
