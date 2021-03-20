@@ -6,7 +6,6 @@ import { colors } from '../../style/GlobalStyle';
 import { db } from '../../API/firebase';
 import Product from '../../components/Product';
 import DashoboardHeader from '../../components/DashboardHeader';
-import {sendWelcomeNotification} from '../../API/notificationAPI'
 
 import { fitler } from './fiterData'
 
@@ -120,7 +119,7 @@ export default function DashBoard({ navigation }) {
 
 					<Text style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}>
 
-						Publier une annonce
+						Ajouter Produit
 					</Text>
 				</TouchableOpacity>
 
@@ -191,10 +190,7 @@ export default function DashBoard({ navigation }) {
 						onEndReached={() => loadMore()}
 						onEndReachedThreshold={0.01}
 						 /> */}
-						<FlatList style={{ flexGrow: 0 }}
-							initialNumToRender={3}
-							removeClippedSubviews={true}
-							disableVirtualization={true}
+						 {/*
 							ListHeaderComponent={
 							<DashoboardHeader click={(category) => {
 									setReady(false)
@@ -215,7 +211,11 @@ export default function DashBoard({ navigation }) {
 									}
 							}}/>
 							}
-
+						*/}
+						<FlatList style={{ flexGrow: 0 }}
+							initialNumToRender={3}
+							removeClippedSubviews={true}
+							disableVirtualization={true}
 							data={posts}
 							renderItem={({ item }) => (
 								<Product

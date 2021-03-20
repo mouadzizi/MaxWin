@@ -25,10 +25,10 @@ export default function HomeTabs() {
             iconName = focused
               ? 'ios-home'
               : 'ios-home';
-          } else if (route.name === 'Paramètres') {
+          } else if (route.name === 'Profil') {
             iconName = focused
-              ? 'md-settings'
-              : 'md-settings';
+              ? 'md-person'
+              : 'md-person';
           }
           else if (route.name === 'Discussions') {
             iconName = focused
@@ -48,7 +48,7 @@ export default function HomeTabs() {
     >
       <Tab.Screen name="Accueil" component={Drawer} />
       <Tab.Screen name="Discussions" component={StackChat} />
-      <Tab.Screen name="Paramètres" component={SettingsStack} />
+      <Tab.Screen name="Profil" component={SettingsStack} />
 
     </Tab.Navigator>
   );

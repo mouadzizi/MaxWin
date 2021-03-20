@@ -867,16 +867,7 @@ export default function AddProduct({ route, navigation }) {
 							multiline={true}
 						/>
 						<View>
-						<Text style={{ color: 'red', fontSize: 11,marginTop:10 }}>Obligatoir *</Text>
-						<TextInput
-							label="Téléphone"
-							mode="outlined"
-							theme={textTheme}
-							keyboardType="phone-pad"
-							style={{ marginTop: 6 }}
-							value={user.phone}
-							onChangeText={(e)=>setUser({...user,phone:e})}
-						/>
+						
 						</View>
 					
 
@@ -895,9 +886,18 @@ export default function AddProduct({ route, navigation }) {
 									/>
 								</View>
 								:
-								<Text style={{ color: 'red', fontSize: 11 }}>
-									Merci d'enregistrer votre N de téléphone sur votre profil ,afin qu'il soit visible sur votre annonce</Text>
-							}
+								<TextInput
+									label="Téléphone"
+									mode="outlined"
+									placeholder="Votre numéro de Téléphone"
+									theme={textTheme}
+									keyboardType="phone-pad"
+									style={{ marginTop: 6, paddingHorizontal: 10}}
+									value={user.phone}
+									right={<TextInput.Icon name="phone" color='#4898D3' />}
+									onChangeText={(e)=>setUser({...user,phone:e})}
+								/>
+								}
 
 
 
