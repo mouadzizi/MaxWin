@@ -213,7 +213,7 @@ export default function Profil() {
 							mode="outlined"
 							value={phone}
 							label="Téléphone"
-							keyboardType="numeric"
+							keyboardType="phone-pad"
 							placeholder="(+212)6 123 456 78"
 							maxLength={12}
 							multiline={false}

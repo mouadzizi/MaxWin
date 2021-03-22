@@ -267,6 +267,7 @@ export default function SignIn({ navigation }) {
         
           <TextInput
             label='E-mail'
+            keyboardType='email-address'
             autoCapitalize="none"
             mode='outlined'
             placeholder='votre-mail@mail.com'

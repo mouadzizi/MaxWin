@@ -34,12 +34,10 @@ export default function ChatIndicator(props) {
                 <View
                     style={{ marginHorizontal: '5%' }}>
                     <Text style={{ fontSize: 20, fontFamily: 'sans-serif', fontWeight: 'bold' }}>
-                        {props.sellerName}
+                        {props.contact} | {props.product}
                     </Text>
-                    <Text style={{ fontSize: 16, color:'#F16E44' ,letterSpacing:2 }}>
-                        Produit: {props?.title || "no item"} 
-                    </Text>
-                    <Text style={{ fontSize: 14, color: '#444', marginHorizontal: 2 }}>
+                 
+                    <Text style={{ fontSize: 16, color: '#444', marginHorizontal: 2,marginTop:8 }}>
                         {props.lastMessage}
                     </Text>
                     <Text style={{ fontSize: 12 }}>

@@ -12,14 +12,14 @@ export default function messages({ route }) {
     const [contact, setContact] = React.useState({})
     const chatRef = db.collection('chats')
     const user = auth.currentUser
-    const { seller,post } = route.params
+    const { seller,postTitle,chatId,pic } = route.params
 
     React.useEffect(() => {
-        
+        console.log(" tt ",route.params);
         getContact().then(c=>{
             setContact(c)
         })
-        var unsub = chatRef.doc(chatId()).collection('messages').orderBy('serverTime','desc').onSnapshot((querySnap) => {
+        var unsub = chatRef.doc(chatId).collection('messages').orderBy('serverTime','desc').onSnapshot((querySnap) => {
             setMessages([])
             const firestoreMessages = querySnap
                 .docs
@@ -36,7 +36,7 @@ export default function messages({ route }) {
     }, [])
 
     const getContact = async ()=>{
-        const dbData = await db.collection('users').doc(seller).get()
+        const dbData = await db.collection('users').doc(user.uid).get()
         return {
             _id:dbData.data().uid,
             name : dbData.data().name,
@@ -47,19 +47,26 @@ export default function messages({ route }) {
 
     async function sendMessage(messages) {
         db.collection('chats')
-            .doc(chatId()).set({
-                sender: user.displayName,
-                senderUID:user.uid,
-                senderPhotoUrl:user.photoURL,
-                contact:{...contact, seen:false,},
+            .doc(chatId).set({
+                contact1: {
+                    _id:user.uid,
+                    name:user.displayName,
+                    expoPushNotif:contact.expoPushNotif
+                },
+                contact2:{
+                    _id:seller._id,
+                    name:seller.name,
+                    expoPushNotif:seller.expoPushNotif
+                    },
+                chatPic:pic,
+                seen:false,
                 lastMessage:messages[0].text,
                 createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                title:post
-                
+                title:postTitle
             })
         const writes = messages.map((m) => {
             db.collection('chats')
-                .doc(chatId())
+                .doc(chatId)
                 .collection('messages')
                 .add({...m,serverTime:firebase.firestore.FieldValue.serverTimestamp()})
         })
@@ -71,10 +78,7 @@ export default function messages({ route }) {
     })
 
 
-    const chatId = () => {
-        if (user.uid > seller) return `${user.uid}-${seller}`
-        else return `${seller}-${user.uid}`;
-    }
+
 
     return (
         <View style={{ flex: 1 }}>

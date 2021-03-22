@@ -16,14 +16,14 @@ export default function Chats({ navigation }) {
         //Retrieve the reciever
          _unsub = db.collection('chats').orderBy('createdAt', 'desc').onSnapshot(querySnapShot => {
             const rooms = querySnapShot.docs
-                .filter(doc => doc.id.search(uid) >= 0)
+                .filter(doc => doc.data().contact1._id.search(uid) >= 0 || doc.data().contact2._id.search(uid) >= 0 )
                 .map(d => {
                     return {
                         key: d.id,
                         ...d.data()
                     }
                 })
-            setConversations(rooms)
+             setConversations(rooms)
         })
         return () => {
             _unsub()
@@ -31,6 +31,11 @@ export default function Chats({ navigation }) {
         }
     }, [])
 
+    const getName = async (uid)=>{
+          const user = await db.collection('users').doc(uid).get()
+          return await user.data().name;
+           
+    } 
     return (
         <View
             style={{ backgroundColor: '#fff', flex: 1}}>
@@ -40,14 +45,22 @@ export default function Chats({ navigation }) {
                 renderItem={({ item }) =>
                     <View style={{ justifyContent: 'center' }}>
                         <ChatIndicator
-                            badge={(uid===item.senderUID)? null : !item.contact.seen}
-                            sellerAvatar={(uid === item.senderUID) ? item.contact.avatar : item.senderPhotoUrl}
+                             badge={(uid===item.contact1._id)? null : !item.seen}
+                            sellerAvatar={item.chatPic}
                             click={() => {
-                               (uid==item.contact._id)?db.collection('chats').doc(item.key).update({contact:{...item.contact,seen:true}}):null
-                                navigation.navigate('Messages', { seller: (uid === item.senderUID) ? item.contact._id : item.senderUID })
+                                (uid==item.contact2._id)? db.collection('chats').doc(item.key).update({seen:true}):null
+                                navigation.navigate('Messages', {
+                                     seller: (uid === item.contact1._id) ? item.contact2 : item.contact1 ,
+                                     chatId:item.key,
+                                     pic:item.chatPic,
+                                     postTitle:item.title   
+                                    })
+                                
+            
                             }}
-                            lastMessage={item.lastMessage} sellerName={(uid === item.senderUID) ? item.contact.name : item.sender}
-                            title={item.title}
+                            lastMessage={item.lastMessage} 
+                            contact = { uid == item.contact1._id? item.contact2.name : item.contact1.name }
+                            product={item.title}
                             />
 
                     </View>

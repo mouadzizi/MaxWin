@@ -28,9 +28,10 @@ export default function ProductDetails({ navigation, route }) {
 	});
 	const _SlideHeight = Dimensions.get('window').height * 0.48;
 	const _SlideWidth = Dimensions.get('window').width * 0.97;
+	const { id } = route.params;
 	useFocusEffect(
 		React.useCallback(() => {
-			const { id } = route.params;
+			
 			InteractionManager.runAfterInteractions(async () => {
 				await db.collection('posts').doc(id).get().then((p) => {
 					setPost(p.data());
@@ -45,9 +46,10 @@ export default function ProductDetails({ navigation, route }) {
 	);
 
 
-	const handleNavigation = (seller,title) => {
+	const handleNavigation = () => {
 
-		if (seller._id != auth.currentUser.uid) navigation.navigate('Messages', { seller: seller,post:title });
+		const {user,title,urls} = post;
+		if (user._id != auth.currentUser.uid) navigation.navigate('Messages', { seller: user,postTitle:title,chatId:id,pic:urls[0] });
 		else Alert.alert('Désolé(e)', 'vous êtes le propriétaire de ce produit, vous ne pouvez pas vous envoyer de message')
 	}
 
@@ -164,7 +166,7 @@ export default function ProductDetails({ navigation, route }) {
 								'Nous vous conseillons',
 								"1) De ne rien envoyer comme avance à l'annonceur avant la réception du produit.\n2) De bien choisir le lieu de rencontre avec l'annonceur.",
 								[
-								{text: 'Je confirme', onPress: () => handleNavigation(post.user._id,post.title)},
+								{text: 'Je confirme', onPress: () => handleNavigation()},
 								],
 								{ cancelable: false }
 							)}

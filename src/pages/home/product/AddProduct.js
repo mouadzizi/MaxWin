@@ -138,6 +138,7 @@ export default function AddProduct({ route, navigation }) {
 				});
 				await getUser().then((u) => {
 					setUser(u);
+					
 					setCanRender(true);
 				});
 			});
@@ -281,10 +282,12 @@ export default function AddProduct({ route, navigation }) {
 				meuble
 			},
 			//Service Product
+
+
 			servicetype,
 
 			//Chips for services
-			phone,
+			phone:user.phone.length>0? true:false ,
 			laivraison,
 			paiement,
 			negociable,
@@ -874,8 +877,8 @@ export default function AddProduct({ route, navigation }) {
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>
 						<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 
-							{user.phone ?
-								<View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+							{user.phone && user.phone.length==20 ?
+								<View  style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 									<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
 									<Checkbox
 										status={phone ? 'checked' : 'unchecked'}
@@ -892,9 +895,9 @@ export default function AddProduct({ route, navigation }) {
 									placeholder="Votre numéro de Téléphone"
 									theme={textTheme}
 									keyboardType="phone-pad"
+										maxLength={13}
 									style={{ marginTop: 6, paddingHorizontal: 10}}
-									value={user.phone}
-									right={<TextInput.Icon name="phone" color='#4898D3' />}
+									right={<TextInput.Icon  name="phone" color='#4898D3'  />}
 									onChangeText={(e)=>setUser({...user,phone:e})}
 								/>
 								}
