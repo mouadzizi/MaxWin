@@ -27,6 +27,7 @@ export default function SignIn({ navigation }) {
   const height_image = height * 0.3;
   const width_image = width * 0.6;
 
+
   useEffect(() => {
     registerForPushNotificationsAsync().then(token=>setToken(token))
     return () => {
@@ -121,7 +122,7 @@ export default function SignIn({ navigation }) {
             setGLoading(false)
           });
       } else {
-        setErrorMessage('user already singed in')
+        setErrorMessage('Etulisateur déja identifier')
       }
     });
   }
@@ -220,7 +221,7 @@ export default function SignIn({ navigation }) {
     
   return (
     <View
-    style={{flex: 1, backgroundColor: '#fff', padding: 20 }}>
+    style={{flex: 1, backgroundColor: '#fff', padding: 20, height: height}}>
       <ScrollView showsVerticalScrollIndicator={false}>
 
         <Animatable.View 
@@ -228,7 +229,7 @@ export default function SignIn({ navigation }) {
         duration={2000}
         style={{flex: 1, backgroundColor: '#fff'}}>
 
-          <Image source={require('../../../assets/logo.png')}
+          <Image source={require('../../../assets/logo.jpeg')}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"}
           />

@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 {/* import pages */}
-import Splash from '../pages/authentication/Splash';
 import SignIn from '../pages/authentication/SignIn';
 import SignUp from '../pages/authentication/SignUp';
 import Privacy from '../pages/authentication/Privacy';
@@ -16,8 +15,7 @@ const Stack = createStackNavigator();
 
     return (
       <NavigationContainer>
-        <Stack.Navigator  initialRouteName='Splash'>
-          <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }}/>
+        <Stack.Navigator  initialRouteName='SignIn'>
           <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }}/>
           <Stack.Screen name="register" component={SignUp} options={{ headerShown: false }}/>
           <Stack.Screen name="Privacy" component={Privacy}

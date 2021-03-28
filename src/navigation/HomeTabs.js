@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as Notifications from 'expo-notifications';
-import {useFocusEffect} from '@react-navigation/native'
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import Drawer from './Drawer';
-import SettingsStack from './SettingsStack';
+import Profil from '../pages/settings/Profil';
 import StackChat from './StackChat';
+import Items from '../pages/settings/Items';
 
 export default function HomeTabs() {
   const [notification, setNotification] = React.useState({})
@@ -23,19 +23,23 @@ export default function HomeTabs() {
           let iconName;
           if (route.name === 'Accueil') {
             iconName = focused
-              ? 'ios-home'
-              : 'ios-home';
+              ? 'home'
+              : 'home';
           } else if (route.name === 'Profil') {
             iconName = focused
-              ? 'md-person'
-              : 'md-person';
+              ? 'person'
+              : 'person';
           }
-          else if (route.name === 'Discussions') {
+          else if (route.name === 'Messages') {
             iconName = focused
-              ? 'ios-chatbubbles'
-              : 'ios-chatbubbles';
+              ? 'comments'
+              : 'comments';
+          } else if (route.name === 'Boutique') {
+            iconName = focused
+              ? 'shopping-store'
+              : 'shopping-store';
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Fontisto name={iconName} size={size} color={color} />;
         },
 
       })}
@@ -47,8 +51,9 @@ export default function HomeTabs() {
       }}
     >
       <Tab.Screen name="Accueil" component={Drawer} />
-      <Tab.Screen name="Discussions" component={StackChat} />
-      <Tab.Screen name="Profil" component={SettingsStack} />
+      <Tab.Screen name="Messages" component={StackChat} />
+      <Tab.Screen name="Profil" component={Profil} />
+      <Tab.Screen name="Boutique" component={Items} />
 
     </Tab.Navigator>
   );

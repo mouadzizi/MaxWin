@@ -106,24 +106,21 @@ export default function SignUp({ navigation }) {
     }
     return (
 
-        <SafeAreaView style={{ backgroundColor: '#fff', padding: 20 }} >
-            <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: '#fff' }}>
+        <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}>
 
                 <Animatable.View
                     animation="fadeInUpBig"
                     duration={2000}
                     style={{ height: height * 0.20, backgroundColor: '#fff' }}>
 
-                    <Image source={require('../../../assets/logo.png')}
+                    <Image source={require('../../../assets/logo.jpeg')}
                         style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                         resizeMode={"stretch"}
                     />
                 </Animatable.View>
 
-                <Animatable.View
-                    animation="fadeInUpBig"
-                    duration={2000}
-                    style={{ height: height * 0.75, marginTop: 20 }}>
+                <View
+                    style={{ height: height * 0.75, marginTop: 25 }}>
 
                     <Text
                         style={{ color: 'red', alignSelf: 'center', marginBottom: 8 }}>{errorMessage}</Text>
@@ -185,7 +182,7 @@ export default function SignUp({ navigation }) {
                     <Button
                         mode='contained'
                         uppercase={false}
-                        style={{ alignSelf: 'center', marginTop: 50, width: '100%' }}
+                        style={{ alignSelf: 'center', marginTop: 20, width: '100%' }}
                         loading={loading}
                         onPress={() => createUser()}
                         color='#4898D3'
@@ -207,7 +204,7 @@ export default function SignUp({ navigation }) {
                         en créant ce compte, vous acceptez les
                     </Text>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'center' }} >
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 30}} >
 
                         <TouchableOpacity
                             onPress={() => navigation.push('Privacy')}>
@@ -220,12 +217,11 @@ export default function SignUp({ navigation }) {
                     </View>
 
 
-                </Animatable.View>
+                </View>
 
 
 
             </ScrollView>
-        </SafeAreaView>
     );
 }
 
