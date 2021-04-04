@@ -111,8 +111,11 @@ export default function DashBoard({ navigation }) {
 					style={{
 						flexDirection: 'row',
 						width: '50%',
-						backgroundColor: colors.second,
-						justifyContent: 'center'
+						borderWidth: 1.5,
+						borderColor: '#F16E44',
+						backgroundColor: colors.primary,
+						justifyContent: 'center',
+						elevation: 2,
 					}}
 				>
 					<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />

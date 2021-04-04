@@ -417,11 +417,11 @@ export default function AddProduct({ route, navigation }) {
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
-							maxLength={20}
+							maxLength={70}
 							theme={textTheme}
 							onChangeText={setTitle}
 						/>
-						<Text style={{ color: '#4898D3', fontSize: 11 }}>
+						<Text style={{ color: '#4898D3', fontSize: 11}}>
 							Merci d’entrer le Nom exacte de votre article
 						</Text>
 
@@ -864,7 +864,7 @@ export default function AddProduct({ route, navigation }) {
 							mode="outlined"
 							theme={textTheme}
 							numberOfLines={4}
-							maxLength={266}
+							maxLength={350}
 							placeholder="description"
 							onChangeText={setDescription}
 							multiline={true}
@@ -896,7 +896,7 @@ export default function AddProduct({ route, navigation }) {
 									theme={textTheme}
 									keyboardType="phone-pad"
 										maxLength={13}
-									style={{ marginTop: 6, paddingHorizontal: 10}}
+									style={{ marginTop: 6, paddingHorizontal: 10, width: '60%'}}
 									right={<TextInput.Icon  name="phone" color='#4898D3'  />}
 									onChangeText={(e)=>setUser({...user,phone:e})}
 								/>

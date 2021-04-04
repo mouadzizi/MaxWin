@@ -36,7 +36,7 @@ export default function Product(props) {
 					{/* Info of the card */}
 					<View style={GlobalStyle.cardInfo}>
 						{/* name */}
-						<Text style={GlobalStyle.cardTitle}>{props.name}</Text>
+						<Text style={GlobalStyle.cardTitle}>{props.name.substring(0,20)}</Text>
 
 						{/* price */}
 						<Text style={GlobalStyle.cardPrice}>{props.price} DHS</Text>

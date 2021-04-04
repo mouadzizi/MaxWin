@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     },
     text:{
         fontFamily: 'sans-serif',
-        textAlign: 'justify',
         marginRight: 10,
         fontSize: 17,
     }

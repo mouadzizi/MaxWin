@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, StyleSheet, Share } from 'react-native';
-import { ProgressBar, Divider } from 'react-native-paper';
+import { ProgressBar, Divider, FAB } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
 import { db, auth } from '../../../API/firebase';
 
@@ -18,7 +18,6 @@ import Description from '../../../components/DescriptionDetails';
 import Details from '../../../components/GeneralDetails';
 import CarDetailsList from '../../../components/CarDetailsList';
 
-
 export default function ProductDetails({ navigation, route }) {
 
 	const [canRender, setRender] = React.useState();
@@ -26,7 +25,7 @@ export default function ProductDetails({ navigation, route }) {
 	const [args, setArgs] = React.useState({
 		number: ''
 	});
-	const _SlideHeight = Dimensions.get('window').height * 0.48;
+	const _SlideHeight = Dimensions.get('window').height * 0.66;
 	const _SlideWidth = Dimensions.get('window').width * 0.97;
 	const { id } = route.params;
 	useFocusEffect(
@@ -77,36 +76,49 @@ export default function ProductDetails({ navigation, route }) {
 
 		<View style={{ flex: 1 }}>
 
+			<FAB 
+					style={{position: 'absolute', margin: 16, left: 0, top: 0,zIndex: 1 , backgroundColor: 'white'}}
+					icon="arrow-left"
+					small
+					onPress={()=> navigation.goBack()}
+			/>
+
 			{canRender ?
 
+				
 				<ScrollView
 					showsVerticalScrollIndicator={false}
 					style={{ flex: 1 }}>
-
 					<Animatble.View
 						style={[styles.swipercontainer, { width: _SlideWidth, height: _SlideHeight }]}
 						animation="zoomIn">
-						<Swiper activeDotColor="#FF6347">
-							{post ? (
-								post.urls.map((img, index) => {
-									return (
-										<View key={index} style={GlobalStyle.slide}>
-											<Image
-												key={index}
-												source={{ uri: img }}
-												resizeMode="cover"
-												style={GlobalStyle.sliderImage}
-											/>
-										</View>
-									);
-								})
-							) : null}
-						</Swiper>
+							<TouchableOpacity
+							style={{height: '100%', width: '100%'}}
+							onPress={()=> navigation.navigate('ImageViewer')}>
+								<Swiper 
+								activeDotColor="#FF6347">
+									{post ? (
+										post.urls.map((img, index) => {
+											return (
+												<View key={index} style={GlobalStyle.slide}>
+													<Image
+														key={index}
+														source={{ uri: img }}
+														resizeMode="cover"
+														style={GlobalStyle.sliderImage}
+													/>
+												</View>
+											);
+										})
+									) : null}
+								</Swiper>
+							</TouchableOpacity>
+						
 					</Animatble.View>
 
 					<View style={GlobalStyle.infoContainer}>
 
-						<Text style={{ fontSize: 25, fontFamily: 'Roboto' }}>{post.title}</Text>
+						<Text style={{ fontSize: 25, fontFamily: 'Roboto', fontWeight: 'bold'}}>{post.title}</Text>
 						<Divider />
 						<Text style={{ color: '#FF6347', fontSize: 23, fontFamily: 'serif', marginTop: 3 }}>
 							{post.price} DHS
@@ -226,7 +238,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	swipercontainer: {
-		marginTop: 10,
+		margin: 3,
 		justifyContent: 'center',
 		alignSelf: 'center',
 		borderRadius: 8,

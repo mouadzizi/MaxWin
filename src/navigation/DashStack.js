@@ -26,6 +26,7 @@ import SearchResults from '../pages/Search_results'
 import Messages from '../pages/messages';
 import Img from '../pages/home/product/ImagesBrowser';
 import Header from '../components/Header';
+import ImageViewer from '../pages/home/product/ImageViewer'
 
 export default function DashStack() {
 	const Stack = createStackNavigator();
@@ -38,15 +39,7 @@ export default function DashStack() {
 				name="ProductDetails"
 				component={ProductDetails}
 				options={{
-					title: 'Détails',
-					headerTitleAlign: 'center',
-					headerStyle: {
-						backgroundColor: '#4898D3'
-					},
-					headerTintColor: '#fff',
-					headerTitleStyle: {
-						fontWeight: '500'
-					}
+					headerShown: false
 				}}
 			/>
 
@@ -64,6 +57,12 @@ export default function DashStack() {
 						fontWeight: '500'
 					}
 				}}
+			/>
+
+			<Stack.Screen
+			name="ImageViewer"
+			component={ImageViewer}
+			options={{headerShown : false}}
 			/>
 
 			<Stack.Screen

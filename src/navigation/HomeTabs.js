@@ -52,8 +52,8 @@ export default function HomeTabs() {
     >
       <Tab.Screen name="Accueil" component={Drawer} />
       <Tab.Screen name="Messages" component={StackChat} />
-      <Tab.Screen name="Profil" component={Profil} />
       <Tab.Screen name="Boutique" component={Items} />
+      <Tab.Screen name="Profil" component={Profil} />
 
     </Tab.Navigator>
   );
