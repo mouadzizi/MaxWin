@@ -889,7 +889,10 @@ export default function AddProduct({ route, navigation }) {
 									/>
 								</View>
 								:
-								<TextInput
+
+								<View  style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5, alignItems: 'center' }}>
+									<Text style={{ marginTop: 7, width: '40%' }}>Afficher le Téléphone</Text>
+									<TextInput
 									label="Téléphone"
 									mode="outlined"
 									placeholder="Votre numéro de Téléphone"
@@ -900,6 +903,8 @@ export default function AddProduct({ route, navigation }) {
 									right={<TextInput.Icon  name="phone" color='#4898D3'  />}
 									onChangeText={(e)=>setUser({...user,phone:e})}
 								/>
+								</View>
+								
 								}
 
 

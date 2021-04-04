@@ -102,7 +102,7 @@ export default function DashBoard({ navigation }) {
 			</View>
 
 			{/* Filtre product & Add product */}
-			<View style={{ flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2 }}>
+			<View style={{ flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2, backgroundColor: colors.second, alignContent : 'space-between'}}>
 				<TouchableOpacity
 					delayPressIn={0}
 					onPress={() => {
@@ -110,12 +110,15 @@ export default function DashBoard({ navigation }) {
 					}}
 					style={{
 						flexDirection: 'row',
-						width: '50%',
-						borderWidth: 1.5,
-						borderColor: '#F16E44',
+						width: '49%',
 						backgroundColor: colors.primary,
 						justifyContent: 'center',
-						elevation: 2,
+						borderWidth: 1.5,
+						borderRadius : 15,
+						marginVertical:2,
+						marginLeft :2,
+						borderColor: colors.primary,
+						elevation: 3
 					}}
 				>
 					<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />
@@ -133,11 +136,14 @@ export default function DashBoard({ navigation }) {
 					}}
 					style={{
 						flexDirection: 'row',
-						width: '50%',
+						width: '48%',
 						backgroundColor: colors.primary,
 						justifyContent: 'center',
 						borderWidth: 1.5,
-						borderColor: '#F16E44',
+						borderRadius : 15,
+						marginVertical:2,
+						marginLeft :4,
+						borderColor: colors.primary,
 						elevation: 3
 					}}
 				>
