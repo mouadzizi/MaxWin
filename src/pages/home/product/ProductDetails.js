@@ -28,6 +28,7 @@ export default function ProductDetails({ navigation, route }) {
 	const _SlideHeight = Dimensions.get('window').height * 0.66;
 	const _SlideWidth = Dimensions.get('window').width * 0.97;
 	const { id } = route.params;
+	
 	useFocusEffect(
 		React.useCallback(() => {
 			
@@ -56,7 +57,7 @@ export default function ProductDetails({ navigation, route }) {
 		try {
 			const result = await Share.share({
 				message:
-					'MAxwin | application mobile pour vous',
+					'MAxwin | https://play.google.com/store/apps/details?id=com.us.maxwin&gl=MA',
 			});
 			if (result.action === Share.sharedAction) {
 				if (result.activityType) {
