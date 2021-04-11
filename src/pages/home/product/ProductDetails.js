@@ -78,7 +78,7 @@ export default function ProductDetails({ navigation, route }) {
 		<View style={{ flex: 1 }}>
 
 			<FAB 
-					style={{position: 'absolute', margin: 16, left: 0, top: 0,zIndex: 1 , backgroundColor: 'white'}}
+					style={{position: 'absolute', margin: 16, left: 0, top: 0,zIndex: 1 , backgroundColor: 'white', opacity: 0.7, elevation: 1}}
 					icon="arrow-left"
 					small
 					onPress={()=> navigation.goBack()}
