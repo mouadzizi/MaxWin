@@ -34,7 +34,7 @@ export default function ChatIndicator(props) {
                 <View
                     style={{ marginHorizontal: '5%' }}>
                     <Text style={{ fontSize: 20, fontFamily: 'sans-serif', fontWeight: 'bold' }}>
-                        {props.contact} | {props.product}
+                         {props.product} | {props.contact}
                     </Text>
                  
                     <Text style={{ fontSize: 16, color: '#444', marginHorizontal: 2,marginTop:8 }}>

@@ -25,7 +25,7 @@ export default function ProductDetails({ navigation, route }) {
 	const [args, setArgs] = React.useState({
 		number: ''
 	});
-	const _SlideHeight = Dimensions.get('window').height * 0.66;
+	const _SlideHeight = Dimensions.get('window').height * 0.57;
 	const _SlideWidth = Dimensions.get('window').width * 0.97;
 	const { id } = route.params;
 	
