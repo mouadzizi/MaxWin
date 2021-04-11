@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
 import { MaterialCommunityIcons, FontAwesome } from 'react-native-vector-icons';
 import { auth, db,st } from '../../API/firebase';
-
+import HeaderStandard from '../../components/HeaderStandard';
 export default function Profil() {
 	
 	const [ edit, setEdit ] = useState(false);
@@ -106,10 +106,11 @@ export default function Profil() {
 		else alert('Pour changer la photo, merci de cliquer sur modifier')
 	}
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff', padding: 10 }}>
+		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}}>
+			<HeaderStandard title="Profil"/>
 		
 			{canRender ? (
-				<ScrollView showsVerticalScrollIndicator={false}>
+				<ScrollView showsVerticalScrollIndicator={false} style={{padding: 10 }}>
 
 					<View style={{ flex: 1, flexDirection: 'row' }}>
 

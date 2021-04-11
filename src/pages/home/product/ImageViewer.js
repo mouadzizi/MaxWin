@@ -7,6 +7,7 @@ const _width = Dimensions.get('window').width
 
 export default function ImageViewer({navigation, route}) {
 
+    
     return (
         <View
         style={{width: _width, height: _height, backgroundColor: 'black'}}>

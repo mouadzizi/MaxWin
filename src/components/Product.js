@@ -44,7 +44,7 @@ export default function Product(props) {
 						{/* Product owner */}
 						{state ? (
 							<View style={{ flexDirection: 'row', marginTop: 3 }}>
-								<Entypo name="user" size={15} color="#767676" />
+								<Entypo name="user" size={15} color="#767676"/>
 								<Text style={GlobalStyle.cardOwner}>{props.owner}</Text>
 							</View>
 						) : (

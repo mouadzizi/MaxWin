@@ -7,7 +7,7 @@ export default function ChatIndicator(props) {
 
     return (
         <View
-            style={{ height:90,marginVertical:2,borderBottomWidth:1, borderColor: '#C2C2C2',padding:9,justifyContent:'center' }}>
+            style={{ height:90,marginVertical:2,borderBottomWidth:1, borderColor: '#dfe6e9',padding:9,justifyContent:'center' }}>
             {props.badge ?
                 <Text
                     style={{

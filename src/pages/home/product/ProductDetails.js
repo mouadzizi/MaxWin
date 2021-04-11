@@ -119,7 +119,7 @@ export default function ProductDetails({ navigation, route }) {
 
 					<View style={GlobalStyle.infoContainer}>
 
-						<Text style={{ fontSize: 25, fontFamily: 'Roboto', fontWeight: 'bold'}}>{post.title}</Text>
+						<Text style={{ fontSize: 25, fontFamily: 'Roboto'}}>{post.title}</Text>
 						<Divider />
 						<Text style={{ color: '#FF6347', fontSize: 23, fontFamily: 'serif', marginTop: 3 }}>
 							{post.price} DHS

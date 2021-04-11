@@ -3,6 +3,7 @@ import { Text, SafeAreaView, View, InteractionManager, FlatList, Dimensions, Ima
 import { useFocusEffect } from '@react-navigation/native';
 import { auth, db } from '../../API/firebase';
 import ProduitEdit from '../../components/ProductEdit';
+import HeaderStandard from '../../components/HeaderStandard'
 
 export default function Items({ navigation }) {
 	const [ items, setItems ] = React.useState([]);
@@ -22,7 +23,7 @@ export default function Items({ navigation }) {
 		setRefresh(true);
 		await db
 			.collection('posts').orderBy('addDate','desc')
-			.where('user._id', '==', auth.currentUser.uid)
+			.where('user._id', "==", auth.currentUser.uid)
 			.get()
 			.then((snap) => {
 				snap.forEach((s) => {
@@ -54,11 +55,13 @@ export default function Items({ navigation }) {
 
 	return (
 		<SafeAreaView 
-		style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}>
-
+		style={{ flex: 1, backgroundColor: '#fff'}}>
+		
+		<HeaderStandard title="Ma Boutique"/>
 			{ready ? (
 				<FlatList
 					data={items}
+					style={{paddingHorizontal: 20, paddingTop: 10 }}
 					renderItem={({ item }) => {
 						return (
 							<ProduitEdit

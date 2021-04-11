@@ -19,7 +19,7 @@ export default function ProductEdit({ item, callback, goEdit }) {
 
 			<View style={styles.infoContainer}>
 
-			<Text style={styles.TitleText}> {item.title} </Text>
+			<Text style={styles.TitleText}> {item.title.substring(0,22)} </Text>
 			<Text style={styles.PriceText}> {item.price} MAD </Text>
 			<Text style={styles.StyleText}> Ville : {item.city} </Text>
 
