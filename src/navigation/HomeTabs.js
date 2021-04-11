@@ -2,16 +2,13 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import {Fontisto, MaterialIcons, Ionicons} from 'react-native-vector-icons';
 import Drawer from './Drawer';
 import Profil from '../pages/settings/Profil';
 import StackChat from './StackChat';
 import Items from '../pages/settings/Items';
 
 export default function HomeTabs() {
-  const [notification, setNotification] = React.useState({})
-  const notificationListener = React.useRef();
-  const responseListener = React.useRef();
   const Tab = createBottomTabNavigator();
 
   return (
@@ -21,26 +18,32 @@ export default function HomeTabs() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
+          let IconTag;
           if (route.name === 'Accueil') {
             iconName = focused
               ? 'home'
               : 'home';
+              IconTag = Fontisto;
           } else if (route.name === 'Profil') {
             iconName = focused
               ? 'person'
               : 'person';
+              IconTag = Fontisto;
           }
           else if (route.name === 'Messages') {
             iconName = focused
-              ? 'comments'
-              : 'comments';
+              ? 'message'
+              : 'message';
+              IconTag = MaterialIcons;
           } else if (route.name === 'Boutique') {
             iconName = focused
               ? 'shopping-store'
               : 'shopping-store';
+              IconTag = Fontisto;
           }
-          return <Fontisto name={iconName} size={size} color={color} />;
+          return <IconTag name={iconName} size={20} color={color} />;
         },
+        
 
       })}
       tabBarOptions={{
