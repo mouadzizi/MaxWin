@@ -6,7 +6,7 @@ import {GlobalStyle, textTheme} from '../style/GlobalStyle';
 
 
 const { width, height } = Dimensions.get('window');
-const height_image = height*0.20;
+const height_image = height*0.24;
 const width_image = width;
 
 export default function ContactForm() {
@@ -17,7 +17,7 @@ export default function ContactForm() {
         <Image
                     source={require('../../assets/logo.png')}
                     style={{height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
-                    resizeMode={'cover'}
+                    resizeMode={'contain'}
         />
         </View>
 
