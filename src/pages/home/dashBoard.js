@@ -110,22 +110,17 @@ export default function DashBoard({ navigation }) {
 					}}
 					style={{
 						flexDirection: 'row',
-						width: '49%',
-						backgroundColor: colors.primary,
+						width: '50%',
+						backgroundColor: colors.second,
 						justifyContent: 'center',
-						borderWidth: 1.5,
-						borderRadius : 15,
-						marginVertical:2,
-						marginLeft :2,
-						borderColor: colors.primary,
-						elevation: 3
+						marginLeft :2
 					}}
 				>
 					<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />
 
 					<Text style={{ textAlignVertical: 'center', marginLeft: 15, fontWeight: 'bold', color: '#fff' }}>
 
-						Ajouter Produit
+						Publier une annonce
 					</Text>
 				</TouchableOpacity>
 
@@ -136,15 +131,13 @@ export default function DashBoard({ navigation }) {
 					}}
 					style={{
 						flexDirection: 'row',
-						width: '48%',
+						width: '50%',
 						backgroundColor: colors.primary,
 						justifyContent: 'center',
-						borderWidth: 1.5,
-						borderRadius : 15,
-						marginVertical:2,
-						marginLeft :4,
 						borderColor: colors.primary,
-						elevation: 3
+						elevation: 2,
+						borderWidth: 1,
+						borderColor : colors.second,
 					}}
 				>
 					<Ionicons name="ios-options" size={35} color="#fff" style={{ alignSelf: 'center' }} />
@@ -199,33 +192,34 @@ export default function DashBoard({ navigation }) {
 						onEndReached={() => loadMore()}
 						onEndReachedThreshold={0.01}
 						 /> */}
-						 {/*
-							ListHeaderComponent={
-							<DashoboardHeader click={(category) => {
-									setReady(false)
-									setcurrent(category)
-									switch (category) {
-										case 'All':
-											fetchItems(qte).then(pata => {
-												setPosts(pata)
-												setReady(true)
-											})
-											break;
-										default:
-											fitler(category, qte).then(data => {
-												setPosts(data)
-												setReady(true)
-											})
-											break;
-									}
-							}}/>
-							}
-						*/}
+						 
+							
+						
 						<FlatList style={{ flexGrow: 0 }}
 							initialNumToRender={3}
 							removeClippedSubviews={true}
 							disableVirtualization={true}
 							data={posts}
+							ListHeaderComponent={
+								<DashoboardHeader click={(category) => {
+										setReady(false)
+										setcurrent(category)
+										switch (category) {
+											case 'All':
+												fetchItems(qte).then(pata => {
+													setPosts(pata)
+													setReady(true)
+												})
+												break;
+											default:
+												fitler(category, qte).then(data => {
+													setPosts(data)
+													setReady(true)
+												})
+												break;
+										}
+								}}/>
+								}
 							renderItem={({ item }) => (
 								<Product
 									name={item.title}

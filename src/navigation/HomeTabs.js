@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
-import {Fontisto, MaterialIcons, Ionicons} from 'react-native-vector-icons';
+import {Fontisto, MaterialIcons, Octicons} from 'react-native-vector-icons';
 import Drawer from './Drawer';
 import Profil from '../pages/settings/Profil';
 import StackChat from './StackChat';
@@ -28,7 +28,7 @@ export default function HomeTabs() {
             iconName = focused
               ? 'person'
               : 'person';
-              IconTag = Fontisto;
+              IconTag = Octicons;
           }
           else if (route.name === 'Messages') {
             iconName = focused
