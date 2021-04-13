@@ -417,6 +417,7 @@ export default function AddProduct({ route, navigation }) {
 						<TextInput
 							label="Titre de votre Produit"
 							mode="outlined"
+							numberOfLines={1}
 							maxLength={25}
 							theme={textTheme}
 							onChangeText={setTitle}

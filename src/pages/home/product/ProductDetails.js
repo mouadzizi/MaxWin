@@ -93,8 +93,6 @@ export default function ProductDetails({ navigation, route }) {
 					<Animatble.View
 						style={[styles.swipercontainer, { width: _SlideWidth, height: _SlideHeight }]}
 						animation="zoomIn">
-							<TouchableOpacity
-							style={{height: '100%', width: '100%'}}>
 								<Swiper 
 								activeDotColor="#FF6347">
 									{post ? (
@@ -112,7 +110,6 @@ export default function ProductDetails({ navigation, route }) {
 										})
 									) : null}
 								</Swiper>
-							</TouchableOpacity>
 						
 					</Animatble.View>
 
