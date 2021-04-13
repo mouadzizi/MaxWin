@@ -10,7 +10,7 @@ exports.sendNotification = functions.firestore.document('chats/{docId}').onWrite
     var messages = []
     messages.push({
         "to": data.contact2.expoPushNotif,
-        "title":"Vous avez un nouveau message de "+data.contact1.name,
+        "title":"Vous avez reçu un message",
         "body": data.lastMessage,
         "android": {
             "sound": true
