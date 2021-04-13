@@ -877,7 +877,7 @@ export default function AddProduct({ route, navigation }) {
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>
 						<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 
-							{user.phone && user.phone.length==20 ?
+							{user.phone ?
 								<View  style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 									<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
 									<Checkbox
@@ -895,10 +895,10 @@ export default function AddProduct({ route, navigation }) {
 									<TextInput
 									label="Téléphone"
 									mode="outlined"
-									placeholder="Votre numéro de Téléphone"
+									placeholder="Votre numéro"
 									theme={textTheme}
 									keyboardType="phone-pad"
-										maxLength={13}
+										maxLength={10}
 									style={{ marginTop: 6, paddingHorizontal: 10, width: '60%'}}
 									right={<TextInput.Icon  name="phone" color='#4898D3'  />}
 									onChangeText={(e)=>setUser({...user,phone:e})}

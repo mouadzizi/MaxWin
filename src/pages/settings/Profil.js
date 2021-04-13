@@ -107,7 +107,7 @@ export default function Profil() {
 	}
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}}>
-			<HeaderStandard title="Profil"/>
+			<HeaderStandard title="Mon Profil"/>
 		
 			{canRender ? (
 				<ScrollView showsVerticalScrollIndicator={false} style={{padding: 10 }}>

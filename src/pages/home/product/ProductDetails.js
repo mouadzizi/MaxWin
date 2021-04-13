@@ -94,8 +94,7 @@ export default function ProductDetails({ navigation, route }) {
 						style={[styles.swipercontainer, { width: _SlideWidth, height: _SlideHeight }]}
 						animation="zoomIn">
 							<TouchableOpacity
-							style={{height: '100%', width: '100%'}}
-							onPress={()=> navigation.navigate('ImageViewer')}>
+							style={{height: '100%', width: '100%'}}>
 								<Swiper 
 								activeDotColor="#FF6347">
 									{post ? (
@@ -200,7 +199,7 @@ export default function ProductDetails({ navigation, route }) {
 						>
 							<View style={{ flexDirection: 'row' }}>
 								<Feather name="share-2" size={25} color="#4898D3" />
-								<Text style={styles.btnText2}>Partager L'annonce</Text>
+								<Text style={styles.btnText2}>Partager L'application </Text>
 							</View>
 						</TouchableOpacity>
 
