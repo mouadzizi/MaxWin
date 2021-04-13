@@ -3,14 +3,13 @@ import 'firebase/firestore';
 
 
 const firebaseConfig = {
-	apiKey: "AIzaSyDHgZAAUP5oomuY2EE_N5mzcK2t-hgJNaQ",
-	authDomain: "maxwin-35d61.firebaseapp.com",
-	databaseURL: "https://maxwin-35d61.firebaseio.com",
-	projectId: "maxwin-35d61",
-	storageBucket: "maxwin-35d61.appspot.com",
-	messagingSenderId: "296245537422",
-	appId: "1:296245537422:web:8f10a04a61f99e206677df",
-	measurementId: "G-2LQX99YNHL"
+	apiKey: "AIzaSyD3sm4m7T6vruMxTnzMEr_OdW1Ewugk8KI",
+	authDomain: "maxwinapp-2020.firebaseapp.com",
+	projectId: "maxwinapp-2020",
+	storageBucket: "maxwinapp-2020.appspot.com",
+	messagingSenderId: "1091885761805",
+	appId: "1:1091885761805:web:2354f29da8566da19adc44",
+	measurementId: "G-SQXS0CCERR"
 };
 
 const app = firebase.initializeApp(firebaseConfig);

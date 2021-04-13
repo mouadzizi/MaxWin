@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import React from 'react';
 import AuthenticationStack from './src/navigation/AuthenticationStack';
 
 

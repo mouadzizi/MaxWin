@@ -31,7 +31,7 @@ export default function DrawerContent(props){
                     setProvider(e.providerId)
                 })
             }
-            if (!user) props.navigation.replace('Splash')
+            if (!user) props.navigation.replace('SignIn')
         })
         getData();
         db.collection('users').doc(auth.currentUser.uid).get().then(snap=>{

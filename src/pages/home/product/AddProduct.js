@@ -893,6 +893,7 @@ export default function AddProduct({ route, navigation }) {
 								<View  style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5, alignItems: 'center' }}>
 									<Text style={{ marginTop: 7, width: '40%' }}>Afficher le Téléphone</Text>
 									<TextInput
+									value={user.phone}
 									label="Téléphone"
 									mode="outlined"
 									placeholder="Votre numéro de Téléphone"
