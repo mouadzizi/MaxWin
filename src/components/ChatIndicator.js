@@ -32,13 +32,13 @@ export default function ChatIndicator(props) {
                 }}
                 />
                 <View
-                    style={{ marginHorizontal: '5%' }}>
-                    <Text style={{ fontSize: 20, fontFamily: 'sans-serif', fontWeight: 'bold' }}>
-                         {props.product.substring(0, 10) + "..."} | {props.contact}
+                    style={{ marginHorizontal: 20 }}>
+                    <Text style={{ fontSize: 20, fontFamily: 'sans-serif', fontWeight: 'bold', textAlign: 'left'}}>
+                         {props.product}
                     </Text>
                  
                     <Text style={{ fontSize: 16, color: '#444', marginHorizontal: 2,marginTop:8 }}>
-                        {props.lastMessage}
+                    {props.contact} : {props.lastMessage.substring(0, 25) + "..."}
                     </Text>
                     <Text style={{ fontSize: 12 }}>
                         {props.time}
