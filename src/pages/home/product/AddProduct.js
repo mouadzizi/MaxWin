@@ -878,7 +878,7 @@ export default function AddProduct({ route, navigation }) {
 						<Text style={{ color: '#4898D3', marginTop: 5 }}>Options</Text>
 						<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 5 }}>
 
-							{user.phone ?
+							{user.phone && user.phone.length ==20 ?
 								<View  style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
 									<Text style={{ marginTop: 7, width: '60%' }}>Afficher le N° de Téléphone</Text>
 									<Checkbox
