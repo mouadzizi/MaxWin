@@ -57,7 +57,7 @@ export default function ProductDetails({ navigation, route }) {
 		try {
 			const result = await Share.share({
 				message:
-					'MAxwin | https://play.google.com/store/apps/details?id=com.us.maxwin&gl=MA',
+					"بغيتي تبيع أو كتقلب تشري شي حاجة (قديمة/جديدة)،مرحبا بك في السوق الإلكتروني Maxwin 👟🛵⌚📱💻🎧🏠🚘👗👜	لتحميل التطبيق إضغط على الرابط | https://play.google.com/store/apps/details?id=com.us.maxwin&gl=MA",
 			});
 			if (result.action === Share.sharedAction) {
 				if (result.activityType) {
