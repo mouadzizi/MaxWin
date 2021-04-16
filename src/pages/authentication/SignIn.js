@@ -36,10 +36,9 @@ export default function SignIn({ navigation }) {
       }
       else console.log('user signed out');
     })
-    return () => {
-        _unsub()
-        console.log('sign in exit');
-    }
+    return  _unsub;
+        
+   
   }, [])
 
   //firebase SignIn
