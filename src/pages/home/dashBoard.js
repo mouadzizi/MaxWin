@@ -102,7 +102,7 @@ export default function DashBoard({ navigation }) {
 			</View>
 
 			{/* Filtre product & Add product */}
-			<View style={{ flexDirection: 'row', elevation: 25, height: 50, marginBottom: 2, backgroundColor: colors.second, alignContent : 'space-between'}}>
+			<View style={{ flexDirection: 'row', height: 50, marginBottom: 2, backgroundColor: colors.second, alignContent : 'space-between'}}>
 				<TouchableOpacity
 					delayPressIn={0}
 					onPress={() => {
@@ -134,7 +134,6 @@ export default function DashBoard({ navigation }) {
 						width: '50%',
 						backgroundColor: colors.primary,
 						justifyContent: 'center',
-						borderColor: colors.primary,
 						borderWidth: 1,
 						borderColor : colors.second,
 					}}

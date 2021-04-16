@@ -10,7 +10,7 @@ import ClothWomen from '../icons/WomenClothes';
 export default function NavigationSections(props) {
 
    
-    const logo = '../../assets/logo.jpeg';
+    const logo = '../../assets/ButtonLogo.jpeg';
  
     return (
         <ScrollView 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         borderRadius:  30,
         backgroundColor: '#fff',
         borderWidth: 1,
-        borderColor: '#F16E44',
+        borderColor: '#4898D3',
         height: 50,
         padding: 3,
         alignItems: 'center',
