@@ -106,9 +106,7 @@ export default function Profil() {
 		else alert('Pour changer la photo, merci de cliquer sur modifier')
 	}
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}}>
-			<HeaderStandard title="Mon Profil"/>
-		
+		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}}>		
 			{canRender ? (
 				<ScrollView showsVerticalScrollIndicator={false} style={{padding: 10 }}>
 

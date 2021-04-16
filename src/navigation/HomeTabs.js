@@ -2,11 +2,11 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
-import {Fontisto, MaterialIcons, AntDesign, Feather} from 'react-native-vector-icons';
+import {Fontisto, FontAwesome5, AntDesign, Feather, Entypo} from 'react-native-vector-icons';
 import Drawer from './Drawer';
-import Profil from '../pages/settings/Profil';
+import Profil from '../navigation/Profilestack';
 import StackChat from './StackChat';
-import Items from '../pages/settings/Items';
+import Boutique from '../navigation/BoutiqueStack';
 
 export default function HomeTabs() {
   const Tab = createBottomTabNavigator();
@@ -23,18 +23,18 @@ export default function HomeTabs() {
             iconName = focused
               ? 'home'
               : 'home';
-              IconTag = AntDesign;
+              IconTag = Entypo;
           } else if (route.name === 'Profil') {
             iconName = focused
-              ? 'users'
-              : 'user';
-              IconTag = Feather;
+              ? 'user-alt'
+              : 'user-alt';
+              IconTag = FontAwesome5;
           }
           else if (route.name === 'Messages') {
             iconName = focused
-              ? 'message'
-              : 'message';
-              IconTag = MaterialIcons;
+              ? 'chat'
+              : 'chat';
+              IconTag = Entypo;
           } else if (route.name === 'Boutique') {
             iconName = focused
               ? 'shopping-store'
@@ -55,7 +55,7 @@ export default function HomeTabs() {
     >
       <Tab.Screen name="Accueil" component={Drawer} />
       <Tab.Screen name="Messages" component={StackChat} />
-      <Tab.Screen name="Boutique" component={Items} />
+      <Tab.Screen name="Boutique" component={Boutique} />
       <Tab.Screen name="Profil" component={Profil} />
 
     </Tab.Navigator>
