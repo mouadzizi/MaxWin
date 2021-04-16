@@ -6,7 +6,7 @@ export default function HeaderStandard(props) {
     return (
         <View style={{ backgroundColor: '#4898D3', height: height*0.07, alignItems: 'center', justifyContent: 'center'}}>
 
-            <Text style={{fontWeight: 'bold', color: '#fff',fontSize: 17, alignSelf: 'center'}}> {props.title}</Text>
+            <Text style={{fontWeight: '500', color: '#fff',fontSize: 20, alignSelf: 'center'}}> {props.title}</Text>
 
         </View>
     )

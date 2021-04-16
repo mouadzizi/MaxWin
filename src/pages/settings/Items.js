@@ -57,7 +57,6 @@ export default function Items({ navigation }) {
 		<SafeAreaView 
 		style={{ flex: 1, backgroundColor: '#fff'}}>
 		
-		<HeaderStandard title="Ma Boutique"/>
 			{ready ? (
 				<FlatList
 					data={items}

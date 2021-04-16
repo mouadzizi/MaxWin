@@ -135,7 +135,6 @@ export default function DashBoard({ navigation }) {
 						backgroundColor: colors.primary,
 						justifyContent: 'center',
 						borderColor: colors.primary,
-						elevation: 2,
 						borderWidth: 1,
 						borderColor : colors.second,
 					}}
