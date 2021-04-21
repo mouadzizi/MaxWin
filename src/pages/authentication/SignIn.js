@@ -29,12 +29,16 @@ export default function SignIn({ navigation }) {
 
 
   useEffect(() => {
+    setLoading(true)
     registerForPushNotificationsAsync().then(token=>setToken(token))
     var _unsub = auth.onAuthStateChanged(user=>{
       if (user) {
          navigation.replace('HomeTabs') 
       }
-      else console.log('user signed out');
+      else {
+        console.log('user signed out');
+        setLoading(false)
+      }
     })
     return  _unsub;
         

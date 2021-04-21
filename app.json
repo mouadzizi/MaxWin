@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Maxwin",
+    "name": "Maxwin-Staging",
     "slug": "Maxwin",
     "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/splash.png",
+    "icon": "./assets/logo.png",
     "splash": {
       "image": "./assets/logo.png",
       "resizeMode": "contain",
@@ -30,7 +30,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.us.maxwin",
+      "package": "com.st.maxwin",
       "versionCode": 1,
       "googleServicesFile": "./google-services.json",
       "useNextNotificationsApi": true,

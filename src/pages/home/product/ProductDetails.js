@@ -49,7 +49,7 @@ export default function ProductDetails({ navigation, route }) {
 	const handleNavigation = () => {
 
 		const {user,title,urls} = post;
-		if (user._id != auth.currentUser.uid) navigation.navigate('Messages', { seller: user,postTitle:title,chatId:id,pic:urls[0] });
+		if (user._id != auth.currentUser.uid) navigation.navigate('Messages', { seller: user,postTitle:title,postId:id,pic:urls[0] });
 		else Alert.alert('Désolé(e)', 'vous êtes le propriétaire de ce produit, vous ne pouvez pas vous envoyer de message')
 	}
 

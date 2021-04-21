@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar, ActivityIndicator,VirtualizedList } from 'react-native';
+import { View, Text, TouchableOpacity, InteractionManager, FlatList, Dimensions, StatusBar, ActivityIndicator, Alert } from 'react-native';
 import { Searchbar, ProgressBar } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
 import { colors } from '../../style/GlobalStyle';
 import { db } from '../../API/firebase';
 import Product from '../../components/Product';
 import DashoboardHeader from '../../components/DashboardHeader';
+import Constants from 'expo-constants'
+import {openURL} from 'expo-linking'
+
 
 import { fitler } from './fiterData'
 
@@ -24,19 +27,25 @@ export default function DashBoard({ navigation }) {
 				setPosts(p);
 				setReady(true);
 			});
-		});
+		});    
+        const { releaseChannel } = Constants.manifest
+        const msg = 'Nouvelle version disponible, veuillez effectuer une mise à jour en cliquant sur OK'
+       if (releaseChannel === 'default') {
+
+            Alert.alert('Info', msg, 
+            [
+            {
+                text: 'OK',
+                onPress: () => openURL('https://play.google.com/store/apps/details?id=com.us.maxwin')
+            }
+        ])
+        }
+  
 	}
 		, []);
 
-	useEffect(() => {
-		return () => {
-
-		}
-	}, [])
-
 	//Dimensions
 	const { width, height } = Dimensions.get('window');
-
 	const height_screen = height * 0.782;
 
 	//SearchBar Const
@@ -79,7 +88,7 @@ export default function DashBoard({ navigation }) {
 
 		navigation.navigate('search_results', { searchArr: text })
 	}
-	
+
 	return (
 		<View>
 			<StatusBar />
@@ -102,18 +111,18 @@ export default function DashBoard({ navigation }) {
 			</View>
 
 			{/* Filtre product & Add product */}
-			<View style={{ flexDirection: 'row', height: 50, marginBottom: 2, backgroundColor: colors.second, alignContent : 'space-between'}}>
+			<View style={{ flexDirection: 'row', height: 50, marginBottom: 2, backgroundColor: colors.second, alignContent: 'space-between' }}>
 				<TouchableOpacity
 					delayPressIn={0}
 					onPress={() => {
-						 navigation.navigate('AddProductCat');
+						navigation.navigate('AddProductCat');
 					}}
 					style={{
 						flexDirection: 'row',
 						width: '50%',
 						backgroundColor: colors.second,
 						justifyContent: 'center',
-						marginLeft :2
+						marginLeft: 2
 					}}
 				>
 					<Ionicons name="md-add-circle" size={35} color="#fff" style={{ alignSelf: 'center' }} />
@@ -135,7 +144,7 @@ export default function DashBoard({ navigation }) {
 						backgroundColor: colors.primary,
 						justifyContent: 'center',
 						borderWidth: 1,
-						borderColor : colors.second,
+						borderColor: colors.second,
 					}}
 				>
 					<Ionicons name="ios-options" size={35} color="#fff" style={{ alignSelf: 'center' }} />
@@ -190,9 +199,9 @@ export default function DashBoard({ navigation }) {
 						onEndReached={() => loadMore()}
 						onEndReachedThreshold={0.01}
 						 /> */}
-						 
-							
-						
+
+
+
 						<FlatList style={{ flexGrow: 0 }}
 							initialNumToRender={3}
 							removeClippedSubviews={true}
@@ -200,24 +209,24 @@ export default function DashBoard({ navigation }) {
 							data={posts}
 							ListHeaderComponent={
 								<DashoboardHeader click={(category) => {
-										setReady(false)
-										setcurrent(category)
-										switch (category) {
-											case 'All':
-												fetchItems(qte).then(pata => {
-													setPosts(pata)
-													setReady(true)
-												})
-												break;
-											default:
-												fitler(category, qte).then(data => {
-													setPosts(data)
-													setReady(true)
-												})
-												break;
-										}
-								}}/>
-								}
+									setReady(false)
+									setcurrent(category)
+									switch (category) {
+										case 'All':
+											fetchItems(qte).then(pata => {
+												setPosts(pata)
+												setReady(true)
+											})
+											break;
+										default:
+											fitler(category, qte).then(data => {
+												setPosts(data)
+												setReady(true)
+											})
+											break;
+									}
+								}} />
+							}
 							renderItem={({ item }) => (
 								<Product
 									name={item.title}
@@ -235,15 +244,15 @@ export default function DashBoard({ navigation }) {
 							)}
 							onEndReached={() => loadMore()}
 							onEndReachedThreshold={0.01}
-								
+
 						/>
 					</View>
 				) : (
-						<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
-					)}
+					<ProgressBar color="#4898D3" style={{ height: 8 }} indeterminate={true} visible={true} />
+				)}
 
 			</View>
-			<ActivityIndicator color="#4898D3" size={45} animating={loading} style={{position: 'absolute', alignSelf: 'center', top: '50%'}} />
+			<ActivityIndicator color="#4898D3" size={45} animating={loading} style={{ position: 'absolute', alignSelf: 'center', top: '50%' }} />
 		</View>
 	);
 }
