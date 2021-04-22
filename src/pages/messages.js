@@ -15,10 +15,11 @@ export default function messages({ route }) {
     const { seller, postTitle, postId, pic } = route.params
 
     React.useEffect(() => {
+        console.log(chatId());
         getContact().then(c => {
             setContact(c)
         })
-        var unsub = chatRef.doc(chatId() + postId).collection('messages').orderBy('serverTime', 'desc').onSnapshot((querySnap) => {
+        var unsub = chatRef.doc(chatId()).collection('messages').orderBy('serverTime', 'desc').onSnapshot((querySnap) => {
             setMessages([])
             const firestoreMessages = querySnap
                 .docs
@@ -61,7 +62,8 @@ export default function messages({ route }) {
                 seen: false,
                 lastMessage: messages[0].text,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                title: postTitle
+                title: postTitle,
+                postId
             })
         const writes = messages.map((m) => {
             db.collection('chats')

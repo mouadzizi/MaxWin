@@ -52,13 +52,14 @@ export default function Chats({ navigation }) {
                                     seller: (uid === item.contact1._id) ? item.contact2 : item.contact1,
                                     chatId: item.key,
                                     pic: item.chatPic,
-                                    postTitle: item.title
+                                    postTitle: item.title,
+                                    postId:item.postId
                                 })
 
 
                             }}
                             lastMessage={item.lastMessage}
-                            contact={uid == item.contact1._id ? item.contact2.name : item.contact1.name}
+                            contact={uid == item.contact1._id ? "Vous" : item.contact1.name}
                             product={item.title}
                         />
 

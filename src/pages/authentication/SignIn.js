@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Alert, Image, Dimensions, Keyboard, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Image, Dimensions, Keyboard, ScrollView, InteractionManager } from 'react-native';
 import { TextInput, Button, ActivityIndicator, Divider } from 'react-native-paper';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
 import { db, auth } from '../../API/firebase';
@@ -29,16 +29,19 @@ export default function SignIn({ navigation }) {
 
 
   useEffect(() => {
-    setLoading(true)
-    registerForPushNotificationsAsync().then(token=>setToken(token))
-    var _unsub = auth.onAuthStateChanged(user=>{
-      if (user) {
-         navigation.replace('HomeTabs') 
-      }
-      else {
-        console.log('user signed out');
-        setLoading(false)
-      }
+    var _unsub;
+    InteractionManager.runAfterInteractions(()=>{
+      setLoading(true)
+      registerForPushNotificationsAsync().then(token=>setToken(token))
+      _unsub = auth.onAuthStateChanged(user=>{
+        if (user) {
+           navigation.replace('HomeTabs') 
+        }
+        else {
+          console.log('user signed out');
+          setLoading(false)
+        }
+      })
     })
     return  _unsub;
         
