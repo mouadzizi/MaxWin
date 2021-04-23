@@ -242,7 +242,7 @@ export default function SignIn({ navigation }) {
         duration={2000}
         style={{flex: 1, backgroundColor: '#fff'}}>
 
-          <Image source={require('../../../assets/logo.jpeg')}
+          <Image source={require('../../../assets/logo.png')}
             style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
             resizeMode={"stretch"}
           />

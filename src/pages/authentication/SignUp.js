@@ -113,7 +113,7 @@ export default function SignUp({ navigation }) {
                     duration={2000}
                     style={{ height: height * 0.20, backgroundColor: '#fff' }}>
 
-                    <Image source={require('../../../assets/logo.jpeg')}
+                    <Image source={require('../../../assets/logo.png')}
                         style={{ height: height_image, width: width_image, alignSelf: 'center', marginTop: 15 }}
                         resizeMode={"stretch"}
                     />
