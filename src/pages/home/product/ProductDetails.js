@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, StyleSheet, Share } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity, Alert, InteractionManager, Dimensions, StyleSheet, Share, Touchable } from 'react-native';
 import { ProgressBar, Divider, FAB } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
 import { db, auth } from '../../../API/firebase';
@@ -17,6 +17,7 @@ import ServicesDetails from '../../../components/ServicesDetails';
 import Description from '../../../components/DescriptionDetails';
 import Details from '../../../components/GeneralDetails';
 import CarDetailsList from '../../../components/CarDetailsList';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default function ProductDetails({ navigation, route }) {
 
@@ -93,7 +94,12 @@ export default function ProductDetails({ navigation, route }) {
 					<Animatble.View
 						style={[styles.swipercontainer, { width: _SlideWidth, height: _SlideHeight }]}
 						animation="zoomIn">
-								<Swiper 
+							<TouchableWithoutFeedback
+							style={{height: '100%'}}
+							onPress={()=> navigation.navigate('ImageViewer', {
+								Images: post.urls,
+							  })}>
+							<Swiper 
 								activeDotColor="#FF6347">
 									{post ? (
 										post.urls.map((img, index) => {
@@ -110,7 +116,7 @@ export default function ProductDetails({ navigation, route }) {
 										})
 									) : null}
 								</Swiper>
-						
+							</TouchableWithoutFeedback>
 					</Animatble.View>
 
 					<View style={GlobalStyle.infoContainer}>

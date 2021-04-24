@@ -57,13 +57,13 @@ export default function SignIn({ navigation }) {
       .catch(err => {
         switch (err.code) {
           case 'auth/invalid-email':
-            setErrorMessage('email invalide')
+            setErrorMessage("cet email n'est pas valide")
             break;
           case 'auth/user-not-found':
-            setErrorMessage("Aucun compte n'a cette email")
+            setErrorMessage("cet e-mail n'existe pas en tant qu'utilisateur")
             break;
           case 'auth/wrong-password':
-            setErrorMessage('mode de passe invalide')
+            setErrorMessage("le mot de passe ou l'e-mail n'est pas correct")
             break;
             default:
               setErrorMessage(err.code)
@@ -95,7 +95,6 @@ export default function SignIn({ navigation }) {
     } catch (e) {
       setGLoading(false)
       Alert.alert('Google Error', JSON.stringify(e))
-
     }
   }
 
@@ -135,7 +134,7 @@ export default function SignIn({ navigation }) {
             setGLoading(false)
           });
       } else {
-        setErrorMessage('Etulisateur déja identifier')
+        setErrorMessage("l'utilisateur s'est déjà connecté")
       }
     });
   }
@@ -181,7 +180,7 @@ export default function SignIn({ navigation }) {
               })
               navigation.replace('HomeTabs')
           })
-          }).catch(e=>alert('Firebase err',JSON.stringify(e)));
+          }).catch(e=> Alert.alert('Firebase err',JSON.stringify(e)));
 
       }
       if (type === 'cancel') {

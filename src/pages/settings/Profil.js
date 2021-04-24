@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { Text, ScrollView, SafeAreaView, View, TouchableOpacity, InteractionManager, Alert } from 'react-native';
+import { Text, ScrollView, SafeAreaView, View, TouchableOpacity, InteractionManager, Alert, Picker } from 'react-native';
 import { Avatar, Divider, FAB, TextInput, ProgressBar } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import { GlobalStyle, textTheme } from '../../style/GlobalStyle';
@@ -21,6 +21,7 @@ export default function Profil() {
 	const [ phone, setPhone ] = useState('');
 	const [ location, setLocation ] = useState('');
 	const [ image, setImage ] = useState('');
+	const [ statueUser, setStatueUser] = useState('');
 	const {currentUser}= auth
 
 	useFocusEffect(
@@ -42,7 +43,7 @@ export default function Profil() {
 		setEdit(!edit);
 		if (edit) {
 			setLoading(true);
-			name || phone || image || location  
+			name || phone || image || location || statueUser
 				? await db
 						.collection('users')
 						.doc(currentUser.uid)
@@ -50,6 +51,7 @@ export default function Profil() {
 							name,
 							phone,
 							location,
+							accountType: statueUser,
 							avatar:auth.currentUser.photoURL
 						})
 						.then(() => {
@@ -69,6 +71,7 @@ export default function Profil() {
 			email: doc.email,
 			accountType: doc.accountType
 		});
+		setStatueUser(doc.accountType)
 	};
 
 	async function updateProfileImage(uri) {
@@ -149,7 +152,7 @@ export default function Profil() {
 						>
 							<Text style={GlobalStyle.usernameProfil}>{name}</Text>
 
-							{user.accountType ? (
+							{ (statueUser =="Professionel") ? (
 								<View style={{ flexDirection: 'row', alignSelf: 'center' }}>
 									<MaterialCommunityIcons name="store" size={25} color="#F16E44" />
 									<Text
@@ -251,6 +254,19 @@ export default function Profil() {
 						/>
 
 						<Divider style={{ marginVertical: 10 }} />
+						
+						<View style={{ borderWidth: 1, borderColor: '#8C8C8C', borderRadius: 4, marginTop: 10, width: '95%' }}>
+						<Picker
+						enabled={!!edit}
+						selectedValue={statueUser}
+						style={{ height: 50, width: '100%'}}
+						onValueChange={(itemValue, itemIndex) => setStatueUser(itemValue)}>
+								<Picker.Item label="Particulier" value={"Particulier"} />
+                            	<Picker.Item label="Professionel" value={"Professionel"} />
+						</Picker>
+						</View>
+
+						<Divider style={{ marginVertical: 10 }} />
 
 						<TextInput
 							theme={textTheme}
@@ -277,6 +293,7 @@ export default function Profil() {
 
 	
 					</View>
+
 				</ScrollView>
 			) : (
 				<ProgressBar color="#4898D3" indeterminate={true} visible={true} />
